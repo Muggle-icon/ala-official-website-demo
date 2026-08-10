@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#1738c7" />
+    <meta
+      name="description"
+      content="Demo del nuevo inicio del sitio oficial de ALA, con acceso a la aplicación y al centro de ayuda."
+    />
+    <link rel="icon" type="image/png" href="./public/assets/ala-app-icon.png" />
+    <link rel="stylesheet" href="./styles.css" />
+    <title>ALA — Apoyo financiero flexible</title>
+  </head>
+  <body>
+    <main class="site-shell">
+      <div class="ios-status" aria-hidden="true">
+        <span class="ios-time">9:41</span>
+        <span class="ios-system-icons">
+          <span class="signal"><i></i><i></i><i></i><i></i></span>
+          <span class="wifi"></span>
+          <span class="battery"><i></i></span>
+        </span>
+      </div>
+
+      <button class="notice-bar" type="button" data-open-notice aria-label="Ver aviso importante">
+        <span class="notice-copy">
+          <strong>Aviso importante:</strong>
+          <span>Este es el único sitio web oficial de ALA.</span>
+        </span>
+        <span class="notice-link">Ver aviso</span>
+        <svg class="chevron" viewBox="0 0 20 20" aria-hidden="true">
+          <path d="m7 4 6 6-6 6" />
+        </svg>
+      </button>
+
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-photo" aria-hidden="true"></div>
+        <div class="mobile-shade" aria-hidden="true"></div>
+
+        <header class="desktop-nav">
+          <a class="desktop-brand" href="#" aria-label="ALA inicio">
+            <img src="./public/assets/ala-app-icon.png" alt="" />
+            <span>ALA</span>
+          </a>
+          <nav aria-label="Navegación principal">
+            <a href="#producto">Introducción del producto</a>
+            <a href="#proteccion">Protección regulatoria</a>
+            <a class="nav-with-arrow" href="#blog">Blog <span aria-hidden="true"></span></a>
+            <a class="nav-with-arrow" href="#informacion">Más información <span aria-hidden="true"></span></a>
+            <a href="#preguntas">Preguntas frecuentes</a>
+          </nav>
+        </header>
+
+        <header class="mobile-nav">
+          <a class="mobile-brand" href="#" aria-label="ALA inicio">
+            <img src="./public/assets/ala-app-icon.png" alt="" />
+          </a>
+          <a class="about-pill" href="#informacion">Sobre ALA <span aria-hidden="true">›</span></a>
+          <button class="menu-button" type="button" aria-label="Abrir menú" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
+        </header>
+
+        <div class="hero-content">
+          <h1 id="hero-title">Te ofrecemos apoyo<br />financiero flexible<br />de $300 a $50,000</h1>
+
+          <div class="store-buttons" aria-label="Descarga la aplicación de ALA">
+            <a class="store-button" href="#google-play" aria-label="Descargar en Google Play">
+              <img src="./public/assets/google-play-icon.svg" alt="" />
+              <span>Google Play</span>
+            </a>
+            <a class="store-button" href="#app-store" aria-label="Descargar en App Store">
+              <img class="apple-mark" src="./public/assets/app-store-icon.png" alt="" />
+              <span>App Store</span>
+            </a>
+          </div>
+
+          <div class="stats" aria-label="Estadísticas de ALA">
+            <div class="stat stat-downloads">
+              <strong>1,000,000+</strong>
+              <span>DESCARGAS</span>
+            </div>
+            <div class="stat stat-rating">
+              <strong>4.8</strong>
+              <span class="stars" aria-label="5 estrellas">★★★★★</span>
+            </div>
+            <div class="stat stat-satisfaction">
+              <strong>96%</strong>
+              <span>SATISFACCIÓN</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="download-card" aria-label="Escanea para descargar ALA">
+          <div class="download-copy">
+            <img src="./public/assets/ala-app-icon.png" alt="" />
+            <strong>Escanea y<br />descarga</strong>
+          </div>
+          <img class="qr-code" src="./public/assets/qr-code.png" alt="Código QR de descarga" />
+          <button class="help-card-button" type="button" data-toggle-help>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5 12a7 7 0 0 1 14 0v5a2 2 0 0 1-2 2h-2" />
+              <path d="M5 12H3v5h3M19 12h2v5h-3M9 20h6" />
+            </svg>
+            Centro de ayuda
+          </button>
+        </aside>
+
+        <button class="mobile-help" type="button" data-toggle-help aria-label="Abrir centro de ayuda">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M5 12a7 7 0 0 1 14 0v5a2 2 0 0 1-2 2h-2" />
+            <path d="M5 12H3v5h3M19 12h2v5h-3M9 20h6" />
+          </svg>
+        </button>
+
+        <section class="help-panel" aria-labelledby="help-title" aria-hidden="true">
+          <header>
+            <h2 id="help-title">Centro de ayuda</h2>
+            <button type="button" data-close-help aria-label="Cerrar centro de ayuda">×</button>
+          </header>
+          <div class="advisor-row">
+            <div class="advisor-photo" aria-hidden="true"></div>
+            <div>
+              <strong>Habla con Sofía.</strong>
+              <span>Tu asesora de ALA</span>
+            </div>
+          </div>
+          <a class="whatsapp-button" href="https://wa.me/" target="_blank" rel="noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4.1A8 8 0 1 1 20 11.5Z" />
+              <path d="M8.8 8.2c.3-.6.6-.6.9-.6h.4c.2 0 .4 0 .5.4l.8 1.9c.1.3 0 .5-.1.7l-.6.7c-.2.2-.3.4-.1.7.5.9 1.2 1.6 2.1 2.1.3.2.5.2.7-.1l.8-1c.2-.3.5-.3.7-.2l1.8.9c.3.1.5.2.5.4 0 .2-.1 1.2-.6 1.7-.5.6-1.4.9-2.2.9-.6 0-1.4-.2-2.4-.6-1.7-.7-3-1.9-4.1-3.3-1-1.3-1.5-2.8-1.5-3.8 0-.9.4-1.6.6-1.8Z" />
+            </svg>
+            Iniciar conversación
+          </a>
+          <p>¿No tienes WhatsApp? <a href="#ayuda">Obtén ayuda aquí</a></p>
+        </section>
+      </section>
+
+      <div class="notice-overlay" aria-hidden="true">
+        <section class="notice-modal" role="dialog" aria-modal="true" aria-labelledby="notice-title">
+          <button class="modal-close" type="button" data-close-notice aria-label="Cerrar aviso">×</button>
+          <span class="security-chip">Aviso de seguridad</span>
+          <h2 id="notice-title">Aviso Importante Este es el único sitio web oficial de ALA.</h2>
+          <p class="modal-intro">
+            Hemos detectado un sitio web de terceros que utiliza elementos similares a la marca ALA y que podría
+            generar confusión.
+          </p>
+          <div class="modal-divider"></div>
+          <h3>Para proteger su información y prevenir posibles fraudes:</h3>
+          <ol class="safety-list">
+            <li><span>1</span><p>Consulte únicamente la información publicada en este sitio web oficial.</p></li>
+            <li><span>2</span><p>Descargue la aplicación oficial de ALA únicamente mediante el código QR disponible en este sitio web oficial.</p></li>
+            <li><span>3</span><p>No proporcione datos personales o financieros a través de sitios web, aplicaciones o canales no oficiales.</p></li>
+          </ol>
+          <p class="legal-note">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 7 3v6c0 4.8-3 8.4-7 10-4-1.6-7-5.2-7-10V5l7-3Z" /><path d="m9 12 2 2 4-5" /></svg>
+            ALA está tomando las acciones legales correspondientes para proteger a sus usuarios y su marca.
+          </p>
+          <button class="close-primary" type="button" data-close-notice>Cerrar</button>
+        </section>
+      </div>
+
+      <div class="ios-home-indicator" aria-hidden="true"></div>
+    </main>
+    <script src="./script.js"></script>
+  </body>
+</html>
