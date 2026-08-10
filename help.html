@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#1d3299" />
+    <meta name="description" content="Centro de ayuda oficial de ALA." />
+    <link rel="icon" type="image/png" href="./public/assets/download-card-icon.png" />
+    <link rel="stylesheet" href="./help.css?v=20260810-2030" />
+    <title>Centro de ayuda — ALA</title>
+  </head>
+  <body>
+    <header class="help-header">
+      <div class="help-nav">
+        <a class="help-brand" href="./index.html" aria-label="Volver al inicio de ALA">
+          <img src="./public/assets/ala-logo.png" alt="ALA" />
+        </a>
+        <nav id="help-navigation" aria-label="Navegación principal">
+          <a href="./index.html#producto">Introducción del producto</a>
+          <a href="./index.html#proteccion">Protección regulatoria</a>
+          <a class="help-nav-arrow" href="./index.html#blog">Blog <img src="./public/assets/blog-chevron.png" alt="" /></a>
+          <a class="help-nav-arrow" href="./index.html#informacion">Más información <img src="./public/assets/more-info-chevron.png" alt="" /></a>
+          <a href="./index.html#preguntas">Preguntas frecuentes</a>
+        </nav>
+        <button class="help-menu" type="button" aria-label="Abrir menú" aria-controls="help-navigation" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="help-hero" aria-labelledby="help-page-title">
+        <div class="help-hero-inner">
+          <h1 id="help-page-title">Centro de ayuda</h1>
+
+          <div class="help-contact-card">
+            <div class="help-advisor">
+              <img src="./public/assets/help-sofia-large.png" alt="Sofía, asesora de ALA" />
+              <div>
+                <strong>Habla con Sofía.</strong>
+                <span>Tu asesora de ALA</span>
+              </div>
+            </div>
+            <a class="help-whatsapp-cta" href="https://wa.me/" target="_blank" rel="noreferrer">
+              <img src="./public/assets/whatsapp-icon.png" alt="" />
+              Iniciar conversación
+            </a>
+          </div>
+
+          <p class="help-download-prompt">¿No tienes WhatsApp? <a href="./index.html#google-play">Descarga la app de ALA</a></p>
+        </div>
+      </section>
+
+      <section class="help-content" aria-label="Información de ayuda">
+        <article class="security-advice">
+          <img class="security-accent" src="./public/assets/help-security-accent.png" alt="" />
+          <img class="security-advice-icon" src="./public/assets/help-security-icon.png" alt="" />
+          <div>
+            <h2>Consejo de seguridad</h2>
+            <p>ALA nunca te pedirá transferir dinero a una cuenta personal. Si recibes una solicitud de pago no oficial o detectas un uso indebido de tu identidad, repórtalo a través de nuestros canales oficiales.</p>
+          </div>
+        </article>
+
+        <div class="help-features">
+          <article>
+            <span><img src="./public/assets/help-whatsapp-blue.png" alt="" /></span>
+            <p>Si necesitas ayuda, contáctanos directamente por WhatsApp.</p>
+          </article>
+          <article>
+            <span><img src="./public/assets/help-lightning.png" alt="" /></span>
+            <p>Obtén respuestas inmediatas de tu asesora.</p>
+          </article>
+          <article>
+            <span><img src="./public/assets/help-question.png" alt="" /></span>
+            <p>Podemos ayudarte con cualquier pregunta sobre tu préstamo o cuenta.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+    <script src="./help.js"></script>
+  </body>
+</html>
