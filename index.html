@@ -8,7 +8,7 @@
       name="description"
       content="Demo del nuevo inicio del sitio oficial de ALA, con acceso a la aplicación y al centro de ayuda."
     />
-    <link rel="icon" type="image/png" href="./public/assets/ala-app-icon.png" />
+    <link rel="icon" type="image/png" href="./public/assets/download-card-icon.png" />
     <link rel="stylesheet" href="./styles.css" />
     <title>ALA — Apoyo financiero flexible</title>
   </head>
@@ -29,9 +29,7 @@
           <span>Este es el único sitio web oficial de ALA.</span>
         </span>
         <span class="notice-link">Ver aviso</span>
-        <svg class="chevron" viewBox="0 0 20 20" aria-hidden="true">
-          <path d="m7 4 6 6-6 6" />
-        </svg>
+        <img class="chevron" src="./public/assets/notice-chevron.png" alt="" />
       </button>
 
       <section class="hero" aria-labelledby="hero-title">
@@ -40,14 +38,13 @@
 
         <header class="desktop-nav">
           <a class="desktop-brand" href="#" aria-label="ALA inicio">
-            <img src="./public/assets/ala-app-icon.png" alt="" />
-            <span>ALA</span>
+            <img src="./public/assets/ala-logo.png" alt="ALA" />
           </a>
           <nav aria-label="Navegación principal">
             <a href="#producto">Introducción del producto</a>
             <a href="#proteccion">Protección regulatoria</a>
-            <a class="nav-with-arrow" href="#blog">Blog <span aria-hidden="true"></span></a>
-            <a class="nav-with-arrow" href="#informacion">Más información <span aria-hidden="true"></span></a>
+            <a class="nav-with-arrow" href="#blog">Blog <img src="./public/assets/blog-chevron.png" alt="" /></a>
+            <a class="nav-with-arrow" href="#informacion">Más información <img src="./public/assets/more-info-chevron.png" alt="" /></a>
             <a href="#preguntas">Preguntas frecuentes</a>
           </nav>
         </header>
@@ -67,7 +64,7 @@
 
           <div class="store-buttons" aria-label="Descarga la aplicación de ALA">
             <a class="store-button" href="#google-play" aria-label="Descargar en Google Play">
-              <img src="./public/assets/google-play-icon.svg" alt="" />
+              <img src="./public/assets/google-play-icon.png" alt="" />
               <span>Google Play</span>
             </a>
             <a class="store-button" href="#app-store" aria-label="Descargar en App Store">
@@ -83,7 +80,13 @@
             </div>
             <div class="stat stat-rating">
               <strong>4.8</strong>
-              <span class="stars" aria-label="5 estrellas">★★★★★</span>
+              <span class="stars" aria-label="5 estrellas">
+                <img src="./public/assets/star.png" alt="" />
+                <img src="./public/assets/star.png" alt="" />
+                <img src="./public/assets/star.png" alt="" />
+                <img src="./public/assets/star.png" alt="" />
+                <img src="./public/assets/star.png" alt="" />
+              </span>
             </div>
             <div class="stat stat-satisfaction">
               <strong>96%</strong>
@@ -94,24 +97,18 @@
 
         <aside class="download-card" aria-label="Escanea para descargar ALA">
           <div class="download-copy">
-            <img src="./public/assets/ala-app-icon.png" alt="" />
+            <img src="./public/assets/download-card-icon.png" alt="" />
             <strong>Escanea y<br />descarga</strong>
           </div>
           <img class="qr-code" src="./public/assets/qr-code.png" alt="Código QR de descarga" />
           <button class="help-card-button" type="button" data-toggle-help>
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M5 12a7 7 0 0 1 14 0v5a2 2 0 0 1-2 2h-2" />
-              <path d="M5 12H3v5h3M19 12h2v5h-3M9 20h6" />
-            </svg>
+            <img src="./public/assets/help-center.png" alt="" />
             Centro de ayuda
           </button>
         </aside>
 
         <button class="mobile-help" type="button" data-toggle-help aria-label="Abrir centro de ayuda">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M5 12a7 7 0 0 1 14 0v5a2 2 0 0 1-2 2h-2" />
-            <path d="M5 12H3v5h3M19 12h2v5h-3M9 20h6" />
-          </svg>
+          <img src="./public/assets/help-center.png" alt="" />
         </button>
 
         <section class="help-panel" aria-labelledby="help-title" aria-hidden="true">
@@ -163,6 +160,94 @@
 
       <div class="ios-home-indicator" aria-hidden="true"></div>
     </main>
+
+    <footer class="site-footer" id="informacion">
+      <div class="footer-inner">
+        <section class="footer-contact">
+          <h2>Contáctanos</h2>
+          <p class="contact-intro">Por favor, envía por correo electrónico el problema que presentas e incluye tu número de teléfono para que podamos confirmarlo contigo y solucionarlo más rápido.</p>
+          <a class="phone-link" href="tel:40009877866456">
+            <span><img src="./public/assets/help-center.png" alt="" /></span>
+            Teléfono
+          </a>
+          <dl class="contact-list">
+            <div><dt>Teléfono</dt><dd>400-0987-7866-456</dd></div>
+            <div><dt>Correo electrónico</dt><dd>contacto@prestifymx.com</dd></div>
+            <div><dt>Horario de atención</dt><dd>De lunes a domingo, de 9:00 a 18:00.</dd></div>
+          </dl>
+          <p class="regulated-label">Regulados por las siguientes instituciones</p>
+          <div class="regulator-logos">
+            <img class="condusef" src="./public/assets/condusef.png" alt="CONDUSEF" />
+            <img class="profeco" src="./public/assets/profeco.png" alt="PROFECO" />
+          </div>
+        </section>
+
+        <section class="footer-about">
+          <h2>Sobre nosotros</h2>
+          <dl class="about-list">
+            <div><dt>Razón social</dt><dd>Gongsi ming cheng dai tigong .</dd></div>
+            <div><dt>Dirección de la empresa</dt><dd>Gongsi dizhi dai tigong</dd></div>
+            <div>
+              <dt>idad especializada de atención a usuarios (UNE)</dt>
+              <dd><a href="#une">UNE ALA</a><a href="#cobranza">Despacho de cobranza</a></dd>
+            </div>
+          </dl>
+          <div class="social-block">
+            <h2>Síguenos</h2>
+            <div class="social-links">
+              <a href="#youtube" aria-label="YouTube"><img src="./public/assets/youtube.png" alt="" /></a>
+              <a href="#facebook" aria-label="Facebook"><img src="./public/assets/facebook.png" alt="" /></a>
+              <a href="#tiktok" aria-label="TikTok"><img src="./public/assets/tiktok.png" alt="" /></a>
+            </div>
+          </div>
+        </section>
+
+        <section class="footer-agreement">
+          <h2>Acuerdo</h2>
+          <div class="agreement-group">
+            <h3>Google Play</h3>
+            <a href="#google-privacy">Registro de privacidad <span>›</span></a>
+            <a href="#google-terms">Términos de registro <span>›</span></a>
+          </div>
+          <div class="agreement-group">
+            <h3>App Store</h3>
+            <a href="#apple-privacy">Registro de privacidad <span>›</span></a>
+            <a href="#apple-terms">Términos de registro <span>›</span></a>
+            <a href="#loan-contract">Contrato de préstamo <span>›</span></a>
+          </div>
+        </section>
+
+        <section class="footer-articles footer-recent">
+          <h2>Artículos recientes</h2>
+          <div class="article-list">
+            <article><p>Si necesitas ayuda, llama a nuestra línea de atención o envíanos un correo electrónico.</p><time datetime="2025-07-02">02/07/2025</time></article>
+            <article><p>Si necesitas ayuda, llama a nuestra línea de atención o envíanos un correo electrónico.</p><time datetime="2025-07-02">02/07/2025</time></article>
+            <article><p>Si necesitas ayuda, llama a nuestra línea de atención o envíanos un correo electrónico.</p><time datetime="2025-07-02">02/07/2025</time></article>
+          </div>
+          <a class="more-link" href="#recentes">Conocer más <span>›</span></a>
+        </section>
+
+        <section class="footer-articles footer-popular">
+          <h2>Artículos populares</h2>
+          <div class="article-list">
+            <article><p>Si necesitas ayuda, llama a nuestra línea de atención o envíanos un correo electrónico.</p><time datetime="2025-07-02">02/07/2025</time></article>
+            <article><p>Si necesitas ayuda, llama a nuestra línea de atención o envíanos un correo electrónico.</p><time datetime="2025-07-02">02/07/2025</time></article>
+            <article><p>Si necesitas ayuda, llama a nuestra línea de atención o envíanos un correo electrónico.</p><time datetime="2025-07-02">02/07/2025</time></article>
+          </div>
+          <a class="more-link" href="#populares">Conocer más <span>›</span></a>
+        </section>
+
+        <section class="footer-sections">
+          <h2>Secciones populares</h2>
+          <a href="#guia">Guía de préstamos <span>›</span></a>
+          <a href="#diccionario">Diccionario financiero <span>›</span></a>
+          <a href="#noticias">Noticias financieras <span>›</span></a>
+          <a href="#ciudad">Préstamo en tu ciudad <span>›</span></a>
+        </section>
+
+        <p class="legal-disclaimer">El monto del préstamo va desde MXN $200 hasta MXN $50,000, con plazos de pago de 91 a 360 días. La tasa de interés diaria es desde 0.1% (equivalente a un APR anual de 36%), sin comisión por disposición. Por ejemplo: un préstamo de MXN $5,000 tendría un monto total a pagar de MXN $5,348, incluyendo intereses e IVA. Las tasas y condiciones pueden variar según el perfil del usuario.</p>
+      </div>
+    </footer>
     <script src="./script.js"></script>
   </body>
 </html>
