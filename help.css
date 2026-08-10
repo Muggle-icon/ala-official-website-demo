@@ -225,6 +225,7 @@ button:focus-visible {
 .help-content {
   width: min(1240px, 64.583333vw);
   margin: clamp(48px, min(3.333333vw, 5.925926svh), 64px) auto 0;
+  padding-bottom: clamp(150px, min(10.625vw, 18.888889svh), 204px);
 }
 
 .security-advice {
@@ -420,6 +421,7 @@ button:focus-visible {
   .help-content {
     width: auto;
     margin: 40px 24px 64px;
+    padding-bottom: 0;
   }
 
   .security-advice {
