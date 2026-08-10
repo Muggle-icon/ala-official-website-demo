@@ -172,7 +172,7 @@ a {
   align-items: center;
   width: 100%;
   height: min(72px, 3.75cqw, 6.923077cqh);
-  padding: 0 var(--page-gutter);
+  padding: 0 min(120px, 6.25cqw, 11.538cqh);
   background: rgba(0, 0, 0, 0.4);
 }
 
@@ -245,7 +245,7 @@ a {
   position: absolute;
   z-index: 3;
   top: min(285px, 14.844cqw, 27.404cqh);
-  left: var(--page-gutter);
+  left: min(120px, 6.25cqw, 11.538cqh);
   width: min(760px, 39.583cqw, 73.077cqh);
 }
 
@@ -379,7 +379,7 @@ a {
 .download-card {
   position: fixed;
   z-index: 5;
-  right: var(--page-gutter);
+  right: min(64px, 3.33334cqw, 6.15385cqh);
   bottom: min(64px, 3.33334cqw, 6.15385cqh);
   width: min(240px, 12.5cqw, 23.077cqh);
   height: min(180px, 9.375cqw, 17.308cqh);
@@ -1018,8 +1018,11 @@ a {
   line-height: 20px;
 }
 
-@media (min-width: 901px) {
+/* Short desktop viewports use the compact layout; at 1920 × 1352 the base
+   footer metrics above reproduce the design frame exactly. */
+@media (min-width: 901px) and (max-height: 1351px) {
   .site-footer {
+    --footer-gutter: min(120px, 6.25cqw, 11.111111cqh);
     width: 100%;
     height: 100vh;
     height: 100svh;
@@ -1028,7 +1031,7 @@ a {
   }
 
   .footer-inner {
-    width: calc(100% - (2 * var(--page-gutter)));
+    width: calc(100% - (2 * var(--footer-gutter)));
     height: 100%;
   }
 

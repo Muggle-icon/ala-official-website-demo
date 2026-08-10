@@ -62,6 +62,7 @@ button:focus-visible {
 }
 
 .help-desktop-nav {
+  padding: 0 var(--page-gutter);
   background: var(--nav-blue);
 }
 
