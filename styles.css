@@ -414,12 +414,15 @@ a {
 .help-panel {
   position: fixed;
   z-index: 12;
-  right: 64px;
-  bottom: 264px;
-  width: 400px;
-  border-radius: 18px;
+  right: min(64px, 3.333333vw, 5.925926svh);
+  bottom: min(256px, 13.333333vw, 23.703704svh);
+  width: min(400px, 20.833333vw, 37.037037svh);
+  aspect-ratio: 400 / 268;
+  overflow: hidden;
+  border-radius: 12px;
   color: #242424;
   background: #fff;
+  container-type: size;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
   opacity: 0;
   visibility: hidden;
@@ -438,92 +441,95 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 67px;
-  padding: 0 26px;
-  border-bottom: 1px solid #eceef3;
+  height: 16cqw;
+  padding: 0 6cqw;
+  border-bottom: 1px solid #f2f2f7;
 }
 
 .help-panel h2 {
   margin: 0;
-  font-size: 16px;
+  font-size: 4cqw;
+  font-weight: 700;
+  line-height: 6cqw;
 }
 
 .help-panel header button {
-  width: 32px;
-  height: 32px;
+  width: 8cqw;
+  height: 8cqw;
   padding: 0;
   border: 0;
-  color: #222;
   background: transparent;
-  font-size: 36px;
-  font-weight: 300;
-  line-height: 28px;
   cursor: pointer;
+}
+
+.help-panel header button img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .advisor-row {
   display: flex;
+  height: 24cqw;
   align-items: center;
-  gap: 14px;
-  padding: 22px 28px 16px;
+  gap: 3.5cqw;
+  padding: 6cqw 6.75cqw;
 }
 
 .advisor-photo {
-  width: 50px;
-  height: 50px;
+  display: block;
+  width: 12cqw;
+  height: 12cqw;
   flex: 0 0 auto;
-  border-radius: 12px;
-  background-color: #2145ff;
-  background-image: url("./public/assets/hero-background.png");
-  background-position: 80% 24%;
-  background-size: 245px auto;
-  box-shadow: inset 0 0 0 3px #2145ff;
+  border-radius: 3cqw;
+  object-fit: contain;
 }
 
 .advisor-row div:last-child {
   display: flex;
   flex-direction: column;
-  gap: 5px;
 }
 
 .advisor-row strong {
-  font-size: 16px;
+  font-size: 4cqw;
+  line-height: 6cqw;
 }
 
 .advisor-row span {
   color: #727272;
-  font-size: 14px;
+  font-size: 3.5cqw;
+  line-height: 5cqw;
 }
 
 .whatsapp-button {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  height: 54px;
-  margin: 0 28px;
-  border-radius: 13px;
+  gap: 2.5cqw;
+  height: 13cqw;
+  margin: 0 7cqw;
+  border-radius: 3.5cqw;
   color: #fff;
-  background: #0d8b43;
-  font-size: 16px;
+  background: #107838;
+  font-size: 4cqw;
   font-weight: 700;
+  line-height: 6cqw;
   text-decoration: none;
 }
 
-.whatsapp-button svg {
-  width: 23px;
-  height: 23px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.8;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+.whatsapp-button img {
+  display: block;
+  width: 6cqw;
+  height: 6cqw;
+  object-fit: contain;
 }
 
 .help-panel > p {
-  margin: 15px 20px 22px;
-  color: #777;
-  font-size: 13px;
+  margin: 3.75cqw 5cqw 0;
+  color: #666;
+  font-size: 3.5cqw;
+  line-height: 5cqw;
   text-align: center;
 }
 

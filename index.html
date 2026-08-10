@@ -9,7 +9,7 @@
       content="Demo del nuevo inicio del sitio oficial de ALA, con acceso a la aplicación y al centro de ayuda."
     />
     <link rel="icon" type="image/png" href="./public/assets/download-card-icon.png" />
-    <link rel="stylesheet" href="./styles.css?v=20260810-1505" />
+    <link rel="stylesheet" href="./styles.css?v=20260810-1535" />
     <title>ALA — Apoyo financiero flexible</title>
   </head>
   <body>
@@ -107,20 +107,19 @@
         <section class="help-panel" aria-labelledby="help-title" aria-hidden="true">
           <header>
             <h2 id="help-title">Centro de ayuda</h2>
-            <button type="button" data-close-help aria-label="Cerrar centro de ayuda">×</button>
+            <button type="button" data-close-help aria-label="Cerrar centro de ayuda">
+              <img src="./public/assets/close-icon.png" alt="" />
+            </button>
           </header>
           <div class="advisor-row">
-            <div class="advisor-photo" aria-hidden="true"></div>
+            <img class="advisor-photo" src="./public/assets/help-advisor-sofia.png" alt="" />
             <div>
               <strong>Habla con Sofía.</strong>
               <span>Tu asesora de ALA</span>
             </div>
           </div>
           <a class="whatsapp-button" href="https://wa.me/" target="_blank" rel="noreferrer">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4.1A8 8 0 1 1 20 11.5Z" />
-              <path d="M8.8 8.2c.3-.6.6-.6.9-.6h.4c.2 0 .4 0 .5.4l.8 1.9c.1.3 0 .5-.1.7l-.6.7c-.2.2-.3.4-.1.7.5.9 1.2 1.6 2.1 2.1.3.2.5.2.7-.1l.8-1c.2-.3.5-.3.7-.2l1.8.9c.3.1.5.2.5.4 0 .2-.1 1.2-.6 1.7-.5.6-1.4.9-2.2.9-.6 0-1.4-.2-2.4-.6-1.7-.7-3-1.9-4.1-3.3-1-1.3-1.5-2.8-1.5-3.8 0-.9.4-1.6.6-1.8Z" />
-            </svg>
+            <img src="./public/assets/whatsapp-icon.png" alt="" />
             Iniciar conversación
           </a>
           <p>¿No tienes WhatsApp? <a href="#ayuda">Obtén ayuda aquí</a></p>
