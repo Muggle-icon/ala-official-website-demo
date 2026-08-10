@@ -45,6 +45,7 @@
   --status-height: 0px;
   --notice-height: min(40px, 2.083333vw, 3.703704svh);
   --mobile-nav-height: 0px;
+  --page-gutter: min(320px, max(24px, calc((100vw - 720px) / 2)));
 }
 
 * {
@@ -1019,7 +1020,6 @@ a {
 
 @media (min-width: 901px) {
   .site-footer {
-    --footer-gutter: min(120px, 6.25cqw, 11.111111cqh);
     width: 100%;
     height: 100vh;
     height: 100svh;
@@ -1028,7 +1028,7 @@ a {
   }
 
   .footer-inner {
-    width: calc(100% - (2 * var(--footer-gutter)));
+    width: calc(100% - (2 * var(--page-gutter)));
     height: 100%;
   }
 

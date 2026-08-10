@@ -6,8 +6,8 @@
     <meta name="theme-color" content="#1d3299" />
     <meta name="description" content="Centro de ayuda oficial de ALA." />
     <link rel="icon" type="image/png" href="./public/assets/download-card-icon.png" />
-    <link rel="stylesheet" href="./styles.css?v=20260810-2245" />
-    <link rel="stylesheet" href="./help.css?v=20260810-2335" />
+    <link rel="stylesheet" href="./styles.css?v=20260810-2355" />
+    <link rel="stylesheet" href="./help.css?v=20260810-2355" />
     <title>Centro de ayuda — ALA</title>
   </head>
   <body>
@@ -20,24 +20,27 @@
       </span>
     </div>
 
-    <header class="help-header">
-      <div class="help-nav">
-        <a class="help-brand" href="./index.html" aria-label="Volver al inicio de ALA">
-          <img class="help-brand-desktop" src="./public/assets/ala-logo.png" alt="ALA" />
-          <img class="help-brand-mobile" src="./public/assets/ala-app-icon.png" alt="" />
-        </a>
-        <nav id="help-navigation" aria-label="Navegación principal">
-          <a href="./index.html#producto">Introducción del producto</a>
-          <a href="./index.html#proteccion">Protección regulatoria</a>
-          <a class="help-nav-arrow" href="./index.html#blog">Blog <img src="./public/assets/blog-chevron.png" alt="" /></a>
-          <a class="help-nav-arrow" href="./index.html#informacion">Más información <img src="./public/assets/more-info-chevron.png" alt="" /></a>
-          <a href="./index.html#preguntas">Preguntas frecuentes</a>
-        </nav>
-        <a class="help-mobile-about" href="./index.html#informacion">Sobre ALA <span aria-hidden="true">›</span></a>
-        <button class="help-menu" type="button" aria-label="Abrir menú" aria-controls="help-navigation" aria-expanded="false">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
+    <header class="desktop-nav help-desktop-nav">
+      <a class="desktop-brand" href="./index.html" aria-label="Volver al inicio de ALA">
+        <img src="./public/assets/ala-logo.png" alt="ALA" />
+      </a>
+      <nav aria-label="Navegación principal">
+        <a href="./index.html#producto">Introducción del producto</a>
+        <a href="./index.html#proteccion">Protección regulatoria</a>
+        <a class="nav-with-arrow" href="./index.html#blog">Blog <img src="./public/assets/blog-chevron.png" alt="" /></a>
+        <a class="nav-with-arrow" href="./index.html#informacion">Más información <img src="./public/assets/more-info-chevron.png" alt="" /></a>
+        <a href="./index.html#preguntas">Preguntas frecuentes</a>
+      </nav>
+    </header>
+
+    <header class="mobile-nav help-mobile-nav">
+      <a class="mobile-brand" href="./index.html" aria-label="Volver al inicio de ALA">
+        <img src="./public/assets/ala-app-icon.png" alt="" />
+      </a>
+      <a class="about-pill" href="./index.html#informacion">Sobre ALA <span aria-hidden="true">›</span></a>
+      <button class="menu-button" type="button" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </header>
 
     <main>
