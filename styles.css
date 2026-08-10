@@ -172,7 +172,7 @@ a {
   align-items: center;
   width: 100%;
   height: min(72px, 3.75cqw, 6.923077cqh);
-  padding: 0 min(120px, 6.25cqw, 11.538cqh);
+  padding: 0 var(--page-gutter);
   background: rgba(0, 0, 0, 0.4);
 }
 
@@ -245,7 +245,7 @@ a {
   position: absolute;
   z-index: 3;
   top: min(285px, 14.844cqw, 27.404cqh);
-  left: min(120px, 6.25cqw, 11.538cqh);
+  left: var(--page-gutter);
   width: min(760px, 39.583cqw, 73.077cqh);
 }
 
@@ -379,7 +379,7 @@ a {
 .download-card {
   position: fixed;
   z-index: 5;
-  right: min(64px, 3.33334cqw, 6.15385cqh);
+  right: var(--page-gutter);
   bottom: min(64px, 3.33334cqw, 6.15385cqh);
   width: min(240px, 12.5cqw, 23.077cqh);
   height: min(180px, 9.375cqw, 17.308cqh);
