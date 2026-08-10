@@ -30,6 +30,14 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "Roboto";
+  src: url("./public/assets/Roboto-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --blue: #102bb5;
   --bright-blue: #2145ff;
@@ -267,8 +275,11 @@ a {
   border-radius: 999px;
   color: #080808;
   background: #fff;
-  font-size: min(16px, 0.833cqw, 1.538cqh);
-  font-weight: 700;
+  font-family: "Roboto", Arial, sans-serif;
+  font-size: min(18px, 0.938cqw, 1.731cqh);
+  font-weight: 500;
+  line-height: min(24px, 1.25cqw, 2.308cqh);
+  letter-spacing: 0;
   text-decoration: none;
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
   transition: transform 160ms ease, box-shadow 160ms ease;
@@ -334,15 +345,21 @@ a {
 }
 
 .stat strong {
+  font-family: "Roboto", Arial, sans-serif;
   font-size: min(24px, 1.25cqw, 2.308cqh);
-  line-height: 1.25;
+  font-weight: 700;
+  line-height: min(30px, 1.563cqw, 2.885cqh);
+  letter-spacing: 0;
 }
 
 .stat > span:not(.stars) {
   margin-top: min(10px, 0.521cqw, 0.962cqh);
   color: rgba(255, 255, 255, 0.82);
-  font-size: min(14px, 0.729cqw, 1.346cqh);
-  line-height: 1.4286;
+  font-family: "Roboto", Arial, sans-serif;
+  font-size: min(14px, 0.729167cqw, 1.346154cqh);
+  font-weight: 400;
+  line-height: min(20px, 1.041667cqw, 1.923077cqh);
+  letter-spacing: 0;
 }
 
 .stars {
@@ -1244,7 +1261,8 @@ a {
     height: 44px;
     flex: 0.48 1 0;
     gap: 8px;
-    font-size: clamp(14px, 4.15vw, 17px);
+    font-size: clamp(14px, 4.15vw, 18px);
+    line-height: 24px;
   }
 
   .store-button img {
@@ -1289,11 +1307,13 @@ a {
 
   .stat strong {
     font-size: clamp(18px, 5.35vw, 22px);
+    line-height: 30px;
   }
 
   .stat > span:not(.stars) {
     margin-top: 9px;
     font-size: clamp(10px, 3vw, 12px);
+    line-height: 20px;
   }
 
   .stars {
