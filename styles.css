@@ -999,6 +999,7 @@ a {
 
 @media (min-width: 901px) {
   .site-footer {
+    --footer-gutter: min(120px, 6.25cqw, 11.111111cqh);
     width: 100%;
     height: 100vh;
     height: 100svh;
@@ -1007,7 +1008,7 @@ a {
   }
 
   .footer-inner {
-    width: min(1280px, 66.666667cqw, 118.518519cqh);
+    width: calc(100% - (2 * var(--footer-gutter)));
     height: 100%;
   }
 
@@ -1025,22 +1026,22 @@ a {
   .footer-contact,
   .footer-recent,
   .footer-popular {
-    width: 29.21875%;
+    width: 22.261905%;
   }
 
   .footer-about,
   .footer-popular {
-    left: 37.03125%;
+    left: 40.119048%;
   }
 
   .footer-about {
-    width: 29.21875%;
+    width: 22.261905%;
   }
 
   .footer-agreement,
   .footer-sections {
-    left: 74.0625%;
-    width: 25.9375%;
+    left: 80.238095%;
+    width: 19.761905%;
   }
 
   .contact-intro {
@@ -1200,7 +1201,7 @@ a {
 
   .legal-disclaimer {
     top: min(955px, 49.739583cqw, 88.425926cqh);
-    width: 100%;
+    width: 80.952381%;
     font-size: min(13px, 0.677083cqw, 1.203704cqh);
     line-height: min(18px, 0.9375cqw, 1.666667cqh);
   }
