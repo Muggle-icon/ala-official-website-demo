@@ -1,4 +1,5 @@
 const helpPanel = document.querySelector(".help-panel");
+const helpBackdrop = document.querySelector(".help-backdrop");
 const noticeOverlay = document.querySelector(".notice-overlay");
 const noticeModal = document.querySelector(".notice-modal");
 const openNoticeButton = document.querySelector("[data-open-notice]");
@@ -8,6 +9,8 @@ let lastFocusedElement = null;
 
 function setHelp(open) {
   helpPanel.classList.toggle("is-open", open);
+  helpBackdrop.classList.toggle("is-open", open);
+  document.body.classList.toggle("help-open", open);
   helpPanel.setAttribute("aria-hidden", String(!open));
   document.querySelectorAll("[data-toggle-help]").forEach((button) => {
     button.setAttribute("aria-expanded", String(open));
@@ -17,6 +20,7 @@ function setHelp(open) {
 
 function setNotice(open) {
   noticeOverlay.classList.toggle("is-open", open);
+  document.body.classList.toggle("notice-open", open);
   noticeOverlay.setAttribute("aria-hidden", String(!open));
   if (open) {
     lastFocusedElement = document.activeElement;
@@ -30,7 +34,9 @@ document.querySelectorAll("[data-toggle-help]").forEach((button) => {
   button.addEventListener("click", () => setHelp(!helpPanel.classList.contains("is-open")));
 });
 
-document.querySelector("[data-close-help]").addEventListener("click", () => setHelp(false));
+document.querySelectorAll("[data-close-help]").forEach((button) => {
+  button.addEventListener("click", () => setHelp(false));
+});
 
 openNoticeButton.addEventListener("click", () => setNotice(true));
 document.querySelectorAll("[data-close-notice]").forEach((button) => {

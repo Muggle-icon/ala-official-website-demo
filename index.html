@@ -9,7 +9,7 @@
       content="Demo del nuevo inicio del sitio oficial de ALA, con acceso a la aplicación y al centro de ayuda."
     />
     <link rel="icon" type="image/png" href="./public/assets/download-card-icon.png" />
-    <link rel="stylesheet" href="./styles.css?v=20260810-1605" />
+    <link rel="stylesheet" href="./styles.css?v=20260810-1730" />
     <title>ALA — Apoyo financiero flexible</title>
   </head>
   <body>
@@ -104,26 +104,29 @@
           <img src="./public/assets/help-center.png" alt="" />
         </button>
 
-        <section class="help-panel" aria-labelledby="help-title" aria-hidden="true">
-          <header>
-            <h2 id="help-title">Centro de ayuda</h2>
-            <button type="button" data-close-help aria-label="Cerrar centro de ayuda">
-              <img src="./public/assets/close-icon.png" alt="" />
-            </button>
-          </header>
-          <div class="advisor-row">
-            <img class="advisor-photo" src="./public/assets/help-advisor-sofia.png" alt="" />
-            <div>
-              <strong>Habla con Sofía.</strong>
-              <span>Tu asesora de ALA</span>
-            </div>
+      </section>
+
+      <button class="help-backdrop" type="button" data-close-help aria-label="Cerrar centro de ayuda"></button>
+
+      <section class="help-panel" aria-labelledby="help-title" aria-hidden="true">
+        <header>
+          <h2 id="help-title">Centro de ayuda</h2>
+          <button type="button" data-close-help aria-label="Cerrar centro de ayuda">
+            <img src="./public/assets/close-icon.png" alt="" />
+          </button>
+        </header>
+        <div class="advisor-row">
+          <img class="advisor-photo" src="./public/assets/help-advisor-sofia.png" alt="" />
+          <div>
+            <strong>Habla con Sofía.</strong>
+            <span>Tu asesora de ALA</span>
           </div>
-          <a class="whatsapp-button" href="https://wa.me/" target="_blank" rel="noreferrer">
-            <img src="./public/assets/whatsapp-icon.png" alt="" />
-            Iniciar conversación
-          </a>
-          <p>¿No tienes WhatsApp? <a href="#ayuda">Obtén ayuda aquí</a></p>
-        </section>
+        </div>
+        <a class="whatsapp-button" href="https://wa.me/" target="_blank" rel="noreferrer">
+          <img src="./public/assets/whatsapp-icon.png" alt="" />
+          Iniciar conversación
+        </a>
+        <p>¿No tienes WhatsApp? <a href="#ayuda">Obtén ayuda aquí</a></p>
       </section>
 
       <div class="notice-overlay" aria-hidden="true">

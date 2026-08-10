@@ -437,6 +437,10 @@ a {
   transform: translateY(0) scale(1);
 }
 
+.help-backdrop {
+  display: none;
+}
+
 .help-panel header {
   display: flex;
   align-items: center;
@@ -1234,6 +1238,11 @@ a {
     background: #1b1e28;
   }
 
+  body.help-open,
+  body.notice-open {
+    overflow: hidden;
+  }
+
   .site-shell {
     height: 100svh;
     min-height: 0;
@@ -1373,8 +1382,9 @@ a {
 
   .hero-photo {
     top: var(--mobile-nav-height);
-    background-position: 77.5% center;
-    background-size: auto 125%;
+    background-image: url("./public/assets/mobile-hero-background.png");
+    background-position: center top;
+    background-size: cover;
   }
 
   .mobile-shade {
@@ -1382,7 +1392,7 @@ a {
     inset: var(--mobile-nav-height) 0 0;
     z-index: 1;
     display: block;
-    background: linear-gradient(to bottom, transparent 42%, rgba(0, 0, 0, 0.14) 54%, rgba(0, 0, 0, 0.8) 100%);
+    background: transparent;
     pointer-events: none;
   }
 
@@ -1426,7 +1436,7 @@ a {
     gap: 8px;
     border-radius: 999px;
     color: #fff;
-    background: #2145ff;
+    background: #173cff;
     font-size: 15px;
     text-decoration: none;
     transform: translateX(-50%);
@@ -1453,8 +1463,8 @@ a {
 
   .menu-button span {
     display: block;
-    width: 21px;
-    height: 2.5px;
+    width: 18px;
+    height: 2px;
     margin-left: auto;
     border-radius: 2px;
     background: #151515;
@@ -1471,39 +1481,39 @@ a {
 
   .hero-content h1 {
     width: 100%;
-    font-size: clamp(28px, 8.95vw, 34px);
-    line-height: 1.18;
+    font-size: clamp(28px, 9.066667vw, 34px);
+    line-height: clamp(32px, 10.133333vw, 38px);
     letter-spacing: -0.65px;
     text-shadow: 0 2px 9px rgba(0, 0, 0, 0.32);
   }
 
   .store-buttons {
-    gap: 4px;
-    margin-top: 18px;
+    gap: 15px;
+    margin-top: 22px;
   }
 
   .store-button {
-    width: auto;
+    width: calc((100% - 15px) / 2);
     min-width: 0;
     height: 44px;
-    flex: 0.48 1 0;
+    flex: 0 0 calc((100% - 15px) / 2);
     gap: 8px;
-    font-size: clamp(14px, 4.15vw, 18px);
+    font-size: clamp(14px, 4.8vw, 18px);
     line-height: 24px;
   }
 
   .store-button img {
-    width: 22px;
-    height: 22px;
+    width: 26px;
+    height: 26px;
   }
 
   .store-button img.apple-mark {
-    width: 24px;
-    height: 24px;
+    width: 26px;
+    height: 26px;
   }
 
   .store-button:last-child {
-    flex-grow: 0.52;
+    flex-grow: 0;
   }
 
   .store-button span {
@@ -1555,8 +1565,8 @@ a {
   .mobile-help {
     position: absolute;
     z-index: 7;
-    top: calc(var(--mobile-nav-height) + 41.5%);
-    right: -1px;
+    top: calc(var(--mobile-nav-height) + 41.2%);
+    right: 0;
     display: grid;
     width: 48px;
     height: 48px;
@@ -1564,7 +1574,7 @@ a {
     border: 0;
     border-radius: 50% 0 0 50%;
     color: #fff;
-    background: #2145ff;
+    background: #173cff;
     cursor: pointer;
     box-shadow: 0 8px 22px rgba(17, 47, 177, 0.23);
   }
@@ -1576,34 +1586,140 @@ a {
 
   .help-panel {
     position: fixed;
-    right: 14px;
-    bottom: max(18px, env(safe-area-inset-bottom));
-    left: 14px;
-    width: auto;
-  }
-
-  .notice-overlay {
-    padding: 16px;
-  }
-
-  .notice-modal {
+    right: 0;
+    bottom: 0;
+    left: 0;
     width: 100%;
-    padding: 27px 20px 20px;
-    border-radius: 20px;
+    height: 298px;
+    aspect-ratio: auto;
+    border-radius: 16px 16px 0 0;
+    container-type: normal;
+    box-shadow: none;
+    transform: translateY(24px);
+    transform-origin: center bottom;
   }
 
-  .notice-modal h2 {
-    font-size: 20px;
+  .help-panel.is-open {
+    transform: translateY(0);
+  }
+
+  .help-panel header {
+    height: 64px;
+    padding: 0 24px;
+  }
+
+  .help-panel h2 {
+    font-size: 16px;
     line-height: 24px;
   }
 
-  .modal-intro {
+  .help-panel header button {
+    width: 32px;
+    height: 32px;
+  }
+
+  .advisor-row {
+    height: 96px;
+    gap: 14px;
+    padding: 24px;
+  }
+
+  .advisor-photo {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+  }
+
+  .advisor-row strong {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .advisor-row span {
     font-size: 14px;
     line-height: 20px;
   }
 
+  .whatsapp-button {
+    height: 52px;
+    gap: 10px;
+    margin: 0 24px;
+    border-radius: 14px;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .whatsapp-button img {
+    width: 24px;
+    height: 24px;
+  }
+
+  .help-panel > p {
+    margin: 15px 20px 0;
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .help-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 11;
+    display: block;
+    padding: 0;
+    border: 0;
+    background: rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 170ms ease, visibility 170ms ease;
+  }
+
+  .help-backdrop.is-open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .notice-overlay {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 72px 0 0;
+    background: rgba(0, 0, 0, 0.4);
+  }
+
+  .notice-modal {
+    width: 100%;
+    height: calc(100dvh - 72px);
+    max-height: none;
+    padding: 32px 24px 42px;
+    border-radius: 20px 20px 0 0;
+    box-shadow: none;
+  }
+
+  .notice-modal h2 {
+    margin: 15px 0 8px;
+    font-size: 24px;
+    line-height: 32px;
+  }
+
+  .modal-intro {
+    font-size: 16px;
+    line-height: 22px;
+  }
+
   .modal-divider {
-    margin: 17px 0;
+    height: 0;
+    margin: 14px 0 0;
+    background: transparent;
+  }
+
+  .notice-modal h3 {
+    margin: 0 0 6px;
+    font-size: 16px;
+    line-height: 22px;
+  }
+
+  .safety-list {
+    gap: 8px;
   }
 
   .safety-list li {
@@ -1611,11 +1727,11 @@ a {
   }
 
   .legal-note {
-    height: auto;
-    min-height: 52px;
+    height: 84px;
+    min-height: 84px;
     align-items: flex-start;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    margin: 16px 0 24px;
+    padding: 12px 16px;
   }
 
   .ios-home-indicator {
@@ -1630,6 +1746,12 @@ a {
     background: #fff;
     transform: translateX(-50%);
     pointer-events: none;
+  }
+
+  body.help-open .ios-home-indicator,
+  body.notice-open .ios-home-indicator {
+    z-index: 60;
+    background: #0a0a0a;
   }
 
   .site-footer {
