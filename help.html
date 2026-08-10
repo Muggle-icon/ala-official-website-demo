@@ -6,15 +6,25 @@
     <meta name="theme-color" content="#1d3299" />
     <meta name="description" content="Centro de ayuda oficial de ALA." />
     <link rel="icon" type="image/png" href="./public/assets/download-card-icon.png" />
-    <link rel="stylesheet" href="./styles.css?v=20260810-1930" />
-    <link rel="stylesheet" href="./help.css?v=20260810-2105" />
+    <link rel="stylesheet" href="./styles.css?v=20260810-2245" />
+    <link rel="stylesheet" href="./help.css?v=20260810-2245" />
     <title>Centro de ayuda — ALA</title>
   </head>
   <body>
+    <div class="ios-status help-ios-status" aria-hidden="true">
+      <span class="ios-time">9:41</span>
+      <span class="ios-system-icons">
+        <span class="signal"><i></i><i></i><i></i><i></i></span>
+        <span class="wifi"></span>
+        <span class="battery"><i></i></span>
+      </span>
+    </div>
+
     <header class="help-header">
       <div class="help-nav">
         <a class="help-brand" href="./index.html" aria-label="Volver al inicio de ALA">
-          <img src="./public/assets/ala-logo.png" alt="ALA" />
+          <img class="help-brand-desktop" src="./public/assets/ala-logo.png" alt="ALA" />
+          <img class="help-brand-mobile" src="./public/assets/ala-app-icon.png" alt="" />
         </a>
         <nav id="help-navigation" aria-label="Navegación principal">
           <a href="./index.html#producto">Introducción del producto</a>
@@ -23,6 +33,7 @@
           <a class="help-nav-arrow" href="./index.html#informacion">Más información <img src="./public/assets/more-info-chevron.png" alt="" /></a>
           <a href="./index.html#preguntas">Preguntas frecuentes</a>
         </nav>
+        <a class="help-mobile-about" href="./index.html#informacion">Sobre ALA <span aria-hidden="true">›</span></a>
         <button class="help-menu" type="button" aria-label="Abrir menú" aria-controls="help-navigation" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
@@ -54,7 +65,6 @@
 
       <section class="help-content" aria-label="Información de ayuda">
         <article class="security-advice">
-          <img class="security-accent" src="./public/assets/help-security-accent.png" alt="" />
           <img class="security-advice-icon" src="./public/assets/help-security-icon.png" alt="" />
           <div>
             <h2>Consejo de seguridad</h2>
@@ -79,93 +89,91 @@
       </section>
     </main>
 
+    <div class="ios-home-indicator help-home-indicator" aria-hidden="true"></div>
+
     <footer class="site-footer help-page-footer">
       <div class="footer-inner">
-        <div class="footer-discovery" aria-label="Artículos recomendados">
-          <section class="footer-articles footer-recent">
-            <h2>Artículos recientes</h2>
-            <div class="article-list">
-              <article><p>Si necesitas ayuda, llama a nuestra línea de atención o envíanos un correo electrónico.</p><time datetime="2025-07-02">02/07/2025</time></article>
-              <article><p>Si necesitas ayuda, llama a nuestra línea de atención o envíanos un correo electrónico.</p><time datetime="2025-07-02">02/07/2025</time></article>
-              <article><p>Si necesitas ayuda, llama a nuestra línea de atención o envíanos un correo electrónico.</p><time datetime="2025-07-02">02/07/2025</time></article>
-            </div>
-            <a class="more-link" href="./index.html#recentes">Conocer más <span>›</span></a>
-          </section>
+        <section class="footer-contact">
+          <h2>Contáctanos</h2>
+          <p class="contact-intro">Por favor, envía por correo electrónico el problema que presentas e incluye tu número de teléfono para que podamos confirmarlo contigo y solucionarlo más rápido.</p>
+          <a class="phone-link" href="tel:40009877866456">
+            <span><img src="./public/assets/help-center.png" alt="" /></span>
+            Teléfono
+          </a>
+          <dl class="contact-list">
+            <div><dt>Teléfono</dt><dd>400-0987-7866-456</dd></div>
+            <div><dt>Correo electrónico</dt><dd>contacto@prestifymx.com</dd></div>
+            <div><dt>Horario de atención</dt><dd>De lunes a domingo, de 9:00 a 18:00.</dd></div>
+          </dl>
+          <p class="regulated-label">Regulados por las siguientes instituciones</p>
+          <div class="regulator-logos">
+            <img class="condusef" src="./public/assets/condusef.png" alt="CONDUSEF" />
+            <img class="profeco" src="./public/assets/profeco.png" alt="PROFECO" />
+          </div>
+        </section>
 
-          <section class="footer-articles footer-popular">
-            <h2>Artículos populares</h2>
-            <div class="article-list">
-              <article><p>Si necesitas ayuda, llama a nuestra línea de atención o envíanos un correo electrónico.</p><time datetime="2025-07-02">02/07/2025</time></article>
-              <article><p>Si necesitas ayuda, llama a nuestra línea de atención o envíanos un correo electrónico.</p><time datetime="2025-07-02">02/07/2025</time></article>
-              <article><p>Si necesitas ayuda, llama a nuestra línea de atención o envíanos un correo electrónico.</p><time datetime="2025-07-02">02/07/2025</time></article>
+        <section class="footer-about">
+          <h2>Sobre nosotros</h2>
+          <dl class="about-list">
+            <div><dt>Razón social</dt><dd>Gongsi ming cheng dai tigong .</dd></div>
+            <div><dt>Dirección de la empresa</dt><dd>Gongsi dizhi dai tigong</dd></div>
+            <div>
+              <dt>idad especializada de atención a usuarios (UNE)</dt>
+              <dd><a href="./index.html#une">UNE ALA</a><a href="./index.html#cobranza">Despacho de cobranza</a></dd>
             </div>
-            <a class="more-link" href="./index.html#populares">Conocer más <span>›</span></a>
-          </section>
-        </div>
+          </dl>
+          <div class="social-block">
+            <h2>Síguenos</h2>
+            <div class="social-links">
+              <a href="./index.html#youtube" aria-label="YouTube"><img src="./public/assets/youtube.png" alt="" /></a>
+              <a href="./index.html#facebook" aria-label="Facebook"><img src="./public/assets/facebook.png" alt="" /></a>
+              <a href="./index.html#tiktok" aria-label="TikTok"><img src="./public/assets/tiktok.png" alt="" /></a>
+            </div>
+          </div>
+        </section>
 
-        <div class="footer-core">
-          <section class="footer-contact">
-            <h2>Contáctanos</h2>
-            <p class="contact-intro">Por favor, envía por correo electrónico el problema que presentas e incluye tu número de teléfono para que podamos confirmarlo contigo y solucionarlo más rápido.</p>
-            <a class="phone-link" href="tel:40009877866456">
-              <span><img src="./public/assets/help-center.png" alt="" /></span>
-              Teléfono
-            </a>
-            <dl class="contact-list">
-              <div><dt>Teléfono</dt><dd>400-0987-7866-456</dd></div>
-              <div><dt>Correo electrónico</dt><dd>contacto@prestifymx.com</dd></div>
-              <div><dt>Horario de atención</dt><dd>De lunes a domingo, de 9:00 a 18:00.</dd></div>
-            </dl>
-            <p class="regulated-label">Regulados por las siguientes instituciones</p>
-            <div class="regulator-logos">
-              <img class="condusef" src="./public/assets/condusef.png" alt="CONDUSEF" />
-              <img class="profeco" src="./public/assets/profeco.png" alt="PROFECO" />
-            </div>
-          </section>
+        <section class="footer-agreement">
+          <h2>Acuerdo</h2>
+          <div class="agreement-group">
+            <h3>Google Play</h3>
+            <a href="./index.html#google-privacy">Registro de privacidad <span>›</span></a>
+            <a href="./index.html#google-terms">Términos de registro <span>›</span></a>
+          </div>
+          <div class="agreement-group">
+            <h3>App Store</h3>
+            <a href="./index.html#apple-privacy">Registro de privacidad <span>›</span></a>
+            <a href="./index.html#apple-terms">Términos de registro <span>›</span></a>
+            <a href="./index.html#loan-contract">Contrato de préstamo <span>›</span></a>
+          </div>
+        </section>
 
-          <section class="footer-about">
-            <h2>Sobre nosotros</h2>
-            <dl class="about-list">
-              <div><dt>Razón social</dt><dd>Gongsi ming cheng dai tigong .</dd></div>
-              <div><dt>Dirección de la empresa</dt><dd>Gongsi dizhi dai tigong</dd></div>
-              <div>
-                <dt>idad especializada de atención a usuarios (UNE)</dt>
-                <dd><a href="./index.html#une">UNE ALA</a><a href="./index.html#cobranza">Despacho de cobranza</a></dd>
-              </div>
-            </dl>
-            <div class="social-block">
-              <h2>Síguenos</h2>
-              <div class="social-links">
-                <a href="./index.html#youtube" aria-label="YouTube"><img src="./public/assets/youtube.png" alt="" /></a>
-                <a href="./index.html#facebook" aria-label="Facebook"><img src="./public/assets/facebook.png" alt="" /></a>
-                <a href="./index.html#tiktok" aria-label="TikTok"><img src="./public/assets/tiktok.png" alt="" /></a>
-              </div>
-            </div>
-          </section>
+        <section class="footer-articles footer-recent">
+          <h2>Artículos recientes</h2>
+          <div class="article-list">
+            <article><p>Si necesitas ayuda, llama a nuestra línea de atención o envíanos un correo electrónico.</p><time datetime="2025-07-02">02/07/2025</time></article>
+            <article><p>Si necesitas ayuda, llama a nuestra línea de atención o envíanos un correo electrónico.</p><time datetime="2025-07-02">02/07/2025</time></article>
+            <article><p>Si necesitas ayuda, llama a nuestra línea de atención o envíanos un correo electrónico.</p><time datetime="2025-07-02">02/07/2025</time></article>
+          </div>
+          <a class="more-link" href="./index.html#recentes">Conocer más <span>›</span></a>
+        </section>
 
-          <section class="footer-agreement">
-            <h2>Acuerdo</h2>
-            <div class="agreement-group">
-              <h3>Google Play</h3>
-              <a href="./index.html#google-privacy">Registro de privacidad <span>›</span></a>
-              <a href="./index.html#google-terms">Términos de registro <span>›</span></a>
-            </div>
-            <div class="agreement-group">
-              <h3>App Store</h3>
-              <a href="./index.html#apple-privacy">Registro de privacidad <span>›</span></a>
-              <a href="./index.html#apple-terms">Términos de registro <span>›</span></a>
-              <a href="./index.html#loan-contract">Contrato de préstamo <span>›</span></a>
-            </div>
-          </section>
+        <section class="footer-articles footer-popular">
+          <h2>Artículos populares</h2>
+          <div class="article-list">
+            <article><p>Si necesitas ayuda, llama a nuestra línea de atención o envíanos un correo electrónico.</p><time datetime="2025-07-02">02/07/2025</time></article>
+            <article><p>Si necesitas ayuda, llama a nuestra línea de atención o envíanos un correo electrónico.</p><time datetime="2025-07-02">02/07/2025</time></article>
+            <article><p>Si necesitas ayuda, llama a nuestra línea de atención o envíanos un correo electrónico.</p><time datetime="2025-07-02">02/07/2025</time></article>
+          </div>
+          <a class="more-link" href="./index.html#populares">Conocer más <span>›</span></a>
+        </section>
 
-          <section class="footer-sections">
-            <h2>Secciones populares</h2>
-            <a href="./index.html#guia">Guía de préstamos <span>›</span></a>
-            <a href="./index.html#diccionario">Diccionario financiero <span>›</span></a>
-            <a href="./index.html#noticias">Noticias financieras <span>›</span></a>
-            <a href="./index.html#ciudad">Préstamo en tu ciudad <span>›</span></a>
-          </section>
-        </div>
+        <section class="footer-sections">
+          <h2>Secciones populares</h2>
+          <a href="./index.html#guia">Guía de préstamos <span>›</span></a>
+          <a href="./index.html#diccionario">Diccionario financiero <span>›</span></a>
+          <a href="./index.html#noticias">Noticias financieras <span>›</span></a>
+          <a href="./index.html#ciudad">Préstamo en tu ciudad <span>›</span></a>
+        </section>
 
         <p class="legal-disclaimer">El monto del préstamo va desde MXN $200 hasta MXN $50,000, con plazos de pago de 91 a 360 días. La tasa de interés diaria es desde 0.1% (equivalente a un APR anual de 36%), sin comisión por disposición. Por ejemplo: un préstamo de MXN $5,000 tendría un monto total a pagar de MXN $5,348, incluyendo intereses e IVA. Las tasas y condiciones pueden variar según el perfil del usuario.</p>
       </div>
