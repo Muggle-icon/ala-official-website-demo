@@ -1493,8 +1493,9 @@ a {
     top: auto;
     right: auto;
     bottom: clamp(40px, 6svh, 64px);
-    left: clamp(42px, 6.25vw, 72px);
-    width: min(62vw, 560px);
+    left: 50%;
+    width: min(calc(100% - 48px), 720px);
+    transform: translateX(-50%);
   }
 
   .hero-content h1 {
@@ -1505,13 +1506,17 @@ a {
   }
 
   .store-buttons {
+    width: 100%;
+    justify-content: center;
     gap: clamp(14px, 2vw, 22px);
     margin-top: clamp(22px, 3.2svh, 34px);
   }
 
   .store-button {
-    width: clamp(176px, 24vw, 220px);
+    width: auto;
+    min-width: 0;
     height: clamp(48px, 6vw, 56px);
+    flex: 1 1 0;
     gap: 8px;
     font-size: clamp(16px, 2vw, 18px);
     line-height: 24px;
@@ -1524,7 +1529,7 @@ a {
   }
 
   .stats {
-    width: min(66vw, 600px);
+    width: 100%;
     margin-top: clamp(34px, 5svh, 56px);
   }
 
@@ -1815,11 +1820,13 @@ a {
 
   .hero-content {
     position: absolute;
-    inset: auto 16px 35px;
+    inset: auto auto 35px 50%;
     z-index: 3;
     display: flex;
-    width: auto;
+    width: calc(100% - 32px);
     flex-direction: column;
+    align-items: stretch;
+    transform: translateX(-50%);
   }
 
   .hero-content h1 {
@@ -1831,15 +1838,17 @@ a {
   }
 
   .store-buttons {
+    width: 100%;
+    justify-content: center;
     gap: 15px;
     margin-top: 22px;
   }
 
   .store-button {
-    width: calc((100% - 15px) / 2);
+    width: auto;
     min-width: 0;
     height: 44px;
-    flex: 0 0 calc((100% - 15px) / 2);
+    flex: 1 1 0;
     gap: 8px;
     font-size: clamp(14px, 4.8vw, 18px);
     line-height: 24px;
@@ -1856,7 +1865,7 @@ a {
   }
 
   .store-button:last-child {
-    flex-grow: 0;
+    flex-grow: 1;
   }
 
   .store-button span {
