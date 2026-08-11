@@ -1419,15 +1419,6 @@ a {
     background-size: cover;
   }
 
-  .mobile-shade {
-    position: absolute;
-    inset: var(--mobile-nav-height) 0 0;
-    z-index: 1;
-    display: block;
-    background: linear-gradient(90deg, rgba(0, 0, 0, 0.22), transparent 68%);
-    pointer-events: none;
-  }
-
   .mobile-nav {
     position: relative;
     z-index: 5;
@@ -1733,15 +1724,6 @@ a {
     background-image: url("./public/assets/mobile-hero-background.png");
     background-position: center top;
     background-size: cover;
-  }
-
-  .mobile-shade {
-    position: absolute;
-    inset: var(--mobile-nav-height) 0 0;
-    z-index: 1;
-    display: block;
-    background: transparent;
-    pointer-events: none;
   }
 
   .desktop-nav,
@@ -2432,7 +2414,7 @@ a {
 }
 
 /* Switch to the portrait crop before the landscape artwork can cut through
-   the subject. This asset already contains the intended lower-page shade. */
+   the subject. */
 @media (max-aspect-ratio: 4 / 3) {
   .hero-photo {
     background-color: #080b11;
@@ -2441,8 +2423,24 @@ a {
     background-size: cover;
   }
 
+}
+
+/* Exact 375 × 406 overlay supplied in the mobile design. At the 375 × 812
+   reference viewport, 50svh resolves to the original 406px height. */
+@media (max-width: 1100px) {
   .mobile-shade {
-    background: transparent;
+    position: absolute;
+    inset: auto 0 0;
+    z-index: 1;
+    display: block;
+    width: 100%;
+    height: min(406px, 50svh);
+    background-color: transparent;
+    background-image: url("./public/assets/mobile-bottom-shade.svg");
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: 100% 100%;
+    pointer-events: none;
   }
 }
 
