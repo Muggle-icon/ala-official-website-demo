@@ -66,10 +66,6 @@ button:focus-visible {
   background: var(--nav-blue);
 }
 
-.help-home-indicator {
-  display: none;
-}
-
 .help-hero {
   height: clamp(400px, min(24.375vw, 43.333333svh), 468px);
   color: #fff;
@@ -517,15 +513,6 @@ button:focus-visible {
     line-height: 20px;
   }
 
-  .help-home-indicator {
-    position: fixed;
-    z-index: 60;
-    bottom: 8px;
-    display: block;
-    width: 134px;
-    height: 5px;
-    background: #0a0a0a;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {

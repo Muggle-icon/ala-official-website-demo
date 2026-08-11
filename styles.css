@@ -89,8 +89,7 @@ a {
 .ios-status,
 .mobile-nav,
 .mobile-help,
-.mobile-shade,
-.ios-home-indicator {
+.mobile-shade {
   display: none;
 }
 
@@ -2078,26 +2077,6 @@ a {
     padding: 12px 16px;
   }
 
-  .ios-home-indicator {
-    position: absolute;
-    z-index: 15;
-    bottom: 8px;
-    left: 50%;
-    display: block;
-    width: 134px;
-    height: 5px;
-    border-radius: 999px;
-    background: #fff;
-    transform: translateX(-50%);
-    pointer-events: none;
-  }
-
-  body.help-open .ios-home-indicator,
-  body.notice-open .ios-home-indicator {
-    z-index: 60;
-    background: #0a0a0a;
-  }
-
   /* 375 × 812 is the reference, not a fixed size. Width and height shrink together. */
   :root {
     --status-height: min(44px, 11.733333vw, 5.418719svh);
@@ -2382,12 +2361,6 @@ a {
     border-radius: min(12px, 3.2vw, 1.477833svh);
     font-size: min(16px, 4.266667vw, 1.970443svh);
     line-height: min(24px, 6.4vw, 2.955665svh);
-  }
-
-  .ios-home-indicator {
-    bottom: min(8px, 2.133333vw, 0.985222svh);
-    width: min(134px, 35.733333vw, 16.502463svh);
-    height: min(5px, 1.333333vw, 0.615764svh);
   }
 
   .site-footer {
