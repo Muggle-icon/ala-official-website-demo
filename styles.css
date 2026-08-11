@@ -734,9 +734,9 @@ a {
 .site-footer h2 {
   margin: 0;
   color: #f7f7f8;
-  font-size: 28px;
+  font-size: 24px;
   font-weight: 700;
-  line-height: 34px;
+  line-height: 30px;
 }
 
 .site-footer h3,
@@ -780,8 +780,8 @@ a {
   gap: 10px;
   margin-top: 18px;
   color: #e7e8ec;
-  font-size: 16px;
-  line-height: 32px;
+  font-size: 14px;
+  line-height: 28px;
   text-underline-offset: 2px;
 }
 
@@ -818,24 +818,24 @@ a {
 .contact-list dt,
 .about-list dt {
   color: #93959c;
-  font-size: 16px;
-  line-height: 20px;
+  font-size: 14px;
+  line-height: 18px;
 }
 
 .contact-list dd,
 .about-list dd,
 .agreement-group h3 {
   color: #f3f3f5;
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
 }
 
 .regulated-label {
   margin-top: 24px !important;
   color: #93959c;
-  font-size: 16px;
-  line-height: 20px;
+  font-size: 14px;
+  line-height: 18px;
 }
 
 .regulator-logos {
@@ -918,8 +918,8 @@ a {
   align-items: center;
   gap: 9px;
   color: #93959c;
-  font-size: 16px;
-  line-height: 20px;
+  font-size: 14px;
+  line-height: 18px;
   text-decoration: none;
 }
 
@@ -927,7 +927,7 @@ a {
 .footer-sections a span,
 .more-link span {
   color: #838792;
-  font-size: 23px;
+  font-size: 20px;
   font-weight: 300;
   line-height: 16px;
 }
@@ -972,14 +972,14 @@ a {
 }
 
 .article-list p {
-  font-size: 16px;
-  line-height: 19px;
+  font-size: 14px;
+  line-height: 17px;
 }
 
 .article-list time {
   color: #909299;
-  font-size: 14px;
-  line-height: 17px;
+  font-size: 12px;
+  line-height: 15px;
 }
 
 .more-link {
@@ -990,8 +990,8 @@ a {
   margin-top: 16px;
   margin-left: auto;
   color: #92949a !important;
-  font-size: 16px;
-  line-height: 20px;
+  font-size: 14px;
+  line-height: 18px;
   text-decoration: none;
 }
 
@@ -1013,8 +1013,8 @@ a {
   left: 0;
   width: 1280px;
   color: #92949a;
-  font-size: 16px;
-  line-height: 20px;
+  font-size: 13px;
+  line-height: 18px;
 }
 
 /* Retained only as an archived compact variant. The shipped desktop footer
