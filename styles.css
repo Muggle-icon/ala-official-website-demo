@@ -64,6 +64,9 @@
   /* Matches alaprestamo.com's 1920px reference grid. */
   --ala-layout-scale: 1;
   --page-gutter: calc(320px * var(--ala-layout-scale));
+  --desktop-nav-gap: min(32px, 1.666667vw);
+  --desktop-nav-logo-gap: min(104px, 5.416667vw);
+  --desktop-nav-store-gap: min(112px, 5.833333vw);
 }
 
 @media (min-width: 1500px) and (max-width: 1899px) {
@@ -237,8 +240,8 @@ a {
 
 .desktop-brand img {
   display: block;
-  width: min(126px, 6.563cqw, 12.115cqh);
-  height: min(48px, 2.5cqw, 4.615cqh);
+  width: min(126px, 6.563cqw);
+  height: min(48px, 2.5cqw);
   object-fit: contain;
 }
 
@@ -253,10 +256,11 @@ a {
 
 .desktop-nav nav {
   display: flex;
+  min-width: 0;
   align-items: center;
-  gap: min(32px, 1.666667cqw, 3.076923cqh);
-  margin: 0 auto;
-  padding-right: min(127px, 6.614583cqw, 12.211538cqh);
+  gap: var(--desktop-nav-gap);
+  margin: 0 0 0 var(--desktop-nav-logo-gap);
+  padding: 0;
   white-space: nowrap;
   transform: none;
 }
@@ -313,26 +317,27 @@ a {
   display: flex;
   flex: 0 0 auto;
   align-items: center;
-  gap: min(16px, 0.833333cqw, 1.538462cqh);
+  gap: min(16px, 0.833333cqw);
+  margin-left: var(--desktop-nav-store-gap);
 }
 
 .desktop-store-shortcuts a,
 .desktop-store-shortcuts img {
   display: block;
-  width: min(48px, 2.5cqw, 4.615385cqh);
-  height: min(48px, 2.5cqw, 4.615385cqh);
+  width: min(48px, 2.5cqw);
+  height: min(48px, 2.5cqw);
 }
 
 .desktop-nav nav > a:first-child {
-  width: min(183px, 9.53125cqw, 17.596154cqh);
+  width: min(183px, 9.53125cqw);
 }
 
 .desktop-nav nav > a:nth-child(2) {
-  width: min(158px, 8.229167cqw, 15.192308cqh);
+  width: min(158px, 8.229167cqw);
 }
 
 .desktop-nav nav > a:nth-child(4) {
-  width: min(145px, 7.552083cqw, 13.942308cqh);
+  width: min(145px, 7.552083cqw);
 }
 
 .nav-with-arrow {
