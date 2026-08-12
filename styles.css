@@ -206,7 +206,7 @@ a {
   position: absolute;
   inset: 0;
   z-index: 0;
-  background-image: url("./public/assets/hero-background.png");
+  background-image: url("./public/assets/hero-background-20260812.png");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -1526,7 +1526,7 @@ a {
 
   .hero-photo {
     top: var(--mobile-nav-height);
-    background-image: url("./public/assets/hero-background.png");
+    background-image: url("./public/assets/hero-background-20260812.png");
     background-position: center center;
     background-size: cover;
   }
