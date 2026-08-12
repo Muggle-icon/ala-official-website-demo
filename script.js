@@ -4,8 +4,26 @@ const noticeOverlay = document.querySelector(".notice-overlay");
 const noticeModal = document.querySelector(".notice-modal");
 const openNoticeButton = document.querySelector("[data-open-notice]");
 const menuButton = document.querySelector(".menu-button");
+const desktopNavLinks = [...document.querySelectorAll(".desktop-nav nav a")];
 
 let lastFocusedElement = null;
+
+function setActiveNav(hash = window.location.hash) {
+  const currentHash = hash || "#producto";
+  desktopNavLinks.forEach((link) => {
+    const active = link.hash === currentHash;
+    link.classList.toggle("is-active", active);
+    if (active) link.setAttribute("aria-current", "location");
+    else link.removeAttribute("aria-current");
+  });
+}
+
+desktopNavLinks.forEach((link) => {
+  link.addEventListener("click", () => setActiveNav(link.hash));
+});
+
+window.addEventListener("hashchange", () => setActiveNav());
+setActiveNav();
 
 function setHelp(open) {
   helpPanel.classList.toggle("is-open", open);

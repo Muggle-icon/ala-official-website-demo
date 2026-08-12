@@ -238,6 +238,7 @@ a {
 }
 
 .desktop-nav nav a {
+  position: relative;
   color: #fff;
   font-family: "Roboto Header", "Roboto", Arial, sans-serif;
   font-size: min(16px, 0.833333cqw, 1.538462cqh);
@@ -246,6 +247,22 @@ a {
   letter-spacing: 0;
   text-decoration: none;
   text-shadow: none;
+}
+
+.desktop-nav nav a.is-active {
+  font-weight: 700;
+}
+
+.desktop-nav nav a.is-active::after {
+  position: absolute;
+  top: calc(100% + min(15px, 0.78125cqw, 1.442308cqh));
+  left: 50%;
+  width: 50%;
+  height: min(6px, 0.3125cqw, 0.576923cqh);
+  border-radius: 999px;
+  background: #fff;
+  content: "";
+  transform: translateX(-50%);
 }
 
 .desktop-nav nav > a:first-child {
@@ -314,13 +331,13 @@ a {
   line-height: min(24px, 1.25cqw, 2.307692cqh);
   letter-spacing: 0;
   text-decoration: none;
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
-  transition: transform 160ms ease, box-shadow 160ms ease;
+  box-shadow: none;
+  transition: none;
 }
 
 .store-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14);
+  transform: none;
+  box-shadow: none;
 }
 
 .store-button:focus-visible,
