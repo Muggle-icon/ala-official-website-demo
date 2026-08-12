@@ -38,6 +38,22 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "Roboto Navigation Medium";
+  src: url("./public/assets/Roboto-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Roboto Navigation Bold";
+  src: url("./public/assets/Roboto-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --blue: #102bb5;
   --bright-blue: #2145ff;
@@ -248,7 +264,7 @@ a {
 .desktop-nav nav a {
   position: relative;
   color: rgba(255, 255, 255, 0.72);
-  font-family: "Roboto", Arial, sans-serif;
+  font-family: "Roboto Navigation Medium", "Roboto", Arial, sans-serif;
   font-size: min(16px, 0.833333cqw, 1.538462cqh);
   font-weight: 500;
   line-height: min(24px, 1.25cqw, 2.307692cqh);
@@ -261,7 +277,7 @@ a {
 .desktop-nav nav a.is-active,
 .desktop-nav nav a[aria-current="location"] {
   color: #fff;
-  font-family: "Roboto", Arial, sans-serif;
+  font-family: "Roboto Navigation Bold", "Roboto", Arial, sans-serif;
   font-weight: 700 !important;
 }
 
