@@ -255,11 +255,14 @@ a {
   letter-spacing: 0;
   text-decoration: none;
   text-shadow: none;
+  -webkit-font-smoothing: antialiased;
 }
 
-.desktop-nav nav a.is-active {
+.desktop-nav nav a.is-active,
+.desktop-nav nav a[aria-current="location"] {
   color: #fff;
-  font-weight: 700;
+  font-family: "Roboto", Arial, sans-serif;
+  font-weight: 700 !important;
 }
 
 .desktop-nav.is-after-hero {
@@ -280,7 +283,8 @@ a {
   color: rgba(30, 31, 34, 0.72);
 }
 
-.desktop-nav.is-after-hero nav a.is-active {
+.desktop-nav.is-after-hero nav a.is-active,
+.desktop-nav.is-after-hero nav a[aria-current="location"] {
   color: #1e1f22;
 }
 
