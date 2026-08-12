@@ -207,16 +207,37 @@ button:focus-visible {
   top: 0;
   bottom: 0;
   left: 0;
-  display: block;
+  display: flex;
   width: 16px;
-  height: 112px;
+  height: 100%;
+  overflow: hidden;
+  flex-direction: column;
   pointer-events: none;
 }
 
 .security-accent img {
   display: block;
   width: 100%;
-  height: 100%;
+  object-fit: fill;
+}
+
+.security-accent-top,
+.security-accent-bottom {
+  height: 16px;
+  flex: 0 0 16px;
+}
+
+.security-accent-top {
+  object-position: top left;
+}
+
+.security-accent-middle {
+  min-height: 0;
+  flex: 1 1 auto;
+}
+
+.security-accent-bottom {
+  object-position: bottom left;
 }
 
 .security-advice-icon {
