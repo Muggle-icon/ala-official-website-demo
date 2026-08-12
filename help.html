@@ -6,8 +6,8 @@
     <meta name="theme-color" content="#1d3299" />
     <meta name="description" content="Centro de ayuda oficial de ALA." />
     <link rel="icon" type="image/png" href="./public/assets/download-card-icon.png" />
-    <link rel="stylesheet" href="./styles.css?v=20260812-0215" />
-    <link rel="stylesheet" href="./help.css?v=20260812-0145" />
+    <link rel="stylesheet" href="./styles.css?v=20260812-0315" />
+    <link rel="stylesheet" href="./help.css?v=20260812-0315" />
     <title>Centro de ayuda — ALA</title>
   </head>
   <body>
@@ -22,7 +22,8 @@
 
     <header class="desktop-nav help-desktop-nav">
       <a class="desktop-brand" href="./index.html" aria-label="Volver al inicio de ALA">
-        <img src="./public/assets/ala-logo.png" alt="ALA" />
+        <img class="desktop-brand-on-hero" src="./public/assets/ala-logo.png" alt="ALA" />
+        <img class="desktop-brand-after-hero" src="./public/assets/nav-logo-dark.png" alt="ALA" />
       </a>
       <nav aria-label="Navegación principal">
         <a href="./index.html#producto">Introducción del producto</a>
@@ -31,6 +32,14 @@
         <a class="nav-with-arrow" href="./index.html#informacion">Más información <img src="./public/assets/more-info-chevron.png" alt="" /></a>
         <a href="./index.html#preguntas">Preguntas frecuentes</a>
       </nav>
+      <div class="desktop-store-shortcuts" aria-label="Descargar ALA">
+        <a href="./index.html#google-play" aria-label="Descargar ALA en Google Play">
+          <img src="./public/assets/nav-google.png" alt="" />
+        </a>
+        <a href="./index.html#app-store" aria-label="Descargar ALA en App Store">
+          <img src="./public/assets/nav-ios.png" alt="" />
+        </a>
+      </div>
     </header>
 
     <header class="mobile-nav help-mobile-nav">
@@ -186,6 +195,6 @@
         <p class="legal-disclaimer">El monto del préstamo va desde MXN $200 hasta MXN $50,000, con plazos de pago de 91 a 360 días. La tasa de interés diaria es desde 0.1% (equivalente a un APR anual de 36%), sin comisión por disposición. Por ejemplo: un préstamo de MXN $5,000 tendría un monto total a pagar de MXN $5,348, incluyendo intereses e IVA. Las tasas y condiciones pueden variar según el perfil del usuario.</p>
       </div>
     </footer>
-    <script src="./help.js"></script>
+    <script src="./help.js?v=20260812-0315"></script>
   </body>
 </html>

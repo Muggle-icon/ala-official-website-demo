@@ -197,14 +197,17 @@ a {
 }
 
 .desktop-nav {
-  position: relative;
-  z-index: 4;
+  position: fixed;
+  top: var(--notice-height);
+  left: 0;
+  z-index: 19;
   display: flex;
   align-items: center;
   width: 100%;
   height: min(72px, 3.75cqw, 6.923077cqh);
   padding: 0 var(--page-gutter);
   background: rgba(0, 0, 0, 0.4);
+  transition: background-color 180ms ease;
 }
 
 .desktop-brand {
@@ -223,6 +226,11 @@ a {
   object-fit: contain;
 }
 
+.desktop-brand .desktop-brand-after-hero,
+.desktop-store-shortcuts {
+  display: none;
+}
+
 .desktop-brand span {
   display: none;
 }
@@ -239,7 +247,7 @@ a {
 
 .desktop-nav nav a {
   position: relative;
-  color: #fff;
+  color: rgba(255, 255, 255, 0.72);
   font-family: "Roboto Header", "Roboto", Arial, sans-serif;
   font-size: min(16px, 0.833333cqw, 1.538462cqh);
   font-weight: 400;
@@ -250,19 +258,47 @@ a {
 }
 
 .desktop-nav nav a.is-active {
-  font-weight: 700;
+  color: #fff;
 }
 
-.desktop-nav nav a.is-active::after {
-  position: absolute;
-  top: calc(100% + min(15px, 0.78125cqw, 1.442308cqh));
-  left: 50%;
-  width: 50%;
-  height: min(6px, 0.3125cqw, 0.576923cqh);
-  border-radius: 999px;
+.desktop-nav.is-after-hero {
+  top: 0;
   background: #fff;
-  content: "";
-  transform: translateX(-50%);
+}
+
+.desktop-nav.is-after-hero .desktop-brand-on-hero {
+  display: none;
+}
+
+.desktop-nav.is-after-hero .desktop-brand-after-hero {
+  display: block;
+}
+
+.desktop-nav.is-after-hero nav a {
+  color: rgba(30, 31, 34, 0.72);
+}
+
+.desktop-nav.is-after-hero nav a.is-active {
+  color: #1e1f22;
+}
+
+.desktop-nav.is-after-hero .nav-with-arrow img {
+  filter: brightness(0) saturate(100%);
+  opacity: 0.72;
+}
+
+.desktop-nav.is-after-hero .desktop-store-shortcuts {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: min(16px, 0.833333cqw, 1.538462cqh);
+}
+
+.desktop-store-shortcuts a,
+.desktop-store-shortcuts img {
+  display: block;
+  width: min(48px, 2.5cqw, 4.615385cqh);
+  height: min(48px, 2.5cqw, 4.615385cqh);
 }
 
 .desktop-nav nav > a:first-child {
@@ -287,6 +323,11 @@ a {
   display: block;
   width: min(16px, 0.833cqw, 1.538cqh);
   height: min(16px, 0.833cqw, 1.538cqh);
+  opacity: 0.72;
+}
+
+.nav-with-arrow.is-active img {
+  opacity: 1;
 }
 
 .hero-content {

@@ -4,6 +4,7 @@ const noticeOverlay = document.querySelector(".notice-overlay");
 const noticeModal = document.querySelector(".notice-modal");
 const openNoticeButton = document.querySelector("[data-open-notice]");
 const menuButton = document.querySelector(".menu-button");
+const desktopNav = document.querySelector(".desktop-nav");
 const desktopNavLinks = [...document.querySelectorAll(".desktop-nav nav a")];
 
 let lastFocusedElement = null;
@@ -24,6 +25,14 @@ desktopNavLinks.forEach((link) => {
 
 window.addEventListener("hashchange", () => setActiveNav());
 setActiveNav();
+
+function setDesktopNavSurface() {
+  desktopNav.classList.toggle("is-after-hero", window.scrollY >= window.innerHeight - 1);
+}
+
+window.addEventListener("scroll", setDesktopNavSurface, { passive: true });
+window.addEventListener("resize", setDesktopNavSurface);
+setDesktopNavSurface();
 
 function setHelp(open) {
   helpPanel.classList.toggle("is-open", open);
