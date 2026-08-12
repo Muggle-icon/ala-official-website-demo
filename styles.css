@@ -248,9 +248,9 @@ a {
 .desktop-nav nav a {
   position: relative;
   color: rgba(255, 255, 255, 0.72);
-  font-family: "Roboto Header", "Roboto", Arial, sans-serif;
+  font-family: "Roboto", Arial, sans-serif;
   font-size: min(16px, 0.833333cqw, 1.538462cqh);
-  font-weight: 400;
+  font-weight: 500;
   line-height: min(24px, 1.25cqw, 2.307692cqh);
   letter-spacing: 0;
   text-decoration: none;
@@ -259,6 +259,7 @@ a {
 
 .desktop-nav nav a.is-active {
   color: #fff;
+  font-weight: 700;
 }
 
 .desktop-nav.is-after-hero {
