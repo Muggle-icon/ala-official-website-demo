@@ -197,8 +197,8 @@ a {
 }
 
 .desktop-nav {
-  position: fixed;
-  top: var(--notice-height);
+  position: absolute;
+  top: 0;
   left: 0;
   z-index: 19;
   display: flex;
@@ -262,6 +262,7 @@ a {
 }
 
 .desktop-nav.is-after-hero {
+  position: fixed;
   top: 0;
   background: #fff;
 }
