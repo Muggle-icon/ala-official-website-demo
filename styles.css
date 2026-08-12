@@ -1595,61 +1595,61 @@ a {
   .hero-content {
     top: auto;
     right: auto;
-    bottom: clamp(40px, 6svh, 64px);
+    bottom: clamp(28px, 5svh, 48px);
     left: 50%;
-    width: min(calc(100% - 48px), 720px);
+    width: min(calc(100% - 64px), 680px);
     transform: translateX(-50%);
   }
 
   .hero-content h1 {
     width: 100%;
-    font-size: clamp(38px, 5.2vw, 54px);
-    line-height: 1.14;
-    letter-spacing: -0.6px;
+    font-size: clamp(26px, min(3.333vw, 6.154svh), 42px);
+    line-height: 1.12;
+    letter-spacing: -0.35px;
   }
 
   .store-buttons {
     width: 100%;
     justify-content: center;
-    gap: clamp(14px, 2vw, 22px);
-    margin-top: clamp(22px, 3.2svh, 34px);
+    gap: clamp(14px, 2vw, 20px);
+    margin-top: clamp(16px, 2.6svh, 24px);
   }
 
   .store-button {
     width: auto;
     min-width: 0;
-    height: clamp(48px, 6vw, 56px);
+    height: clamp(44px, min(5vw, 8svh), 52px);
     flex: 1 1 0;
     gap: 8px;
-    font-size: clamp(16px, 2vw, 18px);
+    font-size: clamp(15px, 1.75vw, 18px);
     line-height: 24px;
   }
 
   .store-button img,
   .store-button img.apple-mark {
-    width: clamp(26px, 3.4vw, 30px);
-    height: clamp(26px, 3.4vw, 30px);
+    width: clamp(24px, 3vw, 28px);
+    height: clamp(24px, 3vw, 28px);
   }
 
   .stats {
     width: 100%;
-    margin-top: clamp(34px, 5svh, 56px);
+    margin-top: clamp(24px, 4svh, 38px);
   }
 
   .stat {
     width: 33.333333%;
-    height: 56px;
+    height: 52px;
   }
 
   .stat strong {
-    font-size: clamp(20px, 2.7vw, 24px);
-    line-height: 30px;
+    font-size: clamp(18px, 2.2vw, 22px);
+    line-height: 28px;
   }
 
   .stat > span:not(.stars) {
-    margin-top: 8px;
-    font-size: clamp(11px, 1.5vw, 14px);
-    line-height: 20px;
+    margin-top: 6px;
+    font-size: clamp(10px, 1.25vw, 12px);
+    line-height: 18px;
   }
 
   .mobile-help {
@@ -1925,8 +1925,8 @@ a {
 
   .hero-content h1 {
     width: 100%;
-    font-size: clamp(28px, 9.066667vw, 34px);
-    line-height: clamp(32px, 10.133333vw, 38px);
+    font-size: clamp(27px, 8vw, 30px);
+    line-height: clamp(31px, 9.066667vw, 34px);
     letter-spacing: -0.65px;
     text-shadow: 0 2px 9px rgba(0, 0, 0, 0.32);
   }
@@ -2253,8 +2253,8 @@ a {
   }
 
   .hero-content h1 {
-    font-size: min(34px, 9.066667vw, 4.187192svh);
-    line-height: min(38px, 10.133333vw, 4.679803svh);
+    font-size: min(30px, 8vw, 3.694581svh);
+    line-height: min(34px, 9.066667vw, 4.187192svh);
     letter-spacing: -0.12vw;
   }
 
@@ -2539,21 +2539,18 @@ a {
 
 }
 
-/* Exact 375 × 406 overlay supplied in the mobile design. At the 375 × 812
-   reference viewport, 50svh resolves to the original 406px height. */
+/* The design's 375 × 406 shade expressed as a fluid gradient. Building it in
+   CSS keeps both edges pinned to the viewport at every intermediate width. */
 @media (max-width: 1100px) {
   .mobile-shade {
     position: absolute;
     inset: auto 0 0;
     z-index: 1;
     display: block;
-    width: 100%;
+    width: auto;
     height: min(406px, 50svh);
     background-color: transparent;
-    background-image: url("./public/assets/mobile-bottom-shade.svg");
-    background-repeat: no-repeat;
-    background-position: center bottom;
-    background-size: 100% 100%;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8));
     pointer-events: none;
   }
 }
@@ -2564,7 +2561,8 @@ a {
   }
 
   .hero-content h1 {
-    font-size: clamp(25px, 8.6vw, 31px);
+    font-size: clamp(25px, 8.4vw, 29px);
+    line-height: 1.12;
   }
 
   .store-buttons {
