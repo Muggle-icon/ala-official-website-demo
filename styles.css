@@ -1032,14 +1032,14 @@ body.is-after-hero .download-card {
   margin: min(48px, 2.5cqw, 4.444444cqh) auto 0;
   color: #24262b;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 400;
   line-height: min(24px, 1.25cqw, 2.222222cqh);
   text-align: center;
 }
 
 .faq-help-link {
   color: #0949f5;
-  font-weight: 700;
+  font-weight: 400;
   text-decoration: none;
 }
 
