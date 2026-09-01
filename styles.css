@@ -2812,7 +2812,8 @@ body.is-after-hero .download-card {
   }
 
   .faq-item.is-open {
-    height: 174px;
+    height: auto;
+    min-height: 174px;
     padding: 36px 40px 28px;
   }
 
