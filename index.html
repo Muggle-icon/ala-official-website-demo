@@ -9,7 +9,7 @@
       content="Demo del nuevo inicio del sitio oficial de ALA, con acceso a la aplicación y al centro de ayuda."
     />
     <link rel="icon" type="image/png" href="./public/assets/download-card-icon.png" />
-    <link rel="stylesheet" href="./styles.css?v=20260812-1415" />
+    <link rel="stylesheet" href="./styles.css?v=20260901-1840" />
     <title>ALA — Apoyo financiero flexible</title>
   </head>
   <body>
@@ -166,6 +166,82 @@
 
     </main>
 
+    <section class="faq-section" id="preguntas" aria-labelledby="faq-title">
+      <div class="faq-inner">
+        <header class="faq-header">
+          <h2 id="faq-title">Ayuda</h2>
+          <div class="faq-tabs" role="tablist" aria-label="Categorías de ayuda">
+            <button class="faq-tab is-active" type="button" role="tab" aria-selected="true" data-faq-category="solicitud">
+              Solicitud de préstamo
+            </button>
+            <button class="faq-tab" type="button" role="tab" aria-selected="false" data-faq-category="credito">
+              Crédito y límite
+            </button>
+            <button class="faq-tab" type="button" role="tab" aria-selected="false" data-faq-category="problemas">
+              Problemas de préstamo
+            </button>
+          </div>
+        </header>
+
+        <div class="faq-list" data-faq-list>
+          <article class="faq-item is-open">
+            <button class="faq-question" type="button" aria-expanded="true" aria-controls="faq-answer-0">
+              <span data-faq-question>¿Cuánto tiempo tarda la aprobación del préstamo?</span>
+              <svg class="faq-chevron" aria-hidden="true" viewBox="0 0 24 24">
+                <path d="m6 9 6 6 6-6" />
+              </svg>
+            </button>
+            <div class="faq-answer" id="faq-answer-0" aria-hidden="false">
+              <p data-faq-answer>Una vez aprobada tu solicitud, ALA procesará la transferencia de inmediato. Normalmente, los fondos llegan a tu cuenta bancaria en 5 minutos, aunque en casos excepcionales puede haber retrasos.Nota:<br />Asegúrate de que la información de tu cuenta bancaria sea correcta para evitar errores en la transferencia. Si los datos son incorrectos, nos pondremos en contacto contigo para confirmarlos.</p>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-answer-1">
+              <span data-faq-question>¿Cuándo llegará el préstamo a mi cuenta bancaria?</span>
+              <svg class="faq-chevron" aria-hidden="true" viewBox="0 0 24 24">
+                <path d="m6 9 6 6 6-6" />
+              </svg>
+            </button>
+            <div class="faq-answer" id="faq-answer-1" aria-hidden="true">
+              <p data-faq-answer>Después de la aprobación, la transferencia suele reflejarse en tu cuenta bancaria en aproximadamente 5 minutos. El tiempo final depende de tu banco.</p>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-answer-2">
+              <span data-faq-question>¿Puedo solicitar varios préstamos?</span>
+              <svg class="faq-chevron" aria-hidden="true" viewBox="0 0 24 24">
+                <path d="m6 9 6 6 6-6" />
+              </svg>
+            </button>
+            <div class="faq-answer" id="faq-answer-2" aria-hidden="true">
+              <p data-faq-answer>Puedes solicitar un nuevo préstamo cuando el préstamo actual se haya liquidado y tu cuenta vuelva a mostrar un límite disponible.</p>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-answer-3">
+              <span data-faq-question>¿Cómo obtener un límite más alto de préstamo?</span>
+              <svg class="faq-chevron" aria-hidden="true" viewBox="0 0 24 24">
+                <path d="m6 9 6 6 6-6" />
+              </svg>
+            </button>
+            <div class="faq-answer" id="faq-answer-3" aria-hidden="true">
+              <p data-faq-answer>Mantén tus datos actualizados y realiza tus pagos puntualmente. ALA evaluará periódicamente tu perfil para ofrecerte un límite adecuado.</p>
+            </div>
+          </article>
+        </div>
+
+        <a class="faq-all-link" href="./help.html">
+          Ver toda la ayuda
+          <svg aria-hidden="true" viewBox="0 0 24 24">
+            <path d="m9 18 6-6-6-6" />
+          </svg>
+        </a>
+      </div>
+    </section>
+
     <footer class="site-footer" id="informacion">
       <div class="footer-inner">
         <section class="footer-contact">
@@ -253,6 +329,6 @@
         <p class="legal-disclaimer">El monto del préstamo va desde MXN $200 hasta MXN $50,000, con plazos de pago de 91 a 360 días. La tasa de interés diaria es desde 0.1% (equivalente a un APR anual de 36%), sin comisión por disposición. Por ejemplo: un préstamo de MXN $5,000 tendría un monto total a pagar de MXN $5,348, incluyendo intereses e IVA. Las tasas y condiciones pueden variar según el perfil del usuario.</p>
       </div>
     </footer>
-    <script src="./script.js?v=20260812-0315"></script>
+    <script src="./script.js?v=20260901-1840"></script>
   </body>
 </html>
