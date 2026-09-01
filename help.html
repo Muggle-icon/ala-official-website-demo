@@ -3,26 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="theme-color" content="#1d3299" />
-    <meta name="description" content="Centro de ayuda oficial de ALA." />
+    <meta name="theme-color" content="#f2f5fa" />
+    <meta name="description" content="Centro de ayuda y preguntas frecuentes de ALA." />
     <link rel="icon" type="image/png" href="./public/assets/download-card-icon.png" />
-    <link rel="stylesheet" href="./styles.css?v=20260812-1415" />
-    <link rel="stylesheet" href="./help.css?v=20260812-1345" />
-    <title>Centro de ayuda — ALA</title>
+    <link rel="stylesheet" href="./styles.css?v=20260901-2406" />
+    <link rel="stylesheet" href="./help.css?v=20260901-2407" />
+    <title>Ayuda — ALA</title>
   </head>
-  <body>
-    <div class="ios-status help-ios-status" aria-hidden="true">
-      <span class="ios-time">9:41</span>
-      <span class="ios-system-icons">
-        <span class="signal"><i></i><i></i><i></i><i></i></span>
-        <span class="wifi"></span>
-        <span class="battery"><i></i></span>
-      </span>
-    </div>
-
-    <header class="desktop-nav help-desktop-nav">
+  <body class="help-faq-body">
+    <header class="desktop-nav help-page-nav">
       <a class="desktop-brand" href="./index.html" aria-label="Volver al inicio de ALA">
-        <img class="desktop-brand-on-hero" src="./public/assets/ala-logo.png" alt="ALA" />
         <img class="desktop-brand-after-hero" src="./public/assets/nav-logo-dark.png" alt="ALA" />
       </a>
       <nav aria-label="Navegación principal">
@@ -30,172 +20,111 @@
         <a href="./index.html#proteccion">Protección regulatoria</a>
         <a class="nav-with-arrow" href="./index.html#blog">Blog <img src="./public/assets/blog-chevron.png" alt="" /></a>
         <a class="nav-with-arrow" href="./index.html#informacion">Más información <img src="./public/assets/more-info-chevron.png" alt="" /></a>
-        <a href="./index.html#preguntas">Preguntas frecuentes</a>
+        <a href="#ayuda" aria-current="page">Preguntas frecuentes</a>
       </nav>
-      <div class="desktop-store-shortcuts" aria-label="Descargar ALA">
-        <a href="./index.html#google-play" aria-label="Descargar ALA en Google Play">
-          <img src="./public/assets/nav-google.png" alt="" />
-        </a>
-        <a href="./index.html#app-store" aria-label="Descargar ALA en App Store">
-          <img src="./public/assets/nav-ios.png" alt="" />
-        </a>
-      </div>
     </header>
 
-    <header class="mobile-nav help-mobile-nav">
+    <header class="mobile-nav help-page-mobile-nav">
       <a class="mobile-brand" href="./index.html" aria-label="Volver al inicio de ALA">
         <img src="./public/assets/ala-app-icon.png" alt="" />
       </a>
-      <a class="about-pill" href="./index.html#informacion">Sobre ALA <span aria-hidden="true">›</span></a>
-      <button class="menu-button" type="button" aria-label="Abrir menú" aria-expanded="false">
+      <a class="about-pill" href="#ayuda">Ayuda <span aria-hidden="true">›</span></a>
+      <button class="menu-button" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="help-mobile-menu">
         <span></span><span></span><span></span>
       </button>
     </header>
 
-    <main>
-      <section class="help-hero" aria-labelledby="help-page-title">
-        <div class="help-hero-inner">
-          <h1 id="help-page-title">Centro de ayuda</h1>
+    <nav class="help-mobile-menu" id="help-mobile-menu" aria-label="Navegación móvil" aria-hidden="true">
+      <a href="./index.html#producto">Introducción del producto</a>
+      <a href="./index.html#proteccion">Protección regulatoria</a>
+      <a href="./index.html#blog">Blog</a>
+      <a href="./index.html#informacion">Más información</a>
+      <a href="#ayuda" aria-current="page">Preguntas frecuentes</a>
+    </nav>
 
-          <div class="help-contact-card">
-            <div class="help-advisor">
-              <img src="./public/assets/help-sofia-large.png" alt="Sofía, asesora de ALA" />
-              <div>
-                <strong>Habla con Sofía.</strong>
-                <span>Tu asesora de ALA</span>
-              </div>
+    <main class="help-faq-main" id="ayuda">
+      <div class="help-faq-inner">
+        <h1>Ayuda</h1>
+
+        <div class="help-faq-tabs" role="tablist" aria-label="Categorías de ayuda">
+          <button class="help-faq-tab is-active" type="button" role="tab" aria-selected="true" data-help-category="solicitud">
+            Solicitud de préstamo
+          </button>
+          <button class="help-faq-tab" type="button" role="tab" aria-selected="false" data-help-category="credito">
+            Crédito y límite
+          </button>
+          <button class="help-faq-tab" type="button" role="tab" aria-selected="false" data-help-category="problemas">
+            Problemas de préstamo
+          </button>
+          <button class="help-faq-tab" type="button" role="tab" aria-selected="false" data-help-category="otros">
+            Otros
+          </button>
+        </div>
+
+        <div class="help-faq-list" data-help-faq-list>
+          <article class="help-faq-item is-open">
+            <button class="help-faq-question" type="button" aria-expanded="true" aria-controls="help-answer-0">
+              <span data-help-question>¿Cuánto tiempo tarda la aprobación del préstamo?</span>
+              <svg class="help-faq-chevron" aria-hidden="true" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6" /></svg>
+            </button>
+            <div class="help-faq-answer" id="help-answer-0" aria-hidden="false">
+              <p data-help-answer>Una vez aprobada tu solicitud, ALA procesará la transferencia de inmediato. Normalmente, los fondos llegan a tu cuenta bancaria en 5 minutos, aunque en casos excepcionales puede haber retrasos.Nota: Asegúrate de que la información de tu cuenta bancaria sea correcta para evitar errores en la transferencia. Si los datos son incorrectos, nos pondremos en contacto contigo para confirmarlos.</p>
             </div>
-            <a class="help-whatsapp-cta" href="https://wa.me/" target="_blank" rel="noreferrer">
-              <img src="./public/assets/whatsapp-icon.png" alt="" />
-              Iniciar conversación
-            </a>
-          </div>
+          </article>
 
-          <p class="help-download-prompt">
-            <span>¿No tienes WhatsApp?</span>
-            <a href="./index.html#google-play">Descarga la app de ALA</a>
-          </p>
+          <article class="help-faq-item">
+            <button class="help-faq-question" type="button" aria-expanded="false" aria-controls="help-answer-1">
+              <span data-help-question>¿Cuándo llegará el préstamo a mi cuenta bancaria?</span>
+              <svg class="help-faq-chevron" aria-hidden="true" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6" /></svg>
+            </button>
+            <div class="help-faq-answer" id="help-answer-1" aria-hidden="true">
+              <p data-help-answer>Después de la aprobación, la transferencia suele reflejarse en tu cuenta bancaria en aproximadamente 5 minutos. El tiempo final depende de tu banco.</p>
+            </div>
+          </article>
+
+          <article class="help-faq-item">
+            <button class="help-faq-question" type="button" aria-expanded="false" aria-controls="help-answer-2">
+              <span data-help-question>¿Puedo solicitar varios préstamos?</span>
+              <svg class="help-faq-chevron" aria-hidden="true" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6" /></svg>
+            </button>
+            <div class="help-faq-answer" id="help-answer-2" aria-hidden="true">
+              <p data-help-answer>Puedes solicitar un nuevo préstamo cuando el préstamo actual se haya liquidado y tu cuenta vuelva a mostrar un límite disponible.</p>
+            </div>
+          </article>
+
+          <article class="help-faq-item">
+            <button class="help-faq-question" type="button" aria-expanded="false" aria-controls="help-answer-3">
+              <span data-help-question>¿Cómo obtener un límite más alto de préstamo?</span>
+              <svg class="help-faq-chevron" aria-hidden="true" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6" /></svg>
+            </button>
+            <div class="help-faq-answer" id="help-answer-3" aria-hidden="true">
+              <p data-help-answer>Mantén tus datos actualizados y realiza tus pagos puntualmente. ALA evaluará periódicamente tu perfil para ofrecerte un límite adecuado.</p>
+            </div>
+          </article>
+
+          <article class="help-faq-item">
+            <button class="help-faq-question" type="button" aria-expanded="false" aria-controls="help-answer-4">
+              <span data-help-question>¿Qué necesito para solicitar un préstamo?</span>
+              <svg class="help-faq-chevron" aria-hidden="true" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6" /></svg>
+            </button>
+            <div class="help-faq-answer" id="help-answer-4" aria-hidden="true">
+              <p data-help-answer>Completa tu registro en la aplicación de ALA y proporciona la información solicitada para que podamos evaluar tu solicitud.</p>
+            </div>
+          </article>
+
+          <article class="help-faq-item">
+            <button class="help-faq-question" type="button" aria-expanded="false" aria-controls="help-answer-5">
+              <span data-help-question>¿Puedo cancelar una solicitud de préstamo?</span>
+              <svg class="help-faq-chevron" aria-hidden="true" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6" /></svg>
+            </button>
+            <div class="help-faq-answer" id="help-answer-5" aria-hidden="true">
+              <p data-help-answer>Si la transferencia aún no ha sido procesada, revisa las opciones disponibles en la aplicación o contacta a nuestros canales oficiales.</p>
+            </div>
+          </article>
         </div>
-      </section>
-
-      <section class="help-content" aria-label="Información de ayuda">
-        <article class="security-advice">
-          <span class="security-accent" aria-hidden="true">
-            <img class="security-accent-top" src="./public/assets/help-security-accent-top.png" alt="" />
-            <img class="security-accent-middle" src="./public/assets/help-security-accent-middle.png" alt="" />
-            <img class="security-accent-bottom" src="./public/assets/help-security-accent-bottom.png" alt="" />
-          </span>
-          <img class="security-advice-icon" src="./public/assets/help-security-icon.png" alt="" />
-          <div>
-            <h2>Consejo de seguridad</h2>
-            <p>ALA nunca te pedirá transferir dinero a una cuenta personal. Si recibes una solicitud de pago no oficial o detectas un uso indebido de tu identidad, repórtalo a través de nuestros canales oficiales.</p>
-          </div>
-        </article>
-
-        <div class="help-features">
-          <article>
-            <span><img src="./public/assets/help-whatsapp-blue.png" alt="" /></span>
-            <p>Si necesitas ayuda, contáctanos directamente por WhatsApp.</p>
-          </article>
-          <article>
-            <span><img src="./public/assets/help-lightning.png" alt="" /></span>
-            <p>Obtén respuestas inmediatas de tu asesora.</p>
-          </article>
-          <article>
-            <span><img src="./public/assets/help-question.png" alt="" /></span>
-            <p>Podemos ayudarte con cualquier pregunta sobre tu préstamo o cuenta.</p>
-          </article>
-        </div>
-      </section>
+      </div>
     </main>
 
-    <footer class="site-footer help-page-footer">
-      <div class="footer-inner">
-        <section class="footer-contact">
-          <h2>Contáctanos</h2>
-          <p class="contact-intro">Por favor, envía por correo electrónico el problema que presentas e incluye tu número de teléfono para que podamos confirmarlo contigo y solucionarlo más rápido.</p>
-          <a class="phone-link" href="tel:40009877866456">
-            <span><img src="./public/assets/help-center.png" alt="" /></span>
-            Teléfono
-          </a>
-          <dl class="contact-list">
-            <div><dt>Teléfono</dt><dd>400-0987-7866-456</dd></div>
-            <div><dt>Correo electrónico</dt><dd>contacto@prestifymx.com</dd></div>
-            <div><dt>Horario de atención</dt><dd>De lunes a domingo, de 9:00 a 18:00.</dd></div>
-          </dl>
-          <p class="regulated-label">Regulados por las siguientes instituciones</p>
-          <div class="regulator-logos">
-            <img class="condusef" src="./public/assets/condusef.png" alt="CONDUSEF" />
-            <img class="profeco" src="./public/assets/profeco.png" alt="PROFECO" />
-          </div>
-        </section>
-
-        <section class="footer-about">
-          <h2>Sobre nosotros</h2>
-          <dl class="about-list">
-            <div><dt>Razón social</dt><dd>Gongsi ming cheng dai tigong .</dd></div>
-            <div><dt>Dirección de la empresa</dt><dd>Gongsi dizhi dai tigong</dd></div>
-            <div>
-              <dt>idad especializada de atención a usuarios (UNE)</dt>
-              <dd><a href="./index.html#une">UNE ALA</a><a href="./index.html#cobranza">Despacho de cobranza</a></dd>
-            </div>
-          </dl>
-          <div class="social-block">
-            <h2>Síguenos</h2>
-            <div class="social-links">
-              <a href="./index.html#youtube" aria-label="YouTube"><img src="./public/assets/youtube.png" alt="" /></a>
-              <a href="./index.html#facebook" aria-label="Facebook"><img src="./public/assets/facebook.png" alt="" /></a>
-              <a href="./index.html#tiktok" aria-label="TikTok"><img src="./public/assets/tiktok.png" alt="" /></a>
-            </div>
-          </div>
-        </section>
-
-        <section class="footer-agreement">
-          <h2>Acuerdo</h2>
-          <div class="agreement-group">
-            <h3>Google Play</h3>
-            <a href="./index.html#google-privacy">Registro de privacidad <span>›</span></a>
-            <a href="./index.html#google-terms">Términos de registro <span>›</span></a>
-          </div>
-          <div class="agreement-group">
-            <h3>App Store</h3>
-            <a href="./index.html#apple-privacy">Registro de privacidad <span>›</span></a>
-            <a href="./index.html#apple-terms">Términos de registro <span>›</span></a>
-            <a href="./index.html#loan-contract">Contrato de préstamo <span>›</span></a>
-          </div>
-        </section>
-
-        <section class="footer-articles footer-recent">
-          <h2>Artículos recientes</h2>
-          <div class="article-list">
-            <article><p>Si necesitas ayuda, llama a nuestra línea de atención o envíanos un correo electrónico.</p><time datetime="2025-07-02">02/07/2025</time></article>
-            <article><p>Si necesitas ayuda, llama a nuestra línea de atención o envíanos un correo electrónico.</p><time datetime="2025-07-02">02/07/2025</time></article>
-            <article><p>Si necesitas ayuda, llama a nuestra línea de atención o envíanos un correo electrónico.</p><time datetime="2025-07-02">02/07/2025</time></article>
-          </div>
-          <a class="more-link" href="./index.html#recentes">Conocer más <span>›</span></a>
-        </section>
-
-        <section class="footer-articles footer-popular">
-          <h2>Artículos populares</h2>
-          <div class="article-list">
-            <article><p>Si necesitas ayuda, llama a nuestra línea de atención o envíanos un correo electrónico.</p><time datetime="2025-07-02">02/07/2025</time></article>
-            <article><p>Si necesitas ayuda, llama a nuestra línea de atención o envíanos un correo electrónico.</p><time datetime="2025-07-02">02/07/2025</time></article>
-            <article><p>Si necesitas ayuda, llama a nuestra línea de atención o envíanos un correo electrónico.</p><time datetime="2025-07-02">02/07/2025</time></article>
-          </div>
-          <a class="more-link" href="./index.html#populares">Conocer más <span>›</span></a>
-        </section>
-
-        <section class="footer-sections">
-          <h2>Secciones populares</h2>
-          <a href="./index.html#guia">Guía de préstamos <span>›</span></a>
-          <a href="./index.html#diccionario">Diccionario financiero <span>›</span></a>
-          <a href="./index.html#noticias">Noticias financieras <span>›</span></a>
-          <a href="./index.html#ciudad">Préstamo en tu ciudad <span>›</span></a>
-        </section>
-
-        <p class="legal-disclaimer">El monto del préstamo va desde MXN $200 hasta MXN $50,000, con plazos de pago de 91 a 360 días. La tasa de interés diaria es desde 0.1% (equivalente a un APR anual de 36%), sin comisión por disposición. Por ejemplo: un préstamo de MXN $5,000 tendría un monto total a pagar de MXN $5,348, incluyendo intereses e IVA. Las tasas y condiciones pueden variar según el perfil del usuario.</p>
-      </div>
-    </footer>
-    <script src="./help.js?v=20260812-0315"></script>
+    <script src="./help.js?v=20260901-2407"></script>
   </body>
 </html>
