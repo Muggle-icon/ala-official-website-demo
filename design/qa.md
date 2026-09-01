@@ -6,7 +6,8 @@ visual:
 - PASS: Supporting scale is 18px hero CTA → 16px FAQ controls/body → 14px footer auxiliary/legal copy.
 - PASS: FAQ title, category tabs, and cards share the same left edge, matching the new reference structure.
 - PASS: The category row contains Solicitud, Crédito, Problemas, and Otros; the final help action is a centered sentence-style prompt.
-- PASS: The help prompt stays in the lower part of the screen when all cards are collapsed and moves naturally when content grows.
+- PASS: The help prompt follows the final card with a controlled 48px desktop gap instead of consuming leftover viewport space.
+- PASS: The 769–1100px range preserves proportional FAQ gutters rather than switching prematurely to 24px mobile padding.
 - PASS: FAQ component scale remains consistent with the hero: 48px tab height, 96px cards, 20px gaps, 20px icons, and 20px radii.
 - PASS: Shared 320px desktop gutters remain unchanged.
 - MANUAL: Browser security policy blocked a rendered screenshot capture, so final pixel appearance still needs an in-app visual glance.
