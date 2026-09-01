@@ -887,38 +887,30 @@ body.is-after-hero .download-card {
 
 .faq-tab {
   display: inline-flex;
-  height: clamp(48px, min(2.916667cqw, 5.185185cqh), 56px);
+  width: auto;
+  height: 56px;
+  flex: 0 0 auto;
   align-items: center;
   justify-content: center;
-  padding: 0;
-  border: 1px solid #c2c4c8;
-  border-radius: 999px;
+  gap: 10px;
+  padding: 16px 32px;
+  border: 0;
+  border-radius: 28px;
   color: #616264;
   background: transparent;
+  box-shadow: inset 0 0 0 1px #c2c4c8;
   font-family: "Roboto", Arial, sans-serif;
-  font-size: clamp(16px, min(0.9375cqw, 1.666667cqh), 18px);
+  font-size: 18px;
   font-weight: 500;
-  line-height: clamp(22px, min(1.25cqw, 2.222222cqh), 24px);
+  line-height: 24px;
   white-space: nowrap;
   cursor: pointer;
 }
 
-.faq-tab:nth-child(1) {
-  width: clamp(190px, min(12.708333cqw, 22.592593cqh), 244px);
-}
-
-.faq-tab:nth-child(2) {
-  width: clamp(140px, min(9.791667cqw, 17.407407cqh), 188px);
-}
-
-.faq-tab:nth-child(3) {
-  width: clamp(200px, min(13.4375cqw, 23.888889cqh), 258px);
-}
-
 .faq-tab.is-active {
-  border-color: #0949f5;
   color: #fff;
   background: #0949f5;
+  box-shadow: inset 0 0 0 1px #0949f5;
   font-weight: 500;
 }
 
