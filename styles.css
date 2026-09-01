@@ -840,23 +840,27 @@ body.is-after-hero .download-card {
 }
 
 .faq-section {
-  --faq-gutter: min(80px, 4.166667vw);
+  --faq-gutter: var(--page-gutter);
   width: 100%;
-  min-height: 1080px;
+  height: 100vh;
+  height: 100svh;
+  min-height: 0;
   color: #000;
   background: #f2f5fa;
+  container-type: size;
 }
 
 .faq-inner {
   width: calc(100% - (2 * var(--faq-gutter)));
-  min-height: 1080px;
+  height: 100%;
+  min-height: 0;
   margin: 0 auto;
-  padding-top: 122px;
+  padding-top: min(122px, 6.354167cqw, 11.296296cqh);
 }
 
 .faq-header {
   display: flex;
-  min-height: 86px;
+  min-height: min(86px, 4.479167cqw, 7.962963cqh);
   align-items: center;
   justify-content: space-between;
 }
@@ -865,22 +869,22 @@ body.is-after-hero .download-card {
   margin: 0;
   color: #000;
   font-family: "Roboto", Arial, sans-serif;
-  font-size: 72px;
+  font-size: min(72px, 3.75cqw, 6.666667cqh);
   font-weight: 700;
-  line-height: 86px;
-  letter-spacing: -1.3px;
+  line-height: min(86px, 4.479167cqw, 7.962963cqh);
+  letter-spacing: max(-1.3px, -0.067708cqw, -0.12037cqh);
 }
 
 .faq-tabs {
   display: flex;
   flex: 0 0 auto;
   align-items: center;
-  gap: 24px;
+  gap: min(24px, 1.25cqw, 2.222222cqh);
 }
 
 .faq-tab {
   display: inline-flex;
-  height: 64px;
+  height: min(64px, 3.333333cqw, 5.925926cqh);
   align-items: center;
   justify-content: center;
   padding: 0;
@@ -889,23 +893,23 @@ body.is-after-hero .download-card {
   color: #616264;
   background: transparent;
   font-family: "Roboto", Arial, sans-serif;
-  font-size: 24px;
+  font-size: min(24px, 1.25cqw, 2.222222cqh);
   font-weight: 700;
-  line-height: 32px;
+  line-height: min(32px, 1.666667cqw, 2.962963cqh);
   white-space: nowrap;
   cursor: pointer;
 }
 
 .faq-tab:nth-child(1) {
-  width: 302px;
+  width: min(302px, 15.729167cqw, 27.962963cqh);
 }
 
 .faq-tab:nth-child(2) {
-  width: 228px;
+  width: min(228px, 11.875cqw, 21.111111cqh);
 }
 
 .faq-tab:nth-child(3) {
-  width: 322px;
+  width: min(322px, 16.770833cqw, 29.814815cqh);
 }
 
 .faq-tab.is-active {
@@ -916,20 +920,20 @@ body.is-after-hero .download-card {
 
 .faq-list {
   display: grid;
-  gap: 24px;
-  margin-top: 45px;
+  gap: min(24px, 1.25cqw, 2.222222cqh);
+  margin-top: min(45px, 2.34375cqw, 4.166667cqh);
 }
 
 .faq-item {
-  height: 120px;
+  height: min(120px, 6.25cqw, 11.111111cqh);
   overflow: hidden;
-  border-radius: 24px;
+  border-radius: min(24px, 1.25cqw, 2.222222cqh);
   background: #e6eaf2;
 }
 
 .faq-item.is-open {
-  height: 190px;
-  padding: 48px;
+  height: min(190px, 9.895833cqw, 17.592593cqh);
+  padding: min(48px, 2.5cqw, 4.444444cqh);
   background: #fff;
 }
 
@@ -939,29 +943,29 @@ body.is-after-hero .download-card {
   height: 100%;
   align-items: center;
   justify-content: space-between;
-  gap: 32px;
-  padding: 0 48px;
+  gap: min(32px, 1.666667cqw, 2.962963cqh);
+  padding: 0 min(48px, 2.5cqw, 4.444444cqh);
   border: 0;
   color: #000;
   background: transparent;
   font-family: "Roboto", Arial, sans-serif;
-  font-size: 24px;
+  font-size: min(24px, 1.25cqw, 2.222222cqh);
   font-weight: 700;
-  line-height: 30px;
+  line-height: min(30px, 1.5625cqw, 2.777778cqh);
   text-align: left;
   cursor: pointer;
 }
 
 .faq-item.is-open .faq-question {
-  height: 32px;
+  height: min(32px, 1.666667cqw, 2.962963cqh);
   padding: 0;
 }
 
 .faq-chevron {
   display: block;
-  width: 24px;
-  height: 24px;
-  flex: 0 0 24px;
+  width: min(24px, 1.25cqw, 2.222222cqh);
+  height: min(24px, 1.25cqw, 2.222222cqh);
+  flex: 0 0 min(24px, 1.25cqw, 2.222222cqh);
   color: #616264;
   transform: rotate(0deg);
   transition: transform 180ms ease;
@@ -986,39 +990,39 @@ body.is-after-hero .download-card {
 
 .faq-item.is-open .faq-answer {
   display: block;
-  margin-top: 14px;
+  margin-top: min(14px, 0.729167cqw, 1.296296cqh);
 }
 
 .faq-answer p {
   margin: 0;
   color: #333;
-  font-size: 18px;
+  font-size: min(18px, 0.9375cqw, 1.666667cqh);
   font-weight: 400;
-  line-height: 24px;
+  line-height: min(24px, 1.25cqw, 2.222222cqh);
 }
 
 .faq-all-link {
   display: inline-flex;
-  width: 200px;
-  height: 56px;
+  width: min(200px, 10.416667cqw, 18.518519cqh);
+  height: min(56px, 2.916667cqw, 5.185185cqh);
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  margin-top: 48px;
+  gap: min(8px, 0.416667cqw, 0.740741cqh);
+  margin-top: min(48px, 2.5cqw, 4.444444cqh);
   border: 1px solid #0949f5;
   border-radius: 999px;
   color: #0949f5;
   background: transparent;
-  font-size: 16px;
+  font-size: min(16px, 0.833333cqw, 1.481481cqh);
   font-weight: 700;
-  line-height: 24px;
+  line-height: min(24px, 1.25cqw, 2.222222cqh);
   text-decoration: none;
 }
 
 .faq-all-link svg {
-  width: 24px;
-  height: 24px;
-  flex: 0 0 24px;
+  width: min(24px, 1.25cqw, 2.222222cqh);
+  height: min(24px, 1.25cqw, 2.222222cqh);
+  flex: 0 0 min(24px, 1.25cqw, 2.222222cqh);
 }
 
 .faq-tab:focus-visible,
@@ -2775,66 +2779,10 @@ body.is-after-hero .download-card {
   }
 }
 
-@media (min-width: 1101px) and (max-width: 1600px) {
-  .faq-section,
-  .faq-inner {
-    min-height: 900px;
-  }
-
-  .faq-inner {
-    padding-top: 96px;
-  }
-
-  .faq-header h2 {
-    font-size: 60px;
-    line-height: 72px;
-  }
-
-  .faq-tabs {
-    gap: 16px;
-  }
-
-  .faq-tab {
-    height: 56px;
-    font-size: 20px;
-  }
-
-  .faq-tab:nth-child(1) { width: 252px; }
-  .faq-tab:nth-child(2) { width: 190px; }
-  .faq-tab:nth-child(3) { width: 268px; }
-
-  .faq-list {
-    margin-top: 36px;
-  }
-
-  .faq-item {
-    height: 104px;
-  }
-
-  .faq-item.is-open {
-    height: auto;
-    min-height: 174px;
-    padding: 36px 40px 28px;
-  }
-
-  .faq-question {
-    padding: 0 40px;
-    font-size: 22px;
-  }
-
-  .faq-answer p {
-    font-size: 16px;
-    line-height: 22px;
-  }
-
-  .faq-all-link {
-    margin-top: 36px;
-  }
-}
-
 @media (max-width: 1100px) {
   .faq-section,
   .faq-inner {
+    height: auto;
     min-height: 0;
   }
 
