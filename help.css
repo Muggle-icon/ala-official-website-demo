@@ -19,7 +19,6 @@ body.help-faq-body {
 .help-page-nav {
   position: relative;
   top: auto;
-  height: 72px;
   background: #fff;
 }
 
@@ -27,11 +26,17 @@ body.help-faq-body {
   display: block;
 }
 
-.help-page-nav nav a,
-.help-page-nav nav a[aria-current="page"] {
-  color: #24262b;
-  font-family: "Roboto", Arial, sans-serif;
-  font-weight: 400;
+.help-page-nav nav a {
+  color: rgba(30, 31, 34, 0.72);
+  font-family: "Roboto Navigation Medium", "Roboto", Arial, sans-serif;
+  font-weight: 500;
+}
+
+.help-page-nav nav a.is-active,
+.help-page-nav nav a[aria-current="location"] {
+  color: #1e1f22;
+  font-family: "Roboto Navigation Bold", "Roboto", Arial, sans-serif;
+  font-weight: 700 !important;
 }
 
 .help-page-nav .nav-with-arrow img {
