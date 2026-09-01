@@ -855,12 +855,12 @@ body.is-after-hero .download-card {
   height: 100%;
   min-height: 0;
   margin: 0 auto;
-  padding-top: min(122px, 6.354167cqw, 11.296296cqh);
+  padding-top: min(118px, 6.145833cqw, 10.925926cqh);
 }
 
 .faq-header {
   display: flex;
-  min-height: min(86px, 4.479167cqw, 7.962963cqh);
+  min-height: clamp(48px, min(3.489583cqw, 6.203704cqh), 67px);
   align-items: center;
   justify-content: space-between;
 }
@@ -869,22 +869,22 @@ body.is-after-hero .download-card {
   margin: 0;
   color: #000;
   font-family: "Roboto", Arial, sans-serif;
-  font-size: min(72px, 3.75cqw, 6.666667cqh);
+  font-size: clamp(40px, min(2.916667cqw, 5.185185cqh), 56px);
   font-weight: 700;
-  line-height: min(86px, 4.479167cqw, 7.962963cqh);
-  letter-spacing: max(-1.3px, -0.067708cqw, -0.12037cqh);
+  line-height: clamp(48px, min(3.489583cqw, 6.203704cqh), 67px);
+  letter-spacing: max(-1px, -0.052083cqw, -0.092593cqh);
 }
 
 .faq-tabs {
   display: flex;
   flex: 0 0 auto;
   align-items: center;
-  gap: min(24px, 1.25cqw, 2.222222cqh);
+  gap: clamp(12px, min(0.833333cqw, 1.481481cqh), 16px);
 }
 
 .faq-tab {
   display: inline-flex;
-  height: min(64px, 3.333333cqw, 5.925926cqh);
+  height: clamp(48px, min(2.916667cqw, 5.185185cqh), 56px);
   align-items: center;
   justify-content: center;
   padding: 0;
@@ -893,23 +893,23 @@ body.is-after-hero .download-card {
   color: #616264;
   background: transparent;
   font-family: "Roboto", Arial, sans-serif;
-  font-size: min(24px, 1.25cqw, 2.222222cqh);
+  font-size: clamp(16px, min(0.9375cqw, 1.666667cqh), 18px);
   font-weight: 700;
-  line-height: min(32px, 1.666667cqw, 2.962963cqh);
+  line-height: clamp(22px, min(1.25cqw, 2.222222cqh), 24px);
   white-space: nowrap;
   cursor: pointer;
 }
 
 .faq-tab:nth-child(1) {
-  width: min(302px, 15.729167cqw, 27.962963cqh);
+  width: clamp(190px, min(12.708333cqw, 22.592593cqh), 244px);
 }
 
 .faq-tab:nth-child(2) {
-  width: min(228px, 11.875cqw, 21.111111cqh);
+  width: clamp(140px, min(9.791667cqw, 17.407407cqh), 188px);
 }
 
 .faq-tab:nth-child(3) {
-  width: min(322px, 16.770833cqw, 29.814815cqh);
+  width: clamp(200px, min(13.4375cqw, 23.888889cqh), 258px);
 }
 
 .faq-tab.is-active {
@@ -925,15 +925,16 @@ body.is-after-hero .download-card {
 }
 
 .faq-item {
-  height: min(120px, 6.25cqw, 11.111111cqh);
+  height: max(80px, min(110px, 5.729167cqw, 10.185185cqh));
   overflow: hidden;
   border-radius: min(24px, 1.25cqw, 2.222222cqh);
   background: #e6eaf2;
 }
 
 .faq-item.is-open {
-  height: min(190px, 9.895833cqw, 17.592593cqh);
-  padding: min(48px, 2.5cqw, 4.444444cqh);
+  height: auto;
+  min-height: min(210px, 10.9375cqw, 19.444444cqh);
+  padding: min(40px, 2.083333cqw, 3.703704cqh) min(48px, 2.5cqw, 4.444444cqh);
   background: #fff;
 }
 
@@ -949,23 +950,23 @@ body.is-after-hero .download-card {
   color: #000;
   background: transparent;
   font-family: "Roboto", Arial, sans-serif;
-  font-size: min(24px, 1.25cqw, 2.222222cqh);
+  font-size: clamp(18px, min(1.145833cqw, 2.037037cqh), 22px);
   font-weight: 700;
-  line-height: min(30px, 1.5625cqw, 2.777778cqh);
+  line-height: clamp(26px, min(1.5625cqw, 2.777778cqh), 30px);
   text-align: left;
   cursor: pointer;
 }
 
 .faq-item.is-open .faq-question {
-  height: min(32px, 1.666667cqw, 2.962963cqh);
+  height: clamp(26px, min(1.5625cqw, 2.777778cqh), 30px);
   padding: 0;
 }
 
 .faq-chevron {
   display: block;
-  width: min(24px, 1.25cqw, 2.222222cqh);
-  height: min(24px, 1.25cqw, 2.222222cqh);
-  flex: 0 0 min(24px, 1.25cqw, 2.222222cqh);
+  width: clamp(20px, min(1.25cqw, 2.222222cqh), 24px);
+  height: clamp(20px, min(1.25cqw, 2.222222cqh), 24px);
+  flex: 0 0 clamp(20px, min(1.25cqw, 2.222222cqh), 24px);
   color: #616264;
   transform: rotate(0deg);
   transition: transform 180ms ease;
@@ -990,21 +991,21 @@ body.is-after-hero .download-card {
 
 .faq-item.is-open .faq-answer {
   display: block;
-  margin-top: min(14px, 0.729167cqw, 1.296296cqh);
+  margin-top: min(16px, 0.833333cqw, 1.481481cqh);
 }
 
 .faq-answer p {
   margin: 0;
   color: #333;
-  font-size: min(18px, 0.9375cqw, 1.666667cqh);
+  font-size: clamp(16px, min(0.9375cqw, 1.666667cqh), 18px);
   font-weight: 400;
-  line-height: min(24px, 1.25cqw, 2.222222cqh);
+  line-height: clamp(24px, min(1.458333cqw, 2.592593cqh), 28px);
 }
 
 .faq-all-link {
   display: inline-flex;
-  width: min(200px, 10.416667cqw, 18.518519cqh);
-  height: min(56px, 2.916667cqw, 5.185185cqh);
+  width: clamp(188px, min(10.9375cqw, 19.444444cqh), 210px);
+  height: clamp(48px, min(2.916667cqw, 5.185185cqh), 56px);
   align-items: center;
   justify-content: center;
   gap: min(8px, 0.416667cqw, 0.740741cqh);
@@ -1013,16 +1014,16 @@ body.is-after-hero .download-card {
   border-radius: 999px;
   color: #0949f5;
   background: transparent;
-  font-size: min(16px, 0.833333cqw, 1.481481cqh);
+  font-size: 16px;
   font-weight: 700;
   line-height: min(24px, 1.25cqw, 2.222222cqh);
   text-decoration: none;
 }
 
 .faq-all-link svg {
-  width: min(24px, 1.25cqw, 2.222222cqh);
-  height: min(24px, 1.25cqw, 2.222222cqh);
-  flex: 0 0 min(24px, 1.25cqw, 2.222222cqh);
+  width: clamp(20px, min(1.25cqw, 2.222222cqh), 24px);
+  height: clamp(20px, min(1.25cqw, 2.222222cqh), 24px);
+  flex: 0 0 clamp(20px, min(1.25cqw, 2.222222cqh), 24px);
 }
 
 .faq-tab:focus-visible,
