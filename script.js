@@ -125,7 +125,7 @@ function setFaqCategory(category) {
     item.querySelector("[data-faq-answer]").innerHTML = items[index].answer;
   });
 
-  setOpenFaqItem(0);
+  setOpenFaqItem(-1);
 }
 
 faqTabs.forEach((tab) => {
