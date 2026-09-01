@@ -1079,9 +1079,9 @@ body.is-after-hero .download-card {
 .site-footer h2 {
   margin: 0;
   color: #f7f7f8;
-  font-size: 24px;
+  font-size: 28px;
   font-weight: 700;
-  line-height: 30px;
+  line-height: 34px;
 }
 
 .site-footer h3,
@@ -1122,8 +1122,8 @@ body.is-after-hero .download-card {
   gap: 10px;
   margin-top: 18px;
   color: #e7e8ec;
-  font-size: 14px;
-  line-height: 28px;
+  font-size: 16px;
+  line-height: 32px;
   text-underline-offset: 2px;
 }
 
@@ -1147,8 +1147,8 @@ body.is-after-hero .download-card {
 }
 
 .contact-list {
-  gap: 27px;
-  margin-top: 35px !important;
+  gap: 25px;
+  margin-top: 32px !important;
 }
 
 .contact-list div,
@@ -1160,25 +1160,26 @@ body.is-after-hero .download-card {
 .contact-list dt,
 .about-list dt {
   color: #93959c;
-  font-size: 14px;
-  line-height: 18px;
+  font-size: 16px;
+  line-height: 19px;
 }
 
 .contact-list dd,
 .about-list dd,
 .agreement-group h3 {
   color: #f3f3f5;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
-  line-height: 18px;
+  line-height: 19px;
 }
 
 .contact-note {
   width: min(350px, 100%);
-  margin-top: 27px !important;
+  margin-top: 26px !important;
   color: #93959c;
-  font-size: 14px;
-  line-height: 18px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19px;
 }
 
 .footer-about {
@@ -1188,13 +1189,13 @@ body.is-after-hero .download-card {
 }
 
 .about-list {
-  gap: 28px;
-  margin-top: 20px !important;
+  gap: 24px;
+  margin-top: 18px !important;
 }
 
 .about-list dd {
   display: grid;
-  gap: 10px;
+  gap: 8px;
 }
 
 .about-list a {
@@ -1203,13 +1204,13 @@ body.is-after-hero .download-card {
 }
 
 .social-block {
-  margin-top: 52px;
+  margin-top: 51px;
 }
 
 .social-links {
   display: flex;
   gap: 22px;
-  margin-top: 22px;
+  margin-top: 17px;
 }
 
 .social-links a,
@@ -1227,12 +1228,16 @@ body.is-after-hero .download-card {
 
 .agreement-group {
   display: grid;
-  gap: 10px;
-  margin-top: 22px;
+  gap: 8px;
+  margin-top: 17px;
+}
+
+.agreement-group h3 {
+  margin-bottom: 8px;
 }
 
 .agreement-group + .agreement-group {
-  margin-top: 38px;
+  margin-top: 32px;
 }
 
 .agreement-group a {
@@ -1241,8 +1246,9 @@ body.is-after-hero .download-card {
   align-items: center;
   gap: 9px;
   color: #93959c;
-  font-size: 14px;
-  line-height: 18px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19px;
   text-decoration: none;
 }
 
@@ -1298,9 +1304,9 @@ body.is-after-hero .download-card {
   width: min(350px, 100%);
   margin-top: 23px !important;
   color: #f4f4f5;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 400;
-  line-height: 18px;
+  line-height: 19px;
 }
 
 .footer-condusef .compliance-copy,
