@@ -1062,7 +1062,7 @@ body.is-after-hero .download-card {
 .site-footer {
   position: relative;
   width: 100%;
-  min-height: 1352px;
+  min-height: 1264px;
   overflow: hidden;
   color: #f7f7f8;
   background: #1b1e28;
@@ -1071,7 +1071,8 @@ body.is-after-hero .download-card {
 .footer-inner {
   position: relative;
   width: calc(100% - (2 * var(--page-gutter)));
-  height: 1352px;
+  max-width: 1280px;
+  height: 1264px;
   margin: 0 auto;
 }
 
@@ -1097,10 +1098,7 @@ body.is-after-hero .download-card {
 .footer-contact,
 .footer-about,
 .footer-agreement,
-.footer-recent,
-.footer-popular,
-.footer-sections,
-.legal-disclaimer {
+.footer-compliance {
   position: absolute;
 }
 
@@ -1111,7 +1109,7 @@ body.is-after-hero .download-card {
 }
 
 .contact-intro {
-  width: 285px;
+  width: min(350px, 100%);
   margin-top: 17px !important;
   color: #e5e6e9;
   font-size: 14px;
@@ -1149,8 +1147,8 @@ body.is-after-hero .download-card {
 }
 
 .contact-list {
-  gap: 22px;
-  margin-top: 32px !important;
+  gap: 27px;
+  margin-top: 35px !important;
 }
 
 .contact-list div,
@@ -1175,30 +1173,12 @@ body.is-after-hero .download-card {
   line-height: 18px;
 }
 
-.regulated-label {
-  margin-top: 24px !important;
+.contact-note {
+  width: min(350px, 100%);
+  margin-top: 27px !important;
   color: #93959c;
   font-size: 14px;
   line-height: 18px;
-}
-
-.regulator-logos {
-  display: flex;
-  align-items: center;
-  gap: 32px;
-  margin-top: 24px;
-}
-
-.regulator-logos .condusef {
-  width: 114px;
-  height: 64px;
-  object-fit: contain;
-}
-
-.regulator-logos .profeco {
-  width: 64px;
-  height: 64px;
-  object-fit: contain;
 }
 
 .footer-about {
@@ -1208,13 +1188,13 @@ body.is-after-hero .download-card {
 }
 
 .about-list {
-  gap: 23px;
+  gap: 28px;
   margin-top: 20px !important;
 }
 
 .about-list dd {
   display: grid;
-  gap: 6px;
+  gap: 10px;
 }
 
 .about-list a {
@@ -1223,7 +1203,7 @@ body.is-after-hero .download-card {
 }
 
 .social-block {
-  margin-top: 46px;
+  margin-top: 52px;
 }
 
 .social-links {
@@ -1252,11 +1232,10 @@ body.is-after-hero .download-card {
 }
 
 .agreement-group + .agreement-group {
-  margin-top: 32px;
+  margin-top: 38px;
 }
 
-.agreement-group a,
-.footer-sections a {
+.agreement-group a {
   display: flex;
   width: fit-content;
   align-items: center;
@@ -1267,102 +1246,82 @@ body.is-after-hero .download-card {
   text-decoration: none;
 }
 
-.agreement-group a span,
-.footer-sections a span,
-.more-link span {
+.agreement-group a span {
   color: #838792;
   font-size: 20px;
   font-weight: 300;
   line-height: 16px;
 }
 
-.footer-recent,
-.footer-popular,
-.footer-sections {
-  top: 667px;
-}
-
-.footer-recent {
+.footer-buro {
+  top: 710px;
   left: 0;
   width: 29.21875%;
 }
 
-.footer-popular {
+.footer-condusef {
+  top: 710px;
   left: 37.03125%;
   width: 29.21875%;
 }
 
-.footer-sections {
+.footer-mexico {
+  top: 710px;
   left: 74.0625%;
   width: 25.9375%;
 }
 
-.article-list {
-  display: grid;
-  gap: 18px;
-  margin-top: 20px;
-}
-
-.article-list article {
+.compliance-logo-slot {
   display: flex;
   width: 100%;
-  height: 90px;
-  padding: 16px;
-  flex-direction: column;
-  justify-content: space-between;
-  border-radius: 10px;
-  color: #a8aab0;
-  background: #272b37;
-}
-
-.article-list p {
-  font-size: 14px;
-  line-height: 17px;
-}
-
-.article-list time {
-  color: #909299;
-  font-size: 12px;
-  line-height: 15px;
-}
-
-.more-link {
-  display: flex;
-  width: fit-content;
+  height: 82px;
   align-items: center;
-  gap: 8px;
-  margin-top: 16px;
-  margin-left: auto;
-  color: #92949a !important;
+  justify-content: flex-start;
+}
+
+.footer-buro .compliance-logo-slot img {
+  width: 202px;
+  height: 82px;
+}
+
+.footer-condusef .compliance-logo-slot img {
+  width: 147px;
+  height: 56px;
+}
+
+.footer-mexico .compliance-logo-slot img {
+  width: 60px;
+  height: 60px;
+}
+
+.compliance-copy {
+  width: min(350px, 100%);
+  margin-top: 23px !important;
+  color: #f4f4f5;
   font-size: 14px;
+  font-weight: 400;
   line-height: 18px;
-  text-decoration: none;
 }
 
-.footer-sections {
-  display: flex;
-  flex-direction: column;
-}
-
-.footer-sections h2 {
-  margin-bottom: 20px;
-}
-
-.footer-sections a + a {
-  margin-top: 10px;
-}
-
-.legal-disclaimer {
-  top: 1175px;
-  left: 0;
+.footer-condusef .compliance-copy,
+.footer-mexico .compliance-copy {
   width: 100%;
-  color: #92949a;
-  font-size: 13px;
-  line-height: 18px;
+}
+
+.compliance-copy a {
+  display: inline;
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.footer-condusef .compliance-copy {
+  display: grid;
+  gap: 14px;
 }
 
 /* Retained only as an archived compact variant. The shipped desktop footer
-   always uses the fixed 1920 × 1352 design frame above and scrolls naturally. */
+   uses the fixed 1920 × 1264 reference frame above and scrolls naturally. */
 @media (min-width: 901px) and (max-height: 0px) {
   .site-footer {
     --footer-gutter: min(120px, 6.25cqw, 11.111111cqh);
@@ -1574,7 +1533,7 @@ body.is-after-hero .download-card {
 
 }
 
-@media (min-width: 601px) and (max-width: 900px) {
+@media (min-width: 601px) and (max-width: 1499px) {
   .site-footer {
     height: auto;
     min-height: 0;
@@ -1594,25 +1553,17 @@ body.is-after-hero .download-card {
   .footer-contact,
   .footer-about,
   .footer-agreement,
-  .footer-recent,
-  .footer-popular,
-  .footer-sections,
-  .legal-disclaimer {
+  .footer-compliance {
     position: static;
     top: auto;
     left: auto;
     width: 100%;
   }
 
-  .article-list article {
+  .contact-intro,
+  .contact-note,
+  .compliance-copy {
     width: 100%;
-  }
-
-  .legal-disclaimer {
-    grid-column: 1 / -1;
-    margin-top: 8px !important;
-    padding-top: 24px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
   }
 }
 
@@ -2722,40 +2673,23 @@ body.is-after-hero .download-card {
   .footer-contact,
   .footer-about,
   .footer-agreement,
-  .footer-recent,
-  .footer-popular,
-  .footer-sections,
-  .legal-disclaimer {
+  .footer-compliance {
     position: static;
+    top: auto;
+    left: auto;
     width: 100%;
   }
 
-  .contact-intro {
+  .contact-intro,
+  .contact-note,
+  .compliance-copy {
     width: 100%;
   }
 
   .footer-about,
   .footer-agreement,
-  .footer-recent,
-  .footer-popular,
-  .footer-sections {
+  .footer-compliance {
     left: auto;
-  }
-
-  .article-list article {
-    width: 100%;
-  }
-
-  .more-link {
-    margin-top: 16px;
-  }
-
-  .legal-disclaimer {
-    margin-top: 54px !important;
-    padding-top: 24px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    font-size: 13px;
-    line-height: 18px;
   }
 }
 
