@@ -855,14 +855,15 @@ body.is-after-hero .download-card {
   height: 100%;
   min-height: 0;
   margin: 0 auto;
-  padding-top: min(118px, 6.145833cqw, 10.925926cqh);
+  padding-top: min(105px, 5.46875cqw, 9.722222cqh);
 }
 
 .faq-header {
   display: flex;
-  min-height: clamp(48px, min(3.489583cqw, 6.203704cqh), 67px);
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
+  gap: min(46px, 2.395833cqw, 4.259259cqh);
 }
 
 .faq-header h2 {
@@ -921,7 +922,7 @@ body.is-after-hero .download-card {
 .faq-list {
   display: grid;
   gap: min(24px, 1.25cqw, 2.222222cqh);
-  margin-top: min(45px, 2.34375cqw, 4.166667cqh);
+  margin-top: min(32px, 1.666667cqw, 2.962963cqh);
 }
 
 .faq-item {
@@ -933,7 +934,7 @@ body.is-after-hero .download-card {
 
 .faq-item.is-open {
   height: auto;
-  min-height: min(210px, 10.9375cqw, 19.444444cqh);
+  min-height: min(198px, 10.3125cqw, 18.333333cqh);
   padding: min(40px, 2.083333cqw, 3.703704cqh) min(48px, 2.5cqw, 4.444444cqh);
   background: #fff;
 }
@@ -999,17 +1000,17 @@ body.is-after-hero .download-card {
   color: #333;
   font-size: clamp(16px, min(0.9375cqw, 1.666667cqh), 18px);
   font-weight: 400;
-  line-height: clamp(24px, min(1.458333cqw, 2.592593cqh), 28px);
+  line-height: min(24px, 1.25cqw, 2.222222cqh);
 }
 
 .faq-all-link {
-  display: inline-flex;
+  display: flex;
   width: clamp(188px, min(10.9375cqw, 19.444444cqh), 210px);
   height: clamp(48px, min(2.916667cqw, 5.185185cqh), 56px);
   align-items: center;
   justify-content: center;
   gap: min(8px, 0.416667cqw, 0.740741cqh);
-  margin-top: min(48px, 2.5cqw, 4.444444cqh);
+  margin: min(48px, 2.5cqw, 4.444444cqh) auto 0;
   border: 1px solid #0949f5;
   border-radius: 999px;
   color: #0949f5;
@@ -2793,8 +2794,8 @@ body.is-after-hero .download-card {
   }
 
   .faq-header {
-    display: block;
     min-height: 0;
+    gap: 32px;
   }
 
   .faq-header h2 {
@@ -2805,7 +2806,7 @@ body.is-after-hero .download-card {
 
   .faq-tabs {
     width: calc(100vw - 24px);
-    margin-top: 32px;
+    align-self: flex-start;
     padding-right: 24px;
     gap: 12px;
     overflow-x: auto;
