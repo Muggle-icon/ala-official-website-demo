@@ -851,19 +851,21 @@ body.is-after-hero .download-card {
 }
 
 .faq-inner {
+  display: flex;
   width: min(1280px, calc(100% - (2 * var(--faq-gutter))));
   height: auto;
   min-height: 100vh;
   min-height: 100svh;
+  flex-direction: column;
   margin: 0 auto;
-  padding-top: min(88px, 4.583333cqw, 8.148148cqh);
+  padding-top: min(96px, 5cqw, 8.888889cqh);
   padding-bottom: min(64px, 3.333333cqw, 5.925926cqh);
 }
 
 .faq-header {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-start;
   gap: min(32px, 1.666667cqw, 2.962963cqh);
 }
@@ -880,6 +882,7 @@ body.is-after-hero .download-card {
 
 .faq-tabs {
   display: flex;
+  width: 100%;
   flex: 0 0 auto;
   align-items: center;
   gap: clamp(12px, min(0.833333cqw, 1.481481cqh), 16px);
@@ -981,8 +984,7 @@ body.is-after-hero .download-card {
   transition: transform 180ms ease;
 }
 
-.faq-chevron path,
-.faq-all-link svg path {
+.faq-chevron path {
   fill: none;
   stroke: currentColor;
   stroke-width: 2;
@@ -1020,41 +1022,37 @@ body.is-after-hero .download-card {
   line-height: min(24px, 1.25cqw, 2.222222cqh);
 }
 
-.faq-all-link {
+.faq-help-prompt {
   display: flex;
-  width: max-content;
+  width: 100%;
   min-height: 44px;
   align-items: center;
   justify-content: center;
-  gap: min(8px, 0.416667cqw, 0.740741cqh);
-  margin: min(32px, 1.666667cqw, 2.962963cqh) auto 0;
-  padding: 0 4px;
-  border: 0;
-  border-radius: 8px;
-  color: #0949f5;
-  background: transparent;
+  gap: 5px;
+  margin: auto 0 0;
+  padding-top: min(32px, 1.666667cqw, 2.962963cqh);
+  color: #24262b;
   font-size: 16px;
   font-weight: 500;
   line-height: min(24px, 1.25cqw, 2.222222cqh);
-  text-decoration: none;
-  text-underline-offset: 4px;
-  transition: color 160ms ease;
+  text-align: center;
 }
 
-.faq-all-link:hover {
+.faq-help-link {
+  color: #0949f5;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.faq-help-link:hover {
   color: #0738cc;
   text-decoration: underline;
-}
-
-.faq-all-link svg {
-  width: 20px;
-  height: 20px;
-  flex: 0 0 20px;
+  text-underline-offset: 3px;
 }
 
 .faq-tab:focus-visible,
 .faq-question:focus-visible,
-.faq-all-link:focus-visible {
+.faq-help-link:focus-visible {
   outline: 3px solid #ffd11a;
   outline-offset: 3px;
 }
@@ -2764,7 +2762,7 @@ body.is-after-hero .download-card {
   }
 
   .faq-header h2 {
-    font-size: clamp(36px, 6vw, 44px);
+    font-size: clamp(32px, 6vw, 44px);
     line-height: 1.15;
     letter-spacing: -0.8px;
   }
@@ -2785,7 +2783,8 @@ body.is-after-hero .download-card {
   .faq-tab,
   .faq-tab:nth-child(1),
   .faq-tab:nth-child(2),
-  .faq-tab:nth-child(3) {
+  .faq-tab:nth-child(3),
+  .faq-tab:nth-child(4) {
     width: auto;
     height: 48px;
     flex: 0 0 auto;
@@ -2847,10 +2846,12 @@ body.is-after-hero .download-card {
     line-height: 24px;
   }
 
-  .faq-all-link {
-    width: max-content;
+  .faq-help-prompt {
+    width: 100%;
     min-height: 44px;
     margin-top: 28px;
+    padding-top: 0;
+    flex-wrap: wrap;
   }
 }
 

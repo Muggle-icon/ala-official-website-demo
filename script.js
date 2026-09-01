@@ -68,6 +68,24 @@ const faqContent = {
       answer: "Puedes revisar el estado y los movimientos de tu préstamo directamente desde la pantalla principal de la aplicación ALA.",
     },
   ],
+  otros: [
+    {
+      question: "¿Cómo contacto al centro de ayuda?",
+      answer: "Consulta el centro de ayuda de ALA para encontrar nuestros canales oficiales de atención y resolver dudas sobre tu cuenta.",
+    },
+    {
+      question: "¿Cómo actualizo mis datos personales?",
+      answer: "Entra a tu perfil dentro de la aplicación de ALA y revisa las opciones disponibles para mantener tu información actualizada.",
+    },
+    {
+      question: "¿Dónde descargo la aplicación oficial de ALA?",
+      answer: "Utiliza únicamente los enlaces oficiales de Google Play y App Store publicados en este sitio web.",
+    },
+    {
+      question: "¿Cómo puedo proteger mi cuenta?",
+      answer: "No compartas contraseñas ni códigos de verificación y utiliza únicamente los canales oficiales de ALA para realizar consultas.",
+    },
+  ],
 };
 
 let lastFocusedElement = null;
