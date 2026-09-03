@@ -1063,6 +1063,7 @@ body.is-after-hero .download-card {
   overflow: hidden;
   color: #f7f7f8;
   background: #1b1e28;
+  font-weight: 400;
 }
 
 .footer-inner {
@@ -1110,6 +1111,7 @@ body.is-after-hero .download-card {
   margin-top: 17px !important;
   color: #e5e6e9;
   font-size: 14px;
+  font-weight: 400;
   line-height: 16px;
 }
 
@@ -1120,6 +1122,7 @@ body.is-after-hero .download-card {
   margin-top: 18px;
   color: #e7e8ec;
   font-size: 14px;
+  font-weight: 400;
   line-height: 28px;
   text-underline-offset: 2px;
 }
@@ -1158,15 +1161,15 @@ body.is-after-hero .download-card {
 .about-list dt {
   color: #93959c;
   font-size: 14px;
+  font-weight: 400;
   line-height: 18px;
 }
 
 .contact-list dd,
-.about-list dd,
-.agreement-group h3 {
+.about-list dd {
   color: #f3f3f5;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 18px;
 }
 
@@ -1223,21 +1226,64 @@ body.is-after-hero .download-card {
   width: 25.9375%;
 }
 
-.agreement-group {
+.legal-documents {
   display: grid;
-  gap: 8px;
+  gap: 13px;
   margin-top: 17px;
 }
 
-.agreement-group h3 {
-  margin-bottom: 8px;
+.legal-document {
+  display: grid;
+  width: fit-content;
 }
 
-.agreement-group + .agreement-group {
-  margin-top: 32px;
+.legal-document-trigger {
+  display: flex;
+  width: fit-content;
+  min-height: 18px;
+  align-items: center;
+  gap: 9px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  color: #f3f3f5;
+  background: transparent;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+  text-align: left;
+  cursor: pointer;
 }
 
-.agreement-group a {
+.legal-chevron {
+  display: block;
+  width: 6px;
+  height: 6px;
+  flex: 0 0 auto;
+  border-right: 1px solid #838792;
+  border-bottom: 1px solid #838792;
+  transform: rotate(-45deg);
+  transition: transform 160ms ease;
+}
+
+.legal-document.is-open .legal-chevron {
+  transform: translateY(-2px) rotate(45deg);
+}
+
+.legal-submenu {
+  display: grid;
+  gap: 10px;
+  margin: 10px 0 0 10px;
+  padding: 13px 0 13px 8px;
+  border-left: 1px solid #343844;
+}
+
+.legal-submenu[hidden] {
+  display: none;
+}
+
+.legal-submenu a {
   display: flex;
   width: fit-content;
   align-items: center;
@@ -1249,11 +1295,24 @@ body.is-after-hero .download-card {
   text-decoration: none;
 }
 
-.agreement-group a span {
+.legal-submenu a span {
   color: #838792;
   font-size: 20px;
   font-weight: 300;
   line-height: 16px;
+}
+
+.legal-document-trigger:hover,
+.legal-document-trigger:focus-visible,
+.legal-submenu a:hover,
+.legal-submenu a:focus-visible {
+  color: #ffffff;
+}
+
+.legal-document-trigger:focus-visible,
+.legal-submenu a:focus-visible {
+  outline: 2px solid #ffd11a;
+  outline-offset: 3px;
 }
 
 .footer-buro {

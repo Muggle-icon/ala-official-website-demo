@@ -9,7 +9,7 @@
       content="Demo del nuevo inicio del sitio oficial de ALA, con acceso a la aplicación y al centro de ayuda."
     />
     <link rel="icon" type="image/png" href="./public/assets/download-card-icon.png" />
-    <link rel="stylesheet" href="./styles.css?v=20260901-2406" />
+    <link rel="stylesheet" href="./styles.css?v=20260903-0010" />
     <title>ALA — Apoyo financiero flexible</title>
   </head>
   <body>
@@ -280,17 +280,40 @@
         </section>
 
         <section class="footer-agreement">
-          <h2>Acuerdo</h2>
-          <div class="agreement-group">
-            <h3>Google Play</h3>
-            <a href="#google-privacy">Registro de privacidad <span>›</span></a>
-            <a href="#google-terms">Términos de registro <span>›</span></a>
-          </div>
-          <div class="agreement-group">
-            <h3>App Store</h3>
-            <a href="#apple-privacy">Registro de privacidad <span>›</span></a>
-            <a href="#apple-terms">Términos de registro <span>›</span></a>
-            <a href="#loan-contract">Contrato de préstamo <span>›</span></a>
+          <h2>Documentos Legales</h2>
+          <div class="legal-documents">
+            <div class="legal-document">
+              <button class="legal-document-trigger" type="button" aria-expanded="false" aria-controls="legal-terms-versions">
+                <span>Términos y Condiciones de Uso</span>
+                <i class="legal-chevron" aria-hidden="true"></i>
+              </button>
+              <div class="legal-submenu" id="legal-terms-versions" hidden>
+                <a href="#google-terms">Google Play <span aria-hidden="true">›</span></a>
+                <a href="#apple-terms">App Store <span aria-hidden="true">›</span></a>
+              </div>
+            </div>
+
+            <div class="legal-document">
+              <button class="legal-document-trigger" type="button" aria-expanded="false" aria-controls="legal-privacy-versions">
+                <span>Aviso de Privacidad</span>
+                <i class="legal-chevron" aria-hidden="true"></i>
+              </button>
+              <div class="legal-submenu" id="legal-privacy-versions" hidden>
+                <a href="#google-privacy">Google Play <span aria-hidden="true">›</span></a>
+                <a href="#apple-privacy">App Store <span aria-hidden="true">›</span></a>
+              </div>
+            </div>
+
+            <div class="legal-document">
+              <button class="legal-document-trigger" type="button" aria-expanded="false" aria-controls="legal-contract-versions">
+                <span>Contracto de Prestamo</span>
+                <i class="legal-chevron" aria-hidden="true"></i>
+              </button>
+              <div class="legal-submenu" id="legal-contract-versions" hidden>
+                <a href="#google-loan-contract">Google Play <span aria-hidden="true">›</span></a>
+                <a href="#apple-loan-contract">App Store <span aria-hidden="true">›</span></a>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -320,6 +343,6 @@
         </section>
       </div>
     </footer>
-    <script src="./script.js?v=20260901-2404"></script>
+    <script src="./script.js?v=20260903-0010"></script>
   </body>
 </html>

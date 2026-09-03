@@ -8,6 +8,7 @@ const desktopNav = document.querySelector(".desktop-nav");
 const desktopNavLinks = [...document.querySelectorAll(".desktop-nav nav a")];
 const faqTabs = [...document.querySelectorAll(".faq-tab")];
 const faqItems = [...document.querySelectorAll(".faq-item")];
+const legalDocuments = [...document.querySelectorAll(".legal-document")];
 
 const faqContent = {
   solicitud: [
@@ -157,6 +158,48 @@ faqItems.forEach((item, index) => {
   });
 });
 
+function setLegalDocument(documentItem, open) {
+  const trigger = documentItem.querySelector(".legal-document-trigger");
+  const submenu = documentItem.querySelector(".legal-submenu");
+  documentItem.classList.toggle("is-open", open);
+  trigger.setAttribute("aria-expanded", String(open));
+  submenu.hidden = !open;
+}
+
+function closeOtherLegalDocuments(currentItem) {
+  legalDocuments.forEach((documentItem) => {
+    if (documentItem !== currentItem) setLegalDocument(documentItem, false);
+  });
+}
+
+legalDocuments.forEach((documentItem) => {
+  const trigger = documentItem.querySelector(".legal-document-trigger");
+
+  documentItem.addEventListener("pointerenter", (event) => {
+    if (event.pointerType === "touch") return;
+    closeOtherLegalDocuments(documentItem);
+    setLegalDocument(documentItem, true);
+  });
+
+  documentItem.addEventListener("pointerleave", (event) => {
+    if (event.pointerType === "touch") return;
+    setLegalDocument(documentItem, false);
+  });
+
+  trigger.addEventListener("click", (event) => {
+    const keyboardActivation = event.detail === 0;
+    const canHover = window.matchMedia("(hover: hover)").matches;
+    closeOtherLegalDocuments(documentItem);
+    setLegalDocument(documentItem, keyboardActivation || !canHover ? !documentItem.classList.contains("is-open") : true);
+  });
+
+  documentItem.addEventListener("focusout", () => {
+    window.setTimeout(() => {
+      if (!documentItem.contains(document.activeElement)) setLegalDocument(documentItem, false);
+    }, 0);
+  });
+});
+
 function setHelp(open) {
   helpPanel.classList.toggle("is-open", open);
   helpBackdrop.classList.toggle("is-open", open);
@@ -206,4 +249,5 @@ document.addEventListener("keydown", (event) => {
   if (event.key !== "Escape") return;
   if (noticeOverlay.classList.contains("is-open")) setNotice(false);
   else if (helpPanel.classList.contains("is-open")) setHelp(false);
+  else legalDocuments.forEach((documentItem) => setLegalDocument(documentItem, false));
 });
