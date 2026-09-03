@@ -1237,7 +1237,8 @@ body.is-after-hero .download-card {
   width: fit-content;
 }
 
-.legal-document-trigger {
+.legal-document-trigger,
+.legal-document-link {
   display: flex;
   width: fit-content;
   min-height: 18px;
@@ -1253,6 +1254,7 @@ body.is-after-hero .download-card {
   font-weight: 400;
   line-height: 18px;
   text-align: left;
+  text-decoration: none;
   cursor: pointer;
 }
 
@@ -1273,9 +1275,9 @@ body.is-after-hero .download-card {
 
 .legal-submenu {
   display: grid;
-  gap: 10px;
+  gap: 4px;
   margin: 10px 0 0 10px;
-  padding: 13px 0 13px 8px;
+  padding: 8px 0 8px 8px;
   border-left: 1px solid #343844;
 }
 
@@ -1304,12 +1306,15 @@ body.is-after-hero .download-card {
 
 .legal-document-trigger:hover,
 .legal-document-trigger:focus-visible,
+.legal-document-link:hover,
+.legal-document-link:focus-visible,
 .legal-submenu a:hover,
 .legal-submenu a:focus-visible {
   color: #ffffff;
 }
 
 .legal-document-trigger:focus-visible,
+.legal-document-link:focus-visible,
 .legal-submenu a:focus-visible {
   outline: 2px solid #ffd11a;
   outline-offset: 3px;
