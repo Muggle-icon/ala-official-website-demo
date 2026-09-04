@@ -54,6 +54,14 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "Roboto Black";
+  src: url("./public/assets/Roboto-Variable.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --blue: #102bb5;
   --bright-blue: #2145ff;
@@ -67,10 +75,10 @@
   --desktop-nav-gap: min(32px, 1.666667vw);
   --desktop-nav-logo-gap: min(104px, 5.416667vw);
   --desktop-nav-store-gap: min(112px, 5.833333vw);
-  --faq-heading-size: clamp(40px, min(2.5vw, 4.444444vh), 48px);
-  --faq-heading-weight: 700;
-  --faq-heading-line-height: clamp(48px, min(3.020833vw, 5.37037vh), 58px);
-  --faq-heading-letter-spacing: max(-1px, -0.052083vw, -0.092593vh);
+  --faq-heading-size: 56px;
+  --faq-heading-weight: 900;
+  --faq-heading-line-height: 62px;
+  --faq-heading-letter-spacing: 0;
 }
 
 @media (min-width: 1500px) and (max-width: 1899px) {
@@ -872,19 +880,21 @@ body.is-after-hero .download-card {
 .faq-header {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: flex-start;
   gap: 48px;
 }
 
 .faq-header h2 {
+  width: 100%;
   margin: 0;
   color: #000;
-  font-family: "Roboto", Arial, sans-serif;
+  font-family: "Roboto Black", "Roboto", Arial, sans-serif;
   font-size: var(--faq-heading-size);
   font-weight: var(--faq-heading-weight);
   line-height: var(--faq-heading-line-height);
   letter-spacing: var(--faq-heading-letter-spacing);
+  text-align: center;
 }
 
 .faq-tabs {
@@ -892,6 +902,7 @@ body.is-after-hero .download-card {
   width: 100%;
   flex: 0 0 auto;
   align-items: center;
+  justify-content: center;
   gap: clamp(12px, min(0.833333cqw, 1.481481cqh), 16px);
 }
 
@@ -2794,6 +2805,7 @@ body.is-after-hero .download-card {
 
   .faq-tabs {
     width: calc(100vw - var(--faq-gutter));
+    justify-content: flex-start;
     padding-right: 24px;
     overflow-x: auto;
     scrollbar-width: none;
@@ -2864,6 +2876,7 @@ body.is-after-hero .download-card {
   .faq-tabs {
     width: calc(100vw - 24px);
     align-self: flex-start;
+    justify-content: flex-start;
     padding-right: 24px;
     gap: 12px;
     overflow-x: auto;

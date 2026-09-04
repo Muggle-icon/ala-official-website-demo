@@ -70,19 +70,22 @@ body.help-faq-body {
 }
 
 .help-faq-inner h1 {
+  width: 100%;
   margin: 0;
   color: #000;
-  font-family: "Roboto", Arial, sans-serif;
+  font-family: "Roboto Black", "Roboto", Arial, sans-serif;
   font-size: var(--faq-heading-size);
   font-weight: var(--faq-heading-weight);
   line-height: var(--faq-heading-line-height);
   letter-spacing: var(--faq-heading-letter-spacing);
+  text-align: center;
 }
 
 .help-faq-tabs {
   display: flex;
   width: 100%;
   align-items: center;
+  justify-content: center;
   gap: clamp(12px, 0.833333vw, 16px);
   margin-top: clamp(32px, 2.1875vw, 42px);
 }
@@ -232,6 +235,7 @@ body.help-faq-body {
   }
 
   .help-faq-tabs {
+    justify-content: flex-start;
     margin-top: 32px;
     padding-bottom: 2px;
     overflow-x: auto;
@@ -297,6 +301,7 @@ body.help-faq-body {
 
   .help-faq-tabs {
     width: calc(100vw - 24px);
+    justify-content: flex-start;
     margin-top: 28px;
     padding-right: 24px;
     gap: 12px;
