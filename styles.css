@@ -1330,25 +1330,25 @@ body.is-after-hero .download-card {
 .footer-condusef {
   top: 670px;
   left: 0;
-  width: 29.21875%;
+  width: calc(341px * var(--ala-layout-scale));
 }
 
 .footer-sipres {
   top: 670px;
   left: 37.03125%;
-  width: 29.21875%;
+  width: calc(341px * var(--ala-layout-scale));
 }
 
 .footer-cnbv {
   top: 670px;
-  left: 74.0625%;
-  width: 25.9375%;
+  right: 0;
+  width: calc(341px * var(--ala-layout-scale));
 }
 
 .footer-buro {
   top: 990px;
   left: 0;
-  width: 29.21875%;
+  width: calc(341px * var(--ala-layout-scale));
 }
 
 .compliance-logo-slot {
@@ -1376,7 +1376,7 @@ body.is-after-hero .download-card {
 }
 
 .compliance-copy {
-  width: min(350px, 100%);
+  width: min(341px, 100%);
   margin-top: 23px !important;
   color: #f4f4f5;
   font-size: 14px;
