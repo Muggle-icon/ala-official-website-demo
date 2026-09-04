@@ -1352,7 +1352,8 @@ body.is-after-hero .download-card {
 
 .footer-cnbv {
   top: 670px;
-  right: 0;
+  right: auto;
+  left: 74.0625%;
   width: calc(341px * var(--ala-layout-scale));
 }
 
