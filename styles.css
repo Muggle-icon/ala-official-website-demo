@@ -75,9 +75,9 @@
   --desktop-nav-gap: min(32px, 1.666667vw);
   --desktop-nav-logo-gap: min(104px, 5.416667vw);
   --desktop-nav-store-gap: min(112px, 5.833333vw);
-  --faq-heading-size: 56px;
+  --faq-heading-size: clamp(40px, 2.916667vw, 56px);
   --faq-heading-weight: 900;
-  --faq-heading-line-height: 62px;
+  --faq-heading-line-height: clamp(46px, 3.229167vw, 62px);
   --faq-heading-letter-spacing: 0;
 }
 
