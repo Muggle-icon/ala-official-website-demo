@@ -67,6 +67,10 @@
   --desktop-nav-gap: min(32px, 1.666667vw);
   --desktop-nav-logo-gap: min(104px, 5.416667vw);
   --desktop-nav-store-gap: min(112px, 5.833333vw);
+  --faq-heading-size: clamp(40px, min(2.5vw, 4.444444vh), 48px);
+  --faq-heading-weight: 700;
+  --faq-heading-line-height: clamp(48px, min(3.020833vw, 5.37037vh), 58px);
+  --faq-heading-letter-spacing: max(-1px, -0.052083vw, -0.092593vh);
 }
 
 @media (min-width: 1500px) and (max-width: 1899px) {
@@ -96,6 +100,9 @@
 @media (max-width: 768px) {
   :root {
     --page-gutter: 24px;
+    --faq-heading-size: clamp(32px, 6vw, 44px);
+    --faq-heading-line-height: 1.15;
+    --faq-heading-letter-spacing: -0.8px;
   }
 }
 
@@ -874,10 +881,10 @@ body.is-after-hero .download-card {
   margin: 0;
   color: #000;
   font-family: "Roboto", Arial, sans-serif;
-  font-size: clamp(40px, min(2.5cqw, 4.444444cqh), 48px);
-  font-weight: 700;
-  line-height: clamp(48px, min(3.020833cqw, 5.37037cqh), 58px);
-  letter-spacing: max(-1px, -0.052083cqw, -0.092593cqh);
+  font-size: var(--faq-heading-size);
+  font-weight: var(--faq-heading-weight);
+  line-height: var(--faq-heading-line-height);
+  letter-spacing: var(--faq-heading-letter-spacing);
 }
 
 .faq-tabs {
@@ -2850,12 +2857,6 @@ body.is-after-hero .download-card {
   .faq-header {
     min-height: 0;
     gap: 32px;
-  }
-
-  .faq-header h2 {
-    font-size: clamp(32px, 6vw, 44px);
-    line-height: 1.15;
-    letter-spacing: -0.8px;
   }
 
   .faq-tabs {

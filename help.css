@@ -68,11 +68,10 @@ body.help-faq-body {
   margin: 0;
   color: #000;
   font-family: "Roboto", Arial, sans-serif;
-  font-size: clamp(48px, 2.916667vw, 56px);
-  font-weight: 700;
-  line-height: clamp(58px, 3.541667vw, 68px);
-  letter-spacing: 0.5px;
-  transform: translateY(-3px);
+  font-size: var(--faq-heading-size);
+  font-weight: var(--faq-heading-weight);
+  line-height: var(--faq-heading-line-height);
+  letter-spacing: var(--faq-heading-letter-spacing);
 }
 
 .help-faq-tabs {
@@ -226,11 +225,6 @@ body.help-faq-body {
     padding: 72px 0 112px;
   }
 
-  .help-faq-inner h1 {
-    font-size: 44px;
-    line-height: 52px;
-  }
-
   .help-faq-tabs {
     margin-top: 32px;
     padding-bottom: 2px;
@@ -289,12 +283,6 @@ body.help-faq-body {
   .help-faq-inner {
     width: 100%;
     padding: 56px 24px 88px;
-  }
-
-  .help-faq-inner h1 {
-    font-size: 38px;
-    line-height: 46px;
-    letter-spacing: -0.6px;
   }
 
   .help-faq-tabs {
