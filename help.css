@@ -3,6 +3,7 @@
   --help-card-bg: #e6eaf2;
   --help-blue: #0949f5;
   --help-text: #000;
+  --help-desktop-nav-height: min(72px, 3.75vw, 6.923077vh);
 }
 
 html,
@@ -17,8 +18,11 @@ body.help-faq-body {
 }
 
 .help-page-nav {
-  position: relative;
-  top: auto;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: var(--help-desktop-nav-height);
   background: #fff;
 }
 
@@ -53,8 +57,9 @@ body.help-faq-body {
 }
 
 .help-faq-main {
-  min-height: calc(100vh - 72px);
-  min-height: calc(100svh - 72px);
+  min-height: 100vh;
+  min-height: 100svh;
+  padding-top: var(--help-desktop-nav-height);
   background: var(--help-page-bg);
 }
 
@@ -217,7 +222,8 @@ body.help-faq-body {
 
 @media (min-width: 769px) and (max-width: 1100px) {
   .help-faq-main {
-    min-height: calc(100svh - var(--mobile-nav-height));
+    min-height: 100svh;
+    padding-top: var(--mobile-nav-height);
   }
 
   .help-faq-inner {
@@ -244,12 +250,15 @@ body.help-faq-body {
 
 @media (max-width: 1100px) {
   .help-page-mobile-nav {
-    position: relative;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
     z-index: 30;
   }
 
   .help-mobile-menu {
-    position: absolute;
+    position: fixed;
     top: var(--mobile-nav-height);
     right: 0;
     left: 0;
@@ -277,7 +286,8 @@ body.help-faq-body {
 
 @media (max-width: 768px) {
   .help-faq-main {
-    min-height: calc(100svh - var(--mobile-nav-height));
+    min-height: 100svh;
+    padding-top: var(--mobile-nav-height);
   }
 
   .help-faq-inner {
