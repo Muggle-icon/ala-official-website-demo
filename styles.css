@@ -1360,11 +1360,15 @@ body.is-after-hero .download-card {
 }
 
 .footer-condusef .compliance-logo-slot img {
-  width: 144px;
+  width: min(180px, 100%);
   height: auto;
 }
 
-.footer-sipres .compliance-logo-slot img,
+.footer-sipres .compliance-logo-slot img {
+  width: min(304px, 100%);
+  height: auto;
+}
+
 .footer-buro .compliance-logo-slot img {
   width: 180px;
   height: auto;
