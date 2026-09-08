@@ -224,10 +224,16 @@ a {
   position: absolute;
   inset: 0;
   z-index: 0;
-  background-image: url("./public/assets/hero-background-20260812.png");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
+  display: block;
+  background-color: #080b11;
+}
+
+.hero-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
 }
 
 .desktop-nav {
@@ -1797,9 +1803,6 @@ body.is-after-hero .download-card {
 
   .hero-photo {
     top: var(--mobile-nav-height);
-    background-image: url("./public/assets/hero-background-20260812.png");
-    background-position: center center;
-    background-size: cover;
   }
 
   .mobile-nav {
@@ -2104,9 +2107,10 @@ body.is-after-hero .download-card {
 
   .hero-photo {
     top: var(--mobile-nav-height);
-    background-image: url("./public/assets/mobile-hero-background.png");
-    background-position: center top;
-    background-size: cover;
+  }
+
+  .hero-photo img {
+    object-position: center top;
   }
 
   .desktop-nav,
@@ -2784,11 +2788,8 @@ body.is-after-hero .download-card {
 /* Switch to the portrait crop before the landscape artwork can cut through
    the subject. */
 @media (max-aspect-ratio: 4 / 3) {
-  .hero-photo {
-    background-color: #080b11;
-    background-image: url("./public/assets/hero-person-full.png");
-    background-position: center top;
-    background-size: cover;
+  .hero-photo img {
+    object-position: center top;
   }
 
 }

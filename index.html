@@ -9,7 +9,12 @@
       content="Demo del nuevo inicio del sitio oficial de ALA, con acceso a la aplicación y al centro de ayuda."
     />
     <link rel="icon" type="image/png" href="./public/assets/download-card-icon.png" />
-    <link rel="stylesheet" href="./styles.css?v=20260908-1315" />
+    <link rel="preload" href="./public/assets/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin />
+    <link rel="stylesheet" href="./styles.css?v=20260908-1600" />
+    <link rel="stylesheet" href="./home-motion.css?v=20260908-1600" />
+    <script src="./home-motion.js?v=20260908-1600" defer></script>
+    <script src="./footer.js?v=20260904-0040" defer></script>
+    <script src="./script.js?v=20260908-1315" defer></script>
     <title>ALA — Apoyo financiero flexible</title>
   </head>
   <body>
@@ -33,7 +38,11 @@
       </button>
 
       <section class="hero" aria-labelledby="hero-title">
-        <div class="hero-photo" aria-hidden="true"></div>
+        <picture class="hero-photo" aria-hidden="true">
+          <source media="(max-aspect-ratio: 4 / 3)" srcset="./public/assets/hero-person-full.webp" />
+          <source media="(max-width: 600px)" srcset="./public/assets/mobile-hero-background.webp" />
+          <img src="./public/assets/hero-background-20260812.webp" alt="" width="3840" height="2080" fetchpriority="high" decoding="async" />
+        </picture>
         <div class="mobile-shade" aria-hidden="true"></div>
 
         <header class="desktop-nav">
@@ -125,7 +134,7 @@
           </button>
         </header>
         <div class="advisor-row">
-          <img class="advisor-photo" src="./public/assets/help-advisor-sofia.png" alt="" />
+          <img class="advisor-photo" src="./public/assets/help-advisor-sofia.png" alt="" loading="lazy" decoding="async" />
           <div>
             <strong>Habla con Sofía.</strong>
             <span>Tu asesora de ALA</span>
@@ -272,9 +281,9 @@
           <div class="social-block">
             <h2>Síguenos</h2>
             <div class="social-links">
-              <a href="#youtube" aria-label="YouTube"><img src="./public/assets/youtube.png" alt="" /></a>
-              <a href="#facebook" aria-label="Facebook"><img src="./public/assets/facebook.png" alt="" /></a>
-              <a href="#tiktok" aria-label="TikTok"><img src="./public/assets/tiktok.png" alt="" /></a>
+              <a href="#youtube" aria-label="YouTube"><img src="./public/assets/youtube.png" alt="" loading="lazy" decoding="async" /></a>
+              <a href="#facebook" aria-label="Facebook"><img src="./public/assets/facebook.png" alt="" loading="lazy" decoding="async" /></a>
+              <a href="#tiktok" aria-label="TikTok"><img src="./public/assets/tiktok.png" alt="" loading="lazy" decoding="async" /></a>
             </div>
           </div>
         </section>
@@ -313,34 +322,32 @@
 
         <section class="footer-compliance footer-condusef">
           <div class="compliance-logo-slot">
-            <img src="./public/assets/footer-condusef-20260904-v2.png" alt="CONDUSEF" />
+            <img src="./public/assets/footer-condusef-20260904-v2.png" alt="CONDUSEF" loading="lazy" decoding="async" />
           </div>
           <p class="compliance-copy">La Comisión Nacional para la Protección y Defensa de los Usuarios de Servicios Financieros (CONDUSEF) es el organismo público encargado de promover, asesorar, proteger y defender los derechos e intereses de los usuarios frente a las instituciones financieras. Para más información, consulta el sitio oficial de la <a href="https://www.condusef.gob.mx/">CONDUSEF</a>. (<a href="https://www.condusef.gob.mx/">https://www.condusef.gob.mx/</a>)</p>
         </section>
 
         <section class="footer-compliance footer-sipres">
           <div class="compliance-logo-slot">
-            <img src="./public/assets/footer-sipres-20260904-v2.png" alt="CONDUSEF y SIPRES" />
+            <img src="./public/assets/footer-sipres-20260904-v2.png" alt="CONDUSEF y SIPRES" loading="lazy" decoding="async" />
           </div>
           <p class="compliance-copy">ALA se encuentra inscrita en el Sistema de Registro de Prestadores de Servicios Financieros (SIPRES). Este registro otorga constancia del reconocimiento oficial de la entidad, ofreciendo validación con efectos frente a terceros sobre su presencia real y funcionamiento regular. Puedes validar la información directamente en el portal de <a href="https://webapps.condusef.gob.mx/SIPRES/jsp/pub/index.jsp">SIPRES - CONDUSEF</a>.<br />(<a href="https://webapps.condusef.gob.mx/SIPRES/jsp/pub/index.jsp">https://<wbr />webapps.condusef.gob.mx/<wbr />SIPRES/jsp/pub/<wbr />index.jsp</a>)</p>
         </section>
 
         <section class="footer-compliance footer-cnbv">
           <div class="compliance-logo-slot">
-            <img src="./public/assets/footer-cnbv-20260904.png" alt="CNBV" />
+            <img src="./public/assets/footer-cnbv-20260904.png" alt="CNBV" loading="lazy" decoding="async" />
           </div>
           <p class="compliance-copy">ALA es una entidad supervisada por la Comisión Nacional Bancaria y de Valores (CNBV), autoridad encargada de regular y monitorear nuestro funcionamiento operativo y financiero en conjunto con la CONDUSEF. Puedes verificar nuestra situación regulatoria en el portal oficial de la <a href="https://www.gob.mx/cnbv">CNBV</a>.</p>
         </section>
 
         <section class="footer-compliance footer-buro">
           <div class="compliance-logo-slot">
-            <img src="./public/assets/footer-buro-20260904.png" alt="Buró de Entidades Financieras" />
+            <img src="./public/assets/footer-buro-20260904.png" alt="Buró de Entidades Financieras" loading="lazy" decoding="async" />
           </div>
           <p class="compliance-copy"><a href="http://www.gob.mx/cnbv">El Buró de Entidades Financieras</a> da reconocimiento e integra el historial general de cumplimiento normativo, desempeño operativo y actualizaciones de valor con las que cuenta ALA para brindar mayor transparencia a los usuarios. Puedes consultar la información en el portal del <a href="http://www.gob.mx/cnbv">Buró de Entidades Financieras</a>. (<a href="http://www.gob.mx/cnbv">http://www.gob.mx/cnbv</a>)</p>
         </section>
       </div>
     </footer>
-    <script src="./footer.js?v=20260904-0040"></script>
-    <script src="./script.js?v=20260908-1315"></script>
   </body>
 </html>
