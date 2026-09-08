@@ -160,15 +160,21 @@
     updatePosition();
   }
 
+  desktop.querySelectorAll('nav > a, nav > button').forEach((item) => {
+    item.addEventListener('pointerenter', () => {
+      if (mobileQuery.matches || !hoverQuery.matches) return;
+      clearTimeout(hoverTimer);
+      clearTimeout(leaveTimer);
+      const name = item.dataset.navPanel || null;
+      // Clear the old expanded state immediately, including when entering a link.
+      if (active !== name) setPanel(null);
+      if (name && active !== name) hoverTimer = setTimeout(() => setPanel(name), 120);
+    });
+    item.addEventListener('pointerleave', () => clearTimeout(hoverTimer));
+  });
   triggers.forEach((trigger) => {
     const name = trigger.dataset.navPanel;
     trigger.addEventListener('click', () => setPanel(active === name ? null : name));
-    trigger.addEventListener('pointerenter', () => {
-      if (mobileQuery.matches || !hoverQuery.matches) return;
-      clearTimeout(leaveTimer);
-      hoverTimer = setTimeout(() => setPanel(name), 120);
-    });
-    trigger.addEventListener('pointerleave', () => clearTimeout(hoverTimer));
     trigger.addEventListener('keydown', (event) => {
       if (event.key === 'ArrowDown') {
         event.preventDefault();
@@ -225,6 +231,8 @@
     if (!frame) frame = requestAnimationFrame(updatePosition);
   }, { passive: true });
   window.addEventListener('resize', updatePosition);
+  // Content-sized popups may change width when the web font finishes loading.
+  document.fonts.ready.then(updatePosition);
   window.addEventListener('hashchange', () => setPanel(null));
   window.addEventListener('pageshow', () => { setPanel(null); updatePosition(); });
   mobileQuery.addEventListener('change', () => { setPanel(null); updatePosition(); });
