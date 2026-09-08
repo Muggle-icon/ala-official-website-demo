@@ -3,14 +3,23 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="theme-color" content="#f2f5fa" />
+    <meta name="theme-color" content="#f2f6ff" />
     <meta name="description" content="Centro de ayuda y preguntas frecuentes de ALA." />
     <link rel="icon" type="image/png" href="./public/assets/download-card-icon.png" />
-    <link rel="stylesheet" href="./styles.css?v=20260904-1800" />
-    <link rel="stylesheet" href="./help.css?v=20260904-1710" />
+    <link rel="stylesheet" href="./styles.css?v=20260908-1315" />
+    <link rel="stylesheet" href="./help.css?v=20260908-1315" />
     <title>Ayuda — ALA</title>
   </head>
   <body class="help-faq-body">
+    <div class="ios-status" aria-hidden="true">
+      <span class="ios-time">9:41</span>
+      <span class="ios-system-icons">
+        <span class="signal"><i></i><i></i><i></i><i></i></span>
+        <span class="wifi"></span>
+        <span class="battery"><i></i></span>
+      </span>
+    </div>
+
     <header class="desktop-nav help-page-nav">
       <a class="desktop-brand" href="./index.html" aria-label="Volver al inicio de ALA">
         <img class="desktop-brand-after-hero" src="./public/assets/nav-logo-dark.png" alt="ALA" />
@@ -28,7 +37,7 @@
       <a class="mobile-brand" href="./index.html" aria-label="Volver al inicio de ALA">
         <img src="./public/assets/ala-app-icon.png" alt="" />
       </a>
-      <a class="about-pill" href="#ayuda">Ayuda <span aria-hidden="true">›</span></a>
+      <a class="about-pill" href="./index.html#informacion">Sobre ALA <span aria-hidden="true">›</span></a>
       <button class="menu-button" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="help-mobile-menu">
         <span></span><span></span><span></span>
       </button>
@@ -64,7 +73,7 @@
         <div class="help-faq-list" data-help-faq-list>
           <article class="help-faq-item is-open">
             <button class="help-faq-question" type="button" aria-expanded="true" aria-controls="help-answer-0">
-              <span data-help-question>¿Cuánto tiempo tarda la aprobación del préstamo?</span>
+              <span data-help-question>¿Cuándo llegará el préstamo a mi cuenta bancaria?</span>
               <svg class="help-faq-chevron" aria-hidden="true" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6" /></svg>
             </button>
             <div class="help-faq-answer" id="help-answer-0" aria-hidden="false">
@@ -225,6 +234,6 @@
     </footer>
 
     <script src="./footer.js?v=20260904-0040"></script>
-    <script src="./help.js?v=20260901-2407"></script>
+    <script src="./help.js?v=20260908-1315"></script>
   </body>
 </html>

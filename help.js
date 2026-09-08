@@ -1,7 +1,7 @@
 const helpFaqContent = {
   solicitud: [
     {
-      question: "¿Cuánto tiempo tarda la aprobación del préstamo?",
+      question: "¿Cuándo llegará el préstamo a mi cuenta bancaria?",
       answer:
         "Una vez aprobada tu solicitud, ALA procesará la transferencia de inmediato. Normalmente, los fondos llegan a tu cuenta bancaria en 5 minutos, aunque en casos excepcionales puede haber retrasos.Nota: Asegúrate de que la información de tu cuenta bancaria sea correcta para evitar errores en la transferencia. Si los datos son incorrectos, nos pondremos en contacto contigo para confirmarlos.",
     },

@@ -2962,6 +2962,146 @@ body.is-after-hero .download-card {
   }
 }
 
+/* 375px mobile FAQ reference: fixed values replace the desktop composition's
+   fluid scale. Ayuda reuses the heading tokens below. */
+@media (max-width: 600px) {
+  :root {
+    --faq-heading-size: 28px;
+    --faq-heading-line-height: 34px;
+    --faq-heading-letter-spacing: 0;
+  }
+
+  body.is-after-hero .ios-status {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 50;
+  }
+
+  body.is-after-hero .mobile-nav {
+    position: fixed;
+    top: var(--status-height);
+    right: 0;
+    left: 0;
+    z-index: 49;
+  }
+
+  .mobile-nav {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  .ios-status {
+    padding-right: 16px;
+    padding-left: 27px;
+  }
+
+  .menu-button {
+    margin-right: 3px;
+  }
+
+  .faq-section {
+    scroll-margin-top: calc(var(--status-height) + var(--mobile-nav-height));
+    background: #f2f6ff;
+  }
+
+  .faq-inner {
+    padding: 48px 24px 96px;
+  }
+
+  .faq-header {
+    align-items: flex-start;
+    gap: 23px;
+  }
+
+  .faq-header h2 {
+    text-align: left;
+  }
+
+  .faq-tabs {
+    width: calc(100% + 24px);
+    height: 40px;
+    padding-right: 24px;
+    gap: 12px;
+  }
+
+  .faq-tab,
+  .faq-tab:nth-child(1),
+  .faq-tab:nth-child(2),
+  .faq-tab:nth-child(3),
+  .faq-tab:nth-child(4) {
+    height: 40px;
+    padding: 0 24px;
+    border-radius: 20px;
+    box-shadow: inset 0 0 0 1px #c2c5cc;
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  .faq-tab.is-active {
+    box-shadow: inset 0 0 0 1px #0949f5;
+  }
+
+  .faq-tab:first-child {
+    width: 205px;
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  .faq-list {
+    gap: 16px;
+    margin-top: 24px;
+  }
+
+  .faq-item {
+    --faq-card-height: 86px;
+    --faq-open-height: 296px;
+    --faq-question-height: 40px;
+    --faq-card-padding-y: 23px;
+    --faq-card-padding-x: 24px;
+    --faq-answer-gap: 8px;
+    min-height: var(--faq-card-height);
+    padding: var(--faq-card-padding-y) var(--faq-card-padding-x);
+    border-radius: 12px;
+  }
+
+  .faq-item.is-open {
+    min-height: var(--faq-open-height);
+    padding: 24px;
+  }
+
+  .faq-question {
+    height: var(--faq-question-height);
+    gap: 16px;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 20px;
+  }
+
+  .faq-chevron {
+    width: 18px;
+    height: 18px;
+    flex-basis: 18px;
+  }
+
+  .faq-answer p {
+    color: #666;
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .faq-help-prompt {
+    min-height: 20px;
+    margin-top: 28px;
+    flex-wrap: nowrap;
+    gap: 4px;
+    font-size: 14px;
+    line-height: 20px;
+    white-space: nowrap;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

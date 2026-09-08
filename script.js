@@ -12,7 +12,7 @@ const faqItems = [...document.querySelectorAll(".faq-item")];
 const faqContent = {
   solicitud: [
     {
-      question: "¿Cuánto tiempo tarda la aprobación del préstamo?",
+      question: "¿Cuándo llegará el préstamo a mi cuenta bancaria?",
       answer:
         "Una vez aprobada tu solicitud, ALA procesará la transferencia de inmediato. Normalmente, los fondos llegan a tu cuenta bancaria en 5 minutos, aunque en casos excepcionales puede haber retrasos.Nota: Asegúrate de que la información de tu cuenta bancaria sea correcta para evitar errores en la transferencia. Si los datos son incorrectos, nos pondremos en contacto contigo para confirmarlos.",
     },
@@ -108,7 +108,16 @@ window.addEventListener("hashchange", () => setActiveNav());
 setActiveNav();
 
 function setDesktopNavSurface() {
-  const afterHero = window.scrollY >= window.innerHeight - 1;
+  let threshold = window.innerHeight - 1;
+
+  if (window.matchMedia("(max-width: 600px)").matches) {
+    const faqSection = document.querySelector(".faq-section");
+    const statusHeight = document.querySelector(".ios-status")?.getBoundingClientRect().height || 0;
+    const mobileNavHeight = document.querySelector(".mobile-nav")?.getBoundingClientRect().height || 0;
+    threshold = (faqSection?.offsetTop || window.innerHeight) - statusHeight - mobileNavHeight - 1;
+  }
+
+  const afterHero = window.scrollY >= threshold;
   desktopNav.classList.toggle("is-after-hero", afterHero);
   document.body.classList.toggle("is-after-hero", afterHero);
 }
@@ -143,7 +152,7 @@ function setFaqCategory(category) {
     item.querySelector("[data-faq-answer]").innerHTML = items[index].answer;
   });
 
-  setOpenFaqItem(-1);
+  setOpenFaqItem(0);
 }
 
 faqTabs.forEach((tab) => {

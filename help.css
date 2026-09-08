@@ -1,5 +1,5 @@
 :root {
-  --help-page-bg: #f2f5fa;
+  --help-page-bg: #f2f6ff;
   --help-card-bg: #e6eaf2;
   --help-blue: #0949f5;
   --help-text: #000;
@@ -345,6 +345,108 @@ body.help-faq-body {
   .help-faq-answer p {
     font-size: 16px;
     line-height: 24px;
+  }
+}
+
+@media (max-width: 600px) {
+  .help-faq-body > .ios-status {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 31;
+  }
+
+  .help-page-mobile-nav {
+    top: var(--status-height);
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  .help-mobile-menu {
+    top: calc(var(--status-height) + var(--mobile-nav-height));
+  }
+
+  .help-faq-main {
+    padding-top: calc(var(--status-height) + var(--mobile-nav-height));
+  }
+
+  .help-faq-inner {
+    padding: 48px 24px 96px;
+  }
+
+  .help-faq-inner h1 {
+    text-align: left;
+  }
+
+  .help-faq-tabs {
+    width: calc(100% + 24px);
+    height: 40px;
+    margin-top: 23px;
+    padding-right: 24px;
+    gap: 12px;
+  }
+
+  .help-faq-tab {
+    height: 40px;
+    padding: 0 24px;
+    border-radius: 20px;
+    box-shadow: inset 0 0 0 1px #c2c5cc;
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  .help-faq-tab.is-active {
+    box-shadow: inset 0 0 0 1px var(--help-blue);
+  }
+
+  .help-faq-tab:first-child {
+    width: 205px;
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  .help-faq-list {
+    gap: 16px;
+    margin-top: 24px;
+  }
+
+  .help-faq-item {
+    --help-question-height: 40px;
+    --help-card-height: 86px;
+    --help-open-height: 296px;
+    --help-card-padding-y: 23px;
+    --help-card-padding-x: 24px;
+    --help-answer-gap: 8px;
+    min-height: var(--help-card-height);
+    padding: var(--help-card-padding-y) var(--help-card-padding-x);
+    border-radius: 12px;
+  }
+
+  .help-faq-item.is-open {
+    min-height: var(--help-open-height);
+    padding: 24px;
+  }
+
+  .help-faq-question {
+    height: var(--help-question-height);
+    gap: 16px;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 20px;
+    transform: none;
+  }
+
+  .help-faq-chevron {
+    width: 18px;
+    height: 18px;
+    flex-basis: 18px;
+  }
+
+  .help-faq-answer p {
+    color: #666;
+    font-size: 14px;
+    line-height: 20px;
   }
 }
 
