@@ -56,10 +56,10 @@
   document.body.append(backdrop);
   root.insertAdjacentHTML('beforeend', `
     <div class="navigation-panel" id="navigation-blog" role="region" aria-label="Blog" hidden>
-      <div class="navigation-panel-inner">${blogContent}</div>
+      <div class="navigation-panel-inner"><p class="navigation-empty">Próximamente</p></div>
     </div>
     <div class="navigation-panel" id="navigation-more" role="region" aria-label="Más información" hidden>
-      <div class="navigation-panel-inner">${moreContent('desktop')}</div>
+      <div class="navigation-panel-inner">${list([...moreLinks, ...supportLinks])}</div>
     </div>
     <nav class="navigation-mobile-panel" id="navigation-mobile" aria-label="Navegación móvil" hidden>
       <div class="navigation-mobile-links">
@@ -88,10 +88,19 @@
     const statusHeight = status?.offsetHeight || 0;
     const noticeHeight = isHelp ? 0 : document.querySelector('.notice-bar')?.offsetHeight || 0;
     const top = statusHeight + Math.max(0, noticeHeight - window.scrollY);
+    root.classList.toggle('is-solid', isHelp || window.scrollY >= noticeHeight || active !== null);
     const rowHeight = (mobileQuery.matches ? mobile : desktop).getBoundingClientRect().height;
     root.style.setProperty('--navigation-top', `${top}px`);
     document.documentElement.style.setProperty('--navigation-bottom', `${top + rowHeight}px`);
-    root.classList.toggle('is-solid', isHelp || window.scrollY >= noticeHeight || active !== null);
+    if (active && active !== 'mobile') {
+      const panel = document.getElementById(`navigation-${active}`);
+      const trigger = triggers.find((button) => button.dataset.navPanel === active);
+      const bounds = trigger.getBoundingClientRect();
+      // Center the compact popup under its own trigger, keeping it on screen.
+      const left = Math.max(16, Math.min(bounds.left + bounds.width / 2 - panel.offsetWidth / 2, document.documentElement.clientWidth - panel.offsetWidth - 16));
+      panel.style.left = `${left}px`;
+      panel.style.top = `${rowHeight + 8}px`;
+    }
     const afterHero = !isHelp && window.scrollY >= (document.querySelector('.faq-section')?.offsetTop || innerHeight) - statusHeight - rowHeight;
     document.body.classList.toggle('is-after-hero', afterHero);
     frame = 0;
@@ -128,7 +137,7 @@
     menu.setAttribute('aria-expanded', String(name === 'mobile'));
     menu.setAttribute('aria-label', name === 'mobile' ? 'Cerrar menú' : 'Abrir menú');
     root.classList.toggle('is-open', name !== null);
-    backdrop.classList.toggle('is-visible', name !== null);
+    backdrop.classList.toggle('is-visible', name === 'mobile');
     if (name === 'mobile') {
       root.setAttribute('role', 'dialog');
       root.setAttribute('aria-modal', 'true');
@@ -192,7 +201,8 @@
   root.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => setPanel(null)));
   backdrop.addEventListener('click', () => setPanel(null, true));
   document.addEventListener('click', (event) => {
-    if (event.target.closest('[data-open-notice], [data-toggle-help]')) setPanel(null);
+    if (active && active !== 'mobile' && !root.contains(event.target)) setPanel(null);
+    else if (event.target.closest('[data-open-notice], [data-toggle-help]')) setPanel(null);
   });
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape' && active) {
