@@ -12,9 +12,11 @@
     <link rel="preload" href="./public/assets/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin />
     <link rel="stylesheet" href="./styles.css?v=20260908-1600" />
     <link rel="stylesheet" href="./home-motion.css?v=20260908-1600" />
+    <link rel="stylesheet" href="./navigation.css?v=20260908-1800" />
+    <script src="./navigation.js?v=20260908-1800" defer></script>
     <script src="./home-motion.js?v=20260908-1600" defer></script>
     <script src="./footer.js?v=20260904-0040" defer></script>
-    <script src="./script.js?v=20260908-1315" defer></script>
+    <script src="./script.js?v=20260908-1800" defer></script>
     <title>ALA — Apoyo financiero flexible</title>
   </head>
   <body>
@@ -37,7 +39,7 @@
         <img class="chevron" src="./public/assets/notice-chevron.png" alt="" />
       </button>
 
-      <section class="hero" aria-labelledby="hero-title">
+      <section class="hero" id="producto" aria-labelledby="hero-title">
         <picture class="hero-photo" aria-hidden="true">
           <source media="(max-aspect-ratio: 4 / 3)" srcset="./public/assets/hero-person-full.webp" />
           <source media="(max-width: 600px)" srcset="./public/assets/mobile-hero-background.webp" />
@@ -53,8 +55,8 @@
           <nav aria-label="Navegación principal">
             <a class="is-active" href="#producto" aria-current="location">Introducción del producto</a>
             <a href="#proteccion">Protección regulatoria</a>
-            <a class="nav-with-arrow" href="#blog">Blog <img src="./public/assets/blog-chevron.png" alt="" /></a>
-            <a class="nav-with-arrow" href="#informacion">Más información <img src="./public/assets/more-info-chevron.png" alt="" /></a>
+            <button class="nav-with-arrow" type="button" data-nav-panel="blog" aria-expanded="false" aria-controls="navigation-blog">Blog <span class="navigation-chevron" aria-hidden="true"></span></button>
+            <button class="nav-with-arrow" type="button" data-nav-panel="more" aria-expanded="false" aria-controls="navigation-more">Más información <span class="navigation-chevron" aria-hidden="true"></span></button>
             <a href="#preguntas">Preguntas frecuentes</a>
           </nav>
           <div class="desktop-store-shortcuts" aria-label="Descargar ALA">
@@ -253,7 +255,7 @@
 
     <footer class="site-footer" id="informacion">
       <div class="footer-inner">
-        <section class="footer-contact">
+        <section class="footer-contact" id="contacto">
           <h2>Contáctanos</h2>
           <p class="contact-intro">Si necesitas ayuda,<br />llama a nuestra línea de atención o envíanos un correo electrónico.</p>
           <a class="phone-link" href="tel:40009877866456">
@@ -268,7 +270,7 @@
           <p class="contact-note">Por favor, envía por correo electrónico el problema que presentas, te telefoneará para que podamos confirmarlo contigo y solucionarlo.</p>
         </section>
 
-        <section class="footer-about">
+        <section class="footer-about" id="sobre-ala">
           <h2>Sobre nosotros</h2>
           <dl class="about-list">
             <div><dt>Razón social</dt><dd>Quantum Wealth Solutions, S.A.P.I. DE C.V.<br />SOFOM E.N.R</dd></div>
@@ -288,7 +290,7 @@
           </div>
         </section>
 
-        <section class="footer-agreement">
+        <section class="footer-agreement" id="documentos-legales">
           <h2>Documentos Legales</h2>
           <div class="legal-documents">
             <a class="legal-document-link" href="#terms-conditions">
@@ -320,7 +322,7 @@
           </div>
         </section>
 
-        <section class="footer-compliance footer-condusef">
+        <section class="footer-compliance footer-condusef" id="proteccion">
           <div class="compliance-logo-slot">
             <img src="./public/assets/footer-condusef-20260904-v2.png" alt="CONDUSEF" loading="lazy" decoding="async" />
           </div>

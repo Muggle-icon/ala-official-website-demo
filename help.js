@@ -113,8 +113,6 @@ const helpFaqContent = {
 
 const helpTabs = [...document.querySelectorAll(".help-faq-tab")];
 const helpItems = [...document.querySelectorAll(".help-faq-item")];
-const helpMenuButton = document.querySelector(".help-page-mobile-nav .menu-button");
-const helpMobileMenu = document.querySelector(".help-mobile-menu");
 
 function setOpenHelpItem(openIndex) {
   helpItems.forEach((item, index) => {
@@ -153,23 +151,4 @@ helpItems.forEach((item, index) => {
   item.querySelector(".help-faq-question").addEventListener("click", () => {
     setOpenHelpItem(item.classList.contains("is-open") ? -1 : index);
   });
-});
-
-function setHelpMenu(open) {
-  if (!helpMenuButton || !helpMobileMenu) return;
-  helpMenuButton.setAttribute("aria-expanded", String(open));
-  helpMobileMenu.setAttribute("aria-hidden", String(!open));
-  helpMobileMenu.classList.toggle("is-open", open);
-}
-
-helpMenuButton?.addEventListener("click", () => {
-  setHelpMenu(helpMenuButton.getAttribute("aria-expanded") !== "true");
-});
-
-helpMobileMenu?.querySelectorAll("a").forEach((link) => {
-  link.addEventListener("click", () => setHelpMenu(false));
-});
-
-document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape") setHelpMenu(false);
 });

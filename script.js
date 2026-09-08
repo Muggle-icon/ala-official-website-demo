@@ -3,8 +3,6 @@ const helpBackdrop = document.querySelector(".help-backdrop");
 const noticeOverlay = document.querySelector(".notice-overlay");
 const noticeModal = document.querySelector(".notice-modal");
 const openNoticeButton = document.querySelector("[data-open-notice]");
-const menuButton = document.querySelector(".menu-button");
-const desktopNav = document.querySelector(".desktop-nav");
 const desktopNavLinks = [...document.querySelectorAll(".desktop-nav nav a")];
 const faqTabs = [...document.querySelectorAll(".faq-tab")];
 const faqItems = [...document.querySelectorAll(".faq-item")];
@@ -107,25 +105,6 @@ desktopNavLinks.forEach((link) => {
 window.addEventListener("hashchange", () => setActiveNav());
 setActiveNav();
 
-function setDesktopNavSurface() {
-  let threshold = window.innerHeight - 1;
-
-  if (window.matchMedia("(max-width: 600px)").matches) {
-    const faqSection = document.querySelector(".faq-section");
-    const statusHeight = document.querySelector(".ios-status")?.getBoundingClientRect().height || 0;
-    const mobileNavHeight = document.querySelector(".mobile-nav")?.getBoundingClientRect().height || 0;
-    threshold = (faqSection?.offsetTop || window.innerHeight) - statusHeight - mobileNavHeight - 1;
-  }
-
-  const afterHero = window.scrollY >= threshold;
-  desktopNav.classList.toggle("is-after-hero", afterHero);
-  document.body.classList.toggle("is-after-hero", afterHero);
-}
-
-window.addEventListener("scroll", setDesktopNavSurface, { passive: true });
-window.addEventListener("resize", setDesktopNavSurface);
-setDesktopNavSurface();
-
 function setOpenFaqItem(openIndex) {
   faqItems.forEach((item, index) => {
     const open = index === openIndex;
@@ -204,11 +183,6 @@ document.querySelectorAll("[data-close-notice]").forEach((button) => {
 
 noticeOverlay.addEventListener("click", (event) => {
   if (event.target === noticeOverlay) setNotice(false);
-});
-
-menuButton.addEventListener("click", () => {
-  const expanded = menuButton.getAttribute("aria-expanded") === "true";
-  menuButton.setAttribute("aria-expanded", String(!expanded));
 });
 
 document.addEventListener("keydown", (event) => {
