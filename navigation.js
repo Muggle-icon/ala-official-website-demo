@@ -166,9 +166,10 @@
       clearTimeout(hoverTimer);
       clearTimeout(leaveTimer);
       const name = item.dataset.navPanel || null;
-      // Clear the old expanded state immediately, including when entering a link.
-      if (active !== name) setPanel(null);
-      if (name && active !== name) hoverTimer = setTimeout(() => setPanel(name), 120);
+      // Swap an open menu directly so the solid header never flashes between menus.
+      // Plain links close it immediately; only the initial hover has a short delay.
+      if (!name || active) setPanel(name);
+      else hoverTimer = setTimeout(() => setPanel(name), 120);
     });
     item.addEventListener('pointerleave', () => clearTimeout(hoverTimer));
   });
