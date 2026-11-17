@@ -69,22 +69,3 @@ function editorialCover(article) {
     ? new URL('public/assets/editorial/' + name + '.webp', blogRoot).href
     : article.compressedImage || article.image;
 }
-
-document.addEventListener('DOMContentLoaded', async () => {
-  const related = document.getElementById('articleRecommendations');
-  if (!related) return;
-
-  const list = related.querySelector('.ala-editorial-grid');
-  const { currentArticle, relatedChannel } = related.dataset;
-  try {
-    const { data } = await blogRequest('/article/page', {
-      params: { pageSize: 10, channelId: relatedChannel }
-    });
-    const articles = data.content.filter(article => article.id !== currentArticle).slice(0, 6);
-    if (!articles.length) return;
-    list.replaceChildren(...articles.map(article => makeEditorialCard(article, 'h3')));
-    related.hidden = false;
-  } catch {
-    // Keep the reading experience available if the recommendations cannot load.
-  }
-});

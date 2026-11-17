@@ -125,3 +125,33 @@
     text-align: center;
   }
 }
+
+.ala-editorial-letter-nav ul {
+  display: flex;
+  column-gap: 8px;
+}
+
+.ala-editorial-letter-nav a {
+  min-width: 44px;
+  justify-content: center;
+  border-radius: 8px;
+}
+
+.ala-editorial-letter-nav a[aria-current] {
+  background: #eef2ff;
+  color: var(--ala-blue);
+}
+
+.ala-editorial-index-group {
+  margin-block-start: clamp(32px, 4vw, 56px);
+  scroll-margin-block-start: calc(var(--ala-nav-height, 64px) + 16px);
+}
+
+.ala-editorial-index-group-title {
+  margin: 0 0 16px;
+  font: 700 1.5rem / 1.25 var(--ala-font);
+}
+
+.ala-editorial-section [hidden] {
+  display: none;
+}

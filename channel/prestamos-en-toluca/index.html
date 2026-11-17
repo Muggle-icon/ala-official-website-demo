@@ -43,7 +43,7 @@
     <script src="../../live/ala-www/js/swiper.animate1.0.3.min.js" defer></script>
     <link rel="stylesheet" href="../../live/ala-www/css/swiper.min.css" />
     <link rel="stylesheet" href="../../live/ala-www/css/animate.min.css" />
-    <link rel="stylesheet" href="../../live/ala-www/css/index.css?v=6aac263edb" />
+    <link rel="stylesheet" href="../../live/ala-www/css/index.css?v=7d8f05491e" />
     <link rel="stylesheet" href="../../live/blog/ala-www/css/cityArticle.css" />
     <link rel="stylesheet" href="../../live/blog/ala-www/css/city-detail-page.css" />
 
@@ -58,8 +58,12 @@
   <script src="../../live/ala-www/js/application-steps.js?v=62ac55a51b" defer></script>
 
 <link rel="stylesheet" href="../../shared/breadcrumbs.css?v=27c08cdd0d">
-  <link rel="stylesheet" href="../../shared/site-header.css?v=e37331c083">
+  <link rel="stylesheet" href="../../shared/site-header.css?v=efdeddd310">
   <script src="../../shared/site-header.js?v=2b9e96d297" defer></script>
+  <link rel="stylesheet" href="../../shared/editorial-cards.css?v=cb4108d524">
+  <link rel="stylesheet" href="../../live/blog/article-index.css?v=6a5dcbd605">
+  <script src="../../live/blog/article-cards.js?v=167d76f767" defer></script>
+  <script src="../../live/blog/ala-www/js/city-detail-page.js?v=0800b9502e" defer></script>
 </head>
 
   <body>
@@ -1105,19 +1109,14 @@ nacionalidad mexicana" />
 
 </style>
 
-      <div class="ala-size ala-lh ala-mt title-wrap motion-element" style="--base-mt: 220px">
-        <span class="ala-width" style="display: inline-block; --base-width: 1000px">Artículos relacionados con préstamos personales en <i class="cityNameContainer">México</i></span>
-      </div>
-      <div class="ala-mr ala-ml ala-mt" id="cityDetailList"></div>
-      <div class="more-articles-container motion-element">
-        <div class="ala-height ala-mt ala-mb more-article-button d-none d-lg-block appendArticlesButton">
-          <img src="../../live/blog/ala-www/img/blog-more-button-pc.png" onclick="appendArticles()" />
+      <section class="ala-editorial-section" id="cityDetailArticles" aria-labelledby="cityDetailArticlesTitle" hidden>
+        <h2 class="ala-editorial-heading" id="cityDetailArticlesTitle">Artículos relacionados con préstamos personales en <span class="cityNameContainer">México</span></h2>
+        <ul class="ala-editorial-grid" id="cityDetailList" aria-busy="true"></ul>
+        <p id="cityDetailStatus" class="ala-editorial-index-status" role="status" hidden></p>
+        <div class="ala-editorial-index-pagination" id="cityDetailPagination" hidden>
+          <button class="ala-section-more" type="button" id="cityDetailMore" aria-controls="cityDetailList"><span data-more-label>Cargar más artículos</span> <span aria-hidden="true">↓</span></button>
         </div>
-        <div class="more-article-button-mobile d-lg-none appendArticlesButton">
-          <img src="../../live/blog/ala-www/img/blog-more-button-mobile.png" onclick="appendArticles()" />
-        </div>
-        <div id="noMoreTips" class="text-center text-muted res-mt" style="display: none"></div>
-      </div>
+      </section>
       <div class="ala-size ala-lh ala-mt title-wrap motion-element" style="--base-mt: 220px">
         <span class="ala-width" style="display: inline-block; --base-width: 1000px;">Préstamos en ciudades cercanas a <i class="cityNameContainer">México</i></span>
       </div>
@@ -1879,5 +1878,4 @@ CIUDAD DE MÉXICO, C.P. 06500, MÉXICO</div>
 </body>
   <script src="../../live/ala-www/js/motion.js" defer></script>
   <script src="../../live/blog/ala-www/js/utils.js" defer></script>
-  <script src="../../live/blog/ala-www/js/city-detail-page.js?v=b07993d025" defer></script>
 </html>

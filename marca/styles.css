@@ -234,7 +234,6 @@ video {
 }
 
 .header-cta,
-.outline-button,
 .store-badge {
   transition:
     background-color 0.2s ease-in-out,
@@ -325,12 +324,11 @@ video {
   font-weight: 400;
 }
 
-.text-link {
-  display: inline-flex;
-  color: currentColor;
-  font-weight: 400;
-  text-decoration: underline;
-  text-underline-offset: 5px;
+.brand-hero-more.ala-section-more {
+  --ala-section-more-color: #fff;
+  margin-bottom: 12px;
+  padding-inline: 0;
+  text-shadow: 0 1px 6px #0009;
 }
 
 .hero h1 {
@@ -483,42 +481,6 @@ video {
 .service-grid p {
   margin: 0;
   font-weight: 400;
-}
-
-.outline-button {
-  --outline-arrow-size: clamp(16px, calc(16px + (100vw - 375px) * 0.00518), 24px);
-  position: relative;
-  grid-column: 1;
-  grid-row: 3;
-  justify-self: start;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
-  gap: 8px;
-  border: 1px solid #0949f5;
-  border-radius: 48px;
-  color: #1737ff;
-  background: transparent;
-  letter-spacing: 0;
-  text-align: left;
-}
-
-.outline-button:hover,
-.outline-button:focus-visible {
-  border-color: #0949f5;
-  background: rgba(9, 73, 245, 0.1);
-  color: #1737ff;
-  box-shadow: none;
-}
-
-.outline-button::after {
-  content: "";
-  flex: 0 0 auto;
-  width: var(--outline-arrow-size);
-  height: var(--outline-arrow-size);
-  background-color: currentColor;
-  mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8.78143 7.99972L5.48145 4.69975L6.42411 3.75708L10.6668 7.99972L6.42411 12.2424L5.48145 11.2997L8.78143 7.99972Z' fill='black'/%3E%3C/svg%3E") center / var(--outline-arrow-size) var(--outline-arrow-size) no-repeat;
 }
 
 .phone-frame {
@@ -687,10 +649,6 @@ video {
 .faq details p {
   margin: 0;
   font-weight: 400;
-}
-
-.faq .outline-button {
-  color: #1737ff;
 }
 
 .footer {
@@ -1259,10 +1217,6 @@ summary:focus-visible {
     display: none;
   }
 
-  .text-link {
-    font-weight: 400;
-  }
-
   .store-badges {
     left: clamp(104px, calc((100vw - 151px) / 2), 112px);
     right: auto;
@@ -1343,11 +1297,6 @@ summary:focus-visible {
     margin-bottom: 18px;
   }
 
-  .services .outline-button {
-    grid-column: 1;
-    grid-row: 4;
-    justify-self: start;
-  }
 
   .official-card div {
     bottom: 28px;
@@ -1434,10 +1383,6 @@ summary:focus-visible {
 
   .hero-copy {
     display: none;
-  }
-
-  .text-link {
-    text-underline-offset: 3px;
   }
 
   .store-badges {
@@ -1652,10 +1597,6 @@ summary:focus-visible {
     display: none;
   }
 
-  .text-link {
-    text-underline-offset: 3px;
-  }
-
   .store-badges {
     left: 24px;
     right: 24px;
@@ -1757,16 +1698,6 @@ summary:focus-visible {
     height: 58px;
   }
 
-  .services .outline-button {
-    grid-column: 1;
-    grid-row: 4;
-    justify-self: start;
-  }
-
-  .outline-button {
-    justify-content: center;
-    gap: 8px;
-  }
 
   .official {
     background: #ffffff;
@@ -1949,15 +1880,10 @@ summary:focus-visible {
   text-shadow: 0 1px 6px #0009;
 }
 
-.text-link,
 .store-badge {
   font-size: 1rem;
   line-height: 1.5;
   font-weight: 500;
-}
-
-.text-link {
-  margin-bottom: 12px;
 }
 
 .store-badge {
@@ -2029,6 +1955,12 @@ summary:focus-visible {
   gap: var(--brand-group-space);
 }
 
+.services .services-more {
+  grid-column: 1;
+  grid-row: 3;
+  margin: 0;
+}
+
 .service-grid {
   margin: 0;
   gap: var(--brand-group-space) var(--brand-grid-gap);
@@ -2057,14 +1989,6 @@ summary:focus-visible {
   grid-row: 1;
   width: 100%;
   margin: 0;
-}
-
-.outline-button {
-  width: fit-content;
-  max-width: 100%;
-  min-height: 44px;
-  padding: 12px 16px;
-  font: 500 1rem / 1.5 var(--ala-font);
 }
 
 .official {
@@ -2105,7 +2029,7 @@ summary:focus-visible {
 }
 
 .faq-list {
-  margin: var(--brand-group-space) 0;
+  margin: var(--brand-group-space) 0 0;
   gap: 12px;
 }
 
@@ -2203,7 +2127,7 @@ summary:focus-visible {
     grid-row: 3;
   }
 
-  .services .outline-button {
+  .services .services-more {
     grid-row: 4;
   }
 }

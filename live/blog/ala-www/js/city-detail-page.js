@@ -1,7 +1,5 @@
 /* City detail page JavaScript */
 let swiper2;
-let currentPage = 1;
-let isLoading = false;
 
 window.onload = function () {
   swiper2 = new Swiper(".swiper-container2", {
@@ -36,85 +34,44 @@ window.onload = function () {
   });
 };
 
-function appendArticles() {
-  if (isLoading) return;
-  isLoading = true;
+function initCityArticles() {
+  const section = document.getElementById('cityDetailArticles');
+  const list = document.getElementById('cityDetailList');
+  const status = document.getElementById('cityDetailStatus');
+  const pagination = document.getElementById('cityDetailPagination');
+  const more = document.getElementById('cityDetailMore');
+  const moreLabel = more.querySelector('[data-more-label]');
+  let nextPage = 1;
 
-  const params = {
-    pageSize: 9,
-    page: currentPage,
-    channel: window.channelAlias,
-    orderBy: "modified_desc",
-  };
+  async function loadPage() {
+    list.setAttribute('aria-busy', 'true');
+    more.disabled = true;
+    status.hidden = true;
 
-  blogRequest("/article/page", { params })
-    .then(function (response) {
-      isLoading = false;
-      $('.more-articles-container .appendArticlesButton').toggle(!response.data.last);
-      if (response.data.content && response.data.content.length > 0) {
-        let articleList = $("<ul>").addClass("list-unstyled ala-mr ala-ml ala-mt blog-article-wrap");
+    try {
+      const { data } = await blogRequest('/article/page', {
+        params: { pageSize: 9, page: nextPage, channel: window.channelAlias }
+      });
+      list.append(...data.content.map(article => makeEditorialCard(article, 'h3')));
+      section.hidden = !list.childElementCount;
 
-        response.data.content.forEach((article) => {
-          let listItem = $("<li class='ala-radius ala-mb row-gap-10 blog-article-section'>").addClass("col-lg-4 col-12").css("cursor", "pointer").data("url", article.url);
+      moreLabel.textContent = 'Cargar más artículos';
+      pagination.hidden = data.last;
+      nextPage++;
+    } catch {
+      section.hidden = false;
+      status.textContent = 'No se pudieron cargar los artículos.';
+      status.hidden = false;
+      pagination.hidden = false;
+      moreLabel.textContent = 'Volver a intentar';
+    } finally {
+      more.disabled = false;
+      list.setAttribute('aria-busy', 'false');
+    }
+  }
 
-          let cardDiv = $("<div>").addClass("ala-padding ala-radius ala-radius innerDiv");
-
-          let name = $("<h4>").addClass("ala-height ala-lh ala-pr ala-pl ala-mb ala-mt ala-size card-tag").text(article.channel.paths[1].name);
-
-          let title = $("<a>")
-            .addClass("card-title")
-            .attr("href", article.url)
-            .text(article.title);
-
-          let desc = $("<div>").addClass("ala-height ala-lh ala-pr ala-pl ala-mb ala-mt ala-size card-desc").text(article.seoDescription);
-
-          let formattedDate = alaUtils.convertDateFormat(article.modified);
-          let dateSpan = $("<div>").addClass("ala-height ala-lh ala-pr ala-pl ala-mb ala-mt ala-size card-date").text(formattedDate);
-
-          let imgContainer = $("<div>").addClass("ala-height ala-radius blog-article-img");
-          if (article.customs && (article.compressedImage || article.image)) {
-            let img = $("<img loading='lazy' decoding='async'>").attr("src", article.compressedImage || article.image).attr("alt", article.title);
-            imgContainer.append(img);
-          }
-
-          cardDiv
-            .append(imgContainer)
-            .append(name)
-            .append(title)
-            .append(desc)
-            .append(dateSpan);
-
-          listItem.append(cardDiv);
-
-          name.click(function () {
-            window.location.href = article.channel.paths[1].url;
-          });
-
-          imgContainer.click(function () {
-            window.location.href = article.url;
-          });
-
-          desc.click(function () {
-            window.location.href = article.url;
-          });
-
-          dateSpan.click(function () {
-            window.location.href = article.url;
-          });
-
-          articleList.append(listItem);
-        });
-
-        $("#cityDetailList").append(articleList);
-        currentPage++;
-      } else {
-        $(".more-articles-container").hide();
-        $("#noMoreTips").show();
-      }
-    })
-    .catch(function (error) {
-      isLoading = false;
-    });
+  more.addEventListener('click', loadPage);
+  loadPage();
 }
 
 async function renderNearbyCities() {
@@ -145,7 +102,7 @@ async function renderNearbyCities() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  appendArticles();
+  initCityArticles();
   document.querySelectorAll('.cityNameContainer').forEach(container => {
     container.textContent = window.channelName;
   });

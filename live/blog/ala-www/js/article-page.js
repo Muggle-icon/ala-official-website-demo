@@ -1,155 +1,118 @@
-document.addEventListener('DOMContentLoaded', function() {
-  // 目录功能
-  initDirectory();
+function initArticleOutline() {
+  const outline = document.querySelector('.ala-article-outline');
+  if (!outline) return;
 
-  // 分享功能
-  initShare();
-});
-
-function initDirectory() {
-  const content = document.querySelector('#richTextContent');
-  const anchorDirectory = document.querySelector('#anchorDirectory');
-
-  if (!content || !anchorDirectory) return;
-
-  const headingTags = ["h1", "h2", "h3", "h4", "h5", "h6"];
-  const headings = content.querySelectorAll(headingTags.join(','));
-
-  if (!headings || headings.length === 0) {
-    const indexName = document.querySelector('.index-name');
-    if (indexName) {
-      indexName.style.display = 'none';
-    }
-    return;
-  }
-
-  let index = 0;
+  const headings = document.querySelectorAll('#richTextContent :is(h1, h2, h3, h4, h5, h6)');
   const items = [];
-  const fragment = document.createDocumentFragment();
-
-  Array.from(headings).forEach(function (heading) {
-    const tagName = heading.tagName.toUpperCase();
+  headings.forEach(heading => {
     const text = heading.textContent.trim();
     if (!text) return;
 
-    const id = tagName + "-" + index;
     if (!heading.id) {
+      const base = heading.tagName + '-' + items.length;
+      let id = base;
+      let suffix = 2;
+      while (document.getElementById(id)) id = base + '-' + suffix++;
       heading.id = id;
     }
 
-    const li = document.createElement('li');
-    li.className = 'ala-size ala-padding link-' + tagName;
+    const item = document.createElement('li');
+    if (Number(heading.tagName.slice(1)) > 2) item.className = 'toc-subentry';
 
-    let displayText = text;
-    if (tagName === 'H4') {
-      const maxChars = 15;
-      displayText = text.length > maxChars
-        ? text.substring(0, maxChars) + '...'
-        : text;
-    }
-
-    li.innerHTML = '<a href="#' + id + '" data-index="' + index + '" class="toc-link">' + displayText + '</a>';
-
-    fragment.appendChild(li);
-    items.push(li);
-    index++;
+    const link = document.createElement('a');
+    link.textContent = text;
+    link.href = '#' + encodeURIComponent(heading.id);
+    item.append(link);
+    items.push(item);
   });
 
-  anchorDirectory.appendChild(fragment);
-  const directoryItems = anchorDirectory.querySelectorAll('li');
-
-  let isClickScroll = false;
-  let clickTimeout;
-
-  anchorDirectory.addEventListener('click', function(e) {
-    const link = e.target.closest('a.toc-link');
-    if (!link) return;
-
-    e.preventDefault();
-
-    const targetId = link.getAttribute('href');
-    const target = document.querySelector(targetId);
-    if (!target) return;
-
-    isClickScroll = true;
-    clearTimeout(clickTimeout);
-
-    clickTimeout = setTimeout(() => {
-      isClickScroll = false;
-    }, 800);
-
-    target.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start'
-    });
-
-    directoryItems.forEach(el => el.classList.remove('active'));
-    link.parentElement.classList.add('active');
-  });
-
-  window.addEventListener('scroll', function() {
-    if (isClickScroll) return;
-
-    const scrollTop = window.scrollY;
-    const viewportTop = scrollTop + 400;
-    let currentActiveIndex = -1;
-
-    Array.from(headings).forEach((heading, idx) => {
-      if (heading.offsetTop <= viewportTop) {
-        currentActiveIndex = idx;
-      }
-    });
-
-    directoryItems.forEach(el => el.classList.remove('active'));
-    if (currentActiveIndex !== -1 && directoryItems[currentActiveIndex]) {
-      directoryItems[currentActiveIndex].classList.add('active');
-    }
-  });
-
-  window.dispatchEvent(new Event('scroll'));
+  if (items.length) {
+    outline.querySelector('ol').replaceChildren(...items);
+    outline.hidden = false;
+  }
 }
 
-function initShare() {
-  const articleUrl = window.location.href;
-  const articleTitleElement = document.querySelector('.article-main-title');
-  const articleTitle = articleTitleElement ? articleTitleElement.textContent : '';
-
-  const shareImages = document.querySelectorAll('.img-share-wrap img');
-  shareImages.forEach(img => {
-    img.style.cursor = 'pointer';
-    img.addEventListener('click', function(e) {
-      e.preventDefault();
-      const shareText = articleTitle + "\n" + articleUrl;
-      fallbackCopyText(shareText);
-    });
-
-    const backBtn = document.querySelector('.article-back-btn');
-    if (backBtn) {
-      backBtn.addEventListener('click', function() {
-        window.history.back();
-      });
-    }
-  });
-}
-
-function fallbackCopyText(text) {
-  const textarea = document.createElement('textarea');
-  textarea.value = text;
-  textarea.style.position = 'fixed';
-  textarea.style.opacity = '0';
-  textarea.style.pointerEvents = 'none';
-  document.body.appendChild(textarea);
-  textarea.focus();
-  textarea.select();
-
+function fallbackCopyArticleText(text) {
+  const field = document.createElement('textarea');
+  field.value = text;
+  field.setAttribute('readonly', '');
+  field.style.position = 'fixed';
+  field.style.opacity = '0';
+  document.body.append(field);
+  field.select();
   try {
-    const successful = document.execCommand('copy');
-    if (successful && typeof message === 'function') {
-      message('Copiado', 3000);
+    return document.execCommand('copy');
+  } catch {
+    return false;
+  } finally {
+    field.remove();
+  }
+}
+
+function initArticleShare() {
+  const share = document.querySelector('.ala-article-share');
+  if (!share) return;
+  const button = share.querySelector('button');
+  const status = share.querySelector('[role="status"]');
+
+  share.hidden = false;
+  button.addEventListener('click', async () => {
+    const url = new URL(window.location.href);
+    url.hash = '';
+    status.textContent = '';
+    let copied = false;
+
+    if (navigator.clipboard?.writeText) {
+      try {
+        await navigator.clipboard.writeText(url.href);
+        copied = true;
+      } catch {
+        copied = fallbackCopyArticleText(url.href);
+      }
+    } else {
+      copied = fallbackCopyArticleText(url.href);
     }
-  } catch (err) {
-    console.error('Error en fallback copy:', err);
+
+    status.textContent = copied ? 'Enlace copiado' : 'No se pudo copiar el enlace';
+    button.focus({ preventScroll: true });
+  });
+}
+
+async function initArticleRecommendations() {
+  const related = document.getElementById('articleRecommendations');
+  const articleId = related?.dataset.articleId;
+  if (!articleId) return;
+
+  const { channelId, parentChannel } = related.dataset;
+  const cards = new Map();
+  const count = 6;
+
+  async function addArticles(filters) {
+    const { data } = await blogRequest('/article/page', {
+      params: { pageSize: count + 1, ...filters }
+    });
+    for (const article of data.content) {
+      if (article.id !== articleId) cards.set(article.id, article);
+    }
   }
 
-  document.body.removeChild(textarea);
+  try {
+    await addArticles({ channelId });
+    if (cards.size < count && parentChannel) await addArticles({ channel: parentChannel });
+    if (cards.size < count) await addArticles({});
+  } catch {
+    // The article and its category link remain available if the catalog fails to load.
+  }
+
+  if (!cards.size) return;
+  const list = related.querySelector('.ala-editorial-grid');
+  list.replaceChildren(...Array.from(cards.values()).slice(0, count).map(article => makeEditorialCard(article, 'h3')));
+  list.hidden = false;
+  related.querySelector('.ala-editorial-heading').hidden = false;
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  initArticleOutline();
+  initArticleShare();
+  initArticleRecommendations();
+});

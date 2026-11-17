@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const topic = document.getElementById('blogTopic');
   const status = document.getElementById('blogStatus');
   const more = document.getElementById('loadMoreArticles');
+  const moreLabel = more.querySelector('[data-more-label]');
   const pageSize = 9;
 
   let page = 0;
@@ -32,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
       page = nextPage;
 
       more.hidden = data.last;
-      more.textContent = 'Cargar más artículos';
+      moreLabel.textContent = 'Cargar más artículos';
 
       if (!list.childElementCount) {
         status.textContent = 'No hay artículos para este tema.';
@@ -44,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
       status.textContent = 'No se pudieron cargar los artículos.';
       status.hidden = false;
       more.hidden = false;
-      more.textContent = 'Volver a intentar';
+      moreLabel.textContent = 'Volver a intentar';
     } finally {
       if (request === requestId) {
         list.setAttribute('aria-busy', 'false');
