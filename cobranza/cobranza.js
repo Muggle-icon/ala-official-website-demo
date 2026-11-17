@@ -36,5 +36,5 @@ addEventListener('scroll', syncIndex, { passive: true });
 addEventListener('resize', syncIndex);
 addEventListener('hashchange', syncIndex);
 addEventListener('load', syncIndex);
-syncDisclosure();
+if (!compactIndex.matches) disclosure.open = true;
 syncIndex();
