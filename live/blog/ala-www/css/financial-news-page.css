@@ -1,0 +1,211 @@
+/* Financial news page styles */
+.blog-article-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  --base-mt: 100px;
+  --base-mb: 40px;
+}
+
+.blog-article-section {
+  width: 33%;
+  box-sizing: border-box;
+  --base-radius: 36px;
+  --base-padding-top: 30px;
+  --base-padding-bottom: 30px;
+  --base-padding-left: 30px;
+  --base-padding-right: 30px;
+  --base-mb: 30px;
+}
+
+.blog-article-section:hover {
+  background-color: #F3F4F9;
+  cursor: pointer;
+}
+
+.blog-article-section .blog-article-img {
+  --base-height: 180px;
+}
+
+.blog-article-section .blog-article-img img {
+  width: 100%;
+  height: 100%;
+  --base-radius: 26px;
+  object-fit: cover;
+}
+
+.blog-article-section .blog-article-tag {
+  width: fit-content;
+  --base-height: 32px;
+  --base-lh: 32px;
+  --base-pl: 10px;
+  --base-pr: 10px;
+  box-sizing: border-box;
+  color: #294bff;
+  --base-mb: 12px;
+  --base-mt: 22px;
+  font-family: "Roboto-Bold";
+  --base-size: 18px;
+  background-image: url("../../../ala-www/img/home-article-tag.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 8px;
+}
+
+.blog-article-section .blog-article-title {
+  font-family: 'Roboto-Bold';
+  --base-size: 24px;
+  line-height: 30px;
+  height: fit-content !important;
+  --base-mb: 12px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  text-overflow: ellipsis;
+  white-space: normal;
+  color: #000000;
+  word-break: break-word;
+}
+
+.blog-article-section .blog-article-desc {
+  font-family: "Roboto-regular";
+  --base-size: 20px;
+  --base-lh: 26px;
+  --base-mb: 12px;
+  height: fit-content !important;
+  color: #666666;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  text-overflow: ellipsis;
+  white-space: normal;
+  word-break: break-word;
+}
+
+.blog-article-section .blog-article-time {
+  --base-size: 20px;
+  color: #999;
+  margin-top: 4px;
+  line-height: 24px;
+}
+
+.blog-article-author {
+  margin-top: 12px;
+}
+.blog-article-author-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 19px;
+  flex-shrink: 0;
+}
+.blog-article-author-right {
+  display: flex;
+  flex-direction: column;
+}
+.blog-article-author-name {
+  font-family: 'Roboto';
+  font-weight: 700;
+  font-size: 20px;
+  color: #000;
+  line-height: 24px;
+}
+
+.blog-article-section a{
+  display: flex;
+  height: 100%;
+}
+
+.breadcrumb-wrap-in {
+  position: sticky;
+  --base-top: 72px;
+  z-index: 100;
+  --base-mt: 188px;
+  background: white;
+  --base-pl: 400px;
+  --base-pr: 400px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+@media screen and (max-width: 992px) {
+  .blog-article-wrap {
+    width: 100%;
+  }
+  .columna-page {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+
+  .loan-guide-title {
+    margin-top: 92px !important;
+    font-size: 27px;
+    line-height: 29px;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    width: 100% !important;
+  }
+
+  .loan-guide-title-desc {
+    font-size: 16px;
+    line-height: 20px;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    width: 100% !important;
+  }
+
+  .blog-article-wrap {
+    display: block;
+  }
+
+  .blog-article-wrap .blog-article-section {
+    width: 100%;
+    box-sizing: border-box;
+    background: #F3F4F9;
+    padding: 16px;
+    border-radius: 16px;
+    margin-bottom: 12px;
+  }
+
+  .blog-article-section .blog-article-tag {
+    height: 22px;
+    line-height: 22px;
+    padding: 0 8px;
+    margin-bottom: 12px;
+    margin-top: 22px;
+    font-size: 12px;
+  }
+
+  .blog-article-section .blog-article-title {
+    font-size: 18px;
+    line-height: 21px;
+    margin-bottom: 14px;
+    height: 63px;
+    -webkit-line-clamp: 3;
+  }
+
+  .blog-article-section .blog-article-desc {
+    font-size: 14px;
+    line-height: 18px;
+    margin-bottom: 12px;
+    height: 36px;
+  }
+
+  .blog-article-section .blog-article-time {
+    font-size: 12px;
+    line-height: 14px;
+  }
+
+  .blog-article-author-avatar {
+    width: 32px;
+    height: 32px;
+    margin-right: 12px;
+  }
+  .blog-article-author-name {
+    font-size: 14px;
+  }
+}

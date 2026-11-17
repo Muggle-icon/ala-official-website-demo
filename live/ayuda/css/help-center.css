@@ -1,0 +1,292 @@
+/* ============================================================
+ * help-center.css - 帮助中心页面专用样式
+ * 仅用于 channel_help_center.html，与 about-page.css 解耦
+ * ============================================================ */
+
+/* ===== 帮助中心 header 调整（仅本页，不影响其他页面） ===== */
+/* 无选中下划线，去掉导航 li 的 padding-bottom，让文字垂直居中 */
+.pc-header .parent-ul > li {
+  --base-pb: 0 !important;
+}
+
+/* ===== Banner 渐变背景 ===== */
+.help-banner {
+  height: 540px;
+  background: linear-gradient(to bottom, rgba(49, 84, 255, 1), rgba(24, 55, 200, 1));
+  padding-top: 90px;
+  margin-bottom: 54px;
+  box-sizing: border-box;
+}
+
+/* ===== Banner 主内容（标题 + Sofía 卡片 + 链接） ===== */
+.help-banner-content {
+  padding-top: 96px;
+  text-align: center;
+}
+.help-banner-title {
+  font-family: 'Roboto';
+  font-weight: 700;
+  font-size: 54px;
+  letter-spacing: 0;
+  text-align: center;
+  color: #fff;
+  margin: 0 0 40px;
+}
+.sofia-card {
+  width: 880px;
+  max-width: calc(100% - 32px);
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 24px;
+  padding: 16px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+.sofia-card-left {
+  display: flex;
+  align-items: center;
+}
+.sofia-avatar {
+  width: 61px;
+  height: 61px;
+  border-radius: 12px;
+  margin-right: 16px;
+  object-fit: cover;
+}
+.sofia-info {
+  text-align: left;
+}
+.sofia-name {
+  font-family: 'Roboto';
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 32px;
+  letter-spacing: 0;
+  text-align: left;
+  margin: 0 0 2px;
+  color: #161922;
+}
+.sofia-role {
+  font-family: 'Roboto-Regular';
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0;
+  text-align: left;
+  margin: 0;
+  color: #1E1F227A;
+}
+.sofia-whatsapp-btn {
+  display: flex;
+  align-items: center;
+  width: fit-content !important;
+  background: rgba(16, 120, 56, 1);
+  padding: 11px 32px;
+  border-radius: 10px;
+  text-decoration: none;
+}
+.sofia-whatsapp-btn img {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+.sofia-whatsapp-btn span {
+  font-family: 'Roboto-Medium';
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0;
+  text-align: center;
+  color: #fff;
+}
+.help-banner-footer {
+  margin-top: 32px;
+  font-family: 'Roboto-Regular';
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0;
+  text-align: center;
+  color: #fff;
+}
+.help-banner-footer a {
+  color: #fff;
+  text-decoration: underline;
+}
+
+/* ===== 警告盒子（夹层饼干：下层橙色高亮，仅左侧露出 30px） ===== */
+.warn-box {
+  width: 1240px;
+  max-width: calc(100% - 32px);
+  margin: 0 auto;
+  background: rgba(255, 108, 10, 1);
+  border-radius: 20px;
+  /* overflow hidden 让上层浅黄盖住右侧与上下，只露出左侧 30px 橙色 */
+  overflow: hidden;
+}
+.warn-card {
+  background: rgba(255, 248, 232, 1);
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  margin-left: 4px;
+  padding: 20px 24px;
+}
+.warn-head {
+  display: flex;
+  align-items: center;
+}
+.warn-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 14px;
+}
+.warn-title {
+  font-family: 'Roboto-Medium';
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 26px;
+  letter-spacing: 0;
+  text-align: left;
+  color: #98470e;
+}
+.warn-desc {
+  /* padding-left 38px = 图片24 + margin-right 14，让描述与标题文字左对齐 */
+  padding-left: 38px;
+  font-family: 'Roboto-Regular';
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: 0;
+  text-align: left;
+  color: #656568;
+  margin: 0;
+}
+
+/* ===== 帮助方式三块卡片 ===== */
+.help-cards {
+  width: 1240px;
+  max-width: calc(100% - 32px);
+  margin: 48px auto 208px;
+  background: rgba(247, 248, 252, 1);
+  border-radius: 16px;
+  padding: 24px 38px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  gap: 60px;
+}
+.help-card {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+.help-card-icon {
+  width: 56px;
+  height: 56px;
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+.help-card-text {
+  font-family: 'Roboto-Regular';
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19px;
+  letter-spacing: 0;
+  text-align: left;
+  color: rgba(23, 26, 34, 1);
+}
+
+/* ===== 移动端兼容 ===== */
+@media (max-width: 768px) {
+  .help-banner {
+    height: auto;
+    padding: 24px 16px 40px;
+    margin-bottom: 32px;
+  }
+  .help-banner-content {
+    padding-top: 64px;
+  }
+  .help-banner-title {
+    font-size: 34px;
+    margin-bottom: 16px;
+  }
+  .sofia-card {
+    width: 100%;
+    max-width: 100%;
+    padding: 24px;
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .warn-title{
+    font-size: 16px;
+    color: #98470e;
+  }
+  .warn-desc{
+    color:#656568;
+    font-size: 14px;
+    margin: 0;
+  }
+  .help-card-text{
+    font-size: 14px;
+  }
+  .warn-icon {
+    width: 20px;
+    height: 20px;
+  }
+  .help-banner-footer{
+    margin-top: 24px;
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .sofia-avatar {
+    width: 64px;
+    height: 64px;
+  }
+  .sofia-name {
+    font-size: 20px;
+    line-height: 28px;
+  }
+  .sofia-role{
+    font-size: 15px;
+  }
+  .sofia-whatsapp-btn {
+    width: 100% !important;
+    justify-content: center;
+    padding: 14px 32px;
+  }
+  .warn-box {
+    width: calc(100% - 32px);
+    max-width: 100%;
+    border: 1px solid #ffe2a9;
+  }
+  .warn-card {
+    margin-left: 3px;
+    padding: 14px 16px;
+  }
+  .help-cards {
+    width: calc(100% - 32px);
+    max-width: 100%;
+    margin: 16px auto 32px;
+    padding: 0;
+    flex-direction: column;
+    gap: 12px;
+    background: none;
+  }
+  .help-card {
+    width: 100%;
+    padding: 24px 16px;
+    background: rgba(247, 248, 252, 1);
+    border-radius: 16px;
+  }
+  .help-card-icon{
+    width: 48px;
+    height: 48px;
+  }
+  .help-banner-download{
+    display: block;
+  }
+}

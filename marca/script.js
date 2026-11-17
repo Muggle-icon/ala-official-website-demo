@@ -1,7 +1,3 @@
-const header = document.querySelector(".site-header");
-const menuButton = document.querySelector(".menu-button");
-const navItems = [...document.querySelectorAll(".nav-item")];
-const navTriggers = [...document.querySelectorAll(".nav-trigger")];
 const hero = document.querySelector(".hero");
 const heroVideo = document.querySelector(".hero-video");
 
@@ -24,75 +20,6 @@ heroVideo?.addEventListener("loadedmetadata", resizeHeroVideo);
 window.addEventListener("resize", resizeHeroVideo);
 resizeHeroVideo();
 
-const closeNav = () => {
-  navItems.forEach((item) => item.classList.remove("is-open"));
-  navTriggers.forEach((trigger) => trigger.setAttribute("aria-expanded", "false"));
-};
-
-const openNavItem = (item) => {
-  const trigger = item?.querySelector(".nav-trigger");
-  if (!item || !trigger) return;
-
-  closeNav();
-  item.classList.add("is-open");
-  trigger.setAttribute("aria-expanded", "true");
-};
-
-menuButton?.addEventListener("click", () => {
-  const isOpen = header.classList.toggle("is-open");
-  menuButton.setAttribute("aria-expanded", String(isOpen));
-  if (!isOpen) closeNav();
-});
-
-navTriggers.forEach((trigger) => {
-  trigger.addEventListener("click", () => {
-    const item = trigger.closest(".nav-item");
-    const willOpen = !item.classList.contains("is-open");
-    closeNav();
-    item.classList.toggle("is-open", willOpen);
-    trigger.setAttribute("aria-expanded", String(willOpen));
-  });
-});
-
-const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
-
-navItems.forEach((item) => {
-  item.addEventListener("mouseenter", () => {
-    if (!finePointer.matches) return;
-    openNavItem(item);
-  });
-
-  item.addEventListener("mouseleave", () => {
-    if (!finePointer.matches) return;
-    closeNav();
-  });
-
-  item.addEventListener("focusin", () => {
-    if (!finePointer.matches) return;
-    openNavItem(item);
-  });
-});
-
-document.addEventListener("click", (event) => {
-  if (!event.target.closest(".site-nav")) closeNav();
-});
-
-document.querySelectorAll(".site-nav a, .header-actions a").forEach((link) => {
-  link.addEventListener("click", () => {
-    header.classList.remove("is-open");
-    menuButton?.setAttribute("aria-expanded", "false");
-    closeNav();
-  });
-});
-
-document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape") {
-    closeNav();
-    header.classList.remove("is-open");
-    menuButton?.setAttribute("aria-expanded", "false");
-  }
-});
-
 const markReveal = (selector, options = {}) => {
   document.querySelectorAll(selector).forEach((element, index) => {
     element.classList.add("reveal");
@@ -101,9 +28,6 @@ const markReveal = (selector, options = {}) => {
   });
 };
 
-markReveal(".hero-content", { delayStep: 0 });
-markReveal(".store-badges", { delayStep: 0 });
-markReveal(".logo-strip", { delayStep: 0 });
 markReveal(".section-heading, .info-grid, .service-grid, .phone-frame, .official-card, .proof-grid, .faq h2, .faq-list, .footer-top, .footer-legal", {
   delayStep: 70,
   maxDelay: 140,

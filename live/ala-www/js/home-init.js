@@ -26,7 +26,7 @@ window.onload = function () {
 };
 
 document.addEventListener("DOMContentLoaded", function () {
-  const blogUrl = 'https://www.alaprestamo.com/channel/loan_blog';
+  const blogUrl = './channel/loan_blog/';
   const googlePlayUrl = 'https://sofom-ala.onelink.me/uTdM/taq3lvd3';
   const appStoreUrl = 'https://sofom-ala.onelink.me/ndX5/mbzy0s0s';
 

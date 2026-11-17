@@ -1,18 +1,23 @@
 # ALA website design demo
 
-Static design review for the Mexican ALA website. GitHub Pages serves this repository root. The routes use relative asset paths so the same files work under a GitHub Pages project prefix.
+This repository contains a self-contained static review of ALA's Mexican website captured on 2026-11-17. GitHub Pages serves the repository root. Relative URLs support both a server root and a GitHub Pages project prefix.
 
 | Route | Page |
 | --- | --- |
-| `/` | Production homepage reference captured on 2026-11-17 |
-| `/marca/` | Original ALA brand page |
-| `/cobranza/` | Spanish collection and late-payment design for review |
-| `/diseno-anterior.html` | Former homepage design |
-| `/help.html` | Former help center design |
+| `/` | Product homepage |
+| `/channel/loan_protection/` | Regulatory protection |
+| `/channel/loan_blog/` | Blog, categories, pagination, and article details |
+| `/channel/loan_faq/` | Ayuda |
+| `/channel/help-center/` | Help center and official contact options |
+| `/channel/about-ala/` | Acerca de ALA from the public site |
+| `/marca/` | Original brand design |
+| `/cobranza/` | Collection and late-payment design for review |
 
-The homepage uses a local snapshot of the public assets and reviews from `www.alaprestamo.com`. Its existing Acerca de ALA link opens the original brand design. Other content and legal links lead to the official site. The support widget hands off to the official help center. The mirror omits analytics and production API calls.
+Public legal pages and the two linked disclosures are included. Blog and city listings use a local snapshot. Files in the old design at `/diseno-anterior.html` and `/help.html` document prior iterations.
 
-The collection article is available by direct URL. Its copy is adapted from the supplied prototype for design review. Confirm the final approved Spanish copy before publishing to the production CMS. The original brand page shows historical product disclosures.
+The review site's internal pages, articles, and disclosures stay within the demo. App stores, social channels, regulator sites, and standard call and email links open their original destinations. Customer support actions use the demo contact page where the live chat would require a production service.
+
+The original brand design contains historical product disclosures. The collection article is available by direct URL and uses draft Spanish. Confirm the approved content before any production CMS release.
 
 ## Run locally
 
@@ -20,4 +25,6 @@ The collection article is available by direct URL. Its copy is adapted from the 
 python3 -m http.server 4217 --bind 127.0.0.1
 ```
 
-Open `http://127.0.0.1:4217/`. No build step is required.
+Open `http://127.0.0.1:4217/`. No build is required to preview the committed HTML.
+
+After changing the shared site navigation, run `python3 scripts/render_headers.py` to refresh it across the static pages. Use `python3 scripts/check_routes.py` to check local paths and detect any links that send the reader to ALA's production domain.

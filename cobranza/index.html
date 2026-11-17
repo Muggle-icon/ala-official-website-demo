@@ -10,33 +10,48 @@
   <link rel="icon" href="../public/assets/ala-app-icon.png">
   <link rel="stylesheet" href="./cobranza.css">
   <script src="./cobranza.js" defer></script>
+  <link rel="stylesheet" href="../shared/site-header.css?v=fa7d3493ca">
+  <script src="../shared/site-header.js?v=79b12105f8" defer></script>
 </head>
-<body>
-  <a class="skip-link" href="#contenido">Ir al contenido</a>
-  <header class="site-header">
-    <div class="frame header-inner">
-      <a class="brand" href="../" aria-label="ALA, inicio">
-        <img src="../public/assets/nav-logo-dark.png" alt="ALA" width="108" height="41">
+<body class="ala-collection-page">
+  <!-- ALA header start -->
+<div class="ala-site-chrome">
+  <a class="ala-header-skip" href="#ala-content">Ir al contenido</a>
+  <header class="ala-header-bar">
+    <div class="ala-header-frame">
+      <a class="ala-header-logo" href="../" aria-label="ALA, inicio">
+        <img class="ala-header-icon" src="../live/ala-www/img/logo.png" width="36" height="36" alt="">
+        <img class="ala-header-wordmark" src="../live/ala-www/img/alaText.png" width="52" height="16" alt="">
+        <img class="ala-header-wordmark ala-header-wordmark--white" src="../live/ala-www/img/alaTextWhite.png" width="52" height="16" alt="">
       </a>
-      <nav class="desktop-navigation" aria-label="Navegación principal">
-        <a href="../">Introducción del producto</a>
-        <a href="https://www.alaprestamo.com/channel/loan_protection">Protección regulatoria</a>
-        <a href="https://www.alaprestamo.com/channel/loan_blog">Blog</a>
-        <a href="https://www.alaprestamo.com/channel/loan_faq">Ayuda</a>
-        <a href="../marca/">Acerca de ALA</a>
+      <button class="ala-header-menu" type="button" aria-label="Abrir menú" aria-controls="ala-nav" aria-expanded="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+      <nav class="ala-header-nav" id="ala-nav" aria-label="Navegación principal">
+        <ul class="ala-header-list">
+        <li class="ala-header-item"><a class="ala-header-link" href="../">Introducción del producto</a></li>
+        <li class="ala-header-item"><a class="ala-header-link" href="../channel/loan_protection/">Protección regulatoria</a></li>
+        <li class="ala-header-item ala-header-item--blog">
+          <a class="ala-header-link" href="../channel/loan_blog/">Blog</a>
+          <button class="ala-header-trigger" type="button" aria-label="Categorías de Blog" aria-controls="ala-blog-nav" aria-expanded="false"><span class="ala-header-chevron" aria-hidden="true"></span></button>
+          <div class="ala-header-drop" id="ala-blog-nav" hidden>
+            <ul class="ala-header-drop-list">
+              <li><a class="ala-header-link" href="../channel/guia-de-prestamos/">Guía de préstamos</a></li>
+              <li><a class="ala-header-link" href="../channel/loan_financiero/">Diccionario financiero</a></li>
+              <li><a class="ala-header-link" href="../channel/noticias-financieras/">Noticias financieras</a></li>
+              <li><a class="ala-header-link" href="../channel/loan_city/">Préstamo en tu ciudad</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="ala-header-item" aria-current="true"><a class="ala-header-link" href="../channel/loan_faq/">Ayuda</a></li>
+        <li class="ala-header-item"><a class="ala-header-link" href="../channel/about-ala/">Acerca de ALA</a></li>
+        </ul>
       </nav>
-      <details class="mobile-navigation">
-        <summary aria-label="Menú principal"><span aria-hidden="true"></span></summary>
-        <nav aria-label="Navegación principal">
-          <a href="../">Introducción del producto</a>
-          <a href="https://www.alaprestamo.com/channel/loan_protection">Protección regulatoria</a>
-          <a href="https://www.alaprestamo.com/channel/loan_blog">Blog</a>
-          <a href="https://www.alaprestamo.com/channel/loan_faq">Ayuda</a>
-          <a href="../marca/">Acerca de ALA</a>
-        </nav>
-      </details>
     </div>
   </header>
+</div>
+<!-- ALA header end -->
+<div id="ala-content" tabindex="-1"></div>
 
   <main id="contenido" tabindex="-1">
     <article aria-labelledby="page-title">
@@ -53,7 +68,7 @@
               <p>Consulta qué hacer si no puedes pagar a tiempo, cómo verificar un contacto de cobranza y dónde pedir ayuda a ALA.</p>
             </div>
             <div class="intro-action">
-              <a class="button" href="https://www.alaprestamo.com/channel/help-center">Contactar a ALA <span class="arrow" aria-hidden="true">→</span></a>
+              <a class="button" href="../channel/help-center/">Contactar a ALA <span class="arrow" aria-hidden="true">→</span></a>
               <p>Todos los días de 9:00 a 18:00</p>
             </div>
           </div>
@@ -119,7 +134,7 @@
                 <p>Reporta el contacto a ALA antes de hacer otro pago. Protege tus contraseñas y códigos de verificación.</p>
               </div>
             </div>
-            <a class="inline-action" href="https://www.alaprestamo.com/channel/help-center">Contactar a ALA <span class="arrow" aria-hidden="true">→</span></a>
+            <a class="inline-action" href="../channel/help-center/">Contactar a ALA <span class="arrow" aria-hidden="true">→</span></a>
           </section>
 
           <section aria-labelledby="preguntas-frecuentes">
@@ -169,7 +184,7 @@
                   <dd>Todos los días de 9:00 a 18:00</dd>
                 </div>
               </dl>
-              <a class="button" href="https://www.alaprestamo.com/channel/help-center">Contactar a ALA <span class="arrow" aria-hidden="true">→</span></a>
+              <a class="button" href="../channel/help-center/">Contactar a ALA <span class="arrow" aria-hidden="true">→</span></a>
             </div>
           </section>
         </div>
@@ -186,9 +201,9 @@
         <p>Quantum Wealth Solutions, S.A.P.I. de C.V. SOFOM E.N.R.</p>
       </div>
       <nav class="footer-links" aria-label="Enlaces de atención">
-        <a href="https://www.alaprestamo.com/channel/help-center">Atención en línea</a>
-        <a href="https://www.alaprestamo.com/uploads/1/file/2026/10/20261023022307329_60t758u3yvvt.pdf">UNE ALA</a>
-        <a href="https://www.alaprestamo.com/uploads/1/file/2026/10/20261023022320284_vkqzhbx9x110.pdf">Despacho de cobranza</a>
+        <a href="../channel/help-center/">Atención en línea</a>
+        <a href="../live/legal/docs/une-ala.pdf">UNE ALA</a>
+        <a href="../live/legal/docs/despacho-de-cobranza.pdf">Despacho de cobranza</a>
       </nav>
     </div>
   </footer>

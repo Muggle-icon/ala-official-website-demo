@@ -1,5 +1,5 @@
 const mobile = window.matchMedia("(max-width: 820px)");
-const header = document.querySelector(".site-header");
+const header = document.querySelector(".ala-site-chrome");
 const disclosure = document.querySelector(".index-disclosure");
 const links = Array.from(disclosure.querySelectorAll('a[href^="#"]'));
 const sections = links.map((link) => document.querySelector(link.hash));

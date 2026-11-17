@@ -1,0 +1,425 @@
+.city-list {
+  display: flex;
+  flex-wrap: nowrap;
+  background-color: #1b1e28;
+  --base-radius: 33px;
+  --base-padding-top: 38px;
+  --base-padding-bottom: 49px;
+  --base-padding-left: 60px;
+  --base-padding-right: 60px;
+  /* --base-gap: 60px; */
+  row-gap: 0;
+  flex-wrap: wrap;
+}
+.city-item {
+  width: fit-content;
+  --base-padding-top: 14px;
+  --base-padding-bottom: 14px;
+  --base-padding-left: 9px;
+  --base-padding-right: 9px;
+  --base-size: 28px;
+  --base-lh: 42px;
+  color: #ffffff;
+  --base-radius: 18px;
+  text-align: center;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.city-item:hover {
+  background-color: #294bff;
+  cursor: pointer;
+}
+/* .blog-article-wrap {
+  --base-mt: 100px;
+  --base-mb: 40px;
+  --base-ml: 219px;
+  --base-mr: 219px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  align-items: stretch;
+} */
+.blog-article-item {
+  flex: 1;
+  width: 33.33%;
+  max-width: 33.33%;
+  min-width: 33.33%;
+  --base-padding-top: 46.5px;
+  --base-padding-bottom: 60px;
+  --base-padding-left: 38.5px;
+  --base-padding-right: 38.5px;
+  box-sizing: border-box;
+  border-radius: 48px;
+}
+.blog-article-item:hover {
+  background-color: #f3f4f9;
+  cursor: pointer;
+}
+.blog-article-img {
+  width: 100%;
+  max-height: 268px;
+  overflow: hidden;
+  border-radius: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.blog-article-img img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.blog-article-title {
+  --base-size: 40px;
+  --base-lh: 48px;
+  --base-mt: 32px;
+  font-weight: 700;
+  color: #000000;
+}
+.blog-article-content {
+  --base-size: 36px;
+  --base-lh: 48px;
+  --base-mt: 24px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3; /* 控制显示行数 */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #666666;
+}
+.blog-article-time {
+  --base-size: 32px;
+  --base-lh: 42px;
+  --base-mt: 24px;
+  color: #999999;
+}
+
+
+.blog-menu-channel-logo {
+  width: 100%;
+  font-size: 0;
+  text-align: center;
+  position: relative;
+}
+.blog-menu-channel-logo img {
+  width: 100%;
+  height: auto;
+}
+.blog-menu-channel-title {
+  --base-size: 31px;
+  --base-lh: 31px;
+  --base-mt: 34px;
+  --base-pl: 37px;
+  --base-pr: 37px;
+  color: #1b1e28;
+  font-weight: 700;
+  text-align: left;
+}
+.blog-menu-channel-des {
+  --base-size: 19px;
+  --base-lh: 27px;
+  --base-mt: 17px;
+  --base-pl: 37px;
+  --base-pr: 37px;
+  color: #666;
+  text-align: left;
+}
+.article-title {
+  --base-size: 36px;
+  --base-lh: 48px;
+  --base-mb: 34px;
+  color: #000;
+  font-weight: 700;
+}
+.article-time {
+  --base-size: 32px;
+  --base-lh: 42px;
+  --base-mb: 47px;
+  color: #999;
+}
+.more-article-button {
+  --base-height: 120px;
+  --base-mt: 100px;
+  --base-mb: 220px;
+  text-align: center;
+  font-size: 0;
+}
+.more-article-button img {
+  height: 100%;
+}
+.articles-list-wrap {
+  width: 100%;
+  box-sizing: border-box;
+  --base-pl: 133px;
+  --base-pr: 133px;
+  display: flex;
+  --base-gap: 56px;
+  justify-content: space-between;
+  align-items: stretch;
+  --base-mt: 100px;
+}
+.article-tag {
+  width: fit-content;
+  --base-height: 50px;
+  --base-lh: 50px;
+  color: #294bff;
+  --base-pl: 20px;
+  --base-pr: 21px;
+  background: url("../../../ala-www/img/home-article-tag.png") no-repeat;
+  background-size: 100% 100%;
+  --base-mb: 21px;
+}
+.article-item {
+  flex: 1; /* 基础宽度50%减去一半间距 */
+  position: relative;
+  background-color: #f3f4f9;
+  --base-padding-top: 62px;
+  --base-padding-bottom: 284px;
+  --base-padding-left: 62px;
+  --base-padding-right: 62px;
+  --base-width: 513px;
+  overflow: hidden;
+  border-radius: 36px;
+}
+.article-item:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  transition: transform 0.2s ease-in-out 0.2s;
+}
+.article-img {
+  position: absolute;
+  width: 100%;
+  --base-height: 284px;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.article-img img {
+  width: 100%;
+  height: auto;
+}
+
+/* body {
+      filter: grayscale(0.95);
+      -webkit-filter: grayscale(0.95);
+    } */
+.city-detail {
+}
+
+#cityDetailList {
+  --base-mr: 400px;
+  --base-ml: 400px;
+  --base-mt: 72px;
+}
+
+#cityDetailList .blog-article-wrap{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+}
+
+#cityDetailList li :hover {
+  background-color: #f3f4f9;
+  cursor: pointer;
+}
+
+#cityDetailList li > div.innerDiv {
+  --base-padding-top: 30px;
+  --base-padding-right: 30px;
+  --base-padding-bottom: 30px;
+  --base-padding-left: 30px;
+  --base-radius: 36px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+#cityDetailList .card-tag {
+  width: fit-content;
+  --base-height: 32px;
+  --base-lh: 32px;
+  --base-pl: 0 10px;
+  --base-pr: 10px;
+  box-sizing: border-box;
+  color: #294bff;
+  --base-mb: 12px;
+  --base-mt: 22px;
+  font-family: "Roboto-Bold";
+  --base-size: 18px;
+  background-image: url("../../../ala-www/img/home-article-tag.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+#cityDetailList .card-title {
+  font-family: 'Roboto-Bold';
+  --base-size: 26px;
+  --base-lh: 34px;
+  --base-height: 68px;
+  --base-mb: 12px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  text-overflow: ellipsis;
+  white-space: normal;
+  color: #000000;
+}
+
+#cityDetailList .card-desc {
+  font-family: "Roboto-regular";
+  --base-size: 20px;
+  --base-lh: 26px;
+  --base-mb: 12px;
+  --base-height: 52px;
+  color: #666666;
+  font-weight: 700;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  text-overflow: ellipsis;
+  white-space: normal;
+}
+
+#cityDetailList .card-date {
+  --base-size: 20px;
+  --base-lh: 24px;
+  color: #999;
+}
+
+#cityDetailList .blog-article-img {
+  --base-height: 180px;
+  width: 100%;
+  --base-radius: 26px;
+  overflow: hidden;
+}
+
+#cityDetailList .blog-article-img img {
+  width: 100%;
+  height: 100%;
+  border-radius: 26px;
+  object-fit: cover;
+}
+
+#cityDetailList .row-gap-10 {
+  --base-mb: 50px;
+  --base-radius: 26px;
+  overflow: hidden;
+}
+
+.more-articles-container img {
+  cursor: pointer;
+}
+
+@media screen and (min-width: 1901px) {
+  .city-list > .city-item {
+    width: 20%;
+  }
+}
+
+@media screen and (min-width: 1500px) and (max-width: 1900px) {
+  .city-list > .city-item {
+    width: 25%;
+  }
+}
+
+@media screen and (min-width: 993px) and (max-width: 1499px) {
+  .city-list > .city-item {
+    width: 33%;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  #cityDetailList{
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  #cityDetailList .blog-article-wrap {
+    width: 100%;
+  }
+  .blog-article-img {
+    border-radius: 16px;
+  }
+  .city-list > .city-item {
+    width: calc(50% - 24px);
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    background-color: #ffffff14;
+  }
+  .city-list {
+    padding: 0 !important;
+    gap: 12px;
+    justify-content: center;
+  }
+  #nearbyCities {
+    border-radius: 20px;
+
+    margin-left: 24px;
+    margin-right: 24px;
+    padding: 24px !important;
+    background-color: #1b1e28;
+  }
+  #cityDetailList .blog-article-section{
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+  #cityDetailList .row-gap-10 {
+    margin-bottom: 12px;
+  }
+  #cityDetailList li > div.innerDiv {
+    width: 100%;
+    box-sizing: border-box;
+    background: #F3F4F9;
+    padding: 16px;
+    border-radius: 16px;
+    margin-bottom: 12px;
+  }
+
+  #cityDetailList .card-tag {
+    height: 22px;
+    line-height: 22px;
+    padding: 0 8px;
+    margin-bottom: 12px;
+    margin-top: 22px;
+    font-size: 12px;
+  }
+
+  #cityDetailList .card-title {
+    font-size: 18px;
+    line-height: 21px;
+    margin-bottom: 14px;
+    height: 63px;
+    -webkit-line-clamp: 3;
+  }
+
+  #cityDetailList .card-desc {
+    font-size: 14px;
+    line-height: 18px;
+    margin-bottom: 12px;
+    height: 36px;
+  }
+
+  #cityDetailList .card-date {
+    font-size: 12px;
+    line-height: 14px;
+  }
+
+  #cityDetailList .blog-article-img {
+    height: 180px;
+    width: 100%;
+  }
+
+  #cityDetailList .blog-article-img img {
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+    object-fit: cover;
+  }
+}

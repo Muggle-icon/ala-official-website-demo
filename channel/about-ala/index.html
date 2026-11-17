@@ -1,0 +1,1385 @@
+<!doctype html>
+<html lang="es-MX">
+
+<head>
+    <meta name="robots" content="noindex, nofollow">
+  <title>Acerca de ALA - ALA</title>
+  <meta charset="utf-8">
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="renderer" content="webkit">
+
+<!-- 浏览器标签图标（保持原样） -->
+<link rel="icon" type="image/png" href="../../live/ala-www/img/logo.png" />
+<!-- 搜索引擎优先使用根目录favicon.ico -->
+<link rel="icon" type="image/x-icon" href="../../live/favicon.ico">
+<!-- 备用PNG格式图标 -->
+<link rel="icon" type="image/png" sizes="32x32" href="../../live/ala-www/img/logo.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../live/ala-www/img/logo.png">
+<!-- Apple Touch Icon (iOS设备) -->
+<link rel="apple-touch-icon" href="../../live/ala-www/img/logo.png">
+
+<link rel="stylesheet" href="../../live/ala-www/vendor/bootstrap/dist/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="../../live/ala-www/css/main.css">
+  <link rel="stylesheet" href="../../live/ala-www/css/custom.css">
+  <link rel="stylesheet" href="../../live/ala-www/css/custom-links.css">
+<!-- 核心脚本 - 保持同步加载 -->
+<script src="../../live/ala-www/vendor/jquery/dist/jquery.min.js"></script>
+<script src="../../live/ala-www/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<!-- ala-f 流体缩放因子：--fluid-scale = min(1, 视口宽/设计稿宽, 视口高/设计稿高)，供 .ala-f-* 引擎使用（设计稿基准从 :root 的 --ala-design-w/h 读取） -->
+<script>
+  (function () {
+    function setFluidScale() {
+      var cs = getComputedStyle(document.documentElement);
+      var w = parseFloat(cs.getPropertyValue('--ala-design-w')) || 1920;
+      var h = parseFloat(cs.getPropertyValue('--ala-design-h')) || 1080;
+      var s = Math.min(1, window.innerWidth / w, window.innerHeight / h);
+      document.documentElement.style.setProperty('--fluid-scale', s);
+    }
+    window.addEventListener('resize', setFluidScale);
+    window.addEventListener('orientationchange', setFluidScale);
+    setFluidScale();
+  })();
+</script>
+
+<style>
+  #messageContainer {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+  }
+
+  .message-warning {
+    padding: 12px 16px;
+    border-radius: 4px;
+    color: black;
+    background-color: #fff;
+    box-shadow: 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+  }
+
+  .message-icon {
+    margin-right: 6px;
+    width: 14px;
+    height: 14px;
+    color: rgb(255, 77, 79);
+  }
+
+  .message-enter {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  .message-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .message-exit-active {
+    opacity: 0;
+  }
+</style>
+<div id="messageContainer"></div>
+<style>
+  .modal-cms-mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+  }
+
+  .modal-cms-mask.visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .modal-cms-container {
+    background-color: #fff;
+    border-radius: 4px;
+    max-width: 70%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-20px);
+    transition: transform 0.3s;
+    margin-top: 100px;
+  }
+
+  .modal-cms-mask.visible .modal-cms-container {
+    transform: translateY(0);
+  }
+
+  .modal-cms-header {
+    padding: 16px 24px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .modal-cms-title {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 500;
+    color: #121728;
+  }
+
+  .modal-cms-close {
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    width: 24px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background-color 0.2s;
+    position: absolute;
+    top: 16px;
+    right: 24px;
+    color: #96989C;
+  }
+
+  .modal-cms-close:hover {
+    background-color: #f5f5f5;
+  }
+
+  /*  */
+  .modal-cms-content {
+    padding: 5px 24px 40px 24px;
+    font-size: 14px;
+    color: #121728;
+  }
+</style>
+  <link rel="stylesheet" href="../../live/legal/css/about-page.css" />
+
+<script src="../../live/legal/channel-ui.js" defer></script>
+  <link rel="stylesheet" href="../../shared/site-header.css?v=fa7d3493ca">
+  <script src="../../shared/site-header.js?v=79b12105f8" defer></script>
+</head>
+
+<body>
+  <!-- ALA header start -->
+<div class="ala-site-chrome">
+  <a class="ala-header-skip" href="#ala-content">Ir al contenido</a>
+  <header class="ala-header-bar">
+    <div class="ala-header-frame">
+      <a class="ala-header-logo" href="../../" aria-label="ALA, inicio">
+        <img class="ala-header-icon" src="../../live/ala-www/img/logo.png" width="36" height="36" alt="">
+        <img class="ala-header-wordmark" src="../../live/ala-www/img/alaText.png" width="52" height="16" alt="">
+        <img class="ala-header-wordmark ala-header-wordmark--white" src="../../live/ala-www/img/alaTextWhite.png" width="52" height="16" alt="">
+      </a>
+      <button class="ala-header-menu" type="button" aria-label="Abrir menú" aria-controls="ala-nav" aria-expanded="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+      <nav class="ala-header-nav" id="ala-nav" aria-label="Navegación principal">
+        <ul class="ala-header-list">
+        <li class="ala-header-item"><a class="ala-header-link" href="../../">Introducción del producto</a></li>
+        <li class="ala-header-item"><a class="ala-header-link" href="../../channel/loan_protection/">Protección regulatoria</a></li>
+        <li class="ala-header-item ala-header-item--blog">
+          <a class="ala-header-link" href="../../channel/loan_blog/">Blog</a>
+          <button class="ala-header-trigger" type="button" aria-label="Categorías de Blog" aria-controls="ala-blog-nav" aria-expanded="false"><span class="ala-header-chevron" aria-hidden="true"></span></button>
+          <div class="ala-header-drop" id="ala-blog-nav" hidden>
+            <ul class="ala-header-drop-list">
+              <li><a class="ala-header-link" href="../../channel/guia-de-prestamos/">Guía de préstamos</a></li>
+              <li><a class="ala-header-link" href="../../channel/loan_financiero/">Diccionario financiero</a></li>
+              <li><a class="ala-header-link" href="../../channel/noticias-financieras/">Noticias financieras</a></li>
+              <li><a class="ala-header-link" href="../../channel/loan_city/">Préstamo en tu ciudad</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="ala-header-item"><a class="ala-header-link" href="../../channel/loan_faq/">Ayuda</a></li>
+        <li class="ala-header-item"><a class="ala-header-link" href="../../channel/about-ala/" aria-current="page">Acerca de ALA</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+</div>
+<!-- ALA header end -->
+<div id="ala-content" tabindex="-1"></div>
+
+  <main class="about-page ala-pl ala-pr" id="main-content">
+    <!-- Hero Section -->
+    <section class="hero-section ala-pl ala-pr">
+      <div class="video-mask"></div>
+      <video class="hero-bg-video" autoplay muted loop playsinline poster="../../live/legal/img/about/hero-placeholder.jpg">
+        <source src="../../live/legal/img/about/banner.mp4" type="video/mp4">
+      </video>
+      <div class="hero-content banner-content">
+        <p class="hero-desc motion-element hero-stagger-3">
+          ALA es una plataforma de préstamos en línea dirigida a usuarios mexicanos, gestionada por Quantum Wealth Solutions, S.A.P.I. de C.V., SOFOM E.N.R. Por medio de la aplicación oficial de ALA, los usuarios pueden solicitar préstamos, revisar el resultado de sus solicitudes y consultar la información referente a sus cuentas, pagos y servicios.
+        </p>
+        <div class="hero-buttons motion-element hero-stagger-4">
+          <a href="#preguntas-frecuentes">Ver preguntas frecuentes</a>
+        </div>
+        <div class="banner-btn-wrap">
+          <h1 class="hero-title motion-element hero-stagger-2">¿Qué es ALA?</h1>
+          <div class="hero-app-badges motion-element hero-stagger-5">
+            <img src="../../live/legal/img/about/Google-Play.webp" alt="Google Play" class="app-badge android-down">
+            <a class="app-badge app-store-badge" href="https://sofom-ala.onelink.me/ndX5/mbzy0s0s" target="_blank" rel="noopener">
+              <img src="../../live/legal/img/about/store-a.webp" alt="" width="16" height="16">
+              <span>App Store</span>
+            </a>
+            <div class="google-btn-phone android-down">
+              <img src="../../live/legal/img/about/store-g.webp" alt="Google Play">
+              <span>Google Play</span>
+            </div>
+            <div class="app-btn-phone apple-down">
+              <img src="../../live/legal/img/about/store-a.webp" alt="App Store">
+              <span>App Store</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Logo Strip Section -->
+    <section class="logo-strip-section">
+      <div class="logo-strip-wrapper">
+        <!-- First set -->
+        <div class="logo-item">
+          <img src="../../live/legal/img/about/slide-YouTube.webp" alt="YouTube">
+        </div>
+        <div class="logo-item">
+          <img src="../../live/legal/img/about/slide-círculo.webp" alt="Circulo de Credito">
+        </div>
+        <div class="logo-item">
+          <img src="../../live/legal/img/about/slide-buro.webp" alt="Buro de Credito">
+        </div>
+        <div class="logo-item">
+          <img src="../../live/legal/img/about/slide-Facebook.webp" alt="Facebook">
+        </div>
+        <div class="logo-item">
+          <img src="../../live/legal/img/about/slide-tiktok.webp" alt="TikTok">
+        </div>
+        <div class="logo-item">
+          <img src="../../live/legal/img/about/slide-google.webp" alt="PROFECO">
+        </div>
+        <!-- Duplicate 3 times for seamless loop (4 groups total) -->
+        <div class="logo-item">
+          <img src="../../live/legal/img/about/slide-YouTube.webp" alt="YouTube">
+        </div>
+        <div class="logo-item">
+          <img src="../../live/legal/img/about/slide-círculo.webp" alt="Circulo de Credito">
+        </div>
+        <div class="logo-item">
+          <img src="../../live/legal/img/about/slide-buro.webp" alt="Buro de Credito">
+        </div>
+        <div class="logo-item">
+          <img src="../../live/legal/img/about/slide-Facebook.webp" alt="Facebook">
+        </div>
+        <div class="logo-item">
+          <img src="../../live/legal/img/about/slide-tiktok.webp" alt="TikTok">
+        </div>
+        <div class="logo-item">
+          <img src="../../live/legal/img/about/slide-google.webp" alt="PROFECO">
+        </div>
+        <div class="logo-item">
+          <img src="../../live/legal/img/about/slide-YouTube.webp" alt="YouTube">
+        </div>
+        <div class="logo-item">
+          <img src="../../live/legal/img/about/slide-círculo.webp" alt="Circulo de Credito">
+        </div>
+        <div class="logo-item">
+          <img src="../../live/legal/img/about/slide-buro.webp" alt="Buro de Credito">
+        </div>
+        <div class="logo-item">
+          <img src="../../live/legal/img/about/slide-Facebook.webp" alt="Facebook">
+        </div>
+        <div class="logo-item">
+          <img src="../../live/legal/img/about/slide-tiktok.webp" alt="TikTok">
+        </div>
+        <div class="logo-item">
+          <img src="../../live/legal/img/about/slide-google.webp" alt="PROFECO">
+        </div>
+      </div>
+    </section>
+
+    <!-- Product Info Section -->
+    <section class="product-info-section ala-pl ala-pr">
+      <h2 class="section-title motion-element">Información del producto</h2>
+      <p class="section-subtitle motion-element">Nota: Para consultar nuestros teléfonos, correo electrónico, horarios de atención, domicilio, información de la Unidad Especializada de Atención a Usuarios (UNE) y contratos, visita las secciones Contáctanos, Sobre nosotros y Acuerdos al final de esta página.</p>
+      <div class="info-grid">
+        <div class="info-card motion-element info-stagger-1">
+          <div class="info-icon">
+            <img src="../../live/legal/img/about/producto1.webp" alt="Icon">
+          </div>
+          <div>
+            <h4 class="info-title">Marca: </h4>
+            <p class="info-desc">ALA</p>
+          </div>
+        </div>
+        <div class="info-card motion-element info-stagger-2">
+          <div class="info-icon">
+            <img src="../../live/legal/img/about/producto2.webp" alt="Icon">
+          </div>
+          <div>
+            <h4 class="info-title">Región: </h4>
+            <p class="info-desc">México</p>
+          </div>
+        </div>
+        <div class="info-card motion-element info-stagger-3">
+          <div class="info-icon">
+            <img src="../../live/legal/img/about/producto3.webp" alt="Icon">
+          </div>
+          <div>
+            <h4 class="info-title">Web oficial：</h4>
+            <p class="info-desc">www.alaprestamo.com</p>
+          </div>
+        </div>
+        <div class="info-card motion-element info-stagger-4">
+          <div class="info-icon">
+            <img src="../../live/legal/img/about/producto4.webp" alt="Icon">
+          </div>
+          <div>
+            <h4 class="info-title">Correo de atención al cliente: </h4>
+            <p class="info-desc">contacto-ala@alaprestamo.com</p>
+          </div>
+        </div>
+        <div class="info-card motion-element info-stagger-1">
+          <div class="info-icon">
+            <img src="../../live/legal/img/about/producto9.webp" alt="Icon">
+          </div>
+          <div>
+            <h4 class="info-title">Línea de atención al cliente: </h4>
+            <p class="info-desc">8009530794,8002883450</p>
+          </div>
+        </div>
+        <div class="info-card motion-element info-stagger-2">
+          <div class="info-icon">
+            <img src="../../live/legal/img/about/producto6.webp" alt="Icon">
+          </div>
+          <div>
+            <h4 class="info-title">Tipo：</h4>
+            <p class="info-desc">Plataforma de préstamos en línea para usuarios en México. </p>
+          </div>
+        </div>
+        <div class="info-card motion-element info-stagger-3">
+          <div class="info-icon">
+            <img src="../../live/legal/img/about/producto7.webp" alt="Icon">
+          </div>
+          <div>
+            <h4 class="info-title">Empresa：</h4>
+            <p class="info-desc">Quantum Wealth Solutions, S.A.P.I. de C.V., SOFOM E.N.R.</p>
+          </div>
+        </div>
+        <div class="info-card motion-element info-stagger-4">
+          <div class="info-icon">
+            <img src="../../live/legal/img/about/producto8.webp" alt="Icon">
+          </div>
+          <div>
+            <h4 class="info-title">App oficial: </h4>
+            <p class="info-desc">Disponible en Google Play y la App Store.</p>
+          </div>
+        </div>
+        <div class="info-card motion-element info-stagger-4" id="aboutHelpCard" style="cursor: pointer;" onclick="window.location.href='../../channel/help-center/'">
+          <div class="info-icon">
+            <img src="../../live/legal/img/about/producto5.webp" alt="Icon">
+          </div>
+          <div>
+            <h4 class="info-title">Centro de ayuda</h4>
+            <p class="info-desc">Contactar soporte</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section ala-pl ala-pr">
+      <div class="services-container">
+        <h2 class="services-title services-title-phone">¿Qué servicios ofrece ALA?</h2>
+        <p class="services-note services-note-phone">Nota: El monto del préstamo, el plazo, los costos, el plan de pagos y el resultado de la evaluación estarán sujetos a la información mostrada en la app y a lo establecido en los contratos correspondientes.</p>
+
+        <div class="services-left motion-element">
+          <h2 class="services-title">¿Qué servicios ofrece ALA?</h2>
+          <p class="services-note">Nota: El monto del préstamo, el plazo, los costos, el plan de pagos y el resultado de la evaluación estarán sujetos a la información mostrada en la app y a lo establecido en los contratos correspondientes.</p>
+          <div class="service-list">
+            <div class="service-item">
+              <div class="service-icon-wrap">
+                <img src="../../live/legal/img/about/servicios1.webp" alt="Icon">
+              </div>
+              <div class="service-content">
+                <h4>Solicita en línea</h4>
+                <p>Puedes solicitar tu préstamo desde la app oficial de ALA siguiendo los pasos indicados.</p>
+              </div>
+            </div>
+            <div class="service-item">
+              <div class="service-icon-wrap">
+                <img src="../../live/legal/img/about/servicios2.webp" alt="Icon">
+              </div>
+              <div class="service-content">
+                <h4>Consulta el resultado</h4>
+                <p>Puedes consultar en la app el estado de tu solicitud, el resultado de la evaluación y la información relacionada.</p>
+              </div>
+            </div>
+            <div class="service-item">
+              <div class="service-icon-wrap">
+                <img src="../../live/legal/img/about/servicios3.webp" alt="Icon">
+              </div>
+              <div class="service-content">
+                <h4>Información de la cuenta y pagos</h4>
+                <p>Puedes consultar el estado de tu cuenta, los montos pendientes, las fechas de pago y los detalles de tus préstamos.</p>
+              </div>
+            </div>
+            <div class="service-item">
+              <div class="service-icon-wrap">
+                <img src="../../live/legal/img/about/servicios4.webp" alt="Icon">
+              </div>
+              <div class="service-content">
+                <h4>Ayuda oficial</h4>
+                <p>Si tienes dudas sobre tu solicitud, tu cuenta o tus pagos, puedes contactarnos a través de nuestro sitio web, el centro de ayuda de la app o nuestros canales oficiales de atención al cliente.</p>
+              </div>
+            </div>
+          </div>
+          <a class="faq-help-btn" href="../../channel/loan_faq/" style="margin-top: 40px;">
+            <span>Ver toda la ayuda</span>
+            <img src="../../live/legal/img/about/to-r.webp" alt="Arrow" class="faq-help-btn-icon">
+          </a>
+        </div>
+        <div class="services-right motion-element" style="transition-delay: 0.3s;">
+          <img src="../../live/legal/img/about/phone.webp" alt="ALA App" class="phone-mockup">
+        </div>
+      </div>
+    </section>
+
+    <!-- Official Channels Section -->
+    <section class="channels-section ala-pl ala-pr">
+      <div class="channels-hero scale-fade-element">
+        <div class="channels-hero-bg"></div>
+        <div class="channels-hero-content ala-pl ala-pr">
+          <h2 class="channels-hero-title">¿Cómo identificar los canales oficiales de ALA?</h2>
+          <p class="channels-hero-desc">Recomendamos encarecidamente obtener información únicamente a través del sitio web oficial y de la App oficial en Google Play y App Store. Antes de acceder a enlaces, llamadas, mensajes o solicitudes de pago de origen desconocido, verifique primero si se trata de un canal oficial.</p>
+        </div>
+      </div>
+      <div class="channels-grid ala-pl ala-pr">
+        <div class="channel-card motion-element channel-stagger-1">
+          <div class="channel-number">1</div>
+          <div class="channel-content">
+            <h4>Protección de datos</h4>
+            <p>La recopilación, uso y tratamiento de la información del usuario se rigen por el Aviso de Privacidad.</p>
+          </div>
+        </div>
+        <div class="channel-card motion-element channel-stagger-2">
+          <div class="channel-number">2</div>
+          <div class="channel-content">
+            <h4>Información sobre costos</h4>
+            <p>Antes de solicitar y utilizar el servicio, consulte el monto, plazo, costos y el calendario de pago.</p>
+          </div>
+        </div>
+        <div class="channel-card motion-element channel-stagger-3">
+          <div class="channel-number">3</div>
+          <div class="channel-content">
+            <h4>Canales oficiales</h4>
+            <p>Si tiene alguna duda, le recomendamos contactar a ALA a través del sitio web oficial, los accesos dentro de la App o el correo electrónico oficial.</p>
+          </div>
+        </div>
+        <div class="channel-card motion-element channel-stagger-4">
+          <div class="channel-number">4</div>
+          <div class="channel-content">
+            <h4>Aviso de seguridad</h4>
+            <p>No descargue la App, envíe información confidencial ni gestione asuntos relacionados con su cuenta a través de canales no oficiales.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section ala-pl ala-pr" id="preguntas-frecuentes">
+      <h2 class="faq-title motion-element">Ayuda</h2>
+      <div class="faq-list">
+                  <div class="faq-item motion-element faq-stagger-1">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                      <h4>¿Cómo puedo crear mi cuenta ALA?
+</h4>
+                      <div class="faq-toggle">
+                        <img src="../../live/ala-www/img/about/down.webp" alt="" class="faq-toggle-icon-down">
+                        <img src="../../live/legal/img/about/up.webp" alt="" class="faq-toggle-icon-up">
+                      </div>
+                    </div>
+                    <div class="faq-answer">
+                      <div class="faq-answer-content">
+                        <p><p>Descargue la aplicación oficial de ALA desde Google Play o App Store y siga las instrucciones en pantalla para registrar su número de teléfono, datos de identificación y cuenta bancaria, así como para completar la verificación de identidad.</p>
+<p>La información proporcionada debe ser verdadera, completa y vigente. De lo contrario, podría afectar la evaluación de su solicitud, el desembolso, la validación de sus pagos o la seguridad de su cuenta.</p>
+<p>Si necesita ayuda, comuníquese con nosotros únicamente a través de nuestros canales oficiales:<br />Líneas de atención sin costo: 800 953 0794 y 800 288 3450<br />Chat&#xff1a;<a href="../help-center/" target="_blank" rel="noopener noreferrer">Contactar con atención al cliente</a></p>
+<p><br /><br /></p></p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="faq-item motion-element faq-stagger-2">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                      <h4>¿Qué es ALA?</h4>
+                      <div class="faq-toggle">
+                        <img src="../../live/ala-www/img/about/down.webp" alt="" class="faq-toggle-icon-down">
+                        <img src="../../live/legal/img/about/up.webp" alt="" class="faq-toggle-icon-up">
+                      </div>
+                    </div>
+                    <div class="faq-answer">
+                      <div class="faq-answer-content">
+                        <p><p>ALA es una plataforma de préstamos en línea dirigida a usuarios en México.</p></p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="faq-item motion-element faq-stagger-3">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                      <h4>¿Qué empresa opera ALA?</h4>
+                      <div class="faq-toggle">
+                        <img src="../../live/ala-www/img/about/down.webp" alt="" class="faq-toggle-icon-down">
+                        <img src="../../live/legal/img/about/up.webp" alt="" class="faq-toggle-icon-up">
+                      </div>
+                    </div>
+                    <div class="faq-answer">
+                      <div class="faq-answer-content">
+                        <p><p>ALA es operada por Quantum Wealth Solutions, S.A.P.I. de C.V., SOFOM E.N.R..</p></p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="faq-item motion-element faq-stagger-4">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                      <h4>¿Cuál es el sitio web oficial de ALA?</h4>
+                      <div class="faq-toggle">
+                        <img src="../../live/ala-www/img/about/down.webp" alt="" class="faq-toggle-icon-down">
+                        <img src="../../live/legal/img/about/up.webp" alt="" class="faq-toggle-icon-up">
+                      </div>
+                    </div>
+                    <div class="faq-answer">
+                      <div class="faq-answer-content">
+                        <p><p>El sitio web oficial de ALA es: www.alaprestamo.com</p></p>
+                      </div>
+                    </div>
+                  </div>
+      </div>
+      <a class="faq-help-btn" href="../../channel/loan_faq/">
+        <span>Ver toda la ayuda</span>
+        <img src="../../live/legal/img/about/to-r.webp" alt="Arrow" class="faq-help-btn-icon">
+      </a>
+    </section>
+  </main>
+
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  .pc-footer-container {
+    background-color: #1b1e28;
+    color: #fff;
+    position: relative;
+    z-index: 1;
+    overflow: visible;
+  }
+
+  .footer-section-title {
+    font-family: 'Roboto';
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 33px;
+    letter-spacing: 0px;
+    text-align: left;
+    margin-bottom: 18px;
+  }
+
+  .pc-footer-container .footer-span-val {
+    color: #fff;
+    margin-top: 8px;
+    font-family: 'Roboto';
+  }
+
+  .pc-footer-container .footer-span-title {
+    color: #96989c;
+  }
+
+  .title-pointer {
+    cursor: pointer;
+  }
+  .hot-articles{
+    --base-pr:20px
+  }
+
+  .hot-articles .hot-item {
+    --base-pt: 14px;
+    --base-pr: 16px;
+    --base-pb: 14px;
+    --base-pl: 16px;
+    --base-mt: 18px;
+    --base-radius: 12px;
+    color: #96989C;
+    --base-size: 16px;
+    background-color: #272B37;
+
+  }
+
+  .hot-articles .hot-time {
+    --base-mt: 8px;
+  }
+
+  .hot-articles .hot-item-arrow {
+    --base-mt: 18px;
+    border-radius: 12px;
+    color: #96989C;
+    --base-size: 16px;
+    text-align: end;
+    cursor: pointer;
+  }
+
+ .pc-footer-container .img-title{
+  font-family: 'Roboto-Medium';
+  --base-size:42px;
+ }
+
+  .rate-info-container {
+    font-family: 'Roboto';
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    color: #96989C;
+    letter-spacing: 0;
+  }
+  .footer-txt-item-box{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 120px;
+  }
+  .footer-txt-item{
+    min-width: 0;
+  }
+
+
+  @media (max-width: 1024px) {
+    .pc-footer-container {
+      padding: 56px 24px 72px 24px !important;
+      background-color: #1b1e28;
+      color: #fff;
+    }
+    .footer-txt-item-box{
+      display: block !important;
+      gap: 0;
+    }
+
+    .pc-footer-container .footer-span-val {
+      color: #fff;
+    }
+    .foot-span-color{
+      color: #96989C !important;
+    }
+
+    .pc-footer-container .footer-span-title {
+      color: #96989C;
+    }
+
+    .pc-footer-container .condusef {
+      width: 108px;
+      height: 42px;
+    }
+    .footer-link-row-box{
+      margin-bottom: 32px;
+    }
+    .mtPhone25{
+      margin-top: 25px !important;
+    }
+    .mtPhone54{
+      margin-top: 54px !important;
+    }
+
+    .pc-footer-container .profeco {
+      width: 42px;
+      height: 42px;
+      margin-left: 36px;
+    }
+
+    .hot-articles .hot-item {
+      background-color: #E6E8EE;
+      color: #4D525D;
+    }
+
+    .hot-articles .hot-item .hot-title {
+      font-size: 13px;
+      height: auto! important;
+    }
+
+    .footer-section-title {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    .row {
+      margin-top: 0 !important;
+    }
+
+    .rate-info-container {
+      font-size: 14px;
+      line-height: 18px;
+      color: #96989C;
+      padding: 0;
+    }
+
+    .rate-info-row {
+      margin-top: 72px !important;
+    }
+    .footer-contact-link-row a {
+      color: #fff !important;
+      font-size: 14px;
+    }
+    /* 移动端无 hover：下拉内容直接展开，保证可点击访问 */
+    .footer-dropdown-menu {
+      position: relative;
+      display: block;
+      background: transparent;
+      padding: 0 0 0 9px;
+      border-radius: 0;
+    }
+    .footer-dropdown-item {
+      padding: 6px 0;
+    }
+    .footer-custom-box{
+      display: block !important;
+    }
+    .footer-custom-item{
+      margin-bottom: 40px;
+    }
+    .footer-custom-item-desc{
+      color: #fff;
+    }
+    .footer-custom-item-desc a{
+      color: #fff;
+      text-decoration: underline;
+    }
+  }
+
+  /* 联系入口行 */
+  .footer-contact-link-row {
+    display: flex;
+    align-items: center;
+    margin-top: 18px;
+  }
+  .footer-contact-link-icon {
+    width: 32px;
+    height: 32px;
+    margin-right: 6px;
+    object-fit: contain;
+  }
+  .footer-contact-link {
+    font-family: 'Roboto-Regular';
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 19px;
+    letter-spacing: 0px;
+    text-align: left;
+    color: #ffffff;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  .footer-contact-link:hover,
+  .footer-contact-link:visited {
+    color: #ffffff;
+  }
+
+  /* ── Documentos Legales 下拉菜单（Aviso de Privacidad / Términos y Condiciones de Uso） ── */
+  .footer-dropdown {
+    position: relative;
+    cursor: pointer;
+  }
+  .footer-dropdown-menu {
+    display: none;
+    position: relative;          /* 占位展开：hover 时把下方内容挤下去，不再遮住 */
+    min-width: 180px;
+    background: transparent;     /* 无背景 */
+    border-radius: 0;
+    padding: 0 0 0 24px;          /* 左侧 9px 给竖线留空间（1px 线 + 8px 间距） */
+  }
+  .footer-dropdown:hover .footer-dropdown-menu,
+  .footer-dropdown:focus-within .footer-dropdown-menu {
+    display: block;
+  }
+  .footer-dropdown-item {
+    display: flex;
+    align-items: center;
+    padding: 6px 0;
+    white-space: nowrap;
+  }
+  .footer-dropdown-line {
+    position: absolute;          /* 竖线贴在菜单左侧，高度贯穿两个 item */
+    left: 14px;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: rgba(255, 255, 255, 0.24);
+  }
+  /* 下拉链接：默认 #fff 48%，hover 变 #fff */
+  .footer-store-title {
+    color: rgba(255, 255, 255, 0.48);
+    transition: color 0.2s;
+  }
+  .footer-store-title:hover {
+    color: #fff;
+  }
+
+  /* ── 底部图文配置（后台区块 footer_custom）：九宫格图文 ── */
+  .footer-custom-box{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 120px;
+    row-gap: 86px;
+    margin-top: 86px;
+  }
+  .footer-custom-item{
+    min-width: 0;
+    text-align: left;
+  }
+  .footer-custom-item-img{
+    margin-bottom: 24px;
+  }
+  .footer-custom-item-img img{
+    height: 64px;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+  }
+  .footer-custom-item-desc{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1;
+    letter-spacing: 0;
+    text-align: left;
+    color: #fff;
+  }
+  .footer-custom-item-desc a{
+    color: #fff;
+    text-decoration: underline;
+  }
+
+</style>
+<div class="ala-pt ala-pr ala-pb ala-pl pc-footer-container" id="footer"
+  style="--base-pt: 96px; --base-pr: 320px; --base-pb: 176px; --base-pl: 320px;">
+  <div style="--base-size:16px" class="ala-size footer-txt-item-box">
+    <section class="footer-txt-item">
+      <div style="--base-size:28px;--base-mb:18px" class="ala-size ala-mb footer-section-title">Contáctanos</div>
+      <div style="--base-mb:32px;" class="ala-mb footer-link-row-box">
+        <div class="ala-mb" style="font-family:Roboto;font-size:14px;font-weight:500;--base-mb:18px;color: #fff;">Si necesitas ayuda, <br/>llama a nuestra línea de atención o envíanos un correo electrónico.</div>
+        <div class="footer-contact-link-row">
+          <img class="footer-contact-link-icon" src="../../live/ala-www/img/contact.webp" alt="contacto" >
+          <a href="../help-center/" class="footer-contact-link" id="footerContactLink">Atención en línea</a>
+        </div>
+      </div>
+      <div class="footer-span-title">Teléfono</div>
+      <div class="footer-span-val">
+
+        <span>8009530794,8002883450</span>
+      </div>
+      <div style="--base-mt:24px" class="ala-mt footer-span-title mtPhone25">Correo electrónico</div>
+      <div class="footer-span-val">contacto-ala@alaprestamo.com</div>
+      <div style="--base-mt:24px" class="ala-mt footer-span-title mtPhone25">Horario de atención</div>
+      <div class="footer-span-val">De lunes a domingo, de 9:00 a 18:00.</div>
+      <div style="--base-mt:24px" class="ala-mt footer-span-title mtPhone25">Por favor, envía por correo electrónico el problema que presentas e incluye tu número de teléfono para que podamos confirmarlo contigo y solucionarlo más rápido.</div>
+
+    </section>
+    <section class="footer-txt-item mtPhone54">
+      <div style="--base-size:28px;--base-mb:18px" class="ala-size ala-mb footer-section-title ">Sobre nosotros</div>
+      <a class="footer-span-val ala-size" href="../../marca/" style="--base-size: 18px;">Página de marca ALA</a>
+
+      <div class="footer-span-title">Razón social</div>
+      <div class="footer-span-val">Quantum Wealth Solutions, S.A.P.I. DE C.V. SOFOM E.N.R</div>
+
+      <div style="--base-mt:24px" class="ala-mt footer-span-title mtPhone25">Dirección de la empresa</div>
+      <div class="footer-span-val">AV. PASEO DE LA REFORMA 295, PISO 6 OFICINA 1503,
+COL. CUAUHTÉMOC, CUAUHTÉMOC,
+CIUDAD DE MÉXICO, C.P. 06500, MÉXICO</div>
+
+      <div class="ala-mt footer-span-title mtPhone25" style="--base-mt:24px;">Unidad especializada de atención a usuarios (UNE)</div>
+
+      <a href="../../live/legal/docs/une-ala.pdf" target="_blank" rel="noopener" style="text-decoration: underline; cursor: pointer; color: inherit; display: block;" class="footer-span-val" id="footerUneAla">UNE ALA</a>
+      <a href="../../live/legal/docs/despacho-de-cobranza.pdf" target="_blank" rel="noopener" style="text-decoration: underline; cursor: pointer; color: inherit; display: block;" class="footer-span-val" id="footerUneAla2">Despacho de cobranza</a>
+      <div style="--base-mt:48px; --base-size: 28px;font-family:'Roboto';" class="ala-size ala-mt img-title footer-section-title mtPhone54">Síguenos</div>
+
+      <!-- pc 社媒图标 img -->
+      <div style="--base-mt:18px;  align-items: center;" class="ala-mt img-wrap d-none d-lg-flex custom-footer-icon">
+
+        <a id="footerImgSrc1" href="https://youtube.com/@alaprestamos?si=FPzN9blgS330QpHy" target="_blank" rel="noopener" class="" style="text-decoration: none;display:inline-block;">
+          <img style="width:36px;height:36px;margin-right:20px;display:inline-block;"
+               src="../../live/uploads/1/image/2026/03/20260310033236462_sv2bk8bvzq2c.png" alt="alaprestamo-youtube" title="全局底部footer适用">
+        </a>
+
+        <a id="footerImgSrc2" href="https://www.facebook.com/share/1BQbcFUN5h/" target="_blank" rel="noopener" class="" style="text-decoration: none;display:inline-block;">
+          <img style="width:36px;height:36px;margin-right:20px;display:inline-block;"
+               src="../../live/uploads/1/image/2026/03/20260310033232218_ysg633k7owib.png" alt="alaprestamo-facebook" title="全局底部footer适用">
+        </a>
+
+        <a id="footerImgSrc3" href="https://www.tiktok.com/@ala_prestamos?_r=1&amp;_t=ZS-93Iat2GL6Cz" target="_blank" rel="noopener" class="" style="text-decoration: none;display:inline-block;">
+          <img style="width:36px;height:36px;margin-right:20px;display:inline-block;"
+               src="../../live/uploads/1/image/2026/03/20260310033220973_y0zpm4fgzo41.png" alt="alaprestamo-tiktok" title="全局底部footer适用">
+        </a>
+
+      </div>
+      <!-- mobile 社媒图标 img -->
+      <div style="--base-mt:18px; --base-size: 28px;" class="ala-mt ala-size img-wrap d-lg-none">
+
+
+        <a id="footerImgSrc1_m" href="https://youtube.com/@alaprestamos?si=FPzN9blgS330QpHy" target="_blank" rel="noopener" class="" style="text-decoration: none;display:inline-block;">
+          <img style="width: 36px;height: 36px;display:inline-block;" src="../../live/uploads/1/image/2026/03/20260310033236462_sv2bk8bvzq2c.png" alt="alaprestamo-youtube" title="全局底部footer适用">
+        </a>
+
+        <a id="footerImgSrc2_m" href="https://www.facebook.com/share/1BQbcFUN5h/" target="_blank" rel="noopener" class="" style="text-decoration: none;display:inline-block;">
+          <img style="width: 36px;height: 36px; margin-left: 15px;display:inline-block;" src="../../live/uploads/1/image/2026/03/20260310033232218_ysg633k7owib.png" alt="alaprestamo-facebook" title="全局底部footer适用">
+        </a>
+
+        <a id="footerImgSrc3_m" href="https://www.tiktok.com/@ala_prestamos?_r=1&amp;_t=ZS-93Iat2GL6Cz" target="_blank" rel="noopener" class="" style="text-decoration: none;display:inline-block;">
+          <img style="width: 36px;height: 36px; margin-left: 15px;display:inline-block;" src="../../live/uploads/1/image/2026/03/20260310033220973_y0zpm4fgzo41.png" alt="alaprestamo-tiktok" title="全局底部footer适用">
+        </a>
+
+      </div>
+<!--      <div style="&#45;&#45;base-mt:60px;font-family: 'Roboto-Medium'" class="ala-size ala-mt img-title">Mapa del sitio web</div>-->
+    </section>
+    <section class="footer-txt-item mtPhone54">
+      <div style="--base-size:28px;--base-mb:18px" class="ala-size ala-mb footer-section-title">Documentos Legales </div>
+      <!-- Contrato de Préstamo：仅一个版本，无下拉，直接点击跳转 -->
+      <div class="footer-span-val">
+        <a href="../../channel/ios_contract/" target="_blank" rel="noopener" class="footer-span-title" id="footerContract" style="text-decoration: none;">Contrato de Préstamo</a>
+        <img style="--base-width:24px;--base-height:24px" class="ala-width ala-height"
+          src="../../live/ala-www/img/footer/arrow_right.png" alt="arrow">
+      </div>
+      <!-- Aviso de Privacidad：hover 下拉 Google Play / App Store -->
+      <div class="footer-dropdown">
+        <div style="--base-mt:12px" class="ala-mt footer-span-val footer-dropdown-trigger" tabindex="0">
+          <span class="footer-span-title" style="text-decoration: none;">Aviso de Privacidad</span>
+          <img style="--base-width:24px;--base-height:24px" class="ala-width ala-height"
+            src="../../live/ala-www/img/footer/arrow_right.png" alt="arrow">
+        </div>
+        <div class="footer-dropdown-menu">
+          <span class="footer-dropdown-line"></span>
+          <div class="footer-dropdown-item">
+            <a href="../../channel/privacy/" class="footer-store-title" id="footerPrivacyGp" style="text-decoration: none; font-size: 14px;font-family:Roboto;font-weight:400;">Google Play</a>
+          </div>
+          <div class="footer-dropdown-item">
+            <a href="../../channel/ios_privacy/" class="footer-store-title" id="footerPrivacyAs" style="text-decoration: none; font-size: 14px;font-family:Roboto;font-weight:400;">App Store</a>
+          </div>
+        </div>
+      </div>
+      <!-- Términos y Condiciones de Uso：hover 下拉 Google Play / App Store -->
+      <div class="footer-dropdown">
+        <div style="--base-mt:12px" class="ala-mt footer-span-val footer-dropdown-trigger" tabindex="0">
+          <span class="footer-span-title" style="text-decoration: none;">Términos y Condiciones de Uso</span>
+          <img style="--base-width:24px;--base-height:24px" class="ala-width ala-height"
+            src="../../live/ala-www/img/footer/arrow_right.png" alt="arrow">
+        </div>
+        <div class="footer-dropdown-menu">
+          <span class="footer-dropdown-line"></span>
+          <div class="footer-dropdown-item">
+            <a href="../../channel/regist/" class="footer-store-title" id="footerRegistGp" style="text-decoration: none; font-size: 14px;font-family:Roboto;font-weight:400;">Google Play</a>
+          </div>
+          <div class="footer-dropdown-item">
+            <a href="../../channel/ios_regist/" class="footer-store-title" id="footerRegistAs" style="text-decoration: none; font-size: 14px;font-family:Roboto;font-weight:400;">App Store</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- 底部图文配置（后台区块 footer_custom）：图片 + 富文本摘要，九宫格布局 -->
+  <div class="footer-custom-box">
+  </div>
+
+  <div class="rate-info-row" style="margin-top: 100px;">
+    <div class="col-12 rate-info-container">
+      Los montos de los préstamos van desde $100 MXN hasta $50,000 MXN, con plazos de pago flexibles de 61 a 154 días. La tasa de interés diaria comienza en 0.1% (equivalente a una tasa de interés anual del 36%). El CAT promedio es de 548.61% sin IVA, calculado al 30 de junio de 2026, para fines informativos y de comparación. Ejemplo representativo: Si solicitas un préstamo de $5,000 MXN con un plazo de 61 días, pagarás un total de $5,353.80 MXN en 4 pagos. Este total incluye $305 MXN de intereses (calculados a una tasa diaria de 0.1%) y $48.80 MXN de IVA.
+    </div>
+  </div>
+</div>
+
+<style>
+  .help-float {
+    position: fixed;
+    /* qr-code: bottom 100 + height 180 + 间距 12 */
+    bottom: 238px;
+    right: 50px;
+    width: 346px;
+    z-index: 102;
+    display: none; /* 初始隐藏，由入口点击展开 */
+  }
+  .help-float.open {
+    display: block; /* PC：右上浮窗 */
+  }
+  .help-float-card {
+    background: #fff;
+    border-radius: 16px;
+    position: relative;
+  }
+  .help-float-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    border: none;
+    background: transparent;
+    font-size: 22px;
+    line-height: 1;
+    color: #96989C;
+    cursor: pointer;
+    z-index: 2;
+  }
+  .help-float-header {
+    padding: 20px 24px;
+    border-bottom: 1px solid #F2F2F7;
+  }
+  .help-float-title {
+    font-family: 'Roboto-Bold';
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: 0;
+    text-align: left;
+    color: #1E1F22;
+    margin: 0;
+    padding-right: 24px;
+  }
+  .help-float-body {
+    padding: 24px 27px;
+  }
+  .help-float-row1 {
+    display: flex;
+    align-items: center;
+  }
+  .help-float-avatar {
+    width: 40px;
+    height: 40px;
+    margin-right: 14px;
+    border-radius: 12px;
+    object-fit: cover;
+  }
+  .help-float-info {
+    text-align: left;
+  }
+  .help-float-name {
+    font-family: 'Roboto-Bold';
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: 0;
+    text-align: left;
+    margin: 0 0 2px;
+    color: #1E1F22;
+  }
+  .help-float-role {
+    font-family: 'Roboto-Regular';
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 20px;
+    letter-spacing: 0;
+    text-align: left;
+    margin: 0;
+    color: #1E1F22;
+  }
+  .help-float-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #107838;
+    border-radius: 10px;
+    margin-top: 24px;
+    margin-bottom: 14px;
+    padding: 11px;
+    width: 100%;
+    box-sizing: border-box;
+    text-decoration: none;
+  }
+  .help-float-btn img {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+  }
+  .help-float-btn span {
+    font-family: 'Roboto-Bold';
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: 0;
+    text-align: center;
+    color: #fff;
+  }
+  .help-float-footer {
+    font-family: 'Roboto-Regular';
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0;
+    text-align: center;
+    color: #1E1F22;
+    margin: 0;
+  }
+  .help-float-link {
+    color: #173CFF;
+    text-decoration: underline;
+  }
+  @media screen and (max-width: 991px) {
+    .help-float {
+      bottom: auto;
+      right: auto;
+      width: auto;
+    }
+    .help-float.open {
+      display: flex;
+      position: fixed;
+      inset: 0;
+      background: #00000066; /* 蒙层 */
+      align-items: flex-end;  /* 弹窗从底部弹出 */
+      justify-content: center;
+      z-index: 1000;
+    }
+    .help-float-card {
+      width: 100%;            /* 充满屏幕宽度 */
+      border-radius: 16px 16px 0 0; /* 顶部圆角，底部贴底 */
+      animation: helpFloatSlideUp 0.3s ease;
+    }
+  }
+  @keyframes helpFloatSlideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+  }
+</style>
+
+<div class="help-float" id="helpFloat">
+  <div class="help-float-card">
+    <button class="help-float-close" id="helpFloatClose" type="button" aria-label="Cerrar Centro de ayuda">×</button>
+    <div class="help-float-header">
+      <h3 class="help-float-title">Centro de ayuda</h3>
+    </div>
+    <div class="help-float-body">
+      <div class="help-float-row1">
+        <img class="help-float-avatar" src="../../live/ala-www/img/sofia-avatar.webp" alt="Sofía">
+        <div class="help-float-info">
+          <p class="help-float-name">Habla con Sofía.</p>
+          <p class="help-float-role">Tu asesora de ALA</p>
+        </div>
+      </div>
+      <a class="help-float-btn" href="../help-center/">
+        <img src="../../live/ala-www/img/whatsapp.webp" alt="WhatsApp">
+        <span>Iniciar conversación</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<style>
+  .qr-code {
+    width: 220px;
+    height: 180px;
+    padding: 13px 14px;
+    background: linear-gradient(to bottom right, #294BFFFF, #667EFFFF);
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    z-index: 10;
+  }
+  .qr-image {
+    width: 88px;
+    height: 88px;
+    border-radius: 6px;
+  }
+  .logo-image {
+    width: 24px;
+    height: 24px;
+    margin-top: 4px;
+  }
+  .qr-content {
+    margin-top: 15px;
+    font-size: 20px;
+    font-family: 'Roboto-Bold';
+    color: #FFFFFF;
+  }
+  .qr-row {
+    display: flex;
+  }
+  .chat-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: rgba(16, 43, 181, 1);
+    border-radius: 12px;
+    margin-top: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    cursor: pointer;
+  }
+  .chat-btn-icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 10px;
+  }
+  .chat-btn-text {
+    font-family: 'Roboto-Regular';
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0px;
+    text-align: left;
+    color: #FFFFFF;
+  }
+  @media screen and (max-width: 991px) {
+    .qr-code {
+      display: none;
+    }
+  }
+</style>
+<div class="qr-code">
+  <div class="qr-row">
+    <div>
+      <img src="../../live/ala-www/img/ala-logo.png" class="logo-image" />
+      <div class="qr-content">Escanea y descarga</div>
+    </div>
+    <img src="../../live/ala-www/img/qr-code.png" class="qr-image" />
+  </div>
+  <div class="chat-btn">
+    <img src="../../live/ala-www/img/contact-s.webp" class="chat-btn-icon" />
+    <span class="chat-btn-text">Chats en línea</span>
+  </div>
+</div>
+<style>
+  .mobile-entry {
+    width: 100%;
+    height: 72px;
+    background: #fff;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 10000;
+    overflow-x: hidden;
+  }
+  .mobile-entry-box {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  .mobile-entry-wrap {
+    box-sizing: border-box;
+    width: 100%;
+    padding-top: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .mobile-button-tip {
+    font-size: 13px;
+    font-family: "Robot-bold";
+    font-weight: 700;
+  }
+  .mobile-button-wrap {
+    display: flex;
+    height: 42px;
+    justify-content: center;
+    align-items: center;
+  }
+  .mobile-download-button {
+    height: 38px;
+    width: auto;
+  }
+  .m-android-button {
+    margin-right: 7px;
+  }
+  @media screen and (min-width: 992px) {
+    .mobile-entry {
+      display: none;
+    }
+  }
+  @media screen and (max-width: 360px) {
+    .mobile-button-tip {
+      font-size: 12px;
+    }
+  }
+</style>
+<div class="mobile-entry" id="mobile-entry" hidden>
+   <div class="mobile-entry-box">
+      <div class="mobile-entry-wrap">
+        <div class="mobile-button-tip">Descargar ALA</div>
+        <div class="mobile-button-wrap">
+          <img src="../../live/ala-www/img/home-download-google-m.png" alt="Botón descargar ALA desde Google Play" class="mobile-download-button m-android-button"/>
+          <img src="../../live/ala-www/img/home-download-ios-m.png" class="mobile-download-button m-apple-button" alt="Botón descargar ALA desde App Store"/>
+        </div>
+      </div>
+    </div>
+</div>
+
+</body>
+
+<script>
+  // FAQ Toggle - Accordion mode
+  // 用 scrollHeight 动态测量内容实际高度，让过渡距离精确等于内容高度，避免固定 max-height 造成的卡顿/空白
+  function collapseFaq(item) {
+    const answer = item.querySelector('.faq-answer');
+    if (!answer) return;
+    // 先锁定当前实际高度，强制重排后再归零，确保浏览器记录起点、平滑过渡到 0
+    const h = answer.scrollHeight;
+    answer.style.maxHeight = h + 'px';
+    void answer.offsetHeight;
+    requestAnimationFrame(() => {
+      answer.style.maxHeight = '0px';
+    });
+    item.classList.remove('active');
+  }
+
+  function expandFaq(item) {
+    const answer = item.querySelector('.faq-answer');
+    if (!answer) return;
+    item.classList.add('active');
+    // 精确设置为目标内容高度，过渡距离 = 实际内容高度
+    answer.style.maxHeight = answer.scrollHeight + 'px';
+    // 仅移动端：展开动画结束后解除 max-height 锁定，
+    // 避免旋转屏幕 / 系统字体变化时内容被 overflow:hidden 截断。
+    // PC 走不到这里，样式与功能均不变。
+    if (window.matchMedia('(max-width: 768px)').matches) {
+      const onEnd = function (e) {
+        if (e.propertyName !== 'max-height') return;
+        if (item.classList.contains('active')) {
+          answer.style.maxHeight = 'none';
+        }
+        answer.removeEventListener('transitionend', onEnd);
+      };
+      answer.addEventListener('transitionend', onEnd);
+    }
+  }
+
+  function toggleFaq(element) {
+    const faqItem = element.parentElement;
+    const allFaqItems = document.querySelectorAll('.faq-item');
+    const isActive = faqItem.classList.contains('active');
+
+    // 收起其他打开的项
+    allFaqItems.forEach(item => {
+      if (item !== faqItem && item.classList.contains('active')) {
+        collapseFaq(item);
+      }
+    });
+
+    // 切换当前项
+    if (isActive) {
+      collapseFaq(faqItem);
+    } else {
+      expandFaq(faqItem);
+    }
+  }
+</script>
+
+<script src="../../live/ala-www/js/motion.js" defer></script>
+</html>

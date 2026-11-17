@@ -1,0 +1,20 @@
+/* City detail page styles */
+.breadcrumb-wrap-in {
+  position: sticky;
+  --base-top: 72px;
+  z-index: 100;
+  --base-mt: 188px;
+  background: white;
+  --base-pl: 400px;
+  --base-pr: 400px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.innerDiv {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.card-des {
+  flex: 1;
+}

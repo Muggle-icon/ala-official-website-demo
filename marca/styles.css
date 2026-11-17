@@ -73,13 +73,6 @@ body {
   overflow-x: auto;
 }
 
-@media (max-width: 374px) {
-  html,
-  body {
-    min-width: 375px;
-  }
-}
-
 main {
   padding-top: var(--nav-height);
 }

@@ -1,0 +1,12 @@
+.ala-legal-document {
+  width: min(100%, 1040px);
+  margin-inline: auto;
+  padding: clamp(12px, 2.5vw, 32px) clamp(12px, 3vw, 28px) clamp(24px, 4vw, 60px);
+}
+
+.ala-legal-document iframe {
+  display: block;
+  width: 100%;
+  min-height: 75svh;
+  border: 0;
+}

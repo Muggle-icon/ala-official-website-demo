@@ -1,0 +1,1266 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+
+<head>
+  <title>Blog - ALA</title>
+  <meta charset="utf-8" />
+  <meta name="description" content="" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="renderer" content="webkit">
+<!-- 浏览器标签图标（保持原样） -->
+<link rel="icon" type="image/png" href="../../live/ala-www/img/logo.png" />
+<!-- 搜索引擎优先使用根目录favicon.ico -->
+<link rel="icon" type="image/x-icon" href="../../live/favicon.ico">
+<!-- 备用PNG格式图标 -->
+<link rel="icon" type="image/png" sizes="32x32" href="../../live/ala-www/img/logo.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../live/ala-www/img/logo.png">
+<!-- Apple Touch Icon (iOS设备) -->
+<link rel="apple-touch-icon" href="../../live/ala-www/img/logo.png">
+<link rel="stylesheet" href="../../live/ala-www/vendor/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../live/ala-www/css/main.css">
+  <link rel="stylesheet" href="../../live/ala-www/css/custom.css">
+  <link rel="stylesheet" href="../../live/ala-www/css/custom-links.css">
+  <link rel="stylesheet" href="../../live/ala-www/css/swiper.min.css" />
+  <link rel="stylesheet" href="../../live/ala-www/css/animate.min.css" />
+  <link rel="stylesheet" href="../../live/blog/ala-www/css/blog-page.css" />
+<!-- 核心脚本 - 保持同步加载 -->
+<script src="../../live/ala-www/vendor/jquery/dist/jquery.min.js"></script>
+<script src="../../live/ala-www/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../../live/ala-www/vendor/axios/dist/axios.min.js" defer></script>
+<!-- ala-f 流体缩放因子：--fluid-scale = min(1, 视口宽/设计稿宽, 视口高/设计稿高)，供 .ala-f-* 引擎使用（设计稿基准从 :root 的 --ala-design-w/h 读取） -->
+<script>
+  (function () {
+    function setFluidScale() {
+      var cs = getComputedStyle(document.documentElement);
+      var w = parseFloat(cs.getPropertyValue('--ala-design-w')) || 1920;
+      var h = parseFloat(cs.getPropertyValue('--ala-design-h')) || 1080;
+      var s = Math.min(1, window.innerWidth / w, window.innerHeight / h);
+      document.documentElement.style.setProperty('--fluid-scale', s);
+    }
+    window.addEventListener('resize', setFluidScale);
+    window.addEventListener('orientationchange', setFluidScale);
+    setFluidScale();
+  })();
+</script>
+<script src="../../live/ala-www/js/swiper.min.js" defer></script>
+  <script src="../../live/ala-www/js/swiper.animate1.0.3.min.js" defer></script>
+
+
+<meta name="robots" content="noindex,nofollow">
+<link rel="stylesheet" href="../../live/blog/blog-content.css">
+<script src="../../live/blog/blog-runtime.js"></script>
+  <link rel="stylesheet" href="../../shared/site-header.css?v=fa7d3493ca">
+  <script src="../../shared/site-header.js?v=79b12105f8" defer></script>
+</head>
+
+<body>
+  <!-- ALA header start -->
+<div class="ala-site-chrome">
+  <a class="ala-header-skip" href="#ala-content">Ir al contenido</a>
+  <header class="ala-header-bar">
+    <div class="ala-header-frame">
+      <a class="ala-header-logo" href="../../" aria-label="ALA, inicio">
+        <img class="ala-header-icon" src="../../live/ala-www/img/logo.png" width="36" height="36" alt="">
+        <img class="ala-header-wordmark" src="../../live/ala-www/img/alaText.png" width="52" height="16" alt="">
+        <img class="ala-header-wordmark ala-header-wordmark--white" src="../../live/ala-www/img/alaTextWhite.png" width="52" height="16" alt="">
+      </a>
+      <button class="ala-header-menu" type="button" aria-label="Abrir menú" aria-controls="ala-nav" aria-expanded="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+      <nav class="ala-header-nav" id="ala-nav" aria-label="Navegación principal">
+        <ul class="ala-header-list">
+        <li class="ala-header-item"><a class="ala-header-link" href="../../">Introducción del producto</a></li>
+        <li class="ala-header-item"><a class="ala-header-link" href="../../channel/loan_protection/">Protección regulatoria</a></li>
+        <li class="ala-header-item ala-header-item--blog">
+          <a class="ala-header-link" href="../../channel/loan_blog/" aria-current="page">Blog</a>
+          <button class="ala-header-trigger" type="button" aria-label="Categorías de Blog" aria-controls="ala-blog-nav" aria-expanded="false"><span class="ala-header-chevron" aria-hidden="true"></span></button>
+          <div class="ala-header-drop" id="ala-blog-nav" hidden>
+            <ul class="ala-header-drop-list">
+              <li><a class="ala-header-link" href="../../channel/guia-de-prestamos/">Guía de préstamos</a></li>
+              <li><a class="ala-header-link" href="../../channel/loan_financiero/">Diccionario financiero</a></li>
+              <li><a class="ala-header-link" href="../../channel/noticias-financieras/">Noticias financieras</a></li>
+              <li><a class="ala-header-link" href="../../channel/loan_city/">Préstamo en tu ciudad</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="ala-header-item"><a class="ala-header-link" href="../../channel/loan_faq/">Ayuda</a></li>
+        <li class="ala-header-item"><a class="ala-header-link" href="../../channel/about-ala/">Acerca de ALA</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+</div>
+<!-- ALA header end -->
+<div id="ala-content" tabindex="-1"></div>
+  <div id="messageContainer"></div>
+  <div class="ala-mt ala-top ala-pl ala-pr breadcrumb-wrap-in">
+<style>
+  ol{
+    margin-bottom: 0;
+  }
+  .list-inline-item>a {
+    text-decoration: none;
+    color: #666666;
+  }
+
+  .list-inline-item {
+    margin-right: 0 !important;
+  }
+
+  .list-inline .list-inline-item:last-child>a {
+    color: #000000;
+    cursor: text;
+  }
+</style>
+<div class="ala-top breadcrumb-wrap d-none d-lg-block">
+  <nav class="" aria-label="breadcrumb" style="text-decoration: none;">
+    <ol class="ala-size list-inline" style="--base-size:26px;">
+      <li class="list-inline-item"><a href="../../" style="text-decoration: none; color: #666666;">ALA</a></li>
+      <li class="list-inline-item">
+        <img src="../../live/blog/ala-www/img/common/arrow-right-bread.svg" alt="" class="ala-width ala-height ala-ml ala-mr"
+          style="--base-width: 14px;--base-height: 30px;--base-ml: 20px;--base-mr: 20px;">
+<a href="././" title="Blog">Blog</a>      </li>
+    </ol>
+  </nav>
+</div>
+</div>
+  <div class="ala-ml ala-mr ala-pl ala-pr blog-container">
+    <div class="ala-height ala-mt ala-mb ala-mr ala-ml ala-radius blog-banner-wrap motion-element">
+      <h1 class="ala-size ala-lh blog-title"
+        style="--base-size: 72px; --base-lh: 72px; font-weight: 700; color: #ffba01">Blog</h1>
+      <div class="ala-size ala-lh ala-mt blog-des"
+        style="--base-mt: 20px; --base-size: 34px; --base-lh: 34px; font-weight: 700; color: #ffffff">de préstamos ALA
+      </div>
+    </div>
+    <div id="top-article-container" class="ala-mr ala-ml d-none d-lg-block"></div>
+    <div id="mobile-top-article-container" class="ala-mr ala-ml d-lg-none"></div>
+
+    <div class="d-none d-lg-block">
+      <div class="ala-mt ala-ml ala-mr swiper-article-wrap motion-element">
+        <div class="swiper-article swiper-wrapper"></div>
+        <div class="swiper-article-mask">
+          <img src="../../live/blog/ala-www/img/blog-article-mask.png" />
+        </div>
+      </div>
+      <div class="ala-mt ala-ml ala-mr swiper-article-navigtion motion-element">
+        <button class="ala-height ala-width swiper-article-navigtion-right"
+          style="--base-width: 60px; --base-height: 60px;"></button>
+        <button class="ala-ml ala-height ala-width swiper-article-navigtion-left"
+          style="--base-ml: 32px; --base-width: 60px; --base-height: 60px;"></button>
+      </div>
+    </div>
+
+    <div class="mobile-blog-swiper1 d-lg-none">
+      <div class="swiper" id="blog-swiper1-mobile">
+        <div class="swiper-wrapper"></div>
+      </div>
+      <div class="mobile-blog-swiper1-navigtion">
+        <button class="mobile-blog-swiper1-navigtion-right" style="width: 44px;height: 44px"></button>
+        <button class="mobile-blog-swiper1-navigtion-left" style="width: 44px;height: 44px;"></button>
+      </div>
+    </div>
+
+    <div class="ala-size ala-lh ala-mt title-wrap motion-element " style="--base-mt: 160px">
+      <span style="display: inline-block; width: 75%">Secciones</span>
+    </div>
+    <div style="transform: scale(0.9)">
+      <div class="ala-mt swiper-menu-wrap d-none d-lg-block motion-element  ala-mr ala-ml" style="overflow-x: hidden; --base-mr: 128px; --base-ml: 128px;">
+        <div class="blog-menu-wrap swiper-wrapper"></div>
+      </div>
+    </div>
+
+    <div class="mobile-blog-menu d-lg-none">
+      <div class="swiper" id="mobileBlogMenuSwiper">
+        <div class="swiper-wrapper"></div>
+      </div>
+    </div>
+
+    <div class="ala-mt blog-bottom-wrap motion-element"
+      style="--base-mt: 185px; width: 100%; overflow: hidden; background-color: #ffffff">
+      <div class="ala-size ala-lh ala-mt title-wrap" style="--base-mt: 160px">
+        <span class="ala-width" style="display: inline-block; --base-width: 1120px;">Más contenido</span>
+      </div>
+      <div class="ala-mt ala-mr ala-mb ala-ml ala-gap blog-tag-box">
+        <button class="ala-height ala-width blog-tag-navigtion-right" style=""></button>
+        <div class="blog-tag-wrap-box">
+          <div class="blog-tag-wrap">
+            <div class="blog-swiper-contailer swiper-wrapper">
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="Todo">Todo</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="100866747192005633">Cómo elegir un préstamo personal en México según tu capacidad de pago</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="100130165386192385">¿Qué hacer ante la presunta suplantación de ALA o dudas sobre el proceso de cobranza?</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="100129085958465025">¿Qué pasa si tengo un atraso en mi préstamo ALA?</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="98919949525079554">Cómo identificar préstamos en línea seguros en México: guía para evitar fraudes y elegir con confianza</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="98919710839922690">Cómo identificar préstamos en línea seguros en México</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="97331355251241985">Solicitar un préstamo: 3 errores que debes evitar</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="96923634130949634">¿Cómo funciona el proceso de control de riesgos en créditos en línea y por qué recopilamos sus datos?</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="96923204543931393">Tasa de interés, comisiones y CAT: ¿Cómo entender el costo real de un crédito?</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="96696063139714562">Préstamos de día de pago en México: ventajas, riesgos y alternativas</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="96650593942050306">Disfruta Cancún sin preocupaciones: Guía de viaje y finanzas</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="95741740633270274">¿Por qué mi primer préstamo en línea es tan bajo?</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="95509687776703490">¿Cómo identificar un sitio web oficial de préstamos y evitar fraudes?</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="95144681278366722">¿Por qué rechazan mi solicitud de préstamo en línea?</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="94783149801149953">¿Cómo leer un contrato de préstamo? Guía paso a paso</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="94519732195145217">¿Cómo presentar una reclamación ante la CONDUSEF en CDMX?</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="94466181593413121">¿Para qué sirve el reconocimiento facial al solicitar un préstamo?</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="94390256784530433">¿Qué es el comprobante de ingresos para solicitar préstamos en CDMX?</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="94377935643237377">Cómo verificar una app de préstamo en el SIPRES de CONDUSEF en CDMX</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="94163658799799809">¿Cómo checar números telefónicos de préstamos en Aguascalientes?</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="94104947459513345">Lugares donde solicitar préstamos en Querétaro</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="93785535221750785">¿Cómo solicitar préstamos en efectivo en Walmart Mexicali? </div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="93573961847889410">Las 5 mejores opciones de préstamos urgentes y sin buró en Monterrey</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="93515242679262722">Deducible y Coaseguro: ¿Cómo elegir para no perder dinero?</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="93256786782181889">Cómo usar la CONDUSEF para que no te estafen</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="92880911902940162">¿Préstamo muy bajo? Haz esto para subir tu límite</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="92880832733503490">La verdad sobre el Buró de Crédito y cómo repararlo</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="92034687285042177">¿Cómo funciona el pago sin intereses? </div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="92019623241048066">¿Cómo eliminar tus datos de apps de préstamos?</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="91944474671294465">¿Cuáles son los 7 tipos de préstamos?</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="91672720427856386">¿Cuál es el proceso de aprobación de un préstamo?</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="91670655876701185">¿Cuánto es un buen límite de crédito?</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="91669913626615298">¿Qué pasa si gasto todo mi crédito?</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="91582236543654913">¿Por qué motivos puedo retirar dinero de mi Afore?</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="91033754497705474">Diferencia entre CLABE y número de cuenta</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="90719549271978497">Qué hacer si no te pagan la tanda en México</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="90719505653687809">¿Cuánto cuesta un divorcio rápido y barato en 2026?</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="90629261453420033">Problemas al cobrar incapacidad por maternidad</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="90584621377008129">Lo que debes hablar antes de casarte por el civil en México</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="90403015977412098">¿Cuál es el costo del pasaporte mexicano en 2026?</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="90402959663240705">Cómo usar tu prima vacacional de forma inteligente</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="90357712950631426">¿Por qué se regalan flores amarillas el 21 de marzo?</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="90357641028803585">Cómo hacer una fiesta de cumpleaños con poco dinero</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="90312418094283778">¿Qué puedo reciclar y vender para ganar dinero en México?</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="90312332340165633">¿Cuál es la regla 3, 6 y 9 del dinero?</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="90312275642612737">¿Cuáles son los 5 hábitos que la gente rica no te contará?</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="90267532752076801">¿Qué es un crédito educativo y cómo funciona?</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="90132441420191746">Crédito Cash: Cómo Conseguir Dinero Rápido y Fácil</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="90086443518541825">¿Cómo dejar de pedir dinero prestado?</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="90072077713436674">¿Quién está detrás de ALA Préstamos? </div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="90072016271826946">¿Cuánto dinero deberías pedir prestado? Guía  con ALA préstamos</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="90071841552326657">Estrés financiero: ¿Por qué el cerebro nos traiciona y nos impulsa a pedir más crédito?</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="89995723169108994">Consejos para pedir dinero en ALA préstamos</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="89995639131509762">¿Cuánto dinero necesitas para asegurar tu auto en México?</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="89995409896495617">¿Cómo registrarse en ALA préstamos?</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="89984367905772546">¿Cómo cubrir gastos durante un puente largo?</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="89950379506439170">¿Qué hacer si mi empresa no me paga el triple en días festivos? </div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="89950333476574209">¿Qué pasa si no tienes seguro médico en México? </div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="89815738922341377">Por qué las ofertas nos hacen gastar más: La psicología detrás del descuento</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="89815635409540097">¿Cómo Controlar tus Gastos Diarios y Ahorrar con Éxito?</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="89815516863304705">Consejos para manejar compras grandes: Guía completa para una salud financiera sólida</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="89770222661392897">Guía Completa: Consejos para Controlar Gastos en Celebraciones Familiares sin Perder la Alegría</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="89770156686611458">¿ALA préstamos cuánto dinero me puede prestar? Guía completa 2026</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="89769549089200641">¿ALA préstamos es confiable? Todo lo que debes saber antes de solicitar crédito online en México</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="89723721510803969">Contrata un seguro para tu mascota: Preparación financiera para el amor y la responsabilidad en México</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="89723680458529282">¿Qué regalar el Día Internacional de la Mujer? Prepara un detalle con significado para las mujeres en tu vida en México</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="89679373011293186">¿Es buena idea pedir un préstamo para comprar un celular? Guía racional para usuarios en México</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="89679297821006338">¿Problemas de capital en su negocio? Elija los préstamos en línea de ala México para un flujo de capital más eficiente</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="89361994280065538">Cómo evitar Fraudes de Préstamos en Torreón y elegir opciones seguras</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="89223338781348866">Guía Económica de Saltillo 2026: El Motor Industrial de México y Oportunidades de Inversión</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="89171000709387266">Operaciones Causantes de Pasivo Contingente: Guía de Gestión de Riesgos</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="89170881030642177">¿Qué son las Pérdidas Esperadas Totales y por qué ignorarlas puede hundir tu cartera?</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="89100143899743234">Inflexión histórica en el mercado de capitales: entre la expansión de múltiplos y el riesgo de complacencia</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="89100010212022786">¿Qué hacer si no puedo pagar el hospital?</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="89037677983947265">¿Cómo usar ALA Préstamo para pedir dinero?</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="88894372262435329">Cuando la universidad se encarece de golpe: cómo cubrir gastos inesperados sin desordenar tus finanzas</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="88851534915605505">Reservas Admisibles Totales: definición, alcance y criterios regulatorios</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="88803617483774466">Razones Financieras: Qué Son y Por Qué Importan en la Gestión Empresarial</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="88803072791057409">Operaciones en finanza: qué son, cómo funcionan y por qué son clave en la economía</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="88725828305458177">¿Amenazas de apps de préstamo en México? Lo que sí cumplen, lo que no y cómo proteger tu lana</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="88715614633120258">Rendimiento sobre el Capital (ROE): Qué es y cómo interpretarlo</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="88668396382376449">El Motor Mexicano en una Encrucijada: Entre el Récord Histórico y la Sombra Arancelaria</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="88668279805044225">¿Qué es la Unidad Especializada y por qué es tu mejor guardaespaldas ante los bancos?</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="88501133420520962">Diccionario Financiero: ¿Qué es el Plazo Efectivo o de Vencimiento (V)?</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="88454938755308546">Guía Completa de las Unidades de Inversión (UDIs): Qué son y cómo protegen tu dinero</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="88365107166394882">Pérdida en Caso de Incumplimiento (Loss Given Default - LGD)</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="88229305675652098">Ventas Netas vs. Ingresos Netos: Guía para no confundir facturación con ganancia</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="88229169022082050">Préstamos sin intereses: guía práctica para pedir dinero sin pagar extra</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="88223927791335938">Quitas, condonaciones, bonificaciones y descuentos: ¿Qué son y cómo usarlos para liquidar tus deudas?</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="88223808753998849">¿Te deben dinero y no te pagan? Guía para recuperar tu préstamo sin perder la calma</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="88138881148992001">¿Préstamo familiar o dolor de cabeza? Cómo ayudar sin poner en riesgo tu lana </div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="88138685390862850">Periodo de Facturación: Guía completa para entender tus finanzas</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="88093129783304705">El Avance de la Informalidad: Un Diagnóstico del Estancamiento y su Impacto en el Patrimonio Familiar</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="88092817766408705">¿Qué son los préstamos interbancarios y por qué te conviene saber quién se presta lana con quién?</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="88092527773803010">¿Tu dinero rinde menos? 3 formas en que la inflación está golpeando el bolsillo de los mexicanos en 2026</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="88092373980257281">Reglas de Capitalización: qué son, para qué sirven y cómo funcionan</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="88033298727279618">Operaciones sujetas a riesgo de crédito: conceptos clave y aplicaciones reales</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="87868583320412674">Digitalización y Ahorro en 2026: La Tecnología como Herramienta de Gestión Financiera</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="87868531406987778">Si las apps de préstamos te acosan, cómo protegerte</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="87868471737246209">Remuneración ordinaria: qué es y cómo funciona</div>
+              </div>
+              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
+                <div class="ala-size ala-lh blog-tag-name" data-tagId="87854328263250946">Probabilidad de Incumplimiento (PI): Qué es, cómo se calcula y por qué define tu acceso al crédito</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button class="ala-height ala-width blog-tag-navigtion-left" style=""></button>
+      </div>
+
+      <div id="blogList" class="ala-pl ala-pr ala-mt ala-mr ala-ml"></div>
+      <div class="more-articles-container">
+        <div class="ala-height ala-mt ala-mb more-article-button d-none d-lg-block appendArticlesButton">
+          <img class="ala-height" src="../../live/blog/ala-www/img/blog-more-button-pc.png" onclick="loadMoreArticles()" />
+        </div>
+        <div class="more-article-button-mobile d-lg-none appendArticlesButton">
+          <img src="../../live/blog/ala-www/img/blog-more-button-mobile.png" onclick="loadMoreArticles()" />
+        </div>
+        <div id="noMoreTips" class="text-center text-muted res-mt" style="display: none;"></div>
+      </div>
+    </div>
+  </div>
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  .pc-footer-container {
+    background-color: #1b1e28;
+    color: #fff;
+    position: relative;
+    z-index: 1;
+    overflow: visible;
+  }
+
+  .footer-section-title {
+    font-family: 'Roboto';
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 33px;
+    letter-spacing: 0px;
+    text-align: left;
+    margin-bottom: 18px;
+  }
+
+  .pc-footer-container .footer-span-val {
+    color: #fff;
+    margin-top: 8px;
+    font-family: 'Roboto';
+  }
+
+  .pc-footer-container .footer-span-title {
+    color: #96989c;
+  }
+
+  .title-pointer {
+    cursor: pointer;
+  }
+  .hot-articles{
+    --base-pr:20px
+  }
+
+  .hot-articles .hot-item {
+    --base-pt: 14px;
+    --base-pr: 16px;
+    --base-pb: 14px;
+    --base-pl: 16px;
+    --base-mt: 18px;
+    --base-radius: 12px;
+    color: #96989C;
+    --base-size: 16px;
+    background-color: #272B37;
+
+  }
+
+  .hot-articles .hot-time {
+    --base-mt: 8px;
+  }
+
+  .hot-articles .hot-item-arrow {
+    --base-mt: 18px;
+    border-radius: 12px;
+    color: #96989C;
+    --base-size: 16px;
+    text-align: end;
+    cursor: pointer;
+  }
+
+ .pc-footer-container .img-title{
+  font-family: 'Roboto-Medium';
+  --base-size:42px;
+ }
+
+  .rate-info-container {
+    font-family: 'Roboto';
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    color: #96989C;
+    letter-spacing: 0;
+  }
+  .footer-txt-item-box{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 120px;
+  }
+  .footer-txt-item{
+    min-width: 0;
+  }
+
+
+  @media (max-width: 1024px) {
+    .pc-footer-container {
+      padding: 56px 24px 72px 24px !important;
+      background-color: #1b1e28;
+      color: #fff;
+    }
+    .footer-txt-item-box{
+      display: block !important;
+      gap: 0;
+    }
+
+    .pc-footer-container .footer-span-val {
+      color: #fff;
+    }
+    .foot-span-color{
+      color: #96989C !important;
+    }
+
+    .pc-footer-container .footer-span-title {
+      color: #96989C;
+    }
+
+    .pc-footer-container .condusef {
+      width: 108px;
+      height: 42px;
+    }
+    .footer-link-row-box{
+      margin-bottom: 32px;
+    }
+    .mtPhone25{
+      margin-top: 25px !important;
+    }
+    .mtPhone54{
+      margin-top: 54px !important;
+    }
+
+    .pc-footer-container .profeco {
+      width: 42px;
+      height: 42px;
+      margin-left: 36px;
+    }
+
+    .hot-articles .hot-item {
+      background-color: #E6E8EE;
+      color: #4D525D;
+    }
+
+    .hot-articles .hot-item .hot-title {
+      font-size: 13px;
+      height: auto! important;
+    }
+
+    .footer-section-title {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    .row {
+      margin-top: 0 !important;
+    }
+
+    .rate-info-container {
+      font-size: 14px;
+      line-height: 18px;
+      color: #96989C;
+      padding: 0;
+    }
+
+    .rate-info-row {
+      margin-top: 72px !important;
+    }
+    .footer-contact-link-row a {
+      color: #fff !important;
+      font-size: 14px;
+    }
+    /* 移动端无 hover：下拉内容直接展开，保证可点击访问 */
+    .footer-dropdown-menu {
+      position: relative;
+      display: block;
+      background: transparent;
+      padding: 0 0 0 9px;
+      border-radius: 0;
+    }
+    .footer-dropdown-item {
+      padding: 6px 0;
+    }
+    .footer-custom-box{
+      display: block !important;
+    }
+    .footer-custom-item{
+      margin-bottom: 40px;
+    }
+    .footer-custom-item-desc{
+      color: #fff;
+    }
+    .footer-custom-item-desc a{
+      color: #fff;
+      text-decoration: underline;
+    }
+  }
+
+  /* 联系入口行 */
+  .footer-contact-link-row {
+    display: flex;
+    align-items: center;
+    margin-top: 18px;
+  }
+  .footer-contact-link-icon {
+    width: 32px;
+    height: 32px;
+    margin-right: 6px;
+    object-fit: contain;
+  }
+  .footer-contact-link {
+    font-family: 'Roboto-Regular';
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 19px;
+    letter-spacing: 0px;
+    text-align: left;
+    color: #ffffff;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  .footer-contact-link:hover,
+  .footer-contact-link:visited {
+    color: #ffffff;
+  }
+
+  /* ── Documentos Legales 下拉菜单（Aviso de Privacidad / Términos y Condiciones de Uso） ── */
+  .footer-dropdown {
+    position: relative;
+    cursor: pointer;
+  }
+  .footer-dropdown-menu {
+    display: none;
+    position: relative;          /* 占位展开：hover 时把下方内容挤下去，不再遮住 */
+    min-width: 180px;
+    background: transparent;     /* 无背景 */
+    border-radius: 0;
+    padding: 0 0 0 24px;          /* 左侧 9px 给竖线留空间（1px 线 + 8px 间距） */
+  }
+  .footer-dropdown:hover .footer-dropdown-menu {
+    display: block;
+  }
+  .footer-dropdown-item {
+    display: flex;
+    align-items: center;
+    padding: 6px 0;
+    white-space: nowrap;
+  }
+  .footer-dropdown-line {
+    position: absolute;          /* 竖线贴在菜单左侧，高度贯穿两个 item */
+    left: 14px;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: rgba(255, 255, 255, 0.24);
+  }
+  /* 下拉链接：默认 #fff 48%，hover 变 #fff */
+  .footer-store-title {
+    color: rgba(255, 255, 255, 0.48);
+    transition: color 0.2s;
+  }
+  .footer-store-title:hover {
+    color: #fff;
+  }
+
+  /* ── 底部图文配置（后台区块 footer_custom）：九宫格图文 ── */
+  .footer-custom-box{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 120px;
+    row-gap: 86px;
+    margin-top: 86px;
+  }
+  .footer-custom-item{
+    min-width: 0;
+    text-align: left;
+  }
+  .footer-custom-item-img{
+    margin-bottom: 24px;
+  }
+  .footer-custom-item-img img{
+    height: 64px;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+  }
+  .footer-custom-item-desc{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1;
+    letter-spacing: 0;
+    text-align: left;
+    color: #fff;
+  }
+  .footer-custom-item-desc a{
+    color: #fff;
+    text-decoration: underline;
+  }
+
+</style>
+<div class="ala-pt ala-pr ala-pb ala-pl pc-footer-container" id="footer"
+  style="--base-pt: 96px; --base-pr: 320px; --base-pb: 176px; --base-pl: 320px;">
+  <div style="--base-size:16px" class="ala-size footer-txt-item-box">
+    <section class="footer-txt-item">
+      <div style="--base-size:28px;--base-mb:18px" class="ala-size ala-mb footer-section-title">Contáctanos</div>
+      <div style="--base-mb:32px;" class="ala-mb footer-link-row-box">
+        <div class="ala-mb" style="font-family:Roboto;font-size:14px;font-weight:500;--base-mb:18px;color: #fff;">Si necesitas ayuda, <br/>llama a nuestra línea de atención o envíanos un correo electrónico.</div>
+        <div class="footer-contact-link-row">
+          <img class="footer-contact-link-icon" src="../../live/ala-www/img/contact.webp" alt="contacto" title="footer联系入口">
+          <a href="../help-center/" class="footer-contact-link" id="footerContactLink">Atención en línea</a>
+        </div>
+      </div>
+      <div class="footer-span-title">Teléfono</div>
+      <div class="footer-span-val">
+
+        <span>8009530794,8002883450</span>
+      </div>
+      <div style="--base-mt:24px" class="ala-mt footer-span-title mtPhone25">Correo electrónico</div>
+      <div class="footer-span-val">contacto-ala@alaprestamo.com</div>
+      <div style="--base-mt:24px" class="ala-mt footer-span-title mtPhone25">Horario de atención</div>
+      <div class="footer-span-val">De lunes a domingo, de 9:00 a 18:00.</div>
+      <div style="--base-mt:24px" class="ala-mt footer-span-title mtPhone25">Por favor, envía por correo electrónico el problema que presentas e incluye tu número de teléfono para que podamos confirmarlo contigo y solucionarlo más rápido.</div>
+
+    </section>
+    <section class="footer-txt-item mtPhone54">
+      <div style="--base-size:28px;--base-mb:18px" class="ala-size ala-mb footer-section-title ">Sobre nosotros</div>
+
+      <div class="footer-span-title">Razón social</div>
+      <div class="footer-span-val">Quantum Wealth Solutions, S.A.P.I. DE C.V. SOFOM E.N.R</div>
+
+      <div style="--base-mt:24px" class="ala-mt footer-span-title mtPhone25">Dirección de la empresa</div>
+      <div class="footer-span-val">AV. PASEO DE LA REFORMA 295, PISO 6 OFICINA 1503,
+COL. CUAUHTÉMOC, CUAUHTÉMOC,
+CIUDAD DE MÉXICO, C.P. 06500, MÉXICO</div>
+
+      <div class="ala-mt footer-span-title mtPhone25" style="--base-mt:24px;">Unidad especializada de atención a usuarios (UNE)</div>
+
+      <a href="../../live/legal/docs/une-ala.pdf" target="_blank" style="text-decoration: underline; cursor: pointer; color: inherit; display: block;" class="footer-span-val" id="footerUneAla">UNE ALA</a>
+      <a href="../../live/legal/docs/despacho-de-cobranza.pdf" target="_blank" style="text-decoration: underline; cursor: pointer; color: inherit; display: block;" class="footer-span-val" id="footerUneAla2">Despacho de cobranza</a>
+      <div style="--base-mt:48px; --base-size: 28px;font-family:'Roboto';" class="ala-size ala-mt img-title footer-section-title mtPhone54">Síguenos</div>
+
+      <!-- pc 社媒图标 img -->
+      <div style="--base-mt:18px;  align-items: center;" class="ala-mt img-wrap d-none d-lg-flex custom-footer-icon">
+
+        <a id="footerImgSrc1" href="https://youtube.com/@alaprestamos?si=FPzN9blgS330QpHy" target="_blank" class="" style="text-decoration: none;display:inline-block;">
+          <img loading="lazy" decoding="async" style="width:36px;height:36px;margin-right:20px;display:inline-block;"
+               src="../../live/uploads/1/image/2026/03/20260310033236462_sv2bk8bvzq2c.png" alt="alaprestamo-youtube" title="全局底部footer适用">
+        </a>
+
+        <a id="footerImgSrc2" href="https://www.facebook.com/share/1BQbcFUN5h/" target="_blank" class="" style="text-decoration: none;display:inline-block;">
+          <img loading="lazy" decoding="async" style="width:36px;height:36px;margin-right:20px;display:inline-block;"
+               src="../../live/uploads/1/image/2026/03/20260310033232218_ysg633k7owib.png" alt="alaprestamo-facebook" title="全局底部footer适用">
+        </a>
+
+        <a id="footerImgSrc3" href="https://www.tiktok.com/@ala_prestamos?_r=1&amp;_t=ZS-93Iat2GL6Cz" target="_blank" class="" style="text-decoration: none;display:inline-block;">
+          <img loading="lazy" decoding="async" style="width:36px;height:36px;margin-right:20px;display:inline-block;"
+               src="../../live/uploads/1/image/2026/03/20260310033220973_y0zpm4fgzo41.png" alt="alaprestamo-tiktok" title="全局底部footer适用">
+        </a>
+
+
+
+      </div>
+      <!-- mobile 社媒图标 img -->
+      <div style="--base-mt:18px; --base-size: 28px;" class="ala-mt ala-size img-wrap d-lg-none">
+
+
+        <a id="footerImgSrc1_m" href="https://youtube.com/@alaprestamos?si=FPzN9blgS330QpHy" target="_blank" class="" style="text-decoration: none;display:inline-block;">
+          <img loading="lazy" decoding="async" style="width: 36px;height: 36px;display:inline-block;" src="../../live/uploads/1/image/2026/03/20260310033236462_sv2bk8bvzq2c.png" alt="alaprestamo-youtube" title="全局底部footer适用">
+        </a>
+
+        <a id="footerImgSrc2_m" href="https://www.facebook.com/share/1BQbcFUN5h/" target="_blank" class="" style="text-decoration: none;display:inline-block;">
+          <img loading="lazy" decoding="async" style="width: 36px;height: 36px; margin-left: 15px;display:inline-block;" src="../../live/uploads/1/image/2026/03/20260310033232218_ysg633k7owib.png" alt="alaprestamo-facebook" title="全局底部footer适用">
+        </a>
+
+        <a id="footerImgSrc3_m" href="https://www.tiktok.com/@ala_prestamos?_r=1&amp;_t=ZS-93Iat2GL6Cz" target="_blank" class="" style="text-decoration: none;display:inline-block;">
+          <img loading="lazy" decoding="async" style="width: 36px;height: 36px; margin-left: 15px;display:inline-block;" src="../../live/uploads/1/image/2026/03/20260310033220973_y0zpm4fgzo41.png" alt="alaprestamo-tiktok" title="全局底部footer适用">
+        </a>
+
+
+
+      </div>
+<!--      <div style="&#45;&#45;base-mt:60px;font-family: 'Roboto-Medium'" class="ala-size ala-mt img-title">Mapa del sitio web</div>-->
+    </section>
+    <section class="footer-txt-item mtPhone54">
+      <div style="--base-size:28px;--base-mb:18px" class="ala-size ala-mb footer-section-title">Documentos Legales </div>
+      <!-- Contrato de Préstamo：仅一个版本，无下拉，直接点击跳转 -->
+      <div class="footer-span-val">
+        <a href="../ios_contract/" target="_blank" class="footer-span-title" id="footerContract" style="text-decoration: none;">Contrato de Préstamo</a>
+        <img style="--base-width:24px;--base-height:24px" class="ala-width ala-height"
+          src="../../live/ala-www/img/footer/arrow_right.png" alt="arrow">
+      </div>
+      <!-- Aviso de Privacidad：hover 下拉 Google Play / App Store -->
+      <div class="footer-dropdown">
+        <div style="--base-mt:12px" class="ala-mt footer-span-val footer-dropdown-trigger">
+          <span class="footer-span-title" style="text-decoration: none;">Aviso de Privacidad</span>
+          <img style="--base-width:24px;--base-height:24px" class="ala-width ala-height"
+            src="../../live/ala-www/img/footer/arrow_right.png" alt="arrow">
+        </div>
+        <div class="footer-dropdown-menu">
+          <span class="footer-dropdown-line"></span>
+          <div class="footer-dropdown-item">
+            <a href="../privacy/" class="footer-store-title" id="footerPrivacyGp" style="text-decoration: none; font-size: 14px;font-family:Roboto;font-weight:400;">Google Play</a>
+          </div>
+          <div class="footer-dropdown-item">
+            <a href="../ios_privacy/" class="footer-store-title" id="footerPrivacyAs" style="text-decoration: none; font-size: 14px;font-family:Roboto;font-weight:400;">App Store</a>
+          </div>
+        </div>
+      </div>
+      <!-- Términos y Condiciones de Uso：hover 下拉 Google Play / App Store -->
+      <div class="footer-dropdown">
+        <div style="--base-mt:12px" class="ala-mt footer-span-val footer-dropdown-trigger">
+          <span class="footer-span-title" style="text-decoration: none;">Términos y Condiciones de Uso</span>
+          <img style="--base-width:24px;--base-height:24px" class="ala-width ala-height"
+            src="../../live/ala-www/img/footer/arrow_right.png" alt="arrow">
+        </div>
+        <div class="footer-dropdown-menu">
+          <span class="footer-dropdown-line"></span>
+          <div class="footer-dropdown-item">
+            <a href="../regist/" class="footer-store-title" id="footerRegistGp" style="text-decoration: none; font-size: 14px;font-family:Roboto;font-weight:400;">Google Play</a>
+          </div>
+          <div class="footer-dropdown-item">
+            <a href="../ios_regist/" class="footer-store-title" id="footerRegistAs" style="text-decoration: none; font-size: 14px;font-family:Roboto;font-weight:400;">App Store</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- 底部图文配置（后台区块 footer_custom）：图片 + 富文本摘要，九宫格布局 -->
+  <div class="footer-custom-box">
+  </div>
+
+  <div class="rate-info-row" style="margin-top: 100px;">
+    <div class="col-12 rate-info-container">
+      Los montos de los préstamos van desde $100 MXN hasta $50,000 MXN, con plazos de pago flexibles de 61 a 154 días. La tasa de interés diaria comienza en 0.1% (equivalente a una tasa de interés anual del 36%). El CAT promedio es de 548.61% sin IVA, calculado al 30 de junio de 2026, para fines informativos y de comparación. Ejemplo representativo: Si solicitas un préstamo de $5,000 MXN con un plazo de 61 días, pagarás un total de $5,353.80 MXN en 4 pagos. Este total incluye $305 MXN de intereses (calculados a una tasa diaria de 0.1%) y $48.80 MXN de IVA.
+    </div>
+  </div>
+</div>
+
+
+
+<style>
+  .help-float {
+    position: fixed;
+    /* qr-code: bottom 100 + height 180 + 间距 12 */
+    bottom: 238px;
+    right: 50px;
+    width: 346px;
+    z-index: 102;
+    display: none; /* 初始隐藏，由入口点击展开 */
+  }
+  .help-float.open {
+    display: block; /* PC：右上浮窗 */
+  }
+  .help-float-card {
+    background: #fff;
+    border-radius: 16px;
+    position: relative;
+  }
+  .help-float-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    border: none;
+    background: transparent;
+    font-size: 22px;
+    line-height: 1;
+    color: #96989C;
+    cursor: pointer;
+    z-index: 2;
+  }
+  .help-float-header {
+    padding: 20px 24px;
+    border-bottom: 1px solid #F2F2F7;
+  }
+  .help-float-title {
+    font-family: 'Roboto-Bold';
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: 0;
+    text-align: left;
+    color: #1E1F22;
+    margin: 0;
+    padding-right: 24px;
+  }
+  .help-float-body {
+    padding: 24px 27px;
+  }
+  .help-float-row1 {
+    display: flex;
+    align-items: center;
+  }
+  .help-float-avatar {
+    width: 40px;
+    height: 40px;
+    margin-right: 14px;
+    border-radius: 12px;
+    object-fit: cover;
+  }
+  .help-float-info {
+    text-align: left;
+  }
+  .help-float-name {
+    font-family: 'Roboto-Bold';
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: 0;
+    text-align: left;
+    margin: 0 0 2px;
+    color: #1E1F22;
+  }
+  .help-float-role {
+    font-family: 'Roboto-Regular';
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 20px;
+    letter-spacing: 0;
+    text-align: left;
+    margin: 0;
+    color: #1E1F22;
+  }
+  .help-float-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #107838;
+    border-radius: 10px;
+    margin-top: 24px;
+    margin-bottom: 14px;
+    padding: 11px;
+    width: 100%;
+    box-sizing: border-box;
+    text-decoration: none;
+  }
+  .help-float-btn img {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+  }
+  .help-float-btn span {
+    font-family: 'Roboto-Bold';
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: 0;
+    text-align: center;
+    color: #fff;
+  }
+  .help-float-footer {
+    font-family: 'Roboto-Regular';
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0;
+    text-align: center;
+    color: #1E1F22;
+    margin: 0;
+  }
+  .help-float-link {
+    color: #173CFF;
+    text-decoration: underline;
+  }
+  @media screen and (max-width: 991px) {
+    .help-float {
+      bottom: auto;
+      right: auto;
+      width: auto;
+    }
+    .help-float.open {
+      display: flex;
+      position: fixed;
+      inset: 0;
+      background: #00000066; /* 蒙层 */
+      align-items: flex-end;  /* 弹窗从底部弹出 */
+      justify-content: center;
+      z-index: 1000;
+    }
+    .help-float-card {
+      width: 100%;            /* 充满屏幕宽度 */
+      border-radius: 16px 16px 0 0; /* 顶部圆角，底部贴底 */
+      animation: helpFloatSlideUp 0.3s ease;
+    }
+  }
+  @keyframes helpFloatSlideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+  }
+</style>
+
+<div class="help-float" id="helpFloat">
+  <div class="help-float-card">
+    <button class="help-float-close" id="helpFloatClose" type="button">×</button>
+    <div class="help-float-header">
+      <h3 class="help-float-title">Centro de ayuda</h3>
+    </div>
+    <div class="help-float-body">
+      <div class="help-float-row1">
+        <img class="help-float-avatar" src="../../live/ala-www/img/sofia-avatar.webp" alt="Sofía">
+        <div class="help-float-info">
+          <p class="help-float-name">Habla con Sofía.</p>
+          <p class="help-float-role">Tu asesora de ALA</p>
+        </div>
+      </div>
+      <a class="help-float-btn" href="../../channel/help-center/">
+        <img src="../../live/ala-www/img/whatsapp.webp" alt="WhatsApp">
+        <span>Iniciar conversación</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<style>
+  .qr-code {
+    width: 220px;
+    height: 180px;
+    padding: 13px 14px;
+    background: linear-gradient(to bottom right, #294BFFFF, #667EFFFF);
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    z-index: 10;
+  }
+  .qr-image {
+    width: 88px;
+    height: 88px;
+    border-radius: 6px;
+  }
+  .logo-image {
+    width: 24px;
+    height: 24px;
+    margin-top: 4px;
+  }
+  .qr-content {
+    margin-top: 15px;
+    font-size: 20px;
+    font-family: 'Roboto-Bold';
+    color: #FFFFFF;
+  }
+  .qr-row {
+    display: flex;
+  }
+  .chat-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: rgba(16, 43, 181, 1);
+    border-radius: 12px;
+    margin-top: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    cursor: pointer;
+  }
+  .chat-btn-icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 10px;
+  }
+  .chat-btn-text {
+    font-family: 'Roboto-Regular';
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0px;
+    text-align: left;
+    color: #FFFFFF;
+  }
+  @media screen and (max-width: 991px) {
+    .qr-code {
+      display: none;
+    }
+  }
+</style>
+<div class="qr-code">
+  <div class="qr-row">
+    <div>
+      <img src="../../live/ala-www/img/ala-logo.png" class="logo-image" />
+      <div class="qr-content">Escanea y descarga</div>
+    </div>
+    <img src="../../live/ala-www/img/qr-code.png" class="qr-image" />
+  </div>
+  <div class="chat-btn">
+    <img src="../../live/ala-www/img/contact-s.webp" class="chat-btn-icon" />
+    <span class="chat-btn-text">Chats en línea</span>
+  </div>
+</div>
+<style>
+  .mobile-entry {
+    width: 100%;
+    height: 72px;
+    background: #fff;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 10000;
+    overflow-x: hidden;
+  }
+  .mobile-entry-box {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  .mobile-entry-wrap {
+    box-sizing: border-box;
+    width: 100%;
+    padding-top: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .mobile-button-tip {
+    font-size: 13px;
+    font-family: "Robot-bold";
+    font-weight: 700;
+  }
+  .mobile-button-wrap {
+    display: flex;
+    height: 42px;
+    justify-content: center;
+    align-items: center;
+  }
+  .mobile-download-button {
+    height: 38px;
+    width: auto;
+  }
+  .m-android-button {
+    margin-right: 7px;
+  }
+  @media screen and (min-width: 992px) {
+    .mobile-entry {
+      display: none;
+    }
+  }
+  @media screen and (max-width: 360px) {
+    .mobile-button-tip {
+      font-size: 12px;
+    }
+  }
+</style>
+<div class="mobile-entry" id="mobile-entry">
+   <div class="mobile-entry-box">
+      <div class="mobile-entry-wrap">
+        <div class="mobile-button-tip">Descargar ALA</div>
+        <div class="mobile-button-wrap">
+          <img src="../../live/ala-www/img/home-download-google-m.png" alt="Botón descargar ALA desde Google Play" class="mobile-download-button m-android-button" onclick="androidMobileButton()"/>
+          <img src="../../live/ala-www/img/home-download-ios-m.png" class="mobile-download-button m-apple-button" alt="Botón descargar ALA desde App Store" onclick="appleMobileButton()"/>
+        </div>
+      </div>
+    </div>
+</div>
+</body>
+  <script src="../../live/blog/ala-www/js/utils.js" defer></script>
+  <script src="../../live/blog/ala-www/js/blog-page.js" defer></script>
+
+</html>

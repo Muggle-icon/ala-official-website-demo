@@ -1,0 +1,135 @@
+.breadcrumb-wrap-in {
+  position: static;
+  margin-top: 0 !important;
+  font-family: var(--ala-font, Arial, sans-serif);
+  padding-block: 16px;
+}
+
+.breadcrumb-wrap-in .list-inline,
+.breadcrumb-wrap-in .list-inline-item,
+.article-content .list-inline {
+  font-size: .875rem;
+  line-height: 1.5;
+}
+
+.article-main-title,
+.blog-title {
+  font-family: var(--ala-font, Arial, sans-serif) !important;
+  font-size: var(--ala-page-title, 2.5rem) !important;
+  line-height: 1.15 !important;
+  text-wrap: balance;
+}
+
+.blog-container .title-wrap {
+  font-family: var(--ala-font, Arial, sans-serif);
+  font-size: var(--ala-section-title, 1.75rem);
+  line-height: 1.2;
+}
+
+#richTextContent {
+  font: var(--ala-body-size, 1rem)/var(--ala-body-leading, 1.625) var(--ala-font, Arial, sans-serif);
+  overflow-wrap: anywhere;
+}
+
+#richTextContent :where(p, li, blockquote) {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+#richTextContent :where(h2, h3, h4, h5, h6) {
+  font-family: var(--ala-font, Arial, sans-serif);
+  line-height: 1.22;
+  text-wrap: pretty;
+}
+
+#richTextContent img {
+  max-width: 100%;
+  height: auto;
+}
+
+.blog-container > .motion-element,
+.blog-container .motion-element {
+  opacity: 1;
+  transform: none;
+}
+
+:where(.blog-container, .breadcrumb-wrap-in, #richTextContent) :focus-visible {
+  outline: 2px solid var(--ala-blue, #173cff);
+  outline-offset: 4px;
+}
+
+@media (max-width: 991px) {
+  .breadcrumb-wrap-in { padding-block: 0; }
+}
+
+.blog-title {
+  margin-block: 0;
+}
+
+a.card-title, a.card-headline,
+a.blog-menu-item, a.mobile-blog-menu-item {
+  display: block;
+  text-decoration: none;
+}
+
+a.card-headline,
+a.top-article-title,
+a.mobile-top-article-title,
+a.swiper-article-title {
+  color: var(--ala-ink, #191e2b);
+}
+
+a.card-headline:hover,
+a.top-article-title:hover,
+a.mobile-top-article-title:hover,
+a.swiper-article-title:hover {
+  text-decoration: underline;
+  text-underline-offset: .14em;
+}
+
+a.blog-menu-item:hover,
+a.mobile-blog-menu-item:hover {
+  text-decoration: none;
+}
+
+@media (max-width: 479px) {
+  .blog-container {
+    max-width: 100%;
+  }
+
+  .blog-container :is(a.card-title, a.card-headline, a.top-article-title, a.mobile-top-article-title) {
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+}
+
+.more-article-button-mobile img {
+  max-width: 100%;
+  height: auto;
+}
+
+#nearbyCities a.city-item {
+  color: #fff;
+  text-decoration: none;
+}
+
+#nearbyCities a.city-item:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: -2px;
+}
+
+#cityDetailList a.card-title {
+  display: block;
+}
+
+@media (max-width: 991px) {
+  body:has(.mobile-entry) {
+    padding-bottom: 72px;
+  }
+}
+
+@media (max-width: 991px) {
+  .blog-container, .blog-container .blog-banner-wrap { margin-top: 0 !important; }
+  .article-page, .columna-page .loan-guide-title { margin-top: 24px !important; }
+}

@@ -1,0 +1,448 @@
+.breadcrumb-wrap-in {
+  position: sticky;
+  --base-top: 72px;
+  z-index: 100;
+  --base-mt: 188px;
+  background: white;
+  --base-pl: 400px;
+  --base-pr: 400px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.financiero-term {
+  display: flex;
+  width: 100%;
+  --base-mt: 100px;
+  --base-gap: 40px;
+  --base-size: 28px;
+  --base-pl: 400px;
+  --base-pr: 400px;
+}
+
+.financiero-term>.term-wrap-left {
+  width: 60%;
+  background-color: #F3F4F9;
+  --base-radius: 26px;
+  --base-padding-top: 40px;
+  --base-padding-left: 50px;
+  --base-padding-right: 50px;
+  --base-padding-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+.financiero-term .term-wrap-fir-title {
+  background-color: rgb(41, 75, 255);
+  width: fit-content;
+  display: inline-block;
+  color: #fff;
+  font-family: 'Roboto-Bold';
+  --base-radius: 18px;
+  --base-height: 72px;
+  --base-padding-left: 20px;
+  --base-padding-right: 20px;
+  --base-size: 26px;
+  padding-top: 0;
+  padding-bottom: 0;
+  --base-mb: 23px;
+  --base-lh:72px;
+}
+
+.financiero-term .term-wrap-left-sec {
+  font-family: 'Roboto-Bold';
+  --base-mb: 12px;
+}
+
+.financiero-term .term-wrap-left-thi {
+  --base-mb: 25px;
+  --base-lh: 48px;
+  --base-size: 24px;
+  color: #666666;
+  /* min-height: 30%; */
+}
+
+.financiero-term .term-wrap-left-fou {
+  --base-mb: 25px;
+  --base-lh: 48px;
+  text-align: right;
+  color: #96989C;
+  margin-top: auto;
+}
+
+.financiero-term>.term-wrap-right {
+  width: 40%;
+  background-color: #F3F4F9;
+  --base-radius: 26px;
+  --base-padding-top: 40px;
+  --base-padding-left: 50px;
+  --base-padding-right: 50px;
+  --base-padding-bottom: 40px;
+}
+
+.financiero-term>.term-wrap-right ul {
+  list-style: none;
+}
+
+.financiero-term>.term-wrap-right ul>li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.financiero-term>.term-wrap-right ul>li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  --base-padding-top: 10px;
+  --base-padding-left: 30px;
+  --base-padding-right: 30px;
+  --base-padding-bottom: 10px;
+  --base-radius: 16px;
+}
+
+.financiero-term>.term-wrap-right ul>li:hover {
+  background-color: #fff;
+}
+
+.financiero-term>.term-wrap-right ul>li:not(:first-child) {
+  --base-mt: 23px;
+}
+
+/*  */
+.blog-tag-box {
+  display: flex;
+  --base-pl: 400px;
+  --base-pr: 400px;
+  --base-height: 50px;
+  --base-mt: 150px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 21px;
+  /* position: sticky;
+  top: 200px;
+           background-color: #fff !important;
+           z-index: 1; */
+
+}
+/* .blog-swiper-contailer{
+   background-color: #fff !important;
+} */
+
+.blog-tag-wrap {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+
+.blog-tag-wrap-box {
+  flex: 1;
+  overflow: hidden;
+}
+
+.blog-tag-box {
+  display: flex;
+  --base-pl: 400px;
+  --base-pr: 400px;
+  --base-height: 50px;
+  --base-mt: 150px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 21px;
+}
+
+.blog-tag-slide {
+  width: fit-content;
+  --base-width: 110px;
+  --base-height: 50px;
+  --base-radius: 15px;
+  background-color: #F3F4F9;
+  height: 100%;
+  color: #ffffff;
+  text-align: center;
+  border: 1px solid #F3F4F9;
+  --base-size: 28px;
+  --base-lh: 80px;
+  font-family: 'Roboto-Bold';
+  color: #000000;
+  border: 1px solid transparent;
+}
+
+.blog-tag-slide:hover {
+  color: #000000;
+}
+
+.blog-tag-name {
+  --base-size: 36px;
+  --base-lh: 80px;
+  font-family: 'Roboto-Bold';
+  color: #000000;
+}
+
+.blog-tag-name:hover {
+  color: #000000;
+}
+
+.blog-tag-navigtion-left,
+.blog-tag-navigtion-right {
+  display: block;
+  border: none;
+  --base-width: 50px;
+  --base-height: 50px;
+}
+
+.blog-tag-box .blog-tag-navigtion-right,
+.blog-tag-box .blog-tag-navigtion-left {
+  background: url("../../../ala-www/img/swiper1-arrow.png");
+  background-size: cover;
+}
+
+.blog-tag-box .blog-tag-navigtion-right.blog-tag-navigtion-disabled,
+.blog-tag-box .blog-tag-navigtion-left.blog-tag-navigtion-disabled {
+  background: url("../../../ala-www/img/swiper1-disable-arrow.png");
+  background-size: cover;
+}
+
+.blog-tag-box .blog-tag-navigtion-right,
+.blog-tag-box .blog-tag-navigtion-left.blog-tag-navigtion-disabled {
+  transform: rotateZ(180deg);
+}
+
+.blog-tag-box .blog-tag-navigtion-right.blog-tag-navigtion-disabled {
+  transform: rotateZ(0deg);
+}
+
+@media screen and (max-width: 992px) {
+/* .financiero-page {
+   margin-top: 92px;
+} */
+  .blog-tag-box{
+    position: static;
+    display: flex !important;
+    padding: 0 24px 0 24px !important;
+  }
+  .blog-tag-box button{
+    display: none;
+  }
+
+  .loan-guide-title {
+    margin-top: 92px !important;
+    font-size: 27px;
+    line-height: 29px;
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+    width: 100% !important;
+
+  }
+
+  .loan-guide-title-desc {
+    font-size: 16px;
+    line-height: 20px;
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+    width: 100% !important;
+  }
+
+  .financiero-term {
+    display: block;
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+    margin-top: 32px !important;
+  }
+
+  .financiero-term .term-wrap-left {
+    width: 100%;
+    border-radius: 20px;
+    padding: 24px;
+  }
+
+  .financiero-term .term-wrap-fir-title {
+    border-radius: 10px;
+    font-size: 15px;
+    padding: 4px 10px !important;
+    background-color: transparent;
+    color: #294BFF;
+    height: fit-content !important;
+    --base-lh: 24px;
+    background-image: linear-gradient(to right, #FFF1EEFF, #DAE1FFFF, #CBD5FFFF, #DDF2FFFF);
+  }
+
+  .financiero-term .term-wrap-left-sec {
+    font-weight: 700;
+    font-size: 20px;
+    color: #1E1F22;
+    line-height: 23px;
+    margin-bottom: 10px;
+  }
+
+  .financiero-term .term-wrap-left-thi {
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  .financiero-term .term-wrap-left-fou {
+    font-size: 16px;
+  }
+
+  .financiero-term .term-wrap-left-fou img {
+    width: 16px;
+    height: 16px;
+  }
+
+  .financiero-term .term-wrap-right {
+    width: 100%;
+    margin-top: 16px;
+    border-radius: 20px;
+    padding: 24px;
+
+  }
+
+  .term-wrap-right .term-wrap-fir-title {
+    border-radius: 10px;
+    font-size: 15px;
+    padding: 4px 10px !important;
+    background-color: transparent;
+    color: #294BFF;
+    height: fit-content !important;
+    --base-lh: 24px;
+    margin-bottom: 12px !important;
+    background-image: linear-gradient(to right, #FFF1EEFF, #DAE1FFFF, #CBD5FFFF, #DDF2FFFF);
+  }
+  .financiero-term>.term-wrap-right ul>li{
+    margin-top: 0 !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    color: #1B1E28;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .term-wrap-right ul>li span {
+    font-size: 16px;
+    line-height: 19px;
+  }
+
+  .term-wrap-right ul>li img {
+    width: 16px;
+    height: 16px;
+  }
+
+  .article-group-ul {
+    height: 600px;
+    overflow-y: scroll;
+  }
+
+  .article-group-ul>li.row {
+    display: block;
+    border-bottom: none;
+    margin-bottom: 40px;
+    padding-bottom: 48px;
+  }
+
+
+  .financiero-term .term-wrap-right {
+    width: 100%;
+    margin-top: 16px;
+    border-radius: 20px;
+
+  }
+
+  .article-group-ul {
+    height: 600px;
+    overflow-y: scroll;
+  }
+
+  .article-group-ul>li.row {
+    display: block;
+    border-bottom: none;
+    margin-bottom: 40px;
+    padding-bottom: 0;
+  }
+
+  .article-group-ul>li.row>.name {
+    width: 100% !important;
+    height: 40px !important;
+    text-align: center;
+    background-color: #F3F4F9;
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
+
+  .article-group-ul>li.row>.val{
+    height: 40px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+  }
+  .article-group-ul>li.row>.val .row{
+    flex: 1;
+  }
+  .blog-tag-nav-wrap {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+}
+.blog-tag-nav-wrap {
+  --base-pl: 400px;
+  --base-pr: 400px;
+  --base-mt: 56px;
+  --base-mb: 150px;
+  margin-top: var(--base-mt);
+}
+
+.blog-tag-nav-wrap .row {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+/* .article-group-ul{
+    scroll-margin-top: 200px;
+}
+.blog-tag-nav-wrap{
+   scroll-margin-top: 200px;
+} */
+
+.article-group-ul>li {
+  border-bottom: 1px dashed #D3D4DD;
+  --base-mb: 40px;
+  --base-pb: 48px;
+}
+.article-group-ul>li:last-child{
+  border-bottom-color: transparent;
+}
+
+.blog-tag-nav-wrap img {
+  --base-width: 7px;
+  --base-height: 14px;
+  width: var(--base-width);
+  height: var(--base-height);
+}
+
+.blog-tag-nav-wrap div.name {
+  --base-height: 50px;
+  --base-radius: 12px;
+  --base-size: 28px;
+  --base-width:130px;
+  font-family: 'Roboto-Bold';
+  background-color: #F3F4F9;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.blog-tag-nav-wrap .innderDivWrap {
+/* --base-height: 70px; */
+}
+
+.blog-tag-nav-wrap .innderDivWrap>.section-val {
+  --base-size: 24px;
+  font-weight: 500;
+  color: #1B1E28;
+}
+
+.blog-tag-slide.active {
+  background-color: #EFF3FF !important;
+  border-color: #5782FF !important;
+}
