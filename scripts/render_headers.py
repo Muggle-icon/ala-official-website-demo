@@ -15,8 +15,9 @@ BLOG = (
     ('Noticias financieras', 'channel/noticias-financieras/'),
     ('Préstamo en tu ciudad', 'channel/loan_city/'),
 )
+BRAND_ROUTE = 'marca/'
 MORE = (
-    ('Sobre ALA', 'channel/about-ala/'),
+    ('Sobre ALA', BRAND_ROUTE),
     ('Contáctanos', 'channel/help-center/#canales-de-atencion'),
     ('Documentos legales', '#documentos-legales'),
     ('Centro de ayuda', 'channel/help-center/'),
@@ -62,7 +63,7 @@ def render_header(prefix, route):
         <img class="ala-header-wordmark ala-header-wordmark--dark" src="{assets}nav-logo-dark.png" width="126" height="48" alt="">
         <img class="ala-header-icon" src="{assets}ala-app-icon.png" width="29" height="29" alt="">
       </a>
-      <a class="ala-header-about" href="{prefix}channel/about-ala/">Sobre ALA <span aria-hidden="true">›</span></a>
+      <a class="ala-header-about" href="{prefix}{BRAND_ROUTE}">Sobre ALA <span aria-hidden="true">›</span></a>
       <button class="ala-header-menu" type="button" aria-label="Abrir menú" aria-controls="ala-nav" aria-expanded="false">
         <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
       </button>

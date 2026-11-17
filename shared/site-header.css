@@ -461,8 +461,8 @@ html { scroll-padding-top: var(--ala-scroll-offset, calc(var(--ala-nav-height) +
 
 .ala-brand-page { --nav-height: var(--ala-nav-height); }
 .ala-brand-page main { padding-top: 0; }
-.ala-brand-page .hero h1, .ala-collection-page .article-intro h1,
-.ayuda-faq .ayuda-title, .help-center-page .help-banner-title,
+.ala-collection-page .article-intro h1,
+.help-center-page .help-banner-title,
 .ala-content-page > h1 {
   font-size: var(--ala-page-title);
   line-height: 1.12;
@@ -502,11 +502,6 @@ body #richTextContent h2 {
   line-height: 1.22;
 }
 body #richTextContent h3 { font-size: 1.1875rem; line-height: 1.35; }
-
-.ala-breadcrumbs .breadcrumb,
-body .breadcrumb-nav {
-  font: 400 .875rem / 1.375rem var(--ala-font);
-}
 
 .ala-home .safe-box-item:not(.safe-box-item-active) { background: transparent; }
 .ala-home .safe-box-item span { font-size: .9375rem; line-height: 1.3; }

@@ -11,9 +11,11 @@
   <link rel="stylesheet" href="../../live/ala-www/css/custom.css">
   <link rel="stylesheet" href="../../live/ala-www/css/custom-links.css">
   <link rel="stylesheet" href="../../live/ayuda/css/help-center.css">
-  <link rel="stylesheet" href="../../live/ayuda/css/support.css">
+  <link rel="stylesheet" href="../../live/ayuda/css/support.css?v=1a1c0c0aa6">
 <script src="../../live/ayuda/support.js" defer></script>
-  <link rel="stylesheet" href="../../shared/site-header.css?v=8fe9755d2b">
+
+<link rel="stylesheet" href="../../shared/breadcrumbs.css?v=27c08cdd0d">
+  <link rel="stylesheet" href="../../shared/site-header.css?v=e37331c083">
   <script src="../../shared/site-header.js?v=2b9e96d297" defer></script>
 </head>
 <body>
@@ -28,7 +30,7 @@
         <img class="ala-header-wordmark ala-header-wordmark--dark" src="../../public/assets/nav-logo-dark.png" width="126" height="48" alt="">
         <img class="ala-header-icon" src="../../public/assets/ala-app-icon.png" width="29" height="29" alt="">
       </a>
-      <a class="ala-header-about" href="../../channel/about-ala/">Sobre ALA <span aria-hidden="true">›</span></a>
+      <a class="ala-header-about" href="../../marca/">Sobre ALA <span aria-hidden="true">›</span></a>
       <button class="ala-header-menu" type="button" aria-label="Abrir menú" aria-controls="ala-nav" aria-expanded="false">
         <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
       </button>
@@ -53,7 +55,7 @@
           Más información <span class="ala-header-chevron" aria-hidden="true"></span>
         </button>
         <ul class="ala-header-drop" id="ala-nav-more" hidden>
-            <li><a class="ala-header-link" href="../../channel/about-ala/">Sobre ALA</a></li>
+            <li><a class="ala-header-link" href="../../marca/">Sobre ALA</a></li>
             <li><a class="ala-header-link" href="../../channel/help-center/#canales-de-atencion">Contáctanos</a></li>
             <li><a class="ala-header-link" href="../../#documentos-legales">Documentos legales</a></li>
             <li><a class="ala-header-link" href="../../channel/help-center/" aria-current="page">Centro de ayuda</a></li>
@@ -74,6 +76,15 @@
 </div>
 <!-- ALA header end -->
 <div id="ala-content" tabindex="-1"></div>
+<!-- ALA breadcrumbs start -->
+<nav class="ala-breadcrumbs" aria-label="Ruta de navegación">
+  <ol role="list">
+    <li><a href="../../">ALA</a></li>
+    <li><a href="../../channel/loan_faq/">Ayuda</a></li>
+    <li><span aria-current="page">Centro de ayuda</span></li>
+  </ol>
+</nav>
+<!-- ALA breadcrumbs end -->
 <main id="contenido" class="help-center-page ala-pl ala-pr">
 
 
@@ -110,6 +121,7 @@
           <span class="warn-title">Consejo de seguridad</span>
         </div>
         <p class="warn-desc">ALA nunca te pedirá transferir dinero a una cuenta personal. Si recibes una solicitud de pago no oficial o detectas un uso indebido de tu identidad, repórtalo a través de nuestros canales oficiales.</p>
+        <p class="warn-related"><a class="ayuda-topic-link" href="../../cobranza/">Cobranza y pagos atrasados</a></p>
       </div>
     </div>
 

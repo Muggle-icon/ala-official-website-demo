@@ -1,0 +1,85 @@
+.ala-breadcrumbs {
+  box-sizing: border-box;
+  width: 100%;
+  padding-inline: var(--ala-nav-gutter, 24px);
+  border-bottom: 1px solid var(--ala-line, #e0e5ef);
+  background: var(--ala-surface, #fff);
+  color: var(--ala-muted, #50596d);
+  font: 400 .875rem / 1.25rem var(--ala-font, Roboto, Arial, sans-serif);
+  text-align: left;
+}
+
+.ala-breadcrumbs ol {
+  --ala-breadcrumb-gap: 12px;
+  display: flex;
+  align-items: center;
+  gap: var(--ala-breadcrumb-gap);
+  min-height: 48px;
+  margin: 0;
+  padding: 2px 0;
+  list-style: none;
+}
+
+.ala-breadcrumbs li {
+  display: flex;
+  align-items: center;
+  gap: var(--ala-breadcrumb-gap);
+  min-width: 0;
+}
+
+.ala-breadcrumbs li:first-child { flex-shrink: 0; }
+.ala-breadcrumbs li + li::before {
+  flex: none;
+  box-sizing: border-box;
+  width: 6px;
+  height: 6px;
+  border: solid currentColor;
+  border-width: 1px 1px 0 0;
+  transform: rotate(45deg);
+  content: "";
+}
+
+.ala-breadcrumbs :is(a, [aria-current="page"]) {
+  display: block;
+  min-width: 0;
+  padding-block: 12px;
+  overflow: hidden;
+  color: inherit;
+  font: inherit;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ala-breadcrumbs a {
+  border-radius: 4px;
+  text-decoration: none;
+  text-underline-offset: .18em;
+}
+.ala-breadcrumbs a:hover { color: var(--ala-blue, #173cff); text-decoration: underline; }
+.ala-breadcrumbs a:focus-visible { outline: 2px solid var(--ala-blue, #173cff); outline-offset: 2px; }
+.ala-breadcrumbs [aria-current="page"] { color: var(--ala-ink, #191e2b); font-weight: 500; }
+
+@media (max-width: 600px) {
+  .ala-breadcrumbs ol { --ala-breadcrumb-gap: 8px; }
+}
+
+/* Keep the direct parent available when a deep article path has little room. */
+@media (max-width: 600px) {
+  .ala-breadcrumbs li:not(:first-child):not(:nth-last-child(-n+2)) { display: none; }
+}
+
+/* Keep the article grid on the same rail now that the trail has its own row. */
+.ala-breadcrumbs + .article-page {
+  margin-block-start: 0 !important;
+  padding-inline: var(--ala-nav-gutter, 24px) !important;
+}
+
+.ala-breadcrumbs + .article-page > .row {
+  margin-block-start: clamp(24px, 3vw, 40px) !important;
+}
+
+.ala-breadcrumbs + .article-page .index-name {
+  width: auto;
+  margin: 0 0 16px !important;
+  font: 700 1.125rem / 1.4 var(--ala-font, Roboto, Arial, sans-serif);
+}
