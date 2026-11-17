@@ -7,14 +7,8 @@ body {
   background: #fff;
 }
 
-.ala-collection-page {
-  --collection-gutter: clamp(24px, 6vw, 104px);
-  --collection-max: 1240px;
-  --collection-width: min(100% - 2 * var(--collection-gutter), var(--collection-max));
-}
-
 .ala-collection-page .ala-breadcrumbs {
-  padding-inline: max(var(--collection-gutter), (100% - var(--collection-max)) / 2);
+  padding-inline: calc((100% - var(--ala-content-width)) / 2);
 }
 
 .collection-page,
@@ -28,54 +22,39 @@ body {
   margin-inline: auto;
 }
 
-.collection-intro .frame,
-.article-layout {
-  width: var(--collection-width);
-}
-
 .collection-intro {
-  --ala-focus-ring: 2px solid #fff;
-  --ala-section-more-color: #f0f3ff;
-  padding-block: clamp(40px, 5.25vw, 84px) clamp(40px, 5.5vw, 88px);
-  border-end-start-radius: clamp(16px, 2vw, 32px);
-  border-end-end-radius: clamp(16px, 2vw, 32px);
-  background: linear-gradient(112deg, #10183f 12%, #162963 63%, #2143c9 100%);
-  color: #fff;
+  padding-block: clamp(40px, 4.6vw, 72px);
+  background: var(--ala-panel);
+  text-align: center;
 }
 
 .collection-intro h1 {
-  max-width: 12em;
   margin: 0;
-  font: 700 clamp(2rem, 1.35rem + 2.7vw, 4rem) / 1.08 var(--ala-font);
-  letter-spacing: -.035em;
+  font: 700 var(--ala-page-title) / 1.12 var(--ala-font);
+  letter-spacing: -.028em;
   text-wrap: balance;
 }
 
 .collection-intro p {
-  max-width: 59ch;
-  margin: clamp(16px, 1.55vw, 24px) 0 clamp(20px, 2vw, 28px);
-  color: #e6ebff;
-  font-size: clamp(1rem, .95rem + .27vw, 1.1875rem);
-  line-height: 1.55;
+  max-width: 57ch;
+  margin: 16px auto 24px;
+  color: var(--ala-muted);
+  text-wrap: pretty;
 }
 
 .collection-intro-actions {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
   gap: 0 12px;
-}
-
-.collection-intro .ala-button--primary {
-  border-color: #9fb2ff;
 }
 
 .article-layout {
   display: grid;
-  grid-template-columns: minmax(0, 50rem) minmax(172px, 17.5%);
-  justify-content: space-between;
-  gap: clamp(32px, 6vw, 88px);
-  padding-block: clamp(36px, 4.6vw, 72px) var(--ala-section-space);
+  grid-template-columns: minmax(0, 46rem) minmax(176px, 22%);
+  gap: var(--ala-group-space);
+  padding-block: clamp(32px, 4.6vw, 72px) var(--ala-section-space);
 }
 
 .article-index {
@@ -157,7 +136,8 @@ body {
 }
 
 .repayment-guide h2 {
-  font: 700 var(--ala-content-heading) / 1.14 var(--ala-font);
+  font-size: min(var(--ala-content-heading), var(--ala-page-title) - .25rem);
+  line-height: 1.14;
   letter-spacing: -.025em;
 }
 
@@ -370,11 +350,6 @@ body {
 }
 
 @media (max-width: 900px) {
-  .ala-collection-page {
-    --collection-gutter: 24px;
-    --collection-max: 46rem;
-  }
-
   .article-layout {
     grid-template-columns: minmax(0, 1fr);
     gap: 24px;
