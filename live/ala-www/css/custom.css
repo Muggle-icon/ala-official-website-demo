@@ -1,0 +1,507 @@
+
+
+/* ==========================================================================
+   ★ ALA 前端样式规范 v2（新旧两套引擎并存版）
+   ==========================================================================
+   ▍一、设计基准
+     桌面设计稿 1920 × 1080。--base-xx 一律填设计稿上量到的 px 值，引擎自动
+     换算，不需要也不允许手写 vw / svh / rem / %。
+
+   ▍二、两套引擎（并存，互不干扰）
+     · 老页面/老模块：用 .ala-*        —— 分档缩放（6 档，宽度变化时有档位跳变）
+     · 新页面/新模块：用 .ala-f-*      —— 流体缩放（连续平滑 + 宽高双向收缩 + 矮屏不溢出）
+     两类工具类混用无冲突。老代码一律不要动，新样式统一用 -f 引擎。
+
+   ▍三、新模块用法（三步）
+     ① 元素上加 .ala-f-xx 工具类（决定“哪个属性”被缩放）
+     ② 内联 style 定义 --base-xx: 设计稿px（决定“值是多少”）
+     ③ 结束。1920 屏 = 设计稿原值，窄屏/矮屏自动等比收缩。
+
+   ▍四、工具类速查表（属性 → 类 → 变量）※ 下面列的是新引擎 .ala-f-*，
+     把类名去掉 -f 就是旧引擎 .ala-*（分档缩放），两套属性完全对应。
+     ★ 单位（重要，2026-09 已改为带单位）：.ala-f-* 与 .ala-* 的 --base-xx 都填带单位 px，
+       如 --base-pl:320px、--base-size:56px，与旧引擎写法一致。
+       流体缩放因子 --fluid-scale 由全局 JS（inc_js.html）按设计稿 1920×1080 计算并注入
+       （= min(1, 视口宽/1920, 视口高/1080)）；JS 未加载时回退 scale=1（显示设计稿原值）。
+       纯 CSS 无法在连续流体下带单位（长度×长度 非法），故需 JS 提供数字缩放因子。
+     ★ 尺寸取值基准（重要）：.ala-f-* 流体类的 --base-xx 不要直接照抄 UI 设计图上的原始像素值，
+       请按「github demo 里 clamp/min 计算出的最大值」来填。流体布局是按设计稿比例等比缩放的，
+       直接按 UI 图的尺寸写会偏大。
+       例：UI 图上字号标 56px，但 github demo 里写的是
+         font-size: clamp(40px, min(2.5cqw, 4.444444cqh), 48px)   ← 1920×1080 容器下 = 48px
+       此时 --base-size 应填 48，而不是 56；否则按 56 渲染会偏大、与 demo 效果不一致。
+       其余尺寸（行高 / 边距 / 宽高 / 圆角等）同理，都以 demo 的最大值为准，别照抄 UI 原值。
+     font-size        .ala-f-size     --base-size     （窄屏最小 14px 保底）
+     line-height      .ala-f-lh       --base-lh
+     width            .ala-f-width    --base-width
+     height           .ala-f-height   --base-height
+     min-width        .ala-f-min-w    --base-min-w
+     max-width        .ala-f-max-w    --base-max-w
+     min-height       .ala-f-min-h    --base-min-h
+     max-height       .ala-f-max-h    --base-max-h
+     margin-top       .ala-f-mt       --base-mt
+     margin-right     .ala-f-mr       --base-mr
+     margin-bottom    .ala-f-mb       --base-mb
+     margin-left      .ala-f-ml       --base-ml
+     padding-top      .ala-f-pt       --base-pt
+     padding-right    .ala-f-pr       --base-pr
+     padding-bottom   .ala-f-pb       --base-pb
+     padding-left     .ala-f-pl       --base-pl
+     四向 padding     .ala-f-padding  --base-padding-top/right/bottom/left
+     top              .ala-f-top      --base-top
+     right            .ala-f-right    --base-right
+     bottom           .ala-f-bottom   --base-bottom
+     left             .ala-f-left     --base-left
+     inset(四边同值)   .ala-f-inset    --base-inset
+     gap              .ala-f-gap      --base-gap
+     column-gap       .ala-f-gap-col  --base-gap-col
+     row-gap          .ala-f-gap-row  --base-gap-row
+     border-radius    .ala-f-radius   --base-radius
+     border-width     .ala-f-bw       --base-bw
+     letter-spacing   .ala-f-ls       --base-ls
+     text-indent      .ala-f-ti       --base-ti
+     flex-basis       .ala-f-flex-basis  --base-flex-basis
+     flex:1           .ala-f-flex-1   （无需变量）
+
+   ▍五、示例（设计稿：标题28px粗体/距上60px，图320×240圆角16，摘要20px行高28，左右留白100px）
+     <div class="ala-f-pl ala-f-pr" style="--base-pl:100px; --base-pr:100px">
+       <h3 class="ala-f-size ala-f-mt ala-f-mb" style="--base-size:28px; --base-mt:60px; --base-mb:30px; font-weight:700">标题</h3>
+       <img class="ala-f-width ala-f-height ala-f-radius ala-f-mb"
+            style="--base-width:320px; --base-height:240px; --base-radius:16px; --base-mb:30px" src="...">
+       <p class="ala-f-size ala-f-lh" style="--base-size:20px; --base-lh:28px">摘要</p>
+     </div>
+
+   ▍六、哪些属性不要缩放（直接写固定 px，别加 -f 类）
+     边框 border、box-shadow 偏移/模糊、outline、letter-spacing（字间距）、
+     text-indent（首行缩进）、1-4px 的极小细节等。这类值缩放反而失真。
+
+   ▍七、工具类没覆盖的属性怎么办？
+     上表已覆盖绝大多数常用布局属性（两套引擎都有）。只剩个别特殊属性
+     （如 transform 位移、background-size、box-shadow 偏移等）没有工具类，
+     若它们也想随视口缩放：
+     （a）临时写法（借助全局 --fluid-scale 数字缩放因子）：
+         .my-box { transform: translateX(calc(20px * var(--fluid-scale, 1))); }
+     （b）一劳永逸：照抄文件末尾 .ala-f-* 的写法加一个工具类，例如：
+         .ala-f-min-w { --base-min-w: 0px;
+           min-width: calc(var(--base-min-w) * var(--fluid-scale, 1)); }
+         然后 HTML 用 class="ala-f-min-w" style="--base-min-w:600px"。
+
+   ▍八、注意点
+     · --base-xx 沿 DOM 继承，可定义在父级共用；内联 style 优先级最高。
+     · 同名变量会覆盖：父级 --base-mt:60px，子元素内联 --base-mt:90px 即盖掉。
+     · 移动端：-f 引擎是严格等比（375 屏 ≈ 设计稿×0.2），需要特殊布局时
+       用页面内 @media (max-width:768px) 覆盖。
+     · ★ 流体类 .ala-f-* 的 --base-xx 一律写带单位 px（--base-size:56px），与旧引擎一致；
+       缩放因子 --fluid-scale 由全局 JS（inc_js.html）注入，元素上无需手动设置。
+   ========================================================================== */
+
+:root {
+  /* 分档缩放因子（方案A：仅按宽度自适应，严格等比）。
+     统一公式：scale = 档内最小宽度 ÷ 1920（设计稿宽度基准），
+     任何宽度下元素相对设计稿的比例都成立，且不超出设计稿原值 */
+  --scale-1900: 1;              /* ≥1900px    1920 屏 = 设计稿原值，上限不再放大 */
+  --scale-1500: 0.78;           /* 1500–1899  1500÷1920 = 0.78125 */
+  --scale-1440: 0.75;           /* 1440–1499  1440÷1920 = 0.75 */
+  --scale-1366: 0.71;           /* 1366–1439  1366÷1920 ≈ 0.7115 */
+  --scale-1200: 1/1.4;          /* 1200–1365  1200÷1920 = 0.625 */
+  --scale-769:  1/1.6;            /* 769–1199   769÷1920 ≈ 0.4005 */
+  --scale-768:  1/1.7;            /* ≤768       768÷1920 = 0.4 */
+}
+
+.ala-size {
+  --base-size: 16px;
+  /* font-size: calc(var(--base-size) * var(--current-scale, 1)); */
+  font-size: clamp(
+    14px,
+    calc(var(--base-size) * var(--current-scale, 1)),
+    100vw
+  );
+}
+
+.ala-width {
+  --base-width: 16px;
+  width: calc(var(--base-width) * var(--current-scale, 1)) !important;
+}
+
+.ala-flex-1 {
+  flex: 1;
+}
+
+.ala-height {
+  --base-height: 16px;
+  height: calc(var(--base-height) * var(--current-scale, 1)) !important;
+}
+.ala-lh {
+  --base-lh: 16px;
+  line-height: calc(var(--base-lh) * var(--current-scale, 1));
+}
+.ala-padding {
+  --base-padding-top: var(--base-padding-top);
+  --base-padding-left: var(--base-padding-left);
+  --base-padding-bottom: var(--base-padding-bottom);
+  --base-padding-right: var(--base-padding-right);
+  padding-top: calc(var(--base-padding-top) * var(--current-scale, 1));
+  padding-left: calc(var(--base-padding-left) * var(--current-scale, 1));
+  padding-bottom: calc(var(--base-padding-bottom) * var(--current-scale, 1));
+  padding-right: calc(var(--base-padding-right) * var(--current-scale, 1));
+}
+
+.ala-mt {
+  --base-mt: 0;
+  margin-top: calc(var(--base-mt) * var(--current-scale, 1)) !important;
+}
+
+.ala-mr {
+  --base-mr: 0;
+  margin-right: calc(var(--base-mr) * var(--current-scale, 1));
+}
+
+.ala-mb {
+  --base-mb: 0;
+  margin-bottom: calc(var(--base-mb) * var(--current-scale, 1));
+}
+
+.ala-ml {
+  --base-ml: 0;
+  margin-left: calc(var(--base-ml) * var(--current-scale, 1));
+}
+
+.ala-pt {
+  --base-pt: 0;
+  padding-top: calc(var(--base-pt) * var(--current-scale, 1));
+}
+
+.ala-pr {
+  --base-pr: 0;
+  padding-right: calc(var(--base-pr) * var(--current-scale, 1)) !important;
+}
+
+.ala-pb {
+  --base-pb: 0;
+  padding-bottom: calc(var(--base-pb) * var(--current-scale, 1));
+}
+
+.ala-pl {
+  --base-pl: 0;
+  padding-left: calc(var(--base-pl) * var(--current-scale, 1)) !important;
+}
+.ala-right {
+  --base-right: 0;
+  right: calc(var(--base-right) * var(--current-scale, 1)) !important;
+}
+.ala-top {
+  --base-top: 0;
+  top: calc(var(--base-top) * var(--current-scale, 1)) !important;
+}
+
+.ala-bottom {
+  --base-bottom: 0;
+  bottom: calc(var(--base-bottom) * var(--current-scale, 1)) !important;
+}
+.ala-left {
+  --base-left: 0;
+  left: calc(var(--base-left) * var(--current-scale, 1)) !important;
+}
+
+.ala-gap {
+  --base-gap: 0;
+
+  gap: calc(var(--base-gap) * var(--current-scale, 1));
+}
+.ala-gap-col {
+  --base-gap-col: 0;
+  column-gap: calc(var(--base-gap-col) * var(--current-scale, 1));
+}
+.ala-radius {
+  --base-radius: 0;
+  border-radius: calc(var(--base-radius) * var(--current-scale, 1));
+}
+/* ── 补充：其余常用布局属性（与上面同套机制）── */
+.ala-min-w {
+  --base-min-w: 0;
+  min-width: calc(var(--base-min-w) * var(--current-scale, 1)) !important;
+}
+.ala-max-w {
+  --base-max-w: 0;
+  max-width: calc(var(--base-max-w) * var(--current-scale, 1)) !important;
+}
+.ala-min-h {
+  --base-min-h: 0;
+  min-height: calc(var(--base-min-h) * var(--current-scale, 1)) !important;
+}
+.ala-max-h {
+  --base-max-h: 0;
+  max-height: calc(var(--base-max-h) * var(--current-scale, 1)) !important;
+}
+.ala-gap-row {
+  --base-gap-row: 0;
+  row-gap: calc(var(--base-gap-row) * var(--current-scale, 1));
+}
+.ala-ls {
+  --base-ls: 0;
+  letter-spacing: calc(var(--base-ls) * var(--current-scale, 1));
+}
+.ala-ti {
+  --base-ti: 0;
+  text-indent: calc(var(--base-ti) * var(--current-scale, 1));
+}
+.ala-bw {
+  --base-bw: 0;
+  border-width: calc(var(--base-bw) * var(--current-scale, 1));
+}
+.ala-inset {
+  --base-inset: 0;
+  inset: calc(var(--base-inset) * var(--current-scale, 1)) !important;
+}
+.ala-flex-basis {
+  --base-flex-basis: 0;
+  flex-basis: calc(var(--base-flex-basis) * var(--current-scale, 1));
+}
+
+@media screen and (min-width: 1900px) {
+  [class^="ala-"] {
+    --current-scale: var(--scale-1900) !important;
+  }
+}
+
+@media screen and (min-width: 1500px) and (max-width: 1899px) {
+  [class^="ala-"] {
+    --current-scale: var(--scale-1500) !important;
+  }
+}
+
+@media screen and (min-width: 1440px) and (max-width: 1499px) {
+  [class^="ala-"] {
+    --current-scale: var(--scale-1440) !important;
+  }
+}
+
+@media screen and (min-width: 1366px) and (max-width: 1439px) {
+  [class^="ala-"] {
+    --current-scale: var(--scale-1366) !important;
+  }
+}
+
+@media screen and (min-width: 1200px) and (max-width: 1365px) {
+  [class^="ala-"] {
+    --current-scale: var(--scale-1200) !important;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1199px) {
+  [class^="ala-"] {
+    --current-scale: var(--scale-769) !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .ala-width {
+    --base-width: 16px;
+    width: calc(var(--base-width) * var(--current-scale, 1)) !important;
+  }
+
+  .ala-height {
+    --base-height: 16px;
+    height: calc(var(--base-height) * var(--current-scale, 1)) !important;
+  }
+  .ala-mt {
+    --base-mt: 0;
+    margin-top: calc(var(--base-mt) * var(--current-scale, 1)) !important;
+  }
+  .ala-pr {
+    --base-pr: 0;
+    padding-right: calc(var(--base-pr) * var(--current-scale, 1)) !important;
+  }
+  .ala-pl {
+    --base-pl: 0;
+    padding-left: calc(var(--base-pl) * var(--current-scale, 1)) !important;
+  }
+  .ala-right {
+    --base-right: 0;
+    right: calc(var(--base-right) * var(--current-scale, 1)) !important;
+  }
+  .ala-top {
+    --base-top: 0;
+    top: calc(var(--base-top) * var(--current-scale, 1)) !important;
+  }
+  [class^="ala-"] {
+    --current-scale: var(--scale-768) !important;
+  }
+}
+
+/* ==========================================================================
+   ┌── 方案B：流体工具类（并存版，2026-08-28 新增）──────────────────────┐
+   │ 用途：新增模块专用。老页面继续用上面的 .ala-*（分档缩放），          │
+   │       新模块用本区块的 .ala-f-*（流体缩放，含高度约束），两套并存、  │
+   │       互不干扰。                                                     │
+   │ 用法：与 .ala-* 完全一致，只是类名多一个 -f：                        │
+   │   <div class="ala-f-mt" style="--base-mt:150px">…</div>              │
+   │   <img class="ala-f-width ala-f-height ala-f-radius"                │
+   │        style="--base-width:320px; --base-height:240px;               │
+   │               --base-radius:16px">                                   │
+   │ 换算：min(设计稿px, base÷1920×100vw, base÷1080×100svh)              │
+   │       —— 宽高双向连续缩放，无断点突跳，矮屏不溢出。                  │
+   │ 注意：--base-* 变量两套共用，元素上加哪套类就吃哪套规则；            │
+   │       边框/阴影等不想缩放的值仍直接写固定 px。                       │
+   └──────────────────────────────────────────────────────────────────────┘
+   ========================================================================== */
+
+:root {
+  --ala-design-w: 1920; /* 流体类：设计稿宽度基准 */
+  --ala-design-h: 1080; /* 流体类：设计稿高度基准 */
+}
+
+.ala-f-size {
+  --base-size: 16px;
+  font-size: max(
+    14px,
+    calc(var(--base-size) * var(--fluid-scale, 1))
+  );
+}
+
+.ala-f-width {
+  --base-width: 16px;
+  width: calc(var(--base-width) * var(--fluid-scale, 1)) !important;
+}
+
+.ala-f-flex-1 {
+  flex: 1;
+}
+
+.ala-f-height {
+  --base-height: 16px;
+  height: calc(var(--base-height) * var(--fluid-scale, 1)) !important;
+}
+
+.ala-f-lh {
+  --base-lh: 16px;
+  line-height: calc(var(--base-lh) * var(--fluid-scale, 1));
+}
+
+.ala-f-padding {
+  --base-padding-top: var(--base-padding-top);
+  --base-padding-left: var(--base-padding-left);
+  --base-padding-bottom: var(--base-padding-bottom);
+  --base-padding-right: var(--base-padding-right);
+  padding-top: calc(var(--base-padding-top) * var(--fluid-scale, 1));
+  padding-left: calc(var(--base-padding-left) * var(--fluid-scale, 1));
+  padding-bottom: calc(var(--base-padding-bottom) * var(--fluid-scale, 1));
+  padding-right: calc(var(--base-padding-right) * var(--fluid-scale, 1));
+}
+
+.ala-f-mt {
+  --base-mt: 0px;
+  margin-top: calc(var(--base-mt) * var(--fluid-scale, 1)) !important;
+}
+
+.ala-f-mr {
+  --base-mr: 0px;
+  margin-right: calc(var(--base-mr) * var(--fluid-scale, 1));
+}
+
+.ala-f-mb {
+  --base-mb: 0px;
+  margin-bottom: calc(var(--base-mb) * var(--fluid-scale, 1));
+}
+
+.ala-f-ml {
+  --base-ml: 0px;
+  margin-left: calc(var(--base-ml) * var(--fluid-scale, 1));
+}
+
+.ala-f-pt {
+  --base-pt: 0px;
+  padding-top: calc(var(--base-pt) * var(--fluid-scale, 1));
+}
+
+.ala-f-pr {
+  --base-pr: 0px;
+  padding-right: calc(var(--base-pr) * var(--fluid-scale, 1)) !important;
+}
+
+.ala-f-pb {
+  --base-pb: 0px;
+  padding-bottom: calc(var(--base-pb) * var(--fluid-scale, 1));
+}
+
+.ala-f-pl {
+  --base-pl: 0px;
+  padding-left: calc(var(--base-pl) * var(--fluid-scale, 1)) !important;
+}
+
+.ala-f-right {
+  --base-right: 0px;
+  right: calc(var(--base-right) * var(--fluid-scale, 1)) !important;
+}
+
+.ala-f-top {
+  --base-top: 0px;
+  top: calc(var(--base-top) * var(--fluid-scale, 1)) !important;
+}
+
+.ala-f-bottom {
+  --base-bottom: 0px;
+  bottom: calc(var(--base-bottom) * var(--fluid-scale, 1)) !important;
+}
+
+.ala-f-left {
+  --base-left: 0px;
+  left: calc(var(--base-left) * var(--fluid-scale, 1)) !important;
+}
+
+.ala-f-gap {
+  --base-gap: 0px;
+  gap: calc(var(--base-gap) * var(--fluid-scale, 1));
+}
+
+.ala-f-gap-col {
+  --base-gap-col: 0px;
+  column-gap: calc(var(--base-gap-col) * var(--fluid-scale, 1));
+}
+
+.ala-f-radius {
+  --base-radius: 0px;
+  border-radius: calc(var(--base-radius) * var(--fluid-scale, 1));
+}
+
+/* ── 补充：其余常用布局属性（流体版，与上面同套机制）── */
+.ala-f-min-w {
+  --base-min-w: 0px;
+  min-width: calc(var(--base-min-w) * var(--fluid-scale, 1)) !important;
+}
+.ala-f-max-w {
+  --base-max-w: 0px;
+  max-width: calc(var(--base-max-w) * var(--fluid-scale, 1)) !important;
+}
+.ala-f-min-h {
+  --base-min-h: 0px;
+  min-height: calc(var(--base-min-h) * var(--fluid-scale, 1)) !important;
+}
+.ala-f-max-h {
+  --base-max-h: 0px;
+  max-height: calc(var(--base-max-h) * var(--fluid-scale, 1)) !important;
+}
+.ala-f-gap-row {
+  --base-gap-row: 0px;
+  row-gap: calc(var(--base-gap-row) * var(--fluid-scale, 1));
+}
+.ala-f-ls {
+  --base-ls: 0px;
+  letter-spacing: calc(var(--base-ls) * var(--fluid-scale, 1));
+}
+.ala-f-ti {
+  --base-ti: 0px;
+  text-indent: calc(var(--base-ti) * var(--fluid-scale, 1));
+}
+.ala-f-bw {
+  --base-bw: 0px;
+  border-width: calc(var(--base-bw) * var(--fluid-scale, 1));
+}
+.ala-f-inset {
+  --base-inset: 0px;
+  inset: calc(var(--base-inset) * var(--fluid-scale, 1)) !important;
+}
+.ala-f-flex-basis {
+  --base-flex-basis: 0px;
+  flex-basis: calc(var(--base-flex-basis) * var(--fluid-scale, 1));
+}

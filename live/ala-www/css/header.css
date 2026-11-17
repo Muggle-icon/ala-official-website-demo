@@ -1,0 +1,307 @@
+.pc-header-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  width: 100%;
+}
+/* 对齐 demo：滚动离开首屏白底态加细分隔线阴影 */
+.pc-header-container.is-scrolled {
+  box-shadow: 0 1px 0 rgba(28, 31, 39, 0.08);
+}
+.pc-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* 对齐 demo：logo → 导航 → 下载图标 左对齐 */
+  height: 100%;
+}
+
+.pc-header .parent-ul {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0;
+  margin-top: 0;
+  margin-left: calc(104px * var(--current-scale, 1)); /* demo --desktop-nav-logo-gap 1920 基准 104px */
+  list-style: none;
+}
+.pc-header-logo-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.pc-header ul > li > a {
+  color: #111827;
+  text-decoration: none;
+  /* font-weight: 400; */
+  font-synthesis: weight style;
+  transition: font-weight 0.2s ease, color 0.3s ease;
+  font-family: "Roboto";
+}
+.pc-header ul > li > .active {
+  font-family: "Roboto-Bold";
+}
+
+.pc-header ul > li.submenu-li a{
+  font-family: "Roboto-regular";
+}
+
+.nav-name-item {
+  color: #fff;
+  transition: color 0.3s ease;
+}
+
+.nav-name-item.text-white {
+  color: #fff;
+}
+.nav-name-item.text-dark {
+  color: #121728;
+}
+
+/* 标签栏字重：默认 Medium，选中态 Bold（选中标记 .nav-active 由 JS 添加），hover 不变字重 */
+.pc-header .parent-ul > li > a.nav-name-item {
+  font-family: "Roboto";
+  font-weight: 400;
+  color: #24252a;
+  font-size: 14px;
+}
+
+.pc-header .line,
+.pc-header .index-line-cur {
+  position: absolute;
+  /* --base-bottom: -22px; */
+  left: 50%;
+  transform: translateX(-50%);
+  height: 3px;
+  width: 0;
+  border-radius: 3px;
+  background-color: #fff;
+  transition: width 0.3s ease;
+  margin-top: 6px;
+}
+.pc-header .parent-ul > li:hover .index-line-cur {
+  width: 50% !important;
+}
+
+.pc-header .line-cur {
+  width: 50%;
+  background-color: #121728;
+}
+/* 首屏（header 未变白）：hover 展开的下划线为白色 */
+.pc-header .parent-ul > li:hover .line {
+  width: 50%;
+  background-color: #fff;
+}
+/* 滚动离开首屏（header 已变白）：hover 展开的下划线为暗色 */
+.pc-header-container.is-scrolled .parent-ul > li:hover .line {
+  background-color: #121728;
+}
+
+/* 主标签栏 hover 不变色、不变字重：颜色由 JS applyNavColors 按选中态处理 */
+
+/*  */
+.pc-header .loan-li .line-cur {
+  width: 90%;
+  background-color: #121728;
+}
+/* 首屏（header 未变白）：loan-li hover 展开的下划线为白色 */
+.pc-header .parent-ul > .loan-li:hover .line {
+  width: 90%;
+  background-color: #fff;
+}
+/* 滚动离开首屏（header 已变白）：loan-li hover 展开的下划线为暗色 */
+.pc-header-container.is-scrolled .parent-ul > .loan-li:hover .line {
+  background-color: #121728;
+}
+
+/* hover 不再变白背景：背景色仅由 JS 按滚动状态控制，滚动完全离开首屏 main-top-bg（100vh）后才变白 */
+.pc-menu-arrow-white {
+  /* display: none; */
+  /* display: inline; */
+}
+.pc-menu-arrow {
+  display: none;
+  /* display: inline; */
+}
+.pc-header .parent-ul > li:hover .pc-menu-arrow-white {
+  display: none;
+  /* transform: rotateZ(180deg); */
+}
+
+.pc-header .parent-ul > li:hover .pc-menu-arrow {
+  display: inline;
+  transform: rotateZ(180deg);
+}
+
+.pc-menu-arrow-blue{
+  display: none;
+}
+
+.nav-item-with-dropdown:hover .pc-menu-arrow-blue {
+  display: inline !important;
+  /* transform: rotateZ(180deg); */
+}
+.nav-item-with-dropdown:hover .pc-menu-arrow-white,
+.nav-item-with-dropdown:hover .pc-menu-arrow {
+  display: none !important;
+}
+
+/*  */
+/*  */
+
+/* hover 时下划线不再变蓝，保持各状态原有颜色（首屏白/滑出后深色） */
+
+.pc-header .parent-ul > li {
+  --base-pb: 5px;
+}
+
+/*  */
+
+.pc-header .child-ul {
+  list-style: none;
+  position: absolute;
+  /* padding: 0; */
+  top: calc(54px * var(--current-scale, 1)); /* padding-top 由 46px 改为 12px，top 由 20px 同步到 54px，保持子菜单项位于 header 底部 */
+  white-space: nowrap;
+  background-color: #fff;
+  transform: translateX(-40%);
+  margin-top: 5px;
+  border-radius: 12px; /* 对齐 demo navigation-panel 圆角 */
+  overflow: hidden; /* 子项背景随圆角裁剪 */
+}
+
+.nav-item-with-dropdown .child-ul {
+  /* margin-top: 10px; */
+  /* z-index: -1; */
+}
+
+/* 下拉框显示改由 JS 控制（延迟隐藏修复 li→child-ul 空隙闪隐），停用纯 CSS :hover 规则 */
+/* .nav-item-with-dropdown:hover .child-ul {
+  display: block !important;
+} */
+/* 子菜单 hover 不变字体颜色与字重：保持默认样式，选中的 .submenu-active 仍显示蓝色 */
+
+.pc-header-container .submenu-active {
+  color: #294bff !important;
+}
+
+/*  */
+.mobile-header-container {
+  padding: 0 24px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  width: 100%;
+  background-color: #fff;
+}
+.mobile-header-container > .mobile-title-wrap {
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.mobile-header-container .mobile-title-left {
+  flex: 1;
+}
+.mobile-header-container {
+  font-size: 16px;
+}
+.mobile-header-container ul {
+  list-style: none;
+  padding-left: 0px;
+}
+.mobile-header-container .mobile-nav-name-item {
+  color: #121728;
+  /* height: 54px;
+  line-height: 54px;
+  position: relative; */
+}
+.mobile-header-container a {
+  text-decoration: none;
+}
+.mobile-header-container .mobile-child-ul a {
+  color: #121728;
+}
+.mobile-header-container .mobile-child-ul {
+  padding-left: 40px;
+}
+.mobile-parent-ul{
+  margin-top: 30px;
+}
+@media screen and (max-width: 992px) {
+  .mobile-nav-name-item,.submenu-link{
+    /* font-family: 'Roboto-Bold'; */
+  }
+}
+
+/* ===== 对齐 demo 新版 header（2026-09）===== */
+
+/* 导航项 hover 浅灰圆角背景：挂在 li 上，同时包裹导航文字与下拉箭头，箭头右侧同样 12px（与文字左右间距一致）。
+   仅白底态（is-scrolled）出现，首屏透明态无反馈（与 demo 一致） */
+.pc-header .parent-ul > li {
+  position: relative;
+  isolation: isolate;
+}
+.pc-header .parent-ul > li::before {
+  content: "";
+  position: absolute;
+  inset: -10px -12px;
+  z-index: -1;
+  border-radius: 10px;
+  background: transparent;
+  transition: background-color 160ms ease;
+}
+.pc-header-container.is-scrolled .parent-ul > li:hover::before {
+  background: #f2f2f2;
+}
+
+/* 停用下划线视觉：.line 仍保留在 DOM 中供 JS 判断选中态（markActiveNav），仅不再渲染 */
+.pc-header .line,
+.pc-header .index-line-cur {
+  display: none;
+}
+
+/* 桌面 header 右侧 Google Play / App Store 下载图标：默认隐藏，滚动离开首屏后显示。
+   gap/margin/尺寸随缩放由 ala-gap / ala-ml / ala-width / ala-height 工具类负责（1920 基准：112px / 16px / 48px） */
+.desktop-store-shortcuts {
+  display: none;
+  align-items: center;
+}
+.desktop-store-shortcuts a {
+  display: block;
+}
+.desktop-store-shortcuts img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.pc-header-container.is-scrolled .desktop-store-shortcuts {
+  display: flex;
+}
+
+/* 下拉箭头置于下拉框之上，避免 hover 时被 child-ul 白底 padding 遮挡 */
+.pc-header .parent-ul > li > .pc-menu-arrow-white,
+.pc-header .parent-ul > li > .pc-menu-arrow-blue,
+.pc-header .parent-ul > li > .pc-menu-arrow {
+  position: relative;
+  z-index: 2;
+}
+
+/* 子菜单项对齐 demo：padding 11px 12px / 圆角 7px / 文字 #24252a；hover 仅切换背景 #e8e8e8，
+   padding 常驻避免 hover 时布局跳动（与 demo navigation-panel-inner > ul a 一致） */
+.pc-header .child-ul > li.submenu-li {
+  padding: 11px 12px;
+  border-radius: 7px;
+  color: #24252a;
+  transition: background-color 120ms ease;
+}
+.pc-header .child-ul > li.submenu-li:hover {
+  background-color: #e8e8e8;
+}
+.pc-header .child-ul > li.submenu-li a {
+  color: #24252a;
+}

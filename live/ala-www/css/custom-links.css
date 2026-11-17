@@ -1,0 +1,36 @@
+.no-default-alink-column {
+  text-decoration: none;
+  color: inherit;
+}
+.no-default-alink-column:hover {
+  text-decoration: none;
+  color: #294bff;
+  outline: none;
+}
+.no-default-alink-title {
+  text-decoration: none;
+  color: inherit;
+}
+.no-default-alink-title:hover {
+  text-decoration: none;
+  color: #000;
+  outline: none;
+}
+.no-default-alink-desc {
+  text-decoration: none;
+  color: inherit;
+}
+.no-default-alink-desc:hover {
+  text-decoration: none;
+  color: #666;
+  outline: none;
+}
+.no-default-alink-time {
+  text-decoration: none;
+  color: inherit;
+}
+.no-default-alink-time:hover {
+  text-decoration: none;
+  color: #999;
+  outline: none;
+}

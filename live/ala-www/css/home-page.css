@@ -1,0 +1,8 @@
+.custom-pc-motion-element {
+  flex-wrap: wrap;
+}
+
+.custom-pc-motion-element .article-item {
+  width: 31% !important;
+  flex-shrink: 0;
+}

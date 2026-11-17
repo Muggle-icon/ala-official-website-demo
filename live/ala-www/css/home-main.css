@@ -1,0 +1,101 @@
+.main-bg-container {
+  width:100%;
+  height:100vh;
+}
+.main-bg-wrap {
+  height: 100vh;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.main-top-bg {
+  height: 100vh;
+  width: 100%;
+  margin: auto;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.target-position {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding-top: 102px;
+}
+.adjust-position {
+/*  position: absolute;*/
+/*  top: 50%;*/
+/*  transform: translateY(-50%);*/
+}
+
+/* 小屏（<1100px）PC 顶部背景叠加暗色渐变遮罩，遮罩作为独立层位于背景图之上、文字之下：
+   0~50% 保持 #000000CC，从 50% 起向下渐变到 #00000000（透明）。
+   ≥1100px 不加遮罩，仅保留原图。 */
+@media (max-width: 1099.98px) {
+  .main-top-bg {
+    position: relative;
+  }
+  .main-top-bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to top, #000000CC 10%, #00000000 100%);
+    z-index: 0;
+    pointer-events: none;
+  }
+  /* 文字内容上提，确保位于遮罩之上 */
+  .main-top-bg > .target-position {
+    position: relative;
+    z-index: 1;
+  }
+  .mainTopBg-m {
+    position: relative;
+  }
+  .mainTopBg-m::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to top, #000000CC 10%, #00000000 100%);
+    z-index: 0;
+    pointer-events: none;
+  }
+  /* 文字内容上提，确保位于遮罩之上 */
+  .mainTopBg-m > .motion-element {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+/* 手机端（≤769px，.mainTopBg-m 背景图所在断点）同样叠加暗色渐变遮罩，
+   遮罩位于背景图之上、文字之下，渐变与 PC 端保持一致 */
+@media screen and (max-width: 769px) {
+  .mainTopBg-m {
+    position: relative;
+  }
+  .mainTopBg-m::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to top, #000000CC 10%, #00000000 100%);
+    z-index: 0;
+    pointer-events: none;
+  }
+  /* 文字内容上提，确保位于遮罩之上 */
+  .mainTopBg-m > .motion-element {
+    position: relative;
+    z-index: 1;
+  }
+}

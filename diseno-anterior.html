@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta name="robots" content="noindex, nofollow">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#1738c7" />
+    <meta
+      name="description"
+      content="Demo del nuevo inicio del sitio oficial de ALA, con acceso a la aplicación y al centro de ayuda."
+    />
+    <link rel="icon" type="image/png" href="./public/assets/download-card-icon.png" />
+    <link rel="preload" href="./public/assets/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin />
+    <link rel="stylesheet" href="./styles.css?v=20260908-1900" />
+    <link rel="stylesheet" href="./home-motion.css?v=20260908-1600" />
+    <link rel="stylesheet" href="./navigation.css?v=20260908-1930" />
+    <script src="./navigation.js?v=20260908-1935" defer></script>
+    <script src="./home-motion.js?v=20260908-1600" defer></script>
+    <script src="./footer.js?v=20260904-0040" defer></script>
+    <script src="./script.js?v=20260908-1800" defer></script>
+    <title>ALA — Apoyo financiero flexible</title>
+  </head>
+  <body>
+    <main class="site-shell">
+      <div class="ios-status" aria-hidden="true">
+        <span class="ios-time">9:41</span>
+        <span class="ios-system-icons">
+          <span class="signal"><i></i><i></i><i></i><i></i></span>
+          <span class="wifi"></span>
+          <span class="battery"><i></i></span>
+        </span>
+      </div>
+
+      <button class="notice-bar" type="button" data-open-notice aria-label="Ver aviso importante">
+        <span class="notice-copy">
+          <strong>Aviso importante:</strong>
+          <span>Este es el único sitio web oficial de ALA.</span>
+        </span>
+        <span class="notice-link">Ver aviso</span>
+        <img class="chevron" src="./public/assets/notice-chevron.png" alt="" />
+      </button>
+
+      <section class="hero" id="producto" aria-labelledby="hero-title">
+        <picture class="hero-photo" aria-hidden="true">
+          <source media="(max-aspect-ratio: 4 / 3)" srcset="./public/assets/hero-person-full.webp" />
+          <source media="(max-width: 600px)" srcset="./public/assets/mobile-hero-background.webp" />
+          <img src="./public/assets/hero-background-20260812.webp" alt="" width="3840" height="2080" fetchpriority="high" decoding="async" />
+        </picture>
+        <div class="mobile-shade" aria-hidden="true"></div>
+
+        <header class="desktop-nav">
+          <a class="desktop-brand" href="#" aria-label="ALA inicio">
+            <img class="desktop-brand-on-hero" src="./public/assets/ala-logo.png" alt="ALA" />
+            <img class="desktop-brand-after-hero" src="./public/assets/nav-logo-dark.png" alt="ALA" />
+          </a>
+          <nav aria-label="Navegación principal">
+            <a class="is-active" href="#producto" aria-current="location">Introducción del producto</a>
+            <a href="#proteccion">Protección regulatoria</a>
+            <button class="nav-with-arrow" type="button" data-nav-panel="blog" aria-expanded="false" aria-controls="navigation-blog">Blog <span class="navigation-chevron" aria-hidden="true"></span></button>
+            <button class="nav-with-arrow" type="button" data-nav-panel="more" aria-expanded="false" aria-controls="navigation-more">Más información <span class="navigation-chevron" aria-hidden="true"></span></button>
+            <a href="#preguntas">Preguntas frecuentes</a>
+          </nav>
+          <div class="desktop-store-shortcuts" aria-label="Descargar ALA">
+            <a href="#google-play" aria-label="Descargar ALA en Google Play">
+              <img src="./public/assets/nav-google.png" alt="" />
+            </a>
+            <a href="#app-store" aria-label="Descargar ALA en App Store">
+              <img src="./public/assets/nav-ios.png" alt="" />
+            </a>
+          </div>
+        </header>
+
+        <header class="mobile-nav">
+          <a class="mobile-brand" href="#" aria-label="ALA inicio">
+            <img src="./public/assets/ala-app-icon.png" alt="" />
+          </a>
+          <a class="about-pill" href="#informacion">Sobre ALA <span aria-hidden="true">›</span></a>
+          <button class="menu-button" type="button" aria-label="Abrir menú" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
+        </header>
+
+        <div class="hero-content">
+          <h1 id="hero-title">Te brindamos apoyo financiero flexible, con montos de $300 a $50,000</h1>
+
+          <div class="store-buttons" aria-label="Descarga la aplicación de ALA">
+            <a class="store-button" href="#google-play" aria-label="Descargar en Google Play">
+              <img src="./public/assets/google-play-icon.png" alt="" />
+              <span>Google Play</span>
+            </a>
+            <a class="store-button" href="#app-store" aria-label="Descargar en App Store">
+              <img class="apple-mark" src="./public/assets/app-store-icon.png" alt="" />
+              <span>App Store</span>
+            </a>
+          </div>
+
+          <div class="stats" aria-label="Estadísticas de ALA">
+            <div class="stat stat-downloads">
+              <strong>1,000,000+</strong>
+              <span>DESCARGAS</span>
+            </div>
+            <div class="stat stat-rating">
+              <strong>4.8</strong>
+              <span class="stars" aria-label="5 estrellas">
+                <img src="./public/assets/star.png" alt="" />
+                <img src="./public/assets/star.png" alt="" />
+                <img src="./public/assets/star.png" alt="" />
+                <img src="./public/assets/star.png" alt="" />
+                <img src="./public/assets/star.png" alt="" />
+              </span>
+            </div>
+            <div class="stat stat-satisfaction">
+              <strong>96%</strong>
+              <span>SATISFACCIÓN</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="download-card" aria-label="Escanea para descargar ALA">
+          <img class="download-card-art" src="./public/assets/download-card-exact.png" alt="Escanea y descarga ALA mediante el código QR" />
+          <button class="help-card-button" type="button" data-toggle-help aria-label="Abrir centro de ayuda"></button>
+        </aside>
+
+        <button class="mobile-help" type="button" data-toggle-help aria-label="Abrir centro de ayuda">
+          <img src="./public/assets/help-center.png" alt="" />
+        </button>
+
+      </section>
+
+      <button class="help-backdrop" type="button" data-close-help aria-label="Cerrar centro de ayuda"></button>
+
+      <section class="help-panel" aria-labelledby="help-title" aria-hidden="true">
+        <header>
+          <h2 id="help-title">Centro de ayuda</h2>
+          <button type="button" data-close-help aria-label="Cerrar centro de ayuda">
+            <img src="./public/assets/close-icon.png" alt="" />
+          </button>
+        </header>
+        <div class="advisor-row">
+          <img class="advisor-photo" src="./public/assets/help-advisor-sofia.png" alt="" loading="lazy" decoding="async" />
+          <div>
+            <strong>Habla con Sofía.</strong>
+            <span>Tu asesora de ALA</span>
+          </div>
+        </div>
+        <a class="whatsapp-button" href="https://wa.me/" target="_blank" rel="noreferrer">
+          <img src="./public/assets/whatsapp-icon.png" alt="" />
+          Iniciar conversación
+        </a>
+          <p>¿No tienes WhatsApp? <a href="./help.html?v=20260908-1315">Obtén ayuda aquí</a></p>
+      </section>
+
+      <div class="notice-overlay" aria-hidden="true">
+        <section class="notice-modal" role="dialog" aria-modal="true" aria-labelledby="notice-title">
+          <button class="modal-close" type="button" data-close-notice aria-label="Cerrar aviso">
+            <img src="./public/assets/close-icon.png" alt="" />
+          </button>
+          <span class="security-chip">Aviso de seguridad</span>
+          <h2 id="notice-title">Aviso Importante Este es el único sitio web oficial de ALA.</h2>
+          <p class="modal-intro">
+            Hemos detectado un sitio web de terceros que utiliza elementos similares a la marca ALA y que podría
+            generar confusión.
+          </p>
+          <div class="modal-divider"></div>
+          <h3>Para proteger su información y prevenir posibles fraudes:</h3>
+          <ol class="safety-list">
+            <li><span>1</span><p>Consulte únicamente la información publicada en este sitio web oficial.</p></li>
+            <li><span>2</span><p>Descargue la aplicación oficial de ALA únicamente mediante el código QR disponible en este sitio web oficial.</p></li>
+            <li><span>3</span><p>No proporcione datos personales o financieros a través de sitios web, aplicaciones o canales no oficiales.</p></li>
+          </ol>
+          <p class="legal-note">
+            <img src="./public/assets/security-icon-exact.png" alt="" />
+            ALA está tomando las acciones legales correspondientes para proteger a sus usuarios y su marca.
+          </p>
+          <button class="close-primary" type="button" data-close-notice>Cerrar</button>
+        </section>
+      </div>
+
+    </main>
+
+    <section class="faq-section" id="preguntas" aria-labelledby="faq-title">
+      <div class="faq-inner">
+        <header class="faq-header">
+          <h2 id="faq-title">Preguntas frecuentes</h2>
+          <div class="faq-tabs" role="tablist" aria-label="Categorías de ayuda">
+            <button class="faq-tab is-active" type="button" role="tab" aria-selected="true" data-faq-category="solicitud">
+              Solicitud de préstamo
+            </button>
+            <button class="faq-tab" type="button" role="tab" aria-selected="false" data-faq-category="credito">
+              Crédito y límite
+            </button>
+            <button class="faq-tab" type="button" role="tab" aria-selected="false" data-faq-category="problemas">
+              Problemas de préstamo
+            </button>
+            <button class="faq-tab" type="button" role="tab" aria-selected="false" data-faq-category="otros">
+              Otros
+            </button>
+          </div>
+        </header>
+
+        <div class="faq-list" data-faq-list>
+          <article class="faq-item is-open">
+            <button class="faq-question" type="button" aria-expanded="true" aria-controls="faq-answer-0">
+              <span data-faq-question>¿Cuándo llegará el préstamo a mi cuenta bancaria?</span>
+              <svg class="faq-chevron" aria-hidden="true" viewBox="0 0 24 24">
+                <path d="m6 9 6 6 6-6" />
+              </svg>
+            </button>
+            <div class="faq-answer" id="faq-answer-0" aria-hidden="false">
+              <p data-faq-answer>Una vez aprobada tu solicitud, ALA procesará la transferencia de inmediato. Normalmente, los fondos llegan a tu cuenta bancaria en 5 minutos, aunque en casos excepcionales puede haber retrasos.Nota: Asegúrate de que la información de tu cuenta bancaria sea correcta para evitar errores en la transferencia. Si los datos son incorrectos, nos pondremos en contacto contigo para confirmarlos.</p>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-answer-1">
+              <span data-faq-question>¿Cuándo llegará el préstamo a mi cuenta bancaria?</span>
+              <svg class="faq-chevron" aria-hidden="true" viewBox="0 0 24 24">
+                <path d="m6 9 6 6 6-6" />
+              </svg>
+            </button>
+            <div class="faq-answer" id="faq-answer-1" aria-hidden="true">
+              <p data-faq-answer>Después de la aprobación, la transferencia suele reflejarse en tu cuenta bancaria en aproximadamente 5 minutos. El tiempo final depende de tu banco.</p>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-answer-2">
+              <span data-faq-question>¿Puedo solicitar varios préstamos?</span>
+              <svg class="faq-chevron" aria-hidden="true" viewBox="0 0 24 24">
+                <path d="m6 9 6 6 6-6" />
+              </svg>
+            </button>
+            <div class="faq-answer" id="faq-answer-2" aria-hidden="true">
+              <p data-faq-answer>Puedes solicitar un nuevo préstamo cuando el préstamo actual se haya liquidado y tu cuenta vuelva a mostrar un límite disponible.</p>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-answer-3">
+              <span data-faq-question>¿Cómo obtener un límite más alto de préstamo?</span>
+              <svg class="faq-chevron" aria-hidden="true" viewBox="0 0 24 24">
+                <path d="m6 9 6 6 6-6" />
+              </svg>
+            </button>
+            <div class="faq-answer" id="faq-answer-3" aria-hidden="true">
+              <p data-faq-answer>Mantén tus datos actualizados y realiza tus pagos puntualmente. ALA evaluará periódicamente tu perfil para ofrecerte un límite adecuado.</p>
+            </div>
+          </article>
+        </div>
+
+        <p class="faq-help-prompt">
+          Resuelve tus dudas en nuestro <a class="faq-help-link" href="./help.html?v=20260908-1315">centro de ayuda</a>
+        </p>
+      </div>
+    </section>
+
+    <footer class="site-footer" id="informacion">
+      <div class="footer-inner">
+        <section class="footer-contact" id="contacto">
+          <h2>Contáctanos</h2>
+          <p class="contact-intro">Si necesitas ayuda,<br />llama a nuestra línea de atención o envíanos un correo electrónico.</p>
+          <a class="phone-link" href="tel:40009877866456">
+            <span><img src="./public/assets/help-center.png" alt="" /></span>
+            Teléfono
+          </a>
+          <dl class="contact-list">
+            <div><dt>Teléfono</dt><dd>400-0987-7866-456</dd></div>
+            <div><dt>Correo electrónico</dt><dd>contacto@prestifymx.com</dd></div>
+            <div><dt>Horario de atención</dt><dd>De lunes a domingo, de 9:00 a 18:00.</dd></div>
+          </dl>
+          <p class="contact-note">Por favor, envía por correo electrónico el problema que presentas, te telefoneará para que podamos confirmarlo contigo y solucionarlo.</p>
+        </section>
+
+        <section class="footer-about" id="sobre-ala">
+          <h2>Sobre nosotros</h2>
+          <dl class="about-list">
+            <div><dt>Razón social</dt><dd>Quantum Wealth Solutions, S.A.P.I. DE C.V.<br />SOFOM E.N.R</dd></div>
+            <div><dt>Dirección de la empresa</dt><dd>AV. PASEO DE LA REFORMA 295, PISO 6 OFICINA<br />1503, COL. CUAUHTÉMOC, CUAUHTÉMOC,<br />CIUDAD DE MÉXICO, C.P. 06500,MEXICO</dd></div>
+            <div>
+              <dt>idad especializada de atención a usuarios (UNE)</dt>
+              <dd><a href="#une">UNE ALA</a><a href="#cobranza">Despacho de cobranza</a></dd>
+            </div>
+          </dl>
+          <div class="social-block">
+            <h2>Síguenos</h2>
+            <div class="social-links">
+              <a href="#youtube" aria-label="YouTube"><img src="./public/assets/youtube.png" alt="" loading="lazy" decoding="async" /></a>
+              <a href="#facebook" aria-label="Facebook"><img src="./public/assets/facebook.png" alt="" loading="lazy" decoding="async" /></a>
+              <a href="#tiktok" aria-label="TikTok"><img src="./public/assets/tiktok.png" alt="" loading="lazy" decoding="async" /></a>
+            </div>
+          </div>
+        </section>
+
+        <section class="footer-agreement" id="documentos-legales">
+          <h2>Documentos Legales</h2>
+          <div class="legal-documents">
+            <a class="legal-document-link" href="#terms-conditions">
+              <span>Términos y Condiciones de Uso</span>
+              <i class="legal-chevron" aria-hidden="true"></i>
+            </a>
+
+            <div class="legal-document">
+              <button class="legal-document-trigger" type="button" aria-expanded="false" aria-controls="legal-privacy-versions">
+                <span>Aviso de Privacidad</span>
+                <i class="legal-chevron" aria-hidden="true"></i>
+              </button>
+              <div class="legal-submenu" id="legal-privacy-versions" hidden>
+                <a href="#google-privacy">Google Play <span aria-hidden="true">›</span></a>
+                <a href="#apple-privacy">App Store <span aria-hidden="true">›</span></a>
+              </div>
+            </div>
+
+            <div class="legal-document">
+              <button class="legal-document-trigger" type="button" aria-expanded="false" aria-controls="legal-contract-versions">
+                <span>Contracto de Prestamo</span>
+                <i class="legal-chevron" aria-hidden="true"></i>
+              </button>
+              <div class="legal-submenu" id="legal-contract-versions" hidden>
+                <a href="#google-loan-contract">Google Play <span aria-hidden="true">›</span></a>
+                <a href="#apple-loan-contract">App Store <span aria-hidden="true">›</span></a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="footer-compliance footer-condusef" id="proteccion">
+          <div class="compliance-logo-slot">
+            <img src="./public/assets/footer-condusef-20260904-v2.png" alt="CONDUSEF" loading="lazy" decoding="async" />
+          </div>
+          <p class="compliance-copy">La Comisión Nacional para la Protección y Defensa de los Usuarios de Servicios Financieros (CONDUSEF) es el organismo público encargado de promover, asesorar, proteger y defender los derechos e intereses de los usuarios frente a las instituciones financieras. Para más información, consulta el sitio oficial de la <a href="https://www.condusef.gob.mx/">CONDUSEF</a>. (<a href="https://www.condusef.gob.mx/">https://www.condusef.gob.mx/</a>)</p>
+        </section>
+
+        <section class="footer-compliance footer-sipres">
+          <div class="compliance-logo-slot">
+            <img src="./public/assets/footer-sipres-20260904-v2.png" alt="CONDUSEF y SIPRES" loading="lazy" decoding="async" />
+          </div>
+          <p class="compliance-copy">ALA se encuentra inscrita en el Sistema de Registro de Prestadores de Servicios Financieros (SIPRES). Este registro otorga constancia del reconocimiento oficial de la entidad, ofreciendo validación con efectos frente a terceros sobre su presencia real y funcionamiento regular. Puedes validar la información directamente en el portal de <a href="https://webapps.condusef.gob.mx/SIPRES/jsp/pub/index.jsp">SIPRES - CONDUSEF</a>.<br />(<a href="https://webapps.condusef.gob.mx/SIPRES/jsp/pub/index.jsp">https://<wbr />webapps.condusef.gob.mx/<wbr />SIPRES/jsp/pub/<wbr />index.jsp</a>)</p>
+        </section>
+
+        <section class="footer-compliance footer-cnbv">
+          <div class="compliance-logo-slot">
+            <img src="./public/assets/footer-cnbv-20260904.png" alt="CNBV" loading="lazy" decoding="async" />
+          </div>
+          <p class="compliance-copy">ALA es una entidad supervisada por la Comisión Nacional Bancaria y de Valores (CNBV), autoridad encargada de regular y monitorear nuestro funcionamiento operativo y financiero en conjunto con la CONDUSEF. Puedes verificar nuestra situación regulatoria en el portal oficial de la <a href="https://www.gob.mx/cnbv">CNBV</a>.</p>
+        </section>
+
+        <section class="footer-compliance footer-buro">
+          <div class="compliance-logo-slot">
+            <img src="./public/assets/footer-buro-20260904.png" alt="Buró de Entidades Financieras" loading="lazy" decoding="async" />
+          </div>
+          <p class="compliance-copy"><a href="http://www.gob.mx/cnbv">El Buró de Entidades Financieras</a> da reconocimiento e integra el historial general de cumplimiento normativo, desempeño operativo y actualizaciones de valor con las que cuenta ALA para brindar mayor transparencia a los usuarios. Puedes consultar la información en el portal del <a href="http://www.gob.mx/cnbv">Buró de Entidades Financieras</a>. (<a href="http://www.gob.mx/cnbv">http://www.gob.mx/cnbv</a>)</p>
+        </section>
+      </div>
+    </footer>
+  </body>
+</html>

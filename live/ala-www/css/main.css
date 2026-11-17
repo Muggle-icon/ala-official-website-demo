@@ -1,0 +1,148 @@
+@charset "UTF-8";
+
+@font-face {
+  font-family: "Roboto-Regular";
+  font-display: swap;
+  src: url("../converted-fonts/Roboto-Regular.woff2")
+    format("woff2");
+}
+@font-face {
+  font-family: "Roboto-Medium";
+  font-display: swap;
+  src: url("../converted-fonts/Roboto-Medium.woff2")
+    format("woff2");
+}
+
+@font-face {
+  font-family: "Roboto-Bold";
+  font-display: swap;
+  src: url("../converted-fonts/Roboto-Bold.woff2")
+    format("woff2");
+}
+
+body {
+  font-family: "Roboto-Regular", Arial, Helvetica, sans-serif;
+  line-height: inherit;
+  font-weight: 400;
+}
+
+.cm-navbar .navbar-nav .nav-link {
+  font-size: 18px;
+  padding-left: 16px;
+  padding-right: 16px;
+  color: #212529;
+}
+.cm-navbar .navbar-nav .nav-link.active {
+  color: #007bff;
+}
+
+.navbar-nav-scroll {
+  max-width: 100%;
+  height: 2.5rem;
+  /*margin-top: .25rem;*/
+  overflow: hidden;
+}
+
+.navbar-nav-scroll .navbar-nav {
+  /*padding-bottom: 2rem;*/
+  overflow-x: auto;
+  white-space: nowrap;
+  margin-left: -0.5rem;
+  margin-right: -0.5rem;
+  -webkit-overflow-scrolling: touch;
+}
+
+.cm-hidden {
+  display: none;
+}
+
+.cm-pointer {
+  cursor: pointer;
+}
+
+.cm-ff-yh {
+  font-family: "Microsoft YaHei", 微软雅黑, "MicrosoftJhengHei", serif;
+}
+
+.cm-block-head-bottom {
+  border-bottom: solid 2px;
+  border-color: #007bff;
+  display: inline-block;
+  padding-bottom: 0.3rem;
+}
+
+.cm-trans-bottom {
+  width: 100%;
+  bottom: 0;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.cm-media-img {
+  max-width: 180px;
+  max-height: 120px;
+}
+
+@media screen and (max-width: 767px) {
+  .cm-media-img {
+    max-width: 120px;
+    max-height: 80px;
+  }
+  .breadcrumb-wrap-in{
+    display: none !important;
+  }
+}
+.cm-link {
+  color: #212529;
+}
+.cm-link:hover {
+  color: rgb(0, 98.4, 204);
+}
+
+.es-highlight em {
+  color: #dc3545;
+  font-style: normal;
+}
+
+/* motion */
+/* 动画元素基础样式 */
+.motion-element {
+  /* 初始状态 */
+  opacity: 0;
+  transform: translateY(50px);
+  /* 过渡动画配置 - */
+  transition: opacity 0.8s ease-in, transform 0.8s ease-in;
+}
+
+/* 动画触发后的状态 */
+.motion-element.animated {
+  opacity: 1;
+  transform: translateY(0);
+}
+.motion-element.no-transition {
+  transition: none !important; /* 覆盖默认过渡 */
+}
+
+
+.text-three-line {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.text-two-line {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.text-seven-line {
+  display: -webkit-box;
+  -webkit-line-clamp: 7;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

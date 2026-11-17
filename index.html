@@ -1,355 +1,3399 @@
-<!doctype html>
-<html lang="es">
+<!DOCTYPE html>
+
+<html lang="es-MX">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="theme-color" content="#1738c7" />
-    <meta
-      name="description"
-      content="Demo del nuevo inicio del sitio oficial de ALA, con acceso a la aplicación y al centro de ayuda."
-    />
-    <link rel="icon" type="image/png" href="./public/assets/download-card-icon.png" />
-    <link rel="preload" href="./public/assets/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin />
-    <link rel="stylesheet" href="./styles.css?v=20260908-1900" />
-    <link rel="stylesheet" href="./home-motion.css?v=20260908-1600" />
-    <link rel="stylesheet" href="./navigation.css?v=20260908-1930" />
-    <script src="./navigation.js?v=20260908-1935" defer></script>
-    <script src="./home-motion.js?v=20260908-1600" defer></script>
-    <script src="./footer.js?v=20260904-0040" defer></script>
-    <script src="./script.js?v=20260908-1800" defer></script>
-    <title>ALA — Apoyo financiero flexible</title>
-  </head>
+    <meta name="robots" content="noindex, nofollow">
+    <meta charset="utf-8" />
+    <title>ALA-Préstamo personal en línea rápido. Máximo $50,000 .</title>
+
+
+
+
+    <!-- 预加载关键字体 -->
+    <link rel="preload" href="./live/ala-www/converted-fonts/Roboto-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="./live/ala-www/converted-fonts/Roboto-Bold.woff2" as="font" type="font/woff2" crossorigin>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="renderer" content="webkit">
+<link rel="canonical" href="https://www.alaprestamo.com" />
+<!-- 浏览器标签图标（保持原样） -->
+<link rel="icon" type="image/png" href="./live/ala-www/img/logo.png" />
+<!-- 搜索引擎优先使用根目录favicon.ico -->
+<link rel="icon" type="image/x-icon" href="./live/favicon.ico">
+<!-- 备用PNG格式图标 -->
+<link rel="icon" type="image/png" sizes="32x32" href="./live/ala-www/img/logo.png">
+<link rel="icon" type="image/png" sizes="16x16" href="./live/ala-www/img/logo.png">
+<!-- Apple Touch Icon (iOS设备) -->
+<link rel="apple-touch-icon" href="./live/ala-www/img/logo.png">
+   <link rel="stylesheet" href="./live/ala-www/vendor/bootstrap/dist/css/bootstrap.min.css">
+
+  <link rel="stylesheet" href="./live/ala-www/css/main.css">
+  <link rel="stylesheet" href="./live/ala-www/css/custom.css">
+  <link rel="stylesheet" href="./live/ala-www/css/custom-links.css">
+ <!-- 核心脚本 - 保持同步加载 -->
+<script src="./live/ala-www/vendor/jquery/dist/jquery.min.js"></script>
+<script src="./live/ala-www/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- 工具库 - 可以 defer -->
+<script src="./live/ala-www/vendor/axios/dist/axios.min.js" defer></script>
+
+
+<!-- ala-f 流体缩放因子：--fluid-scale = min(1, 视口宽/设计稿宽, 视口高/设计稿高)，供 .ala-f-* 引擎使用（设计稿基准从 :root 的 --ala-design-w/h 读取） -->
+<script>
+  (function () {
+    function setFluidScale() {
+      var cs = getComputedStyle(document.documentElement);
+      var w = parseFloat(cs.getPropertyValue('--ala-design-w')) || 1920;
+      var h = parseFloat(cs.getPropertyValue('--ala-design-h')) || 1080;
+      var s = Math.min(1, window.innerWidth / w, window.innerHeight / h);
+      document.documentElement.style.setProperty('--fluid-scale', s);
+    }
+    window.addEventListener('resize', setFluidScale);
+    window.addEventListener('orientationchange', setFluidScale);
+    setFluidScale();
+  })();
+</script>
+
+
+    <script src="./live/ala-www/js/swiper.min.js" defer></script>
+    <script src="./live/ala-www/js/swiper.animate1.0.3.min.js" defer></script>
+    <link rel="stylesheet" href="./live/ala-www/css/swiper.min.css" />
+    <link rel="stylesheet" href="./live/ala-www/css/animate.min.css" />
+    <link rel="stylesheet" href="./live/ala-www/css/index.css" />
+    <link rel="stylesheet" href="./live/ala-www/css/home-main.css" />
+    <link rel="stylesheet" href="./live/ala-www/css/home-page.css" />
+    <script src="./live/ala-www/js/motion.js" defer></script>
+    <script src="./live/ala-www/js/home-init.js" defer></script>
+    <script src="./live/ala-www/js/home-page.js" defer></script>
+<style>
+  #messageContainer {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+  }
+
+  .message-warning {
+    padding: 12px 16px;
+    border-radius: 4px;
+    color: black;
+    background-color: #fff;
+    box-shadow: 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+  }
+
+  .message-icon {
+    margin-right: 6px;
+    width: 14px;
+    height: 14px;
+    color: rgb(255, 77, 79);
+  }
+
+  .message-enter {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  .message-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .message-exit-active {
+    opacity: 0;
+  }
+</style>
+<div id="messageContainer"></div>
+<script>
+  createWarningIcon = () => {
+    const icon = document.createElement("span");
+    icon.className = "message-icon";
+    // icon.innerHTML = "!";
+    icon.innerHTML = "";
+    return icon;
+  };
+
+  const message = (content, duration = 3000) => {
+    const messageEl = document.createElement("div");
+    messageEl.className = "message-warning message-enter";
+
+    // messageEl.appendChild(createWarningIcon());
+    messageEl.appendChild(document.createTextNode(content));
+
+    const container = document.getElementById("messageContainer");
+    container.appendChild(messageEl);
+
+    setTimeout(() => {
+      messageEl.classList.remove("message-enter");
+      messageEl.classList.add("message-enter-active");
+    }, 10);
+
+    setTimeout(() => {
+      messageEl.classList.add("message-exit-active");
+      setTimeout(() => container.removeChild(messageEl), 300);
+    }, duration);
+  };
+
+</script>  </head>
+
+  <script>
+    window.pageDy = "";
+  </script>
+
   <body>
-    <main class="site-shell">
-      <div class="ios-status" aria-hidden="true">
-        <span class="ios-time">9:41</span>
-        <span class="ios-system-icons">
-          <span class="signal"><i></i><i></i><i></i><i></i></span>
-          <span class="wifi"></span>
-          <span class="battery"><i></i></span>
-        </span>
-      </div>
+     <style>
+  /* ===== 顶部警告通栏 ===== */
+  .warn-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 40px;
+    background-color: rgba(16, 43, 181, 1);
+    z-index: 1001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 16px;
+    box-sizing: border-box;
+  }
 
-      <button class="notice-bar" type="button" data-open-notice aria-label="Ver aviso importante">
-        <span class="notice-copy">
-          <strong>Aviso importante:</strong>
-          <span>Este es el único sitio web oficial de ALA.</span>
-        </span>
-        <span class="notice-link">Ver aviso</span>
-        <img class="chevron" src="./public/assets/notice-chevron.png" alt="" />
-      </button>
+  /* 文档流占位：把页面主内容顶下 40px，给通栏让位（不改 body padding，避免影响现有布局） */
+  .warn-bar-holder {
+    height: 40px;
+  }
 
-      <section class="hero" id="producto" aria-labelledby="hero-title">
-        <picture class="hero-photo" aria-hidden="true">
-          <source media="(max-aspect-ratio: 4 / 3)" srcset="./public/assets/hero-person-full.webp" />
-          <source media="(max-width: 600px)" srcset="./public/assets/mobile-hero-background.webp" />
-          <img src="./public/assets/hero-background-20260812.webp" alt="" width="3840" height="2080" fetchpriority="high" decoding="async" />
-        </picture>
-        <div class="mobile-shade" aria-hidden="true"></div>
+  .warn-bar__inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-        <header class="desktop-nav">
-          <a class="desktop-brand" href="#" aria-label="ALA inicio">
-            <img class="desktop-brand-on-hero" src="./public/assets/ala-logo.png" alt="ALA" />
-            <img class="desktop-brand-after-hero" src="./public/assets/nav-logo-dark.png" alt="ALA" />
-          </a>
-          <nav aria-label="Navegación principal">
-            <a class="is-active" href="#producto" aria-current="location">Introducción del producto</a>
-            <a href="#proteccion">Protección regulatoria</a>
-            <button class="nav-with-arrow" type="button" data-nav-panel="blog" aria-expanded="false" aria-controls="navigation-blog">Blog <span class="navigation-chevron" aria-hidden="true"></span></button>
-            <button class="nav-with-arrow" type="button" data-nav-panel="more" aria-expanded="false" aria-controls="navigation-more">Más información <span class="navigation-chevron" aria-hidden="true"></span></button>
-            <a href="#preguntas">Preguntas frecuentes</a>
-          </nav>
-          <div class="desktop-store-shortcuts" aria-label="Descargar ALA">
-            <a href="#google-play" aria-label="Descargar ALA en Google Play">
-              <img src="./public/assets/nav-google.png" alt="" />
-            </a>
-            <a href="#app-store" aria-label="Descargar ALA en App Store">
-              <img src="./public/assets/nav-ios.png" alt="" />
-            </a>
-          </div>
-        </header>
+  .warn-bar__icon {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    object-fit: contain;
+  }
 
-        <header class="mobile-nav">
-          <a class="mobile-brand" href="#" aria-label="ALA inicio">
-            <img src="./public/assets/ala-app-icon.png" alt="" />
-          </a>
-          <a class="about-pill" href="#informacion">Sobre ALA <span aria-hidden="true">›</span></a>
-          <button class="menu-button" type="button" aria-label="Abrir menú" aria-expanded="false">
-            <span></span><span></span><span></span>
-          </button>
-        </header>
+  .warn-bar__text {
+    font-family: "Roboto";
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0px;
+    text-align: left;
+    margin-right: 24px;
+    color: #ffffff;
+    white-space: nowrap;
+  }
 
-        <div class="hero-content">
-          <h1 id="hero-title">Te brindamos apoyo financiero flexible, con montos de $300 a $50,000</h1>
+  .warn-bar__more {
+    font-family: "Roboto-Regular";
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0px;
+    text-align: left;
+    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: underline;
+    flex-shrink: 0;
+  }
 
-          <div class="store-buttons" aria-label="Descarga la aplicación de ALA">
-            <a class="store-button" href="#google-play" aria-label="Descargar en Google Play">
-              <img src="./public/assets/google-play-icon.png" alt="" />
-              <span>Google Play</span>
-            </a>
-            <a class="store-button" href="#app-store" aria-label="Descargar en App Store">
-              <img class="apple-mark" src="./public/assets/app-store-icon.png" alt="" />
-              <span>App Store</span>
-            </a>
-          </div>
+  .warn-bar__more:hover,
+  .warn-bar__more:visited {
+    color: #ffffff;
+  }
 
-          <div class="stats" aria-label="Estadísticas de ALA">
-            <div class="stat stat-downloads">
-              <strong>1,000,000+</strong>
-              <span>DESCARGAS</span>
+  .warn-bar__more-text {
+    margin-right: 4px;
+  }
+
+  .warn-bar__more-icon {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+  }
+
+  /* 通栏显示时，吸顶 header 下移 40px，避免被通栏遮挡 */
+  body.warn-bar-visible .pc-header-container,
+  body.warn-bar-visible .mobile-header-container {
+    top: 40px;
+  }
+
+  /* 移动端适配 */
+  @media screen and (max-width: 768px) {
+    .warn-bar {
+      height: auto;
+      padding: 10px 25px;
+    }
+    .warn-bar__icon {
+      width: 22px;
+      height: 22px;
+      margin-right: 6px;
+    }
+    .warn-bar__text {
+      font-size: 12px;
+      line-height: 16px;
+      margin-right: 24px;
+      white-space: normal;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      max-width: none;
+    }
+    .warn-bar__more {
+      font-size: 12px;
+      line-height: 14px;
+      color:#FFFFFFB8;
+    }
+    .warn-bar__more-icon {
+      width: 12px;
+      height: 12px;
+    }
+    /* warn-bar 高度自适应后，占位与吸顶 header 同步下移（按两行文字估算 52px） */
+    .warn-bar-holder {
+      height: 52px;
+    }
+    body.warn-bar-visible .pc-header-container,
+    body.warn-bar-visible .mobile-header-container {
+      top: 52px;
+    }
+  }
+
+  /* ===== 默认弹窗（样式待替换） ===== */
+  .warn-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2000;
+    display: none;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  .warn-modal.is-open {
+    display: flex;
+  }
+
+  .warn-modal__mask {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  .warn-modal__dialog {
+    position: relative;
+    width: 90%;
+    max-width: 420px;
+    margin-top: 120px;
+    background: #fff;
+    border-radius: 8px;
+    padding: 32px 28px 32px;
+    box-sizing: border-box;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  }
+
+  .warn-modal__close {
+    position: absolute;
+    top: 10px;
+    right: 14px;
+    border: none;
+    background: transparent;
+    font-size: 26px;
+    line-height: 1;
+    color: #96989C;
+    cursor: pointer;
+  }
+
+  .warn-modal__close:hover {
+    color: #121728;
+  }
+
+  .warn-modal__title {
+    font-family: "Roboto-Bold";
+    font-size: 18px;
+    line-height: 24px;
+    color: #121728;
+    margin: 0 0 14px;
+  }
+
+  .warn-modal__body {
+    font-family: "Roboto-Regular";
+    font-size: 14px;
+    line-height: 22px;
+    color: #121728;
+    max-height: 550px;
+    overflow-y: auto;
+  }
+  @media screen and (max-width: 768px) {
+    .warn-modal__body {
+      max-height: 300px;
+    }
+  }
+
+  /* 底部固定按钮（Cerrar） */
+  .warn-modal__confirm {
+    margin-top: 16px;
+    width: 100%;
+    padding: 16px;
+    border: none;
+    border-radius: 14px;
+    background-color: #173CFF;
+    font-family: "Roboto";
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    letter-spacing: 0px;
+    text-align: center;
+    color: #ffffff;
+    cursor: pointer;
+    box-sizing: border-box;
+  }
+</style>
+
+<!-- 文档流占位，顶下页面主内容 -->
+<div class="warn-bar-holder" id="warnBarHolder"></div>
+
+<!-- 警告通栏 -->
+<div class="warn-bar" id="warnBar">
+  <div class="warn-bar__inner">
+    <span class="warn-bar__text"><span style="font-weight: 700;">Aviso Importante:</span> Este es el único sitio web oficial de ALA.</span>
+    <a href="javascript:void(0);" class="warn-bar__more" id="warnBarMore">
+      <span class="warn-bar__more-text">Ver más</span>
+      <img class="warn-bar__more-icon" src="./live/ala-www/img/warn-more.webp" alt="">
+    </a>
+  </div>
+</div>
+
+<!-- 默认弹窗（样式待替换） -->
+<div class="warn-modal" id="warnModal">
+  <div class="warn-modal__mask" id="warnModalMask"></div>
+  <div class="warn-modal__dialog">
+    <button type="button" class="warn-modal__close" id="warnModalClose">×</button>
+    <div class="warn-modal__title">AVISO IMPORTANTE DE SEGURIDAD</div>
+    <div class="warn-modal__body"><div class="ace-line ace-line old-record-id-XSGwdC6HEoypO8xqFLXcDe52n6c">
+<p>Este es el único sitio web oficial de ALA.</p>
+<p>ALA ha detectado que terceros no autorizados están utilizando indebidamente su nombre, marca e identidad comercial con la finalidad de engañar a usuarios y realizar posibles actividades fraudulentas. Entre las conductas identificadas se encuentran:</p>
+<ul><li>La suplantación del servicio de atención al cliente de ALA;</li><li>La suplantación de personal o despachos de cobranza;</li><li>La creación y distribución de aplicaciones o archivos falsos;</li><li>La creación de sitios web, perfiles de redes sociales y canales de comunicación apócrifos; y</li><li>El envío de instrucciones o solicitudes de pago no autorizadas.</li></ul>
+<p>Para proteger su información personal, sus datos financieros y sus recursos, le recomendamos adoptar las siguientes medidas de seguridad:</p>
+<ol><li><strong> Utilice únicamente los canales oficiales de ALA</strong></li></ol>
+<p>Considere como válida únicamente la información publicada en este sitio web, en la ALA App oficial o comunicada a través de los canales expresamente identificados por ALA como oficiales.</p>
+<p>Desconfíe de sitios web, perfiles de redes sociales, números telefónicos, cuentas de mensajería o direcciones de correo electrónico que no se encuentren identificados en este sitio web.</p>
+<ol><li><strong> Verifique la autenticidad de la ALA App</strong></li></ol>
+<p>Descargue la ALA App exclusivamente mediante los enlaces o el código QR disponibles en este sitio web oficial.</p>
+<p>Antes de instalarla, verifique el nombre de la aplicación, la identidad del desarrollador y la información publicada en la tienda de aplicaciones correspondiente.</p>
+<p>No descargue ni instale aplicaciones o archivos recibidos mediante mensajes de texto, correos electrónicos, redes sociales, servicios de mensajería instantánea o códigos QR de origen desconocido.</p>
+<ol><li><strong> No realice pagos mediante instrucciones no verificadas</strong></li></ol>
+<p>No realice pagos, transferencias o depósitos con base en instrucciones recibidas a través de canales no oficiales.</p>
+<p>ALA no solicitará pagos a cuentas bancarias personales ni mediante enlaces, códigos de pago, cuentas, tarjetas o medios de pago que no hayan sido previamente identificados y autorizados a través de sus canales oficiales.</p>
+<p>En caso de duda, verifique cualquier instrucción de pago directamente con ALA antes de realizar la operación.</p>
+<ol><li><strong> Proteja su información personal y financiera</strong></li></ol>
+<p>No comparta con terceros sus contraseñas, NIP, códigos de seguridad, códigos de verificación enviados por SMS, datos completos de tarjetas bancarias ni credenciales de acceso.</p>
+<p>ALA nunca le solicitará que comparta la pantalla de su dispositivo, instale aplicaciones de acceso remoto o permita que un tercero controle su teléfono o computadora.</p>
+<ol><li><strong> Reporte cualquier actividad sospechosa</strong></li></ol>
+<p>Si recibe mensajes, llamadas, enlaces, solicitudes de pago o comunicaciones sospechosas, no responda, no abra los enlaces y no proporcione información personal o financiera.</p>
+<p>Repórtelo inmediatamente a través de los siguientes canales oficiales:</p>
+<ul><li>Correo electrónico: <a href="mailto:contacto-ala&#64;alaprestamo.com">contacto-ala&#64;alaprestamo.com</a></li><li>Teléfono: 8009530794,8002883450</li></ul>
+<p>ALA está realizando las acciones legales y técnicas correspondientes para combatir el uso no autorizado de su nombre y marca, así como para proteger a sus usuarios.</p>
+</div>
+<div class="ace-line ace-line old-record-id-PieldDWN7oIAeux8sOGcZ3c3n6W"> </div></div>
+    <button type="button" class="warn-modal__confirm" id="warnModalConfirm">Cerrar</button>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var warnBar = document.getElementById('warnBar');
+    var holder = document.getElementById('warnBarHolder');
+    var moreBtn = document.getElementById('warnBarMore');
+    var modal = document.getElementById('warnModal');
+    var closeBtn = document.getElementById('warnModalClose');
+    var confirmBtn = document.getElementById('warnModalConfirm');
+
+    // 页面加载默认显示通栏（header 下移、占位）。不写入任何存储，
+    // 因此刷新页面后会自然恢复显示。
+    document.body.classList.add('warn-bar-visible');
+
+    function openModal() {
+      if (modal) modal.classList.add('is-open');
+    }
+
+    function hideWarnBar() {
+      if (warnBar) warnBar.style.display = 'none';
+      if (holder) holder.style.display = 'none';
+      document.body.classList.remove('warn-bar-visible');
+    }
+
+    function closeModal() {
+      if (modal) modal.classList.remove('is-open');
+      // 关闭弹窗 -> 通栏一起消失
+      hideWarnBar();
+    }
+
+    if (moreBtn) moreBtn.addEventListener('click', openModal);
+    if (closeBtn) closeBtn.addEventListener('click', function () {
+      closeModal();
+    });
+    if (confirmBtn) confirmBtn.addEventListener('click', function () {
+      closeModal();
+    });
+  })();
+</script>
+<link rel="stylesheet" href="./live/ala-www/css/header.css">
+<link rel="preload" as="image" href="./live/ala-www/img/alaText.png">
+<link rel="preload" as="image" href="./live/ala-www/img/common/arrow-down.png">
+<nav class="ala-height ala-pl ala-pr pc-header-container d-none d-lg-block" aria-label="Main Navigation"
+  data-blue-img="./live/ala-www/img/alaText.png" data-white-img="./live/ala-www/img/alaTextWhite.png"
+  style="--base-height:72px;--base-pl:320px;--base-pr:320px;">
+  <div class="pc-header">
+    <div class="pc-header-logo-wrap" id="logoToLink">
+      <img src="./live/ala-www/img/logo.png" alt="alaprestamo-logo" title="全局顶部导航栏logo" class="ala-width ala-height"
+        style="--base-width: 48px;--base-height: 48px;">
+      <img id="logoTextImg" src="./live/ala-www/img/alaTextWhite.png" alt="logo_prestamo" title="全局顶部导航栏logo" class="ala-width ala-height"
+        style="--base-width: 81px;--base-height: 24px;">
+    </div>
+    <ul class="ala-gap parent-ul" style="--base-gap: 32px;">
+      <li class="ala-pb position-relative">
+        <a class="ala-size nav-name-item" href="./">Introducción del producto</a>
+        <div class="ala-bottom line index-line-cur"></div>
+
+      </li>
+
+      <li class="ala-pb position-relative nav-item-with-dropdown ">
+        <a class="ala-size nav-name-item nav-item-0 " href="https://www.alaprestamo.com/channel/loan_protection" >Protección regulatoria</a>
+        <div
+          class=" line ">
+        </div>
+      </li>
+      <li class="ala-pb position-relative nav-item-with-dropdown loan-li">
+        <a class="ala-size nav-name-item nav-item-1 " href="https://www.alaprestamo.com/channel/loan_blog" >Blog</a>
+        <img src="./live/ala-www/img/common/arrow-down-white.png" alt="Icono flecha abajo"
+          class="ala-width ala-height pc-menu-arrow-white" style="--base-width: 10px;--base-height: 6px;">
+        <img src="./live/ala-www/img/common/arrow-up.png" alt="Icono flecha arriba" class="ala-width ala-height pc-menu-arrow-blue"
+          style="--base-width: 10px;--base-height: 6px;">
+
+        <img src="./live/ala-www/img/common/arrow-down.png" alt="Icono flecha abajo" class="ala-width ala-height pc-menu-arrow"
+          style="--base-width: 10px;--base-height: 6px;">
+        <ul class="ala-width ala-pt ala-pr ala-pb ala-pl child-ul"
+          style="--base-width: fit-content; --base-pt: 12px; --base-pr: 12px; --base-pb: 12px; --base-pl: 12px; display: none;">
+          <li class="submenu-li" data-submenu-url="https://www.alaprestamo.com/channel/guia-de-prestamos"><a href="https://www.alaprestamo.com/channel/guia-de-prestamos" style="--base-size:13px"
+              class="ala-size submenu-link" >Guía de préstamos</a>
+          </li>
+          <li class="submenu-li" data-submenu-url="https://www.alaprestamo.com/channel/loan_financiero"><a href="https://www.alaprestamo.com/channel/loan_financiero" style="--base-size:13px"
+              class="ala-size submenu-link" >Diccionario financiero</a>
+          </li>
+          <li class="submenu-li" data-submenu-url="https://www.alaprestamo.com/channel/noticias-financieras"><a href="https://www.alaprestamo.com/channel/noticias-financieras" style="--base-size:13px"
+              class="ala-size submenu-link" >Noticias financieras</a>
+          </li>
+          <li class="submenu-li" data-submenu-url="https://www.alaprestamo.com/channel/loan_city"><a href="https://www.alaprestamo.com/channel/loan_city" style="--base-size:13px"
+              class="ala-size submenu-link" >Préstamo en tu ciudad</a>
+          </li>
+        </ul>
+        <div
+          class=" line ">
+        </div>
+      </li>
+      <li class="ala-pb position-relative nav-item-with-dropdown ">
+        <a class="ala-size nav-name-item nav-item-2 " href="https://www.alaprestamo.com/channel/loan_faq" >Ayuda</a>
+        <div
+          class=" line ">
+        </div>
+      </li>
+      <li class="ala-pb position-relative nav-item-with-dropdown ">
+        <a class="ala-size nav-name-item nav-item-3 " href="./marca/" >Acerca de ALA</a>
+        <div
+          class=" line ">
+        </div>
+      </li>
+    </ul>
+    <div class="ala-ml ala-gap desktop-store-shortcuts" style="--base-ml:112px; --base-gap:16px;" aria-label="Descargar ALA">
+      <a href="javascript:;" class="header-google-down ala-width ala-height" style="--base-width:48px;--base-height:48px;" aria-label="Descargar ALA en Google Play">
+        <img src="./live/ala-www/img/common/nav-google.png" alt="">
+      </a>
+      <a href="javascript:;" class="header-apple-down ala-width ala-height" style="--base-width:48px;--base-height:48px;" aria-label="Descargar ALA en App Store">
+        <img src="./live/ala-www/img/common/nav-ios.png" alt="">
+      </a>
+    </div>
+  </div>
+</nav>
+<nav class="d-lg-none mobile-header-container" aria-label="Main Navigation">
+  <div class="mobile-title-wrap">
+    <div class="mobile-title-left">
+      <img id="logoToLinkMobile1" src="./live/ala-www/img/logo.png" alt="Logo ALA" class="" style="width: 32px;height: 32px;">
+      <img id="logoToLinkMobile2" src="./live/ala-www/img/alaText.png" alt="Texto logo ALA" class="" style="width: 46px;height: 14px;">
+    </div>
+    <div class="mobile-title-right">
+      <!-- <img src="./live/ala-www/img/common/mobile-header-menu.png" alt="Icono menú" class="" data-toggle="collapse"
+        data-target="#mobileMenu" style="width: 32px;height: 32px;"> -->
+      <img id="menuToggleIcon" src="./live/ala-www/img/common/mobile-header-menu.png" alt="Toggle menu" class=""
+        style="width: 24px;height: 24px;" data-open-icon="./live/ala-www/img/common/mobile-header-menu.png"
+        data-close-icon="./live/ala-www/img/common/header-close.png">
+    </div>
+  </div>
+
+  </div>
+  <div id="mobileMenu" class="collapse mobile-nav-wrap">
+    <ul class="mobile-parent-ul" style="--base-gap: 70px;">
+      <li class="">
+        <a class="mobile-nav-name-item" href="./">Introducción del producto</a>
+      </li>
+
+      <li class="nav-item-with-dropdown-mobile" style="margin-top: 27px;margin-bottom: 27px; position: relative;">
+        <a class="mobile-nav-name-item nav-item-0" href="https://www.alaprestamo.com/channel/loan_protection"
+          >Protección regulatoria</a>
+        <!-- <div
+          class="line ">
+        </div> -->
+      </li>
+      <li class="nav-item-with-dropdown-mobile" style="margin-top: 27px;margin-bottom: 27px; position: relative;">
+        <a class="mobile-nav-name-item nav-item-1" data-toggle="drop-down" href="#"
+          >Blog</a>
+        <div class="arrow-icons" style="position: relative; width: 20px; height: 20px; float: right;">
+          <img src="./live/ala-www/img/common/mobile-arrow-right.png" class="arrow-right" alt="arrow"
+            style="width: 20px; height: 20px;">
+          <img src="./live/ala-www/img/common/mobile-arrow-down.png" class="arrow-down d-none" alt="arrow"
+            style="width: 20px; height: 20px;">
+        </div>
+        <ul class="mobile-child-ul" style="display: none;">
+          <li class="submenu-li" data-submenu-url="https://www.alaprestamo.com/channel/loan_blog"
+            style="margin-top: 27px; margin-bottom: 27px;">
+            <a href="https://www.alaprestamo.com/channel/loan_blog" class="submenu-link">Blog</a>
+          </li>
+          <li class="submenu-li" data-submenu-url="https://www.alaprestamo.com/channel/guia-de-prestamos" style="margin-top: 27px; margin-bottom: 27px;">
+            <a href="https://www.alaprestamo.com/channel/guia-de-prestamos" class="submenu-link" >Guía de préstamos</a>
+          </li>
+          <li class="submenu-li" data-submenu-url="https://www.alaprestamo.com/channel/loan_financiero" style="margin-top: 27px; margin-bottom: 27px;">
+            <a href="https://www.alaprestamo.com/channel/loan_financiero" class="submenu-link" >Diccionario financiero</a>
+          </li>
+          <li class="submenu-li" data-submenu-url="https://www.alaprestamo.com/channel/noticias-financieras" style="margin-top: 27px; margin-bottom: 27px;">
+            <a href="https://www.alaprestamo.com/channel/noticias-financieras" class="submenu-link" >Noticias financieras</a>
+          </li>
+          <li class="submenu-li" data-submenu-url="https://www.alaprestamo.com/channel/loan_city" style="margin-top: 27px; margin-bottom: 27px;">
+            <a href="https://www.alaprestamo.com/channel/loan_city" class="submenu-link" >Préstamo en tu ciudad</a>
+          </li>
+        </ul>
+        <!-- <div
+          class="line ">
+        </div> -->
+      </li>
+      <li class="nav-item-with-dropdown-mobile" style="margin-top: 27px;margin-bottom: 27px; position: relative;">
+        <a class="mobile-nav-name-item nav-item-2" href="https://www.alaprestamo.com/channel/loan_faq"
+          >Ayuda</a>
+        <!-- <div
+          class="line ">
+        </div> -->
+      </li>
+      <li class="nav-item-with-dropdown-mobile" style="margin-top: 27px;margin-bottom: 27px; position: relative;">
+        <a class="mobile-nav-name-item nav-item-3" href="./marca/"
+          >Acerca de ALA</a>
+        <!-- <div
+          class="line ">
+        </div> -->
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<script>
+
+  let isScrolled = false;
+  let isDropdownHover = false; // hover 有下拉的导航项时，header 临时进入白底态（与滚动后一致）
+  let dropdownHoverTimer = null; // 下拉框延迟隐藏定时器，修复 li→child-ul 空隙导致的闪隐
+  const pcHeaderWrap = document.querySelector(".pc-header-container");
+  const blueImgPath = pcHeaderWrap?.getAttribute('data-blue-img') || '';
+  const whiteImgPath = pcHeaderWrap?.getAttribute('data-white-img') || '';
+  const logoTextImg = document.getElementById('logoTextImg');
+  const menuArrow = document.querySelector('.pc-menu-arrow-white');
+  const logoToLink = document.getElementById('logoToLink');
+  const logoToLinkMobile1 = document.getElementById('logoToLinkMobile1');
+  const logoToLinkMobile2 = document.getElementById('logoToLinkMobile2');
+  logoToLink.addEventListener('click',handleGoHome,false);
+  logoToLinkMobile1.addEventListener('click',handleGoHome,false);
+  logoToLinkMobile2.addEventListener('click',handleGoHome,false);
+
+  function handleGoHome() {
+    if (isHomePage()) return;
+    document.location = './'; // 非首页直接跳转首页
+  }
+
+  if (pcHeaderWrap && isHomePage()) {
+    pcHeaderWrap.style.background = 'rgba(0, 0, 0, 0.4)';
+  } else {
+    pcHeaderWrap.style.background = '#fff'; // 透明背景仅首页首屏使用，非首页始终白底
+  }
+
+  function isHomePage() {
+    return true;
+  }
+
+  function setActiveSubmenu() {
+    if (isHomePage()) return;
+    const currentPath = window.location.pathname;
+    document.querySelectorAll('.submenu-li').forEach(item => {
+      const submenuUrl = item.getAttribute('data-submenu-url');
+      if (submenuUrl && submenuUrl.includes(currentPath)) {
+        item.querySelector('.submenu-link')?.classList.add('submenu-active');
+      }
+    });
+  }
+
+  // 标记当前选中的导航项：首页项仅在首页选中，频道项按 .line-cur 标记
+  function markActiveNav() {
+    const isHome = isHomePage();
+    document.querySelectorAll('.pc-header .parent-ul > li').forEach(li => {
+      const a = li.querySelector(':scope > .nav-name-item');
+      if (!a) return;
+      const line = li.querySelector(':scope > .line');
+      let active = false;
+      if (line) {
+        if (line.classList.contains('line-cur')) active = true;
+        if (line.classList.contains('index-line-cur') && isHome) active = true;
+      }
+      a.classList.toggle('nav-active', active);
+    });
+  }
+
+  // 标签栏颜色：首屏白字 / 滚动离开首屏后深字(#1E1F22)，未选中 72% 透明，选中 100%
+  // hover 不改变字体颜色与字重，样式仅由滚动状态与选中态（.nav-active）决定
+  function applyNavColors() {
+    const darkText = isScrolled || isDropdownHover || !isHomePage();
+    document.querySelectorAll('.nav-name-item').forEach(nav => {
+      const active = nav.classList.contains('nav-active');
+      nav.style.color = darkText
+        ? (active ? '#24252a' : '#24252a')
+        : (active ? '#FFFFFF' : '#FFFFFF');
+    });
+  }
+
+  function initNavColors() {
+    const indexLineCur = document.querySelector('.index-line-cur');
+    const isHome = isHomePage();
+
+    if (indexLineCur) {
+      indexLineCur.style.background = isHome ? '#fff' : '#121728';
+      indexLineCur.style.width = isHome ? "30%" : '0';
+    }
+
+    markActiveNav();
+    applyNavColors();
+
+    // 下划线/logo 等是否使用"已变白"样式：滚动离开首屏或非首页时为 true（对应 header.css 的 .is-scrolled）
+    if (pcHeaderWrap) {
+      pcHeaderWrap.classList.toggle('is-scrolled', isScrolled || !isHomePage());
+    }
+
+    if (isHome && logoTextImg) {
+      // hover 不再切换 logo 与导航色：样式仅由滚动状态决定，滚动完全离开首屏 main-top-bg 后才整体变白并切换 logo
+      logoTextImg.src = isScrolled ? blueImgPath : whiteImgPath;
+    }
+
+    if (!isHome) {
+      menuArrow.src = './live/ala-www/img/common/arrow-down.png';
+      pcHeaderWrap.style.background = '#fff'; // 非首页始终白底
+      if (logoTextImg) logoTextImg.src = blueImgPath;
+    }
+
+    setActiveSubmenu();
+  }
+
+  // 统一视觉状态：滚动（isScrolled）或 hover 有下拉的导航项（isDropdownHover）→ 白底态
+  function updateHeaderState() {
+    if (!logoTextImg) return;
+
+    const solid = isScrolled || isDropdownHover;
+    const indexLineCur = document.querySelector('.index-line-cur');
+    const isHome = isHomePage();
+
+    if (isHome) {
+      menuArrow.src = solid ? './live/ala-www/img/common/arrow-down.png' : './live/ala-www/img/common/arrow-down-white.png';
+
+      logoTextImg.src = solid ? blueImgPath : whiteImgPath;
+
+      if (indexLineCur) {
+        indexLineCur.style.background = solid ? '#121728' : '#fff';
+        indexLineCur.style.width = "30%";
+      }
+
+      applyNavColors();
+    } else {
+      menuArrow.src = './live/ala-www/img/common/arrow-down.png';
+    }
+
+    if (pcHeaderWrap) {
+      // 透明/半透明背景仅首页首屏使用；非首页始终白底
+      pcHeaderWrap.style.background = isHome ? (solid ? '#fff' : 'rgba(0, 0, 0, 0.4)') : '#fff';
+      pcHeaderWrap.classList.toggle('is-scrolled', solid || !isHomePage());
+    }
+  }
+
+  function handleScroll() {
+    const scrollY = window.scrollY || document.documentElement.scrollTop;
+    // 滚动即切白底/深色导航（对齐 demo：一滚动就变背景色，不再等越过首屏 100vh）
+    isScrolled = scrollY > 0;
+    updateHeaderState();
+  }
+
+  function updateNavLines() { }
+
+  window.addEventListener("scroll", handleScroll);
+  initNavColors();
+
+  // ===== 桌面下拉菜单 hover：延迟隐藏 + hover 即白底 =====
+  // child-ul 与导航项 li 之间存在空隙，纯 CSS :hover 会在鼠标移入空隙的瞬间隐藏下拉框，
+  // 故改用 JS 延迟隐藏（300ms），鼠标进入 child-ul 后清除定时器保持展开。
+  function closeAllChildUl(except) {
+    document.querySelectorAll('.pc-header .child-ul').forEach(ul => {
+      if (ul !== except) ul.style.display = 'none';
+    });
+  }
+
+  document.querySelectorAll('.pc-header .nav-item-with-dropdown').forEach(li => {
+    const ul = li.querySelector(':scope > .child-ul');
+    if (!ul) return; // 无子菜单的项不处理
+
+    li.addEventListener('mouseenter', () => {
+      if (dropdownHoverTimer) { clearTimeout(dropdownHoverTimer); dropdownHoverTimer = null; }
+      isDropdownHover = true; // hover 有下拉的项 → header 白底（与滚动后一致）
+      updateHeaderState();
+      closeAllChildUl(ul);
+      ul.style.display = 'block';
+    });
+
+    li.addEventListener('mouseleave', () => {
+      if (dropdownHoverTimer) clearTimeout(dropdownHoverTimer);
+      dropdownHoverTimer = setTimeout(() => {
+        ul.style.display = 'none';
+        isDropdownHover = false;
+        updateHeaderState();
+      }, 300);
+    });
+
+    // 鼠标进入下拉框：取消延迟隐藏，保持展开与白底态
+    ul.addEventListener('mouseenter', () => {
+      if (dropdownHoverTimer) { clearTimeout(dropdownHoverTimer); dropdownHoverTimer = null; }
+      isDropdownHover = true;
+    });
+
+    ul.addEventListener('mouseleave', () => {
+      ul.style.display = 'none';
+      isDropdownHover = false;
+      updateHeaderState();
+    });
+  });
+
+  window.addEventListener("load", () => {
+    updateNavLines();
+  });
+  window.addEventListener("unload", () => {
+    window.removeEventListener("scroll", handleScroll);
+  });
+
+  const toggleBtn = document.getElementById('menuToggleIcon');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  if (window.getComputedStyle(mobileMenu).display === 'block') {
+    toggleBtn.src = toggleBtn.getAttribute('data-close-icon');
+  } else {
+    toggleBtn.src = toggleBtn.getAttribute('data-open-icon');
+  }
+
+  toggleBtn.addEventListener('click', function () {
+    if (mobileMenu.style.display === 'block') {
+      mobileMenu.style.display = 'none';
+      toggleBtn.src = toggleBtn.getAttribute('data-open-icon');
+    } else {
+      mobileMenu.style.display = 'block';
+      toggleBtn.src = toggleBtn.getAttribute('data-close-icon');
+    }
+  });
+
+  const dropdownItems = document.querySelectorAll('.nav-item-with-dropdown-mobile');
+  dropdownItems.forEach(item => {
+    const arrowIconsContainer = item.querySelector('.arrow-icons');
+    const arrowRight = arrowIconsContainer?.querySelector('.arrow-right');
+    const arrowDown = arrowIconsContainer?.querySelector('.arrow-down');
+    const submenu = item.querySelector('.mobile-child-ul');
+
+    item.addEventListener('click', function (e) {
+      e.stopPropagation();
+      if (arrowRight && arrowDown) {
+        arrowRight.classList.toggle('d-none');
+        arrowDown.classList.toggle('d-none');
+      }
+      if (submenu) {
+        submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+      }
+    });
+  });
+
+  function headerGoogleDown() {
+    window.open('https://sofom-ala.onelink.me/uTdM/taq3lvd3', '_blank', 'noopener');
+  }
+  function headerAppleDown() {
+    window.open('https://sofom-ala.onelink.me/ndX5/mbzy0s0s', '_blank', 'noopener');
+  }
+  document.querySelectorAll('.header-google-down').forEach(el => el.addEventListener('click', headerGoogleDown));
+  document.querySelectorAll('.header-apple-down').forEach(el => el.addEventListener('click', headerAppleDown));
+</script>
+
+    <div class="index-wrap">
+      <div class="main-bg-container d-none d-lg-block">
+        <div class="main-bg-wrap">
+          <div class="mainTopBg main-top-bg">
+            <div class="motion-element target-position">
+                <div class="ala-pl ala-width ala-ml desc adjust-position">
+                 <div class="ala-size" style="--base-size: 64px;">
+                   <h1 class="top-desc ala-size" style="--base-size: 64px;display:inline;">
+                     Te brindamos apoyo <br />
+                     financiero flexible, con <br />
+                     montos de $100 a <br />
+                   </h1>
+                    <span class="top-desc">$50,000</span>
+                  </div>
+                  <span class="top-desc-note ala-size">El monto final del préstamo dependerá del resultado de la evaluación crediticia.</span>
+                  <div class="ala-mt ala-height download-button-wrap">
+                    <img src="./live/ala-www/img/home-download-google2.webp" alt="ala-prestamos en linea_google play" title="ala-prestamos en linea_google play" class="ala-mr android-down" style="--base-mr: 30px" loading="lazy" />
+                    <img id="apple-down" src="./live/ala-www/img/home-download-ios2.webp" alt="ala-prestamos en linea_app store" title="ala-prestamos en linea_app store" class="apple-down" data-toggle="modal" data-target="#appleModal" loading="lazy" />
+                  </div>
+
+                  <div class="home-stats-bar ala-mt" style="--base-mt: 92px;">
+                    <div class="home-stats-item">
+                      <div class="home-stats-value">1,000,000+</div>
+                      <div class="home-stats-label">DESCARGAS</div>
+                    </div>
+                    <div class="home-stats-item">
+                      <div class="home-stats-value">4.8</div>
+                      <div class="home-stats-stars">★★★★★</div>
+                    </div>
+                    <div class="home-stats-item home-stats-item-last">
+                      <div class="home-stats-value">96%</div>
+                      <div class="home-stats-label">SATISFACCIÓN</div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
             </div>
-            <div class="stat stat-rating">
-              <strong>4.8</strong>
-              <span class="stars" aria-label="5 estrellas">
-                <img src="./public/assets/star.png" alt="" />
-                <img src="./public/assets/star.png" alt="" />
-                <img src="./public/assets/star.png" alt="" />
-                <img src="./public/assets/star.png" alt="" />
-                <img src="./public/assets/star.png" alt="" />
-              </span>
-            </div>
-            <div class="stat stat-satisfaction">
-              <strong>96%</strong>
-              <span>SATISFACCIÓN</span>
-            </div>
-          </div>
         </div>
 
-        <aside class="download-card" aria-label="Escanea para descargar ALA">
-          <img class="download-card-art" src="./public/assets/download-card-exact.png" alt="Escanea y descarga ALA mediante el código QR" />
-          <button class="help-card-button" type="button" data-toggle-help aria-label="Abrir centro de ayuda"></button>
-        </aside>
-
-        <button class="mobile-help" type="button" data-toggle-help aria-label="Abrir centro de ayuda">
-          <img src="./public/assets/help-center.png" alt="" />
-        </button>
-
-      </section>
-
-      <button class="help-backdrop" type="button" data-close-help aria-label="Cerrar centro de ayuda"></button>
-
-      <section class="help-panel" aria-labelledby="help-title" aria-hidden="true">
-        <header>
-          <h2 id="help-title">Centro de ayuda</h2>
-          <button type="button" data-close-help aria-label="Cerrar centro de ayuda">
-            <img src="./public/assets/close-icon.png" alt="" />
-          </button>
-        </header>
-        <div class="advisor-row">
-          <img class="advisor-photo" src="./public/assets/help-advisor-sofia.png" alt="" loading="lazy" decoding="async" />
+      </div>
+      <!-- mobile bg start-->
+      <div class="ala-pt mainTopBg d-lg-none mainTopBg-m">
+        <div class="motion-element">
           <div>
-            <strong>Habla con Sofía.</strong>
-            <span>Tu asesora de ALA</span>
+            <div class="ala-pl desc">
+              <div class="ala-size" style="text-align: left;color: #fff;">
+                <h1 class="top-desc ala-size" style="text-align: left;--base-size: 25px;display:inline;">
+                     Te brindamos apoyo financiero flexible, con montos de $100 a
+                </h1>
+                <span class="top-desc">$50,000</span>
+              </div>
+              <div class="ala-mt ala-height download-button-wrap moboile-download" id="mobile-download">
+                <img src="./live/ala-www/img/home-download-google2-m.webp" alt="ala-prestamos en linea_google play" title="ala-prestamos en linea_google play" class="ala-mr android-down" style="--base-mr: 15px;height: 44px;" loading="lazy" />
+                <img src="./live/ala-www/img/home-download-ios2-m.webp" class="apple-down" alt="ala-prestamos en linea_app store" title="ala-prestamos en linea_app store" style="height: 44px;" loading="lazy" />
+              </div>
+              <div class="home-stats-bar" style="margin-top: 28px;">
+                <div class="home-stats-item">
+                  <div class="home-stats-value">1,000,000+</div>
+                  <div class="home-stats-label">DESCARGAS</div>
+                </div>
+                <div class="home-stats-item">
+                  <div class="home-stats-value">4.8</div>
+                  <div class="home-stats-stars">★★★★★</div>
+                </div>
+                <div class="home-stats-item home-stats-item-last">
+                  <div class="home-stats-value">96%</div>
+                  <div class="home-stats-label">SATISFACCIÓN</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <a class="whatsapp-button" href="https://wa.me/" target="_blank" rel="noreferrer">
-          <img src="./public/assets/whatsapp-icon.png" alt="" />
-          Iniciar conversación
-        </a>
-          <p>¿No tienes WhatsApp? <a href="./help.html?v=20260908-1315">Obtén ayuda aquí</a></p>
-      </section>
+      </div>
+      <!-- mobile bg end-->
+      <div class="ala-size ala-pl ala-pr ala-lh ala-mt title-wrap motion-element title-wrap-lg">
+        <span class="ala-size" style="display: inline-block;">ALA: préstamos rápidos de crédito en línea</span>
+      </div>
+      <div class="ala-ml ala-mr ala-mt ala-pr ala-pl ala-pt ala-pb ala-radius ala-size ala-lh des-img-wrap motion-element">
+        Con ALA, pide tu préstamo en línea cuando quieras y recibe el dinero <i class="ala-size" style="--base-size: 28px; color: #294bff;line-height:34px; font-style: normal; font-weight: 700">sin largas esperas</i> | Montos altos y el respaldo de una SOFOM registrada ante CONDUSEF para tu tranquilidad.
+        <img src="./live/ala-www/img/home-iphone.webp" srcset="./live/ala-www/img/home-iphone.webp 1x, ./live/ala-www/img/home-iphone@2x.webp 2x, ./live/ala-www/img/home-iphone@3x.webp 3x" class="ala-width ala-height" alt="home-iphone" loading="lazy" />
+      </div>
+      <div class="ala-size ala-lh ala-mt title-wrap motion-element ala-width ala-mr ala-ml title-wrap2">
+        <span style="display: inline-block">Cómo solicitar tu</span>
+        <span style="display: inline-block; color: rgb(255, 186, 0)">crédito</span>
+      </div>
+      <div class="ala-lh ala-size ala-mt des-wrap motion-element ala-width des-wrap-mobile" style="--base-mt: 28px; --base-width: 1000px;text-align:center;">Para obtener tu línea de crédito, sigue estos pasos:</div>
+      <!-- swiper1 pc-->
+<div class="ala-mt ala-height ala-pl ala-pr swiper-container-wrapper d-none d-lg-block motion-element"
+    style="--base-mt: 100px; --base-height: 748px; --base-pl: 320px; --base-pr: 320px;">
+    <div class="swiper-container swiper-container-horizontal">
+        <div class="ala-height swiper-wrapper" style="--base-height: 660px;">
+            <div class="swiper-slide" style="background-image: url(./live/ala-www/img/applying/img1.webp)">
+                <div class="ala-pl ala-pt ala-pr ala-width text-con"
+                    style="--base-pl: 60px; --base-pr: 60px; --base-pt: 60px; --base-width: 405px; overflow: hidden">
+                    <div class="ala-size ala-lh ala-height ala-mt text-con-title"
+                        style="--base-height: 72px; --base-size: 42px; --base-lh: 49px; color: #000; text-align: left">
+                        Paso 1</div>
+                    <div class="ala-size ala-lh" style="--base-size: 24px; --base-lh: 32px; text-align: left">Busca ALA en la tienda de aplicaciones móviles y descárgalo.</div>
+                    <div class="ala-width ala-height ala-mt"
+                        style="--base-width: 32px; --base-height: 8px; --base-mt: 26px; background-color: rgb(255, 116, 59)">
+                    </div>
+                </div>
 
-      <div class="notice-overlay" aria-hidden="true">
-        <section class="notice-modal" role="dialog" aria-modal="true" aria-labelledby="notice-title">
-          <button class="modal-close" type="button" data-close-notice aria-label="Cerrar aviso">
-            <img src="./public/assets/close-icon.png" alt="" />
-          </button>
-          <span class="security-chip">Aviso de seguridad</span>
-          <h2 id="notice-title">Aviso Importante Este es el único sitio web oficial de ALA.</h2>
-          <p class="modal-intro">
-            Hemos detectado un sitio web de terceros que utiliza elementos similares a la marca ALA y que podría
-            generar confusión.
-          </p>
-          <div class="modal-divider"></div>
-          <h3>Para proteger su información y prevenir posibles fraudes:</h3>
-          <ol class="safety-list">
-            <li><span>1</span><p>Consulte únicamente la información publicada en este sitio web oficial.</p></li>
-            <li><span>2</span><p>Descargue la aplicación oficial de ALA únicamente mediante el código QR disponible en este sitio web oficial.</p></li>
-            <li><span>3</span><p>No proporcione datos personales o financieros a través de sitios web, aplicaciones o canales no oficiales.</p></li>
-          </ol>
-          <p class="legal-note">
-            <img src="./public/assets/security-icon-exact.png" alt="" />
-            ALA está tomando las acciones legales correspondientes para proteger a sus usuarios y su marca.
-          </p>
-          <button class="close-primary" type="button" data-close-notice>Cerrar</button>
-        </section>
+            </div>
+            <div class="swiper-slide" style="background-image: url(./live/ala-www/img/applying/img2.webp)">
+                <div class="ala-pl ala-pt ala-pr  ala-width text-con"
+                    style="--base-pl: 60px; --base-pr: 60px; --base-pt: 60px; --base-width: 405px; overflow: hidden">
+                    <div class="ala-size ala-lh ala-height ala-mt text-con-title"
+                        style="--base-height: 72px; --base-size: 42px; --base-lh: 49px; color: #000; text-align: left">
+                        Paso 2</div>
+                    <div class="ala-size ala-lh" style="--base-size: 24px; --base-lh: 32px; text-align: left">Regístrate con tu número de teléfono.</div>
+                    <div class="ala-width ala-height ala-mt"
+                        style="--base-width: 32px; --base-height: 8px; --base-mt: 26px; background-color: rgb(255, 116, 59)">
+                    </div>
+                </div>
+
+            </div>
+            <div class="swiper-slide" style="background-image: url(./live/ala-www/img/applying/img3.webp)">
+                <div class="ala-pl ala-pt ala-pr ala-width text-con"
+                    style="--base-pl: 60px; --base-pr: 40px; --base-pt: 60px; --base-width: 405px; overflow: hidden">
+                    <div class="ala-size ala-lh ala-height ala-mt text-con-title"
+                        style="--base-height: 72px; --base-size: 42px; --base-lh: 49px; color: #000; text-align: left">
+                        Paso 3</div>
+                    <div class="ala-size ala-lh" style="--base-size: 24px; --base-lh: 32px; text-align: left">
+                        Proporciona tu identificación oficial y una cuenta bancaria para recibir el depósito.</div>
+                    <div class="ala-width ala-height ala-mt"
+                        style="--base-width: 32px; --base-height: 8px; --base-mt: 26px; background-color: rgb(255, 116, 59)">
+                    </div>
+                </div>
+
+            </div>
+            <div class="swiper-slide" style="background-image: url(./live/ala-www/img/applying/img4.webp)">
+                <div class="ala-pl ala-pt ala-pr ala-width text-con"
+                    style="--base-pl: 60px; --base-pr: 60px; --base-pt: 60px; --base-width: 405px; overflow: hidden">
+                    <div class="ala-size ala-lh ala-height ala-mt text-con-title"
+                        style="--base-height: 72px; --base-size: 42px; --base-lh: 49px; color: #000; text-align: left">
+                        Paso 4</div>
+                    <div class="ala-size ala-lh" style="--base-size: 24px; --base-lh: 32px; text-align: left">Una vez aprobada tu solicitud, el dinero se depositará en tu cuenta.</div>
+                    <div class="ala-width ala-height ala-mt"
+                        style="--base-width: 32px; --base-height: 8px; --base-mt: 26px; background-color: rgb(255, 116, 59)">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="swiper1-navigtion">
+            <button class="ala-height ala-width ala-ml swiper1-navigtion-right"
+                style="--base-width: 60px; --base-height: 60px; --base-ml: 110px"></button>
+            <button class="ala-ml ala-height ala-width swiper1-navigtion-left"
+                style="--base-ml: 39px; --base-width: 60px; --base-height: 60px"></button>
+        </div>
+    </div>
+</div>
+
+      <!-- swiper1 mobile-->
+<style>
+    .mobile-swiper1 {
+        max-width: 100%;
+        padding: 0 16px;
+        box-sizing: border-box;
+        overflow: hidden;
+    }
+
+    .mobile-swiper1 .swiper-slide {
+        width: 85%;
+        height: 446px;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .mobile-swiper1 .swiper-slide-prev {
+        transform: scale(0.9);
+    }
+
+    .mobile-swiper1 .swiper-slide-next {
+        transform: scale(0.9);
+    }
+
+    .mobile-swiper1 .item-con {
+        width: 100%;
+        height: 100%;
+/*        background-image: url("./live/ala-www/img/home-pc-bg.webp");*/
+        background-position: center;
+        background-size: cover;
+        border-radius: 20px;
+        position: relative;
+    }
+
+    .mobile-swiper1 .item-con img {
+        position: absolute;
+        right: 2%;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .mobile-swiper1 .text-con {
+        position: absolute;
+        z-index: 1;
+        left: 10%;
+        top: 8%;
+        text-align: left;
+        color: #000;
+    }
+
+    .mobile-swiper1 .text-con div:nth-child(1) {
+        font-family: 'Roboto-Bold';
+        font-size: 24px;
+        font-weight: 700;
+    }
+
+    .mobile-swiper1 .text-con div:nth-child(2) {
+        margin-top: 8px;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 22px;
+    }
+
+    .mobile-swiper1 .text-con .mobile-line {
+        width: 16px;
+        height: 4px;
+        margin-top: 12px;
+        background-color: rgb(255, 116, 59);
+    }
+
+    .mobile-swiper1 .swiper-slide-prev {
+        transform: scale(0.9) !important;
+    }
+
+    .mobile-swiper1 .swiper-slide-next {
+        transform: scale(0.9) !important;
+    }
+
+    .mobile-swiper1-navigtion {
+        display: flex;
+        justify-content: center;
+        gap: 24px;
+    }
+
+    .mobile-swiper1-navigtion .mobile-swiper1-navigtion-right,
+    .mobile-swiper1-navigtion .mobile-swiper1-navigtion-left {
+        background: url("./live/ala-www/img/swiper1-arrow.png");
+        background-size: cover;
+    }
+
+    .mobile-swiper1-navigtion .mobile-swiper1-navigtion-right.mobile-swiper1-navigtion-isabled,
+    .mobile-swiper1-navigtion .mobile-swiper1-navigtion-left.mobile-swiper1-navigtion-isabled {
+        background: url("./live/ala-www/img/swiper1-disable-arrow.png");
+        background-size: cover;
+    }
+
+    .mobile-swiper1-navigtion .mobile-swiper1-navigtion-left,
+    .mobile-swiper1-navigtion .mobile-swiper1-navigtion-right.mobile-swiper1-navigtion-isabled {
+        transform: rotateZ(180deg);
+    }
+
+    .mobile-swiper1-navigtion .mobile-swiper1-navigtion-left.mobile-swiper1-navigtion-isabled {
+        transform: rotateZ(0deg);
+    }
+
+    .mobile-swiper1-navigtion button {
+        border: none;
+        margin-top: 24px;
+    }
+</style>
+
+<div class="mobile-swiper1 d-lg-none">
+    <div class="swiper" id="mobileSwiper1">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <div class="item-con">
+                    <img src="./live/ala-www/img/applying/img1.webp" alt="Ilustración paso 1: descargar aplicación" />
+                    <div class="text-con">
+                        <div>Paso 1</div>
+                        <div style="padding-right: 10px;">Busca ALA en la tienda de aplicaciones y descárgala</div>
+                        <div class="mobile-line"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="item-con">
+                    <img src="./live/ala-www/img/applying/img2.webp" alt="Ilustración paso 2: registro con teléfono" />
+                    <div class="text-con">
+                        <div>Paso 2</div>
+                        <div style="padding-right: 10px;">Regístrate con tu número de teléfono.</div>
+                        <div class="mobile-line"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="item-con">
+                    <img src="./live/ala-www/img/applying/img3.webp" alt="Ilustración paso 3: identificación y cuenta bancaria" />
+                    <div class="text-con">
+                        <div>Paso 3</div>
+                        <div style="padding-right: 10px;">Proporciona tu identificación oficial y una cuenta bancaria para recibir el depósito.</div>
+                        <div class="mobile-line"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="item-con">
+                    <img src="./live/ala-www/img/applying/img4.webp" alt="Ilustración paso 4: depósito aprobado" />
+                    <div class="text-con">
+                        <div>Paso 4</div>
+                        <div style="padding-right: 10px;">Una vez aprobada tu solicitud, el dinero se depositará en tu cuenta.</div>
+                        <div class="mobile-line"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mobile-swiper1-navigtion">
+        <button class="mobile-swiper1-navigtion-right" style="width: 44px;height: 44px"></button>
+        <button class="mobile-swiper1-navigtion-left" style="width: 44px;height: 44px;"></button>
+    </div>
+
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var curAdvantageIndex = 0;
+
+        new Swiper("#mobileSwiper1", {
+            // autoplay: {
+            //     delay: 3000,
+            //     disableOnInteraction: false
+            // },
+            // loop: true,
+            slidesPerView: 'auto',
+            centeredSlides: true,
+            // spaceBetween: 10,
+
+            navigation: {
+                nextEl: ".mobile-swiper1-navigtion-left",
+                prevEl: ".mobile-swiper1-navigtion-right",
+                disabledClass: "mobile-swiper1-navigtion-isabled",
+            },
+            on: {
+                slideChange: function () {
+                    curAdvantageIndex = this.realIndex;
+                }
+            }
+        });
+
+
+
+    });
+</script>
+
+      <div class="ala-size ala-mb ala-lh ala-mt title-wrap d-none d-lg-block motion-element" style="--base-mt: 150px">
+        <span class="ala-width" style="display: inline-block; --base-width: 860px">Ventajas de solicitar un préstamo personal con ALA</span>
+      </div>
+      <div class="ala-height ala-mt swiper-container-wrapper2 motion-element" style="--base-height: 1216px; --base-mt: 72px">
+        <div class="swiper-container2 swiper-container-horizontal swiper-container2-flat">
+          <div class="ala-height swiper-wrapper-flat">
+            <div class="ala-height swiper-slide-flat">
+              <div class="ala-height ala-width swiper-slide-flat-down">
+                <img src="./live/ala-www/img/home-swiper2-img1.webp" srcset="./live/ala-www/img/home-swiper2-img1.webp 1x, ./live/ala-www/img/home-swiper2-img1@2x.webp 2x, ./live/ala-www/img/home-swiper2-img1@3x.webp 3x" class="swiper2-icon" loading="lazy" alt="Ventajas de solicitar un préstamo personal con ALA_100% seguro" />
+              </div>
+              <div class="ala-pl swiper-slide-flat-up" style="color: #1B1E28">
+                <div class="ala-mt swiper2-title-wrap" style="--base-mt: 60px;display:flex;justify-content:center;">
+                  <div class="ala-size ala-lh ala-ml swiper2-title" style="--base-ml: 13px; --base-size: 46px; --base-lh: 48px">100% seguro</div>
+                </div>
+                <div class="ala-size ala-lh ala-mt swiper2-desc" style="width: 480px;margin-left:auto;margin-right:auto;text-align:center;color:#666666; --base-mt: 20px; --base-size: 24px; --base-lh: 32px;">
+                  Somos una Sofom regulada por CONDUSEF, lo que garantiza tu seguridad de dinero y evita fraudes.
+                </div>
+              </div>
+            </div>
+            <div class="ala-height swiper-slide-flat">
+              <div class="ala-height ala-width swiper-slide-flat-down">
+                <img src="./live/ala-www/img/home-swiper2-img2.webp" srcset="./live/ala-www/img/home-swiper2-img2.webp 1x, ./live/ala-www/img/home-swiper2-img2@2x.webp 2x, ./live/ala-www/img/home-swiper2-img2@3x.webp 3x" class="swiper2-icon" loading="lazy" alt="Ventajas de solicitar un préstamo personal con ALA_Planes flexibles" />
+              </div>
+              <div class="ala-pl swiper-slide-flat-up swiper-slide-flat-up-bg swiper-slide-flat-up-pl0" style="--base-pl: 91px; color: #ffffff">
+                <div class="ala-mt swiper2-title-wrap" style="--base-mt: 60px;display:flex;justify-content:center;">
+                  <div class="ala-size ala-lh ala-ml swiper2-title" style="--base-ml: 13px; --base-size: 46px; --base-lh: 48px">Planes flexibles</div>
+                </div>
+                <div class="ala-size ala-lh ala-mt swiper2-desc" style="width: 480px;margin-left:auto;margin-right:auto;text-align:center; --base-mt: 20px; --base-size: 24px; --base-lh: 32px; color: rgba(255, 255, 255, 0.75)">
+                  Te ofrecemos la opción que mejor se adapta a ti: montos variados, pagos a plazos flexibles y notificaciones en tiempo real.
+                </div>
+              </div>
+            </div>
+            <div class="ala-height swiper-slide-flat order-mobil-flex">
+              <div class="ala-height ala-width swiper-slide-flat-down">
+                <img src="./live/ala-www/img/home-swiper2-img3.webp" srcset="./live/ala-www/img/home-swiper2-img3.webp 1x, ./live/ala-www/img/home-swiper2-img3@2x.webp 2x, ./live/ala-www/img/home-swiper2-img3@3x.webp 3x" class="swiper2-icon" loading="lazy" alt="Ventajas de solicitar un préstamo personal con ALA_Solicitud rápida" />
+              </div>
+              <div class="ala-pl swiper-slide-flat-up swiper-slide-flat-up-bg swiper-slide-flat-up-pl0" style="--base-pl: 91px; color: #ffffff">
+                <div class="ala-mt swiper2-title-wrap" style="--base-mt: 60px;display:flex;justify-content:center;">
+                  <div class="ala-size ala-lh ala-ml swiper2-title" style="--base-ml: 13px; --base-size: 46px; --base-lh: 48px">Solicitud rápida</div>
+                </div>
+                <div class="ala-size ala-lh ala-mt swiper2-desc" style="width: 480px;margin-left:auto;margin-right:auto;text-align:center;--base-mt: 20px; --base-size: 24px; --base-lh: 32px; color: rgba(255, 255, 255, 0.75)">
+                  Proceso simple y sin trámites complicados. No necesitas presentar avales ni documentación extensa; la evaluación depende de los requisitos del organismo correspondiente.
+                </div>
+              </div>
+            </div>
+            <div class="ala-height swiper-slide-flat">
+              <div class="ala-height ala-width swiper-slide-flat-down">
+                <img src="./live/ala-www/img/home-swiper2-img4.webp" srcset="./live/ala-www/img/home-swiper2-img4.webp 1x, ./live/ala-www/img/home-swiper2-img4@2x.webp 2x, ./live/ala-www/img/home-swiper2-img4@3x.webp 3x" class="swiper2-icon" loading="lazy" alt="Ventajas de solicitar un préstamo personal con ALA_Atención al cliente 24/7" />
+              </div>
+              <div class="ala-pl swiper-slide-flat-up swiper-slide-flat-up-pl0" style="--base-pl: 91px; color: #1B1E28">
+                <div class="ala-mt swiper2-title-wrap" style="--base-mt: 60px;display:flex;justify-content:center;">
+                  <div class="ala-size ala-lh ala-ml swiper2-title" style="--base-ml: 13px; --base-size: 46px; --base-lh: 48px">Atención al cliente 24/7</div>
+                </div>
+                <div class="ala-size ala-lh ala-mt swiper2-desc" style="width: 480px;margin-left:auto;margin-right:auto;text-align:center; color: #666666; --base-mt: 20px; --base-size: 24px; --base-lh: 32px;">
+                  Nuestro equipo está disponible todo el tiempo a través de múltiples canales para ayudarte con cualquier duda relacionada con tu préstamo.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- swiper2 mobile -->
+      <div class="ala-size ala-mr ala-ml ala-lh ala-mt title-wrap motion-element title-wrap4-lg" >
+        <span class="ala-width" style="display: inline-block;text-align: center;--base-width: 920px; "> Mejora tu situación financiera con préstamos personales seguros y confiables de ALA</span>
+      </div>
+      <div class="ala-mt ala-mr ala-ml ala-radius ala-padding home-box-time motion-element home-box-time-lg">
+        <div class="ala-size ala-lh home-box-title">Préstamos personales ALA | Solicitud en línea disponible las 24 horas</div>
+        <div class="ala-size ala-mt ala-lh home-box-text">Sin importar el momento ni el lugar, sin salir de casa, de manera segura y eficiente. ALA está siempre contigo en tus momentos de necesidad.</div>
+
+        <img src="./live/ala-www/img/home-icon-lock.png" class="ala-width ala-height ala-mt home-box-img" style="--base-width: 50px; --base-height: 50px; --base-mt: 36px" alt="lock" loading="lazy" />
+        <div class="ala-width ala-height ala-top ala-right home-24-img order-sg-flex1">
+          <img src="./live/ala-www/img/home-icon-24h.webp" srcset="./live/ala-www/img/home-icon-24h.webp 1x, ./live/ala-www/img/home-icon-24h@2x.webp 2x, ./live/ala-www/img/home-icon-24h@3x.webp 3x" alt="Préstamos personales ALA | Solicitud en línea disponible las 24 horas" loading="lazy" />
+        </div>
+      </div>
+      <div class="ala-mt" style="--base-mt: 160px"></div>
+<div class="ala-size ala-ml ala-mr ala-lh title-wrap motion-element title-wrap5-lg">
+  <span style="display: inline-block;" class="cityNameDetail city-name1">Requisitos para solicitar un préstamo
+    personal <span id="showCityName">en <i class="cityNameContainer">México</i></span></span>
+</div>
+<div class="ala-mt ala-pl ala-size ala-pr ala-mr ala-ml ala-gap home-box-des-card-list motion-element home-box-des-card-list-lg" style="--base-mt:72px">
+  <div class="ala-pl ala-pr ala-pt ala-pb  ala-radius home-box-des-card-item home-box-des-card-item-lg">
+    <img src="./live/ala-www/img/home-card-img1.webp" srcset="./live/ala-www/img/home-card-img1.webp 1x, ./live/ala-www/img/home-card-img1@2x.webp 2x, ./live/ala-www/img/home-card-img1@3x.webp 3x" alt="1. Ser mayor de edad
+según la ley" />
+    <div class="ala-size ala-lh ala-ml des-card-item" style="--base-ml:24px;--base-size:26px;--base-lh:32px;font-weight: 500;">Ser mayor
+      de edad</br> según la ley.</div>
+  </div>
+  <div class="ala-pl ala-pr ala-pt ala-pb  ala-radius home-box-des-card-item home-box-des-card-item-lg">
+    <img src="./live/ala-www/img/home-card-img3.webp" srcset="./live/ala-www/img/home-card-img3.webp 1x, ./live/ala-www/img/home-card-img3@2x.webp 2x, ./live/ala-www/img/home-card-img3@3x.webp 3x" alt="Tener una cuenta bancaria propia" />
+    <div class="ala-size ala-lh ala-ml des-card-item" style="--base-ml:24px;--base-size:26px;--base-lh:32px;font-weight: 500;">Tener una
+      cuenta bancaria propia.</div>
+  </div>
+  <div class="ala-pl ala-pr ala-pt ala-pb  ala-radius home-box-des-card-item home-box-des-card-item-lg">
+    <img src="./live/ala-www/img/home-card-img2.webp" srcset="./live/ala-www/img/home-card-img2.webp 1x, ./live/ala-www/img/home-card-img2@2x.webp 2x, ./live/ala-www/img/home-card-img2@3x.webp 3x" alt="3. Contar con
+nacionalidad mexicana" />
+    <div class="ala-size ala-lh ala-ml des-card-item" style="--base-ml:24px;--base-size:26px;--base-lh:32px;font-weight: 500;">Contar con
+      </br>nacionalidad mexicana.</div>
+  </div>
+  <div class="ala-pl ala-pr ala-pt ala-pb ala-radius home-box-des-card-item home-box-des-card-item-lg">
+    <img src="./live/ala-www/img/home-card-img4.webp" srcset="./live/ala-www/img/home-card-img4.webp 1x, ./live/ala-www/img/home-card-img4@2x.webp 2x, ./live/ala-www/img/home-card-img4@3x.webp 3x" alt="4. Tener una identificación oficial vigente(INE/IFE)" />
+    <div class="ala-size ala-lh ala-ml des-card-item" style="--base-ml:24px;--base-size:26px;--base-lh:32px;font-weight: 500;">Tener una
+      identificación oficial vigente(INE/IFE)</div>
+  </div>
+</div>
+<div class="ala-size ala-lh ala-mt title-wrap motion-element ala-width title-wrap-sg" style="--base-mt: 150px;--base-width: 1000px;text-align:center;margin-left:auto;margin-right:auto;">
+  <span style="display: inline-block;">Seguridad ante todo</span>
+</div>
+<div class="ala-lh ala-width ala-size ala-mt des-wrap motion-element des-wrap-lg des-wrap-sg">En ALA, la seguridad y
+  la privacidad
+  son nuestra prioridad. Hemos construido un sistema financiero bajo los más altos estándares de protección:</div>
+
+
+<div class="ala-mr ala-ml ala-mt ala-height motion-element ala-todo-wrap ala-todo-wrap-sg d-none d-lg-flex">
+  <div class="ala-width ala-height ala-pl ala-pr ala-pt ala-mr ala-radius todo-left">
+    <div class="ala-size ala-lh todo-header-title">Certificaciones regulatorias.</div>
+    <div class="ala-size ala-lh ala-mt todo-header-body">Somos una SOFOM legítima, regulada estrictamente por CONDUSEF, garantizando tus derechos en operaciones de préstamo</div>
+    <img class="ala-width ala-height ala-bottom ala-left todo-icon-bg" src="./live/ala-www/img/todo-icon-bg.webp" />
+    <img class="ala-width ala-height ala-bottom ala-left todo-icon" src="./live/ala-www/img/todo-icon.webp" srcset="./live/ala-www/img/todo-icon.webp 1x, ./live/ala-www/img/todo-icon@2x.webp 2x, ./live/ala-www/img/todo-icon@3x.webp 3x" alt="1. alaprestamo-Certificaciones regulatorias." title="1. alaprestamo-Certificaciones regulatorias."/>
+  </div>
+  <div class="ala-ml todo-right">
+    <div class="ala-width ala-height ala-radius ala-pt ala-pr ala-pb ala-pl todo-right1">
+      <div class="ala-size ala-lh todo-header-title">Proceso completamente digital.</div>
+      <div class="ala-size ala-lh ala-mt todo-header-body">Tus datos viajan y se almacenan sin riesgo de filtración. Seguridad y comodidad van de la mano.</div>
+      <img class="ala-width ala-height ala-top ala-right" src="./live/ala-www/img/todo1.webp" srcset="./live/ala-www/img/todo1.webp 1x, ./live/ala-www/img/todo1@2x.webp 2x, ./live/ala-www/img/todo1@3x.webp 3x" alt="2. alaprestamo-Proceso completamente digital." title="2. alaprestamo-Proceso completamente digital."/>
+    </div>
+    <div class="ala-width ala-height ala-radius ala-pt ala-pr ala-pb ala-pl ala-mt todo-right2">
+      <div class="ala-size ala-lh todo-header-title">Supervisión transparente, confianza garantizada.</div>
+      <div class="ala-size ala-lh ala-mt todo-header-body"> Estamos integrados activamente al sistema nacional de regulación
+        financiera, donde cada transacción se realiza de forma segura y transparente bajo un marco normativo.</div>
+      <img class="ala-width ala-height ala-top ala-right" src="./live/ala-www/img/todo2.webp" srcset="./live/ala-www/img/todo2.webp 1x, ./live/ala-www/img/todo2@2x.webp 2x, ./live/ala-www/img/todo2@3x.webp 3x" alt="alaprestamo-Supervisión transparente, confianza garantizada" title="alaprestamo-Supervisión transparente, confianza garantizada"/>
+    </div>
+  </div>
+</div>
+
+<div class="motion-element ala-todo-wrap ala-todo-wrap-sg d-lg-none d-sm-block">
+  <div class="todo-left">
+    <div class="todo-header-title">Certificaciones regulatorias.</div>
+    <div class="ala-mt todo-header-body">Somos una SOFOM legítima, regulada estrictamente por CONDUSEF, garantizando tus derechos en operaciones de préstamo</div>
+    <img class="todo-icon-bg" src="./live/ala-www/img/todo-icon-bg.webp" />
+    <img class="todo-icon" src="./live/ala-www/img/todo-icon.webp" srcset="./live/ala-www/img/todo-icon.webp 1x, ./live/ala-www/img/todo-icon@2x.webp 2x, ./live/ala-www/img/todo-icon@3x.webp 3x" alt="1. alaprestamo-Certificaciones regulatorias." title="1. alaprestamo-Certificaciones regulatorias." />
+  </div>
+  <div class="todo-right">
+    <div class="todo-right1">
+      <div class="todo-header-title">Proceso completamente digital.</div>
+      <div class="todo-header-body">Tus datos viajan y se almacenan sin riesgo de filtración. Seguridad y comodidad van de la mano.</div>
+      <img class="" src="./live/ala-www/img/todo1.webp" srcset="./live/ala-www/img/todo1.webp 1x, ./live/ala-www/img/todo1@2x.webp 2x, ./live/ala-www/img/todo1@3x.webp 3x" alt="2. alaprestamo-Proceso completamente digital." title="2. alaprestamo-Proceso completamente digital."/>
+    </div>
+    <div class="todo-right2">
+      <div class="todo-header-title">Supervisión transparente, confianza garantizada.</div>
+      <div class="todo-header-body"> Estamos integrados activamente al sistema nacional de regulación
+        financiera, donde cada transacción se realiza de forma segura y transparente bajo un marco normativo.</div>
+      <img class="" src="./live/ala-www/img/todo2.webp" srcset="./live/ala-www/img/todo2.webp 1x, ./live/ala-www/img/todo2@2x.webp 2x, ./live/ala-www/img/todo2@3x.webp 3x" alt="alaprestamo-Supervisión transparente, confianza garantizada" title="alaprestamo-Supervisión transparente, confianza garantizada"/>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  const routeString = window.location.search;
+  const routeParams = new URLSearchParams(routeString);
+  const cityNameByDetail = routeParams.get('cityName')
+  const cityNameDetails = document.querySelectorAll('.cityNameDetail');
+  if (cityNameByDetail) {
+    cityNameDetails.forEach(container => {
+      container.textContent = 'Requisitos para solicitar un préstamo personal en' + ' ' + cityNameByDetail;
+      document.title = 'Requisitos para solicitar un préstamo personal en' + ' ' + cityNameByDetail + ' - ALA';
+    });
+  }
+</script>
+      <div class="d-none d-lg-block">
+        <div class="ala-size ala-mb ala-lh ala-mt title-wrap motion-element ala-width title-wrap-sg" style="--base-width: 920px;margin-left: auto;margin-right:auto;--base-mb:72px;--base-mt: 160px;">
+          <span style="display: inline-block;">Opiniones de usuarios</span>
+        </div>
+<style>
+  .message-swiper-slide{
+    --base-padding-top: 38px !important;
+    --base-padding-right: 37px !important;
+    --base-padding-bottom: 40px !important;
+    --base-padding-left: 36px !important;
+    --base-radius: 26px !important;
+    --base-height: 390px;
+  }
+  .message-item-avatar img{
+    object-fit: contain;
+  }
+  .message-item-info{
+    align-items: center;
+  }
+  .message-item-info p{
+    margin-bottom: 0;
+  }
+</style>
+
+<div class="d-none d-lg-block">
+  <div class="message-swiper-wrap motion-element ala-mr ala-ml"
+    style="--base-mr: 400px; --base-ml: 400px; overflow: hidden">
+    <div class="ala-mt message-swiper-container">
+      <div class="message-swiper swiper-wrapper">
+        <!-- slides generated by JS -->
+      </div>
+    </div>
+    <div class="ala-mt ala-mb message-navigtion" style="--base-mt: 30px;--base-mb:30px;">
+      <button class="ala-height ala-width ala-ml message-navigtion-right"
+        style="--base-width: 60px; --base-height: 60px;"></button>
+      <button class="ala-ml ala-height ala-width message-navigtion-left"
+        style="--base-ml: 32px; --base-width: 60px; --base-height: 60px;"></button>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function () {
+    function renderSwiper(data) {
+      const container = $('.message-swiper');
+      container.empty();
+
+      data.forEach(function (item) {
+        const custom = item.customs;
+        // const displayTime = new Date(custom['home-comment-time']).toLocaleDateString();
+        const displayTime = new Date(custom['home-comment-time']).toLocaleDateString('en-GB', {
+          day: '2-digit',
+          month: '2-digit',
+          year: 'numeric'
+        });
+
+        const slide =
+          '<div class="ala-padding ala-height message-swiper-slide swiper-slide ala-radius">' +
+          '<div class="message-item-info">' +
+          '<div class="ala-width ala-height ala-mr message-item-avatar" style="--base-width: 61px; --base-height: 61px; --base-mr: 25px">' +
+          '<img src="' + escapeHtml(custom['home-comment-avatar']) + '" alt="' + escapeHtml(custom['home-comment-name']) + '" />' +
+          '</div>' +
+          '<div class="message-box" style="font-family: \'Roboto\'">' +
+          '<p class="ala-size ala-lh ala-mb message-item-name" style="--base-size: 25px; --base-lh: 29px; --base-mb: 10px; font-weight: 700; color: #1b1e28">' +
+          escapeHtml(custom['home-comment-name']) +
+          '</p>' +
+//          '<p class="ala-size ala-lh message-item-time" style="--base-size: 32px; --base-lh: 42px; color: #999999" data-time=\'' + custom['home-comment-time'] + '\'>' +
+//          displayTime +
+//          '</p>' +
+          '</div>' +
+          '</div>' +
+          '<div class="ala-size ala-lh ala-mt text-seven-line message-item-des" style="--base-mt: 23px; --base-size: 22px; --base-lh: 32px; color: #666666">' +
+          '<i style="font-style: normal; font-weight: 700; color: #294bff">' + escapeHtml(custom['home-comment-ala']) + '</i> ' +
+          escapeHtml(custom['home-comment-content']) +
+          '</div>' +
+          '</div>';
+
+        container.append(slide);
+      });
+
+      initSwiper();
+    }
+
+
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    function initSwiper() {
+      if (window.swiper3) window.swiper3.destroy(true, true);
+      window.swiper3 = new Swiper(".message-swiper-container", {
+        centeredSlides: false,
+        initialSlide: 0,
+        loop: true,
+        slidesPerView: 3,
+        spaceBetween: 31,
+        observer: true,
+        observeParents: true,
+        roundLengths: true,
+//        autoplay: {
+//          delay: 3000,
+//          disableOnInteraction: false,
+//          waitForTransition: false,
+//        },
+        navigation: {
+          nextEl: ".message-navigtion-left",
+          prevEl: ".message-navigtion-right",
+          disabledClass: "message-navigtion-isabled",
+        },
+      });
+    }
+
+    function fetchData() {
+
+
+      axios.get('./live/home-reviews.json')
+        .then(function (response) {
+          const data = response.data;
+          renderSwiper(data);
+        })
+        .catch(function (error) {
+          console.error(error);
+        });
+    }
+
+    fetchData();
+  });
+</script>
+      </div>
+      <div class="d-lg-none ala-pb" style="padding-bottom: 10px;">
+        <div class="ala-size ala-mb ala-lh ala-mt title-wrap motion-element ala-width title-wrap-sg" style="margin-bottom: 45px;">
+          <span style="display: inline-block;">Opiniones de usuarios</span>
+        </div>
+<style>
+    .mobile-comment {
+        padding: 0 16px;
+        box-sizing: border-box;
+        overflow: hidden;
+    }
+
+    .mobile-comment .swiper-slide {
+        width: 95%;
+        height: auto;
+        margin: 0 8px;
+        background: rgb(243, 244, 249);
+        border-radius: 20px;
+        padding: 24px;
+    }
+
+    .mobile-comment-slide .comment-item-info {
+        border-radius: 20px;
+/*        padding: 24px;*/
+        display: flex;
+        align-items: center;
+    }
+
+    .mobile-comment-slide .comment-item-avatar {
+        width: 54px;
+        height: 54px;
+        border-radius: 50%;
+        background-color: #c4c4c4;
+    }
+
+    .mobile-comment-slide .comment-item-avatar>img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+    }
+
+    .mobile-comment-slide .comment-box {
+/*        height: 54px;*/
+/*        line-height: 27px;*/
+        margin-left: 16px;
+    }
+
+    .mobile-comment-slide .comment-item-name {
+        margin: 0;
+        font-size: 20px;
+        font-family: 'Roboto';
+        font-weight: 700;
+    }
+
+    .mobile-comment-slide .comment-item-time {
+        margin: 0;
+        font-size: 16px;
+        font-weight: 400;
+        color: #999999;
+    }
+
+    .mobile-comment-slide .comment-item-des {
+        font-size: 16px;
+        line-height: 24px;
+        font-weight: 400;
+        color: #666666;
+        margin-top: 16px;
+    }
+</style>
+
+<div class="mobile-comment d-lg-none">
+    <div class="swiper" id="mobileSwiper">
+        <div class="swiper-wrapper">
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        let swiperInstance = null;
+
+        function renderSwiper(data) {
+            const container = document.querySelector('#mobileSwiper .swiper-wrapper');
+            if (!container) return;
+
+            container.innerHTML = '';
+
+            if (!data || !Array.isArray(data) || data.length === 0) {
+                container.innerHTML = '<div class="swiper-slide"></div>';
+                return;
+            }
+
+            data.forEach(function (item) {
+                const custom = item.customs;
+
+                if (!custom || !custom['home-comment-avatar'] || !custom['home-comment-name']) return;
+
+                // const displayTime = new Date(custom['home-comment-time']).toLocaleDateString();
+                const displayTime = new Date(custom['home-comment-time']).toLocaleDateString('en-GB', {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric'
+                });
+
+                const slide = document.createElement('div');
+                slide.className = 'ala-padding mobile-comment-slide swiper-slide';
+
+                const infoDiv = document.createElement('div');
+                infoDiv.className = 'comment-item-info';
+
+                //
+                const avatarDiv = document.createElement('div');
+                avatarDiv.className = 'comment-item-avatar';
+                const avatarImg = document.createElement('img');
+                avatarImg.src = custom['home-comment-avatar'];
+                avatarImg.alt = 'Avatar del usuario';
+                avatarDiv.appendChild(avatarImg);
+
+                const commentBox = document.createElement('div');
+                commentBox.className = 'comment-box';
+
+                const nameP = document.createElement('p');
+                nameP.className = 'comment-item-name';
+                nameP.textContent = custom['home-comment-name'];
+
+                const timeP = document.createElement('p');
+                timeP.className = 'comment-item-time';
+                timeP.textContent = displayTime;
+
+                commentBox.appendChild(nameP);
+//                commentBox.appendChild(timeP);
+
+                //
+                infoDiv.appendChild(avatarDiv);
+                infoDiv.appendChild(commentBox);
+
+                //
+                const desDiv = document.createElement('div');
+                desDiv.className = 'comment-item-des';
+
+                const alaI = document.createElement('i');
+                alaI.style.fontStyle = 'normal';
+                alaI.style.fontWeight = '700';
+                alaI.style.color = '#294bff';
+                alaI.textContent = custom['home-comment-ala'] || '';
+
+                const contentText = document.createTextNode(' ' + (custom['home-comment-content'] || ''));
+
+                desDiv.appendChild(alaI);
+                desDiv.appendChild(contentText);
+
+                slide.appendChild(infoDiv);
+                slide.appendChild(desDiv);
+
+                //
+                container.appendChild(slide);
+            });
+
+            if (swiperInstance) {
+                swiperInstance.destroy(true, true);
+            }
+
+
+            initSwiper();
+        }
+
+        //
+        function initSwiper() {
+            if (typeof Swiper === 'undefined') {
+                return;
+            }
+
+            swiperInstance = new Swiper("#mobileSwiper", {
+                slidesPerView: 'auto',
+                centeredSlides: true,
+                observer: true,
+                observeParents: true,
+                loop: true,
+                autoplay: {
+                    delay: 3000,
+                    disableOnInteraction: false
+                },
+            });
+        }
+
+        function fetchData() {
+
+
+
+
+            axios.get('./live/home-reviews.json')
+                .then(function (response) {
+                    const data = response.data;
+                    renderSwiper(data);
+                })
+                .catch(function (error) {
+                    console.error('', error);
+                });
+        }
+
+        fetchData();
+    });
+</script>
       </div>
 
-    </main>
+      <div class="motion-element">
+        <div class="ala-pt ala-pl ala-pb ala-pr title-wrap-sm  d-block ala-swiper6-title">
+          <span class="ala-size ala-lh">Preguntas frecuentes</span>
+        </div>
+<div class="ala-pt ala-pb ala-pl ala-pr safe-box-wrap d-flex flex-column-mobile swiper6-box-wrap">
+  <div class=" d-flex safe-box-tab" id="safe_item_tab">
+  </div>
+  <div class="accordion" id="accordionExample">
+  </div>
+</div>
+<script>
 
-    <section class="faq-section" id="preguntas" aria-labelledby="faq-title">
-      <div class="faq-inner">
-        <header class="faq-header">
-          <h2 id="faq-title">Preguntas frecuentes</h2>
-          <div class="faq-tabs" role="tablist" aria-label="Categorías de ayuda">
-            <button class="faq-tab is-active" type="button" role="tab" aria-selected="true" data-faq-category="solicitud">
-              Solicitud de préstamo
-            </button>
-            <button class="faq-tab" type="button" role="tab" aria-selected="false" data-faq-category="credito">
-              Crédito y límite
-            </button>
-            <button class="faq-tab" type="button" role="tab" aria-selected="false" data-faq-category="problemas">
-              Problemas de préstamo
-            </button>
-            <button class="faq-tab" type="button" role="tab" aria-selected="false" data-faq-category="otros">
-              Otros
-            </button>
-          </div>
-        </header>
+  $(document).ready(function () {
+    // 来源参数：由调用方在 include 前用 assign 设置 faqSource，默认 index
+    let faqSource = 'index';
+    // 展示位置代号映射（对应 FAQ 文章自定义字段 showPositionSelectKey 的字典值）：
+    //   index   -> 首页
+    //   channel -> 城市详情页 / 专栏页
+    //   brand   -> 品牌页（FAQ 栏目页 channel_faq.html）
+    // 如需调整代号，改这里；调用方也可在 include 前 assign faqPosition 直接覆盖（优先级最高）
+    // 数据由 FreeMarker 在服务端从栏目 Ayuda + 字典 faqType 动态生成
+    let _faqData = [
 
-        <div class="faq-list" data-faq-list>
-          <article class="faq-item is-open">
-            <button class="faq-question" type="button" aria-expanded="true" aria-controls="faq-answer-0">
-              <span data-faq-question>¿Cuándo llegará el préstamo a mi cuenta bancaria?</span>
-              <svg class="faq-chevron" aria-hidden="true" viewBox="0 0 24 24">
-                <path d="m6 9 6 6 6-6" />
-              </svg>
-            </button>
-            <div class="faq-answer" id="faq-answer-0" aria-hidden="false">
-              <p data-faq-answer>Una vez aprobada tu solicitud, ALA procesará la transferencia de inmediato. Normalmente, los fondos llegan a tu cuenta bancaria en 5 minutos, aunque en casos excepcionales puede haber retrasos.Nota: Asegúrate de que la información de tu cuenta bancaria sea correcta para evitar errores en la transferencia. Si los datos son incorrectos, nos pondremos en contacto contigo para confirmarlos.</p>
-            </div>
-          </article>
+      {
+        title: 'Solicitud de préstamo',
+        tab: [
+          {
+            label: '¿Cuándo llegará el préstamo a mi cuenta bancaria?',
+            value: '<p>Una vez aprobada su solicitud, ALA procesará el desembolso de inmediato. Por lo general, los recursos se depositan en su cuenta bancaria en aproximadamente 3 minutos; en casos excepcionales, el depósito puede demorar más.<\/p>\n<p>Verifique que los datos de su cuenta bancaria sean correctos para evitar rechazos o errores en la transferencia. Si detectamos alguna inconsistencia, nos pondremos en contacto con usted para validarla.<\/p>\n<p>Si necesita ayuda, comuníquese con nosotros únicamente a través de nuestros canales oficiales:<br />Líneas de atención sin costo: 800 953 0794 y 800 288 3450<br />Chat&#xff1a;<a href=\"https://www.alaprestamo.com/channel/help-center\" target=\"_blank\" rel=\"noopener noreferrer\">Contactar con atención al cliente<\/a><\/p>',
+            url: 'https://www.alaprestamo.com/article/cuando-llegara-el-prestamo-a-mi-cuenta-bancaria'
+          },
+          {
+            label: '¿Por qué no se ha aprobado mi solicitud de un nuevo préstamo?\n',
+            value: '<p>ALA evalúa periódicamente el historial crediticio y la información de cada cliente. La aprobación y el límite disponible dependen de su situación crediticia y del resultado de la evaluación del sistema, por lo que pueden variar con el tiempo.<\/p>\n<p>Le recomendamos realizar sus pagos puntualmente para mantener un buen historial crediticio.<\/p>\n<p>Si necesita ayuda, comuníquese con nosotros únicamente a través de nuestros canales oficiales:<br />Líneas de atención sin costo: 800 953 0794 y 800 288 3450<br />Chat&#xff1a;<a href=\"https://www.alaprestamo.com/channel/help-center\" target=\"_blank\" rel=\"noopener noreferrer\">Contactar con atención al cliente<\/a><\/p>',
+            url: 'https://www.alaprestamo.com/article/por-que-no-se-ha-aprobado-mi-solicitud-de-un-nuevo-prestamo'
+          },
+          {
+            label: '¿Cuánto tiempo tarda la aprobación del préstamo?',
+            value: '<p>El tiempo de evaluación depende de que la información proporcionada sea correcta y completa. Si los datos no presentan inconsistencias, puede recibir una respuesta en tan solo 3 minutos. Si es necesario validar algún dato, el proceso podría demorar más y nos pondremos en contacto con usted.<\/p>\n<p>Si necesita ayuda, comuníquese con nosotros únicamente a través de nuestros canales oficiales:<br />Líneas de atención sin costo: 800 953 0794 y 800 288 3450<br />Chat&#xff1a;<a href=\"https://www.alaprestamo.com/channel/help-center\" target=\"_blank\" rel=\"noopener noreferrer\">Contactar con atención al cliente<\/a><\/p>',
+            url: 'https://www.alaprestamo.com/article/cuanto-tiempo-tarda-la-aprobacion-del-prestamo'
+          },
+          {
+            label: '¿Cuáles son los requisitos para solicitar un préstamo?\n',
+            value: '<p>Para solicitar un préstamo en ALA debe cumplir con los siguientes requisitos:<br />• Tener entre 18 y 55 años.<br />• Ser de nacionalidad mexicana y contar con una identificación oficial INE/IFE vigente.<br />• Tener una cuenta bancaria mexicana vigente a su nombre para recibir el préstamo y realizar los pagos.<br />Nota: La aprobación y el desembolso del préstamo están sujetos al resultado de la evaluación del sistema.<\/p>\n<p>Si necesita ayuda, comuníquese con nosotros únicamente a través de nuestros canales oficiales:<br />Líneas de atención sin costo: 800 953 0794 y 800 288 3450<br />Chat&#xff1a;<a href=\"https://www.alaprestamo.com/channel/help-center\" target=\"_blank\" rel=\"noopener noreferrer\">Contactar con atención al cliente<\/a><\/p>',
+            url: 'https://www.alaprestamo.com/article/cuales-son-los-requisitos-para-solicitar-un-prestamo'
+          },
+          {
+            label: '¿Puedo solicitar varios préstamos?\n',
+            value: '<p>Sí, puede solicitar más de un crédito. Sin embargo, la disponibilidad, el monto y la aprobación de cada solicitud dependen de su historial crediticio y del resultado de la evaluación del sistema. La presentación de una solicitud no garantiza su aprobación.<\/p>\n<p>Si necesita ayuda, comuníquese con nosotros únicamente a través de nuestros canales oficiales:<br />Líneas de atención sin costo: 800 953 0794 y 800 288 3450<br />Chat&#xff1a;<a href=\"https://www.alaprestamo.com/channel/help-center\" target=\"_blank\" rel=\"noopener noreferrer\">Contactar con atención al cliente<\/a><\/p>',
+            url: 'https://www.alaprestamo.com/article/puedo-solicitar-varios-prestamos'
+          },
+          {
+            label: '¿Cómo puedo aumentar mi límite de crédito y obtener más préstamos?\n',
+            value: '<p>Para aumentar su límite de crédito y acceder a nuevas oportunidades de financiamiento:<br />• Realice sus pagos en las fechas establecidas.<br />• Utilice el crédito de manera responsable.<\/p>\n<p>Un buen historial crediticio puede aumentar sus posibilidades de obtener nuevos préstamos; un historial negativo puede limitar sus opciones. El incremento del límite y la aprobación de futuros préstamos están sujetos a evaluación.<\/p>\n<p>Si necesita ayuda, comuníquese con nosotros únicamente a través de nuestros canales oficiales:<br />Líneas de atención sin costo: 800 953 0794 y 800 288 3450<br />Chat&#xff1a;<a href=\"https://www.alaprestamo.com/channel/help-center\" target=\"_blank\" rel=\"noopener noreferrer\">Contactar con atención al cliente<\/a><\/p>',
+            url: 'https://www.alaprestamo.com/article/como-puedo-aumentar-mi-limite-de-credito-y-obtener-mas-prestamos'
+          }
+        ]
+      }
+      ,
+      {
+        title: 'Seguridad y Privacidad',
+        tab: [
+          {
+            label: '¿ALA es segura y legal?',
+            value: '<p>ALA es una plataforma de crédito operada por una sociedad legalmente constituida en México como SOFOM, E.N.R. Sus operaciones se realizan de conformidad con la legislación aplicable.<\/p>\n<p>En la aplicación oficial de ALA puede consultar la información de sus préstamos, contratos, estados de cuenta, medios de pago y canales de atención. Si tiene dudas sobre la plataforma, su contrato o cualquier comisión, verifique la información directamente con el servicio oficial de atención al cliente.<\/p>\n<p>Si necesita ayuda, comuníquese con nosotros únicamente a través de nuestros canales oficiales:<br />Líneas de atención sin costo: 800 953 0794 y 800 288 3450<br />Chat&#xff1a;<a href=\"https://www.alaprestamo.com/channel/help-center\" target=\"_blank\" rel=\"noopener noreferrer\">Contactar con atención al cliente<\/a><\/p>',
+            url: 'https://www.alaprestamo.com/article/ala-es-segura-y-legal'
+          },
+          {
+            label: '¿Por qué canales oficiales se pondrá en contacto conmigo ALA?',
+            value: '<p>ALA puede contactarle por SMS, llamada telefónica, WhatsApp o correo electrónico para enviarle notificaciones sobre su cuenta, recordatorios de pago o dar seguimiento a una solicitud de atención.<\/p>\n<p>Ni ALA ni sus representantes autorizados le pedirán que transfiera dinero a cuentas personales, comparta códigos de verificación o contraseñas, ni le amenazarán a usted o a sus contactos. Tampoco le ofrecerán de manera privada descuentos, quitas o condonaciones. Si recibe una comunicación de este tipo, no realice ningún pago y repórtela de inmediato a través de nuestros canales oficiales. <\/p>\n<p>Si necesita ayuda, comuníquese con nosotros únicamente a través de nuestros canales oficiales:<br />Líneas de atención sin costo: 800 953 0794 y 800 288 3450<br />Chat&#xff1a;<a href=\"https://www.alaprestamo.com/channel/help-center\" target=\"_blank\" rel=\"noopener noreferrer\">Contactar con atención al cliente<\/a><\/p>',
+            url: 'https://www.alaprestamo.com/article/por-que-canales-oficiales-se-pondra-en-contacto-conmigo-ala'
+          },
+          {
+            label: '¿Qué hago si recibo una llamada, SMS o WhatsApp que podría hacerse pasar por ALA?\n',
+            value: '<p>No realice transferencias, no abra enlaces desconocidos y no comparta códigos de verificación, contraseñas, fotografías de su identificación ni datos bancarios. Abra la aplicación oficial de ALA para verificar su estado de cuenta y los medios de pago autorizados.<\/p>\n<p>Si le solicitan pagar a una cuenta personal o por un medio que no aparece en la aplicación, no efectúe el pago y repórtelo de inmediato.<\/p>\n<p>Si necesita ayuda, comuníquese con nosotros únicamente a través de nuestros canales oficiales:<br />Líneas de atención sin costo: 800 953 0794 y 800 288 3450<br />Chat&#xff1a;<a href=\"https://www.alaprestamo.com/channel/help-center\" target=\"_blank\" rel=\"noopener noreferrer\">Contactar con atención al cliente<\/a><\/p>',
+            url: 'https://www.alaprestamo.com/article/que-hago-si-recibo-una-llamada-sms-o-whatsapp-que-podria-hacerse-pasar-por-ala'
+          },
+          {
+            label: '¿Cómo reporto una app, cuenta o canal de pago falso que usa el nombre de ALA?',
+            value: '<p>Conserve toda la evidencia disponible: nombre de la aplicación, enlace de descarga, capturas de pantalla, números telefónicos, cuenta receptora, comprobantes de transferencia y la identidad con la que se presentó la otra persona. Envíe esta información al servicio oficial de atención al cliente de ALA.<\/p>\n<p>Le ayudaremos a verificar si existe una suplantación de identidad o un uso indebido del nombre de ALA y le orientaremos sobre los pasos siguientes.<\/p>\n<p>Si necesita ayuda, comuníquese con nosotros únicamente a través de nuestros canales oficiales:<br />Líneas de atención sin costo: 800 953 0794 y 800 288 3450<br />Chat&#xff1a;<a href=\"https://www.alaprestamo.com/channel/help-center\" target=\"_blank\" rel=\"noopener noreferrer\">Contactar con atención al cliente<\/a><\/p>',
+            url: 'https://www.alaprestamo.com/article/como-reporto-una-app-cuenta-o-canal-de-pago-falso-que-usa-el-nombre-de-ala'
+          },
+          {
+            label: '¿Cómo puedo reportar una irregularidad o presentar una queja sobre el proceso de cobranza?',
+            value: '<p>Si tienes dudas sobre el proceso de cobranza o consideras que recibes un trato inadecuado, o mensajes que no corresponden con el estado de tu préstamo, queremos conocer tu situación y apoyarte. <\/p>\n<p>Contacta a nuestro equipo de Atención al Cliente y comparte, de ser posible:<br />- La fecha y hora del contacto <br />- El número telefónico o medio por el que te contactaron <br />- Una breve descripción de lo sucedido <br />- Evidencia disponible, como capturas de pantalla, mensajes o grabaciones. <\/p>\n<p>Revisaremos tu reporte y te orientaremos sobre los siguientes pasos. <br />Recuerda: nunca realices pagos a cuentas personales ni compartas contraseñas ni códigos de verificación.<\/p>\n<p>Contáctanos únicamente a través de nuestros canales oficiales:<br />Líneas gratuitas: 800 953 0794 y 800 288 3450<br />Chat&#xff1a;<a href=\"https://www.alaprestamo.com/channel/help-center\" target=\"_blank\" rel=\"noopener noreferrer\">Contactar con atención al cliente<\/a><\/p>',
+            url: 'https://www.alaprestamo.com/article/como-puedo-reportar-una-irregularidad-o-presentar-una-queja-sobre-el-proceso-de-cobranza'
+          },
+          {
+            label: '¿Qué hago si no reconozco una deuda o un préstamo a mi nombre?',
+            value: '<p>Si identificas un préstamo o deuda de ALA que no reconoces, comunícate de inmediato con nuestro equipo de Atención al Cliente para solicitar una aclaración. <\/p>\n<p>Revisaremos la información relacionada con la solicitud, la verificación de la identidad y el desembolso del préstamo para investigar lo ocurrido y orientarte sobre los siguientes pasos. <\/p>\n<p>Por tu seguridad, no realices pagos a cuentas personales ni compartas contraseñas o códigos de verificación. <\/p>\n<p>Si necesitas ayuda, contáctanos únicamente a través de nuestros canales oficiales:<br />Líneas gratuitas: 800 953 0794 y 800 288 3450<br />Chat&#xff1a;<a href=\"https://www.alaprestamo.com/channel/help-center\" target=\"_blank\" rel=\"noopener noreferrer\">Contactar con atención al cliente<\/a><\/p>',
+            url: 'https://www.alaprestamo.com/article/que-hago-si-no-reconozco-una-deuda-o-un-prestamo-a-mi-nombre'
+          },
+          {
+            label: '¿ALA es una app de \&quot;Montadeudas\&quot;?',
+            value: '<p>No. ALA es operada por Quantum Wealth Solutions, S.A.P.I. de C.V., SOFOM, E.N.R. Mantenemos información clara sobre los costos del préstamo: el monto, el plazo, la tasa de interés y los cargos aplicables se muestran de forma explícita en la App oficial de ALA y en el contrato del préstamo, para que puedas consultarlos y confirmarlos antes de contratar.<\/p>\n<p>ALA realiza la gestión de cobranza conforme a la legislación aplicable. Si tienes dudas o inconformidades relacionadas con los costos del préstamo, la información de pago o las prácticas de cobranza, comunícate con nosotros a través de los canales oficiales de atención al cliente de ALA. Te ayudaremos a revisar tu caso y darle el seguimiento correspondiente.<\/p>\n<p>Si recibes mensajes sospechosos, te pedimos verificarlos y reportarlos a través de los canales oficiales de ALA:<br />Líneas gratuitas: 800 953 0794 y 800 288 3450<br />Chat&#xff1a;<a href=\"https://www.alaprestamo.com/channel/help-center\" target=\"_blank\" rel=\"noopener noreferrer\">Contactar con atención al cliente<\/a><\/p>',
+            url: 'https://www.alaprestamo.com/article/ala-es-una-app-de-montadeudas'
+          }
+        ]
+      }
+      ,
+      {
+        title: 'Problemas de Cuenta',
+        tab: [
+          {
+            label: '¿Cómo puedo crear mi cuenta ALA?\n',
+            value: '<p>Descargue la aplicación oficial de ALA desde Google Play o App Store y siga las instrucciones en pantalla para registrar su número de teléfono, datos de identificación y cuenta bancaria, así como para completar la verificación de identidad.<\/p>\n<p>La información proporcionada debe ser verdadera, completa y vigente. De lo contrario, podría afectar la evaluación de su solicitud, el desembolso, la validación de sus pagos o la seguridad de su cuenta.<\/p>\n<p>Si necesita ayuda, comuníquese con nosotros únicamente a través de nuestros canales oficiales:<br />Líneas de atención sin costo: 800 953 0794 y 800 288 3450<br />Chat&#xff1a;<a href=\"https://www.alaprestamo.com/channel/help-center\" target=\"_blank\" rel=\"noopener noreferrer\">Contactar con atención al cliente<\/a><\/p>\n<p><br /><br /><\/p>',
+            url: 'https://www.alaprestamo.com/article/como-puedo-crear-mi-cuenta-ala'
+          },
+          {
+            label: '¿Qué hago si me roban o pierdo mi celular?\n',
+            value: '<p>Si perdió su teléfono y necesita cambiar con urgencia el número registrado, siga estos pasos para proteger su cuenta y recuperar el acceso:<br />1. Descargue la aplicación oficial de ALA en su nuevo teléfono y regístrese o inicie sesión con su nuevo número.<br />2. Inicie normalmente la solicitud de crédito dentro de la aplicación.<br />3. Durante el paso de carga de su INE, el sistema activará el proceso para cambiar el número registrado. Siga las instrucciones que aparecen en pantalla.<\/p>\n<p>Para proteger su cuenta, el equipo de atención al cliente verificará su identidad antes de brindarle asistencia.<\/p>\n<p>Si necesita ayuda, comuníquese con nosotros únicamente a través de nuestros canales oficiales:<br />Líneas de atención sin costo: 800 953 0794 y 800 288 3450<br />Chat&#xff1a;<a href=\"https://www.alaprestamo.com/channel/help-center\" target=\"_blank\" rel=\"noopener noreferrer\">Contactar con atención al cliente<\/a><\/p>',
+            url: 'https://www.alaprestamo.com/article/que-hago-si-me-roban-o-pierdo-mi-celular'
+          },
+          {
+            label: '¿Cómo actualizo mi número de teléfono, correo, WhatsApp o datos personales?\n',
+            value: '<p>Por motivos de seguridad, ciertos datos no pueden modificarse directamente. Ingrese primero a la aplicación oficial de ALA y siga las instrucciones disponibles para actualizar su información. Si la opción que necesita no está disponible, comuníquese con el servicio oficial de atención al cliente.<\/p>\n<p>Si necesita ayuda, comuníquese con nosotros únicamente a través de nuestros canales oficiales:<br />Líneas de atención sin costo: 800 953 0794 y 800 288 3450<br />Chat&#xff1a;<a href=\"https://www.alaprestamo.com/channel/help-center\" target=\"_blank\" rel=\"noopener noreferrer\">Contactar con atención al cliente<\/a><\/p>',
+            url: 'https://www.alaprestamo.com/article/como-actualizo-mi-numero-de-telefono-correo-whatsapp-o-datos-personales'
+          },
+          {
+            label: '¿Cómo cambio mi cuenta bancaria o CLABE para recibir el préstamo?\n',
+            value: '<p>Para cambiar la cuenta bancaria asociada, primero debe registrar una nueva cuenta. Ingrese a la aplicación de ALA y seleccione: 【Mi cuenta】 → 【Gestión de tarjetas bancarias】 → 【Agregar tarjeta bancaria】. Después, capture los datos solicitados para completar la vinculación.<\/p>\n<p>Importante: para recibir y pagar un préstamo, únicamente se admiten cuentas o tarjetas de débito personales a nombre del titular del préstamo.<\/p>\n<p>Si necesita ayuda, comuníquese con nosotros únicamente a través de nuestros canales oficiales:<br />Líneas de atención sin costo: 800 953 0794 y 800 288 3450<br />Chat&#xff1a;<a href=\"https://www.alaprestamo.com/channel/help-center\" target=\"_blank\" rel=\"noopener noreferrer\">Contactar con atención al cliente<\/a><\/p>',
+            url: 'https://www.alaprestamo.com/article/como-cambio-mi-cuenta-bancaria-o-clabe-para-recibir-el-prestamo'
+          }
+        ]
+      }
+      ,
+      {
+        title: 'Pago y Reembolso',
+        tab: [
+          {
+            label: '¿Puedo liquidar anticipadamente mi préstamo ALA?\n',
+            value: '<p>Puede pagar su préstamo en la fecha de vencimiento o antes. ALA no ofrece un descuento por el solo hecho de realizar una liquidación anticipada.<\/p>\n<p>Antes de liquidar, consulte el monto vigente en la aplicación oficial de ALA o comuníquese con el servicio oficial de atención al cliente para confirmar el saldo total y el procedimiento. No pague montos comunicados de manera privada por terceros.<\/p>\n<p>Si necesita ayuda, comuníquese con nosotros únicamente a través de nuestros canales oficiales:<br />Líneas de atención sin costo: 800 953 0794 y 800 288 3450<br />Chat&#xff1a;<a href=\"https://www.alaprestamo.com/channel/help-center\" target=\"_blank\" rel=\"noopener noreferrer\">Contactar con atención al cliente<\/a><\/p>',
+            url: 'https://www.alaprestamo.com/article/puedo-liquidar-anticipadamente-mi-prestamo-ala'
+          },
+          {
+            label: '¿Dónde puedo ver mi fecha de pago y monto a pagar?\n',
+            value: '<p>Para consultar la fecha de pago, el monto de cada parcialidad, el total a pagar, el saldo pendiente y el estado de su préstamo, ingrese a la aplicación de ALA y seleccione: 【Mi cuenta】 → 【Mis préstamos】.<\/p>\n<p>Si el monto o la fecha mostrados no coinciden con sus registros, comuníquese lo antes posible con el servicio oficial de atención al cliente para solicitar una revisión.<\/p>\n<p>Si necesita ayuda, comuníquese con nosotros únicamente a través de nuestros canales oficiales:<br />Líneas de atención sin costo: 800 953 0794 y 800 288 3450<br />Chat&#xff1a;<a href=\"https://www.alaprestamo.com/channel/help-center\" target=\"_blank\" rel=\"noopener noreferrer\">Contactar con atención al cliente<\/a><\/p>',
+            url: 'https://www.alaprestamo.com/article/donde-puedo-ver-mi-fecha-de-pago-y-monto-a-pagar'
+          },
+          {
+            label: '¿Cuáles son los métodos oficiales de pago para mi préstamo ALA?\n',
+            value: '<p>Utilice únicamente los medios de pago vigentes que aparecen en la aplicación oficial de ALA. Antes de pagar, verifique el monto, la cuenta o referencia de pago, los datos del beneficiario y la fecha de vencimiento.<\/p>\n<p>No realice pagos a cuentas personales, mediante enlaces desconocidos ni a cuentas que no aparezcan en la aplicación.<\/p>\n<p>Si necesita ayuda, comuníquese con nosotros únicamente a través de nuestros canales oficiales:<br />Líneas de atención sin costo: 800 953 0794 y 800 288 3450<br />Chat&#xff1a;<a href=\"https://www.alaprestamo.com/channel/help-center\" target=\"_blank\" rel=\"noopener noreferrer\">Contactar con atención al cliente<\/a><\/p>',
+            url: 'https://www.alaprestamo.com/article/cuales-son-los-metodos-oficiales-de-pago-para-mi-prestamo-ala'
+          },
+          {
+            label: 'Estoy al corriente ¿por qué recibo mensajes de cobranza?',
+            value: '<p>Si ya realizaste tu pago, pero aún no aparece reflejado en la app de ALA o sigues recibiendo mensajes de cobranza, es posible que el pago todavía esté en proceso de actualización.<\/p>\n<p>Por lo general, los pagos se reflejan en aproximadamente 2 horas, aunque en algunos casos pueden demorar más por cuestiones operativas o bancarias. Una vez procesado, recibirás un SMS de confirmación.<\/p>\n<p>Si han pasado más de 24 horas sin recibir la confirmación, o continúas recibiendo avisos de cobranza después de que tu pago se haya registrado, contáctanos y comparte tu comprobante para que podamos revisar tu caso.<\/p>\n<p>Si necesitas ayuda, contáctanos únicamente a través de nuestros canales oficiales:<br />Líneas gratuitas: 800 953 0794 y 800 288 3450<br />Chat&#xff1a;<a href=\"https://www.alaprestamo.com/channel/help-center\" target=\"_blank\" rel=\"noopener noreferrer\">Contactar con atención al cliente<\/a><\/p>',
+            url: 'https://www.alaprestamo.com/article/estoy-al-corriente-por-que-recibo-mensajes-de-cobranza'
+          },
+          {
+            label: 'Si tengo dificultades para pagar, ¿puedo llegar a un acuerdo con ALA?',
+            value: '<p>Si estás pasando por una situación que te dificulta realizar tus pagos, queremos escucharte y ayudarte a conocer tus opciones.<\/p>\n<p>Te recomendamos comunicarte lo antes posible con nuestro equipo de Atención al Cliente para explicarnos tu situación.<\/p>\n<p>Revisaremos tu caso considerando las condiciones de tu préstamo y nuestras políticas vigentes, y te informaremos si existen alternativas disponibles para ti. Cualquier ajuste o acuerdo estará sujeto a evaluación y aprobación.<\/p>\n<p>¿Necesitas ayuda? Contáctanos únicamente a través de nuestros canales oficiales.<br />Líneas gratuitas: 800 953 0794 y 800 288 3450<br />Chat&#xff1a;<a href=\"https://www.alaprestamo.com/channel/help-center\" target=\"_blank\" rel=\"noopener noreferrer\">Contactar con atención al cliente<\/a><\/p>',
+            url: 'https://www.alaprestamo.com/article/si-tengo-dificultades-para-pagar-puedo-llegar-a-un-acuerdo-con-ala'
+          },
+          {
+            label: '¿Qué debo hacer si no puedo pagar a tiempo?',
+            value: '<p>Si crees que no podrás realizar tu pago a tiempo, te recomendamos abonar lo más posible para reducir tu saldo pendiente y comunicarte con nuestro equipo de Atención al Cliente, de preferencia antes de tu fecha de vencimiento.<\/p>\n<p>De acuerdo con tu contrato, los pagos atrasados pueden generar cargos adicionales y afectar tu historial crediticio. Puedes consultar tu saldo actualizado y el desglose de los montos a pagar directamente en la app de ALA.<\/p>\n<p>Si tienes dificultades para pagar, contáctanos para revisar tu situación. Evaluaremos tu caso de acuerdo con las condiciones de tu préstamo y nuestras políticas vigentes, y te informaremos sobre las alternativas disponibles.<\/p>\n<p>Por tu seguridad: ALA podrá enviarte recordatorios de pago a través de sus canales oficiales. Nunca realices transferencias a cuentas personales ni compartas contraseñas o códigos de verificación.<\/p>\n<p>¿Necesitas ayuda? Contáctanos a través de nuestros canales oficiales:<br />Líneas gratuitas: 800 953 0794 y 800 288 3450<br />Chat&#xff1a;<a href=\"https://www.alaprestamo.com/channel/help-center\" target=\"_blank\" rel=\"noopener noreferrer\">Contactar con atención al cliente<\/a><\/p>',
+            url: 'https://www.alaprestamo.com/article/que-debo-hacer-si-no-puedo-pagar-a-tiempo'
+          }
+        ]
+      }
+    ];
+    let faqData = { index: _faqData, channel: _faqData };
 
-          <article class="faq-item">
-            <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-answer-1">
-              <span data-faq-question>¿Cuándo llegará el préstamo a mi cuenta bancaria?</span>
-              <svg class="faq-chevron" aria-hidden="true" viewBox="0 0 24 24">
-                <path d="m6 9 6 6 6-6" />
-              </svg>
-            </button>
-            <div class="faq-answer" id="faq-answer-1" aria-hidden="true">
-              <p data-faq-answer>Después de la aprobación, la transferencia suele reflejarse en tu cuenta bancaria en aproximadamente 5 minutos. El tiempo final depende de tu banco.</p>
-            </div>
-          </article>
+    // 根据来源取对应数据，找不到则回退到 index
+    let faqArr = faqData[faqSource] || faqData['index'];
 
-          <article class="faq-item">
-            <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-answer-2">
-              <span data-faq-question>¿Puedo solicitar varios préstamos?</span>
-              <svg class="faq-chevron" aria-hidden="true" viewBox="0 0 24 24">
-                <path d="m6 9 6 6 6-6" />
-              </svg>
-            </button>
-            <div class="faq-answer" id="faq-answer-2" aria-hidden="true">
-              <p data-faq-answer>Puedes solicitar un nuevo préstamo cuando el préstamo actual se haya liquidado y tu cuenta vuelva a mostrar un límite disponible.</p>
-            </div>
-          </article>
+    // 首页/城市详情页：tab 最多 4 个、每个 tab 问题最多 4 个；
+    // 品牌 FAQ 页（channel_faq.html）：tab 全部展示（较多时横向滚动）、tab 下问题全部展示
+    const isBrandFaq = faqSource === 'brand';
+    // 品牌 FAQ 页 tab 超过 4 个时才启用横向滚动（4 个及以内保持居中换行）
+    if (isBrandFaq && faqArr.length > 4) {
+      $('#safe_item_tab').addClass('safe-tab-scroll');
+    }
 
-          <article class="faq-item">
-            <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-answer-3">
-              <span data-faq-question>¿Cómo obtener un límite más alto de préstamo?</span>
-              <svg class="faq-chevron" aria-hidden="true" viewBox="0 0 24 24">
-                <path d="m6 9 6 6 6-6" />
-              </svg>
-            </button>
-            <div class="faq-answer" id="faq-answer-3" aria-hidden="true">
-              <p data-faq-answer>Mantén tus datos actualizados y realiza tus pagos puntualmente. ALA evaluará periódicamente tu perfil para ofrecerte un límite adecuado.</p>
-            </div>
-          </article>
+    console.log('[ala-swiper6] faqSource =', faqSource, '| faqArr =', faqArr);
+    // 动态渲染 tab 分类标题（用 faqArr 每项的 title）
+    function renderTab(tempArr) {
+      let $tab = $('#safe_item_tab');
+      $tab.empty();
+      // 首页/城市详情页 tab 最多 4 个；品牌 FAQ 页全部展示（多则横向滚动）
+      let list = isBrandFaq ? tempArr : tempArr.slice(0, 4);
+      list.forEach((item, index) => {
+        let activeClass = index === 0 ? 'safe-box-item-active' : '';
+        let html =
+          '<div class="safe-box-item ala-pt ala-pb ala-pl ala-pr ala-radius ala-mr ' + activeClass + '">' +
+            '<p class="ala-size ala-lh">' + item.title + '</p>' +
+          '</div>';
+        $tab.append(html);
+      });
+    }
+
+    renderTab(faqArr);
+    deptSmall(faqArr,0,'#accordionExample');
+
+    function  deptSmall (tempArr,faqIndex,domId) {
+      // 先清空目标容器的内容
+      $(domId).empty();
+      let textHtml = '';
+      // 首页/城市详情页每个 tab 问题最多 4 个；品牌 FAQ 页全部展示
+      let items = isBrandFaq ? tempArr[faqIndex]["tab"] : tempArr[faqIndex]["tab"].slice(0, 4);
+      items.forEach((target,index) => {
+
+        // 默认：只展示 title（描述折叠收起）
+        let activeClass = '';
+        let activeStatus = '';
+        let indexNum = index + 1;
+        let imgUrl = `./live/ala-www/img/about/down.webp`;
+        textHtml += '<div class="ala-mt ala-pt ala-pb ala-pl ala-pr ala-radius safe-card-ala  '+activeClass+'">'+
+            '<div class="card-header card-header-click" id="heading'+indexNum+'" aria-expanded="true" aria-controls="collapse'+indexNum+'">'+
+              '<div class="ala-size ala-lh ala-mr card-header-title">'+target.label+'</div>'+
+              '<img class="ala-width ala-height icon-arrow" src="'+imgUrl+'" />'+
+            '</div>'+
+            '<div id="collapse'+indexNum+'" class="ala-collapse collapse '+activeStatus+'" aria-labelledby="heading'+indexNum+'" data-parent="#accordionExample">'+
+              '<div class="ala-mt ala-size ala-lh card-body safe-desc-detail-wrap">'+target.value+
+                (target.url ? '<a class="safe-detail-link" href="'+target.url+'">Ver detalles</a>' : '')+
+              '</div>'+
+            '</div>'+
+          '</div>';
+      })
+      $(domId).append(textHtml);
+    }
+
+    // 手风琴展开/收起：用 bootstrap collapse 事件同步 active 类（背景变白 + 图标旋转 180°）
+    $("#accordionExample").on('show.bs.collapse', '.collapse', function(){
+      $(this).closest('.safe-card-ala').addClass('safe-card-avtive');
+    });
+    $("#accordionExample").on('hide.bs.collapse', '.collapse', function(){
+      $(this).closest('.safe-card-ala').removeClass('safe-card-avtive');
+    });
+    // 同时修改 tab 点击事件
+    $("#safe_item_tab").on('click', '.safe-box-item', function(){
+      // 移除所有兄弟元素的active类
+      $(this).siblings('.safe-box-item').removeClass('safe-box-item-active');
+      // 为当前点击的元素添加active类
+      $(this).addClass('safe-box-item-active');
+
+      deptSmall(faqArr, $(this).index(), '#accordionExample');
+    });
+
+    // 4) 扩大手风琴展开/收起触发区域：点击整个 .safe-card-ala 卡片（标题行之外的卡片区域）也可展开/收起
+    //    点击展开内容区（.collapse 内部，含 "Ver detalles" 链接）时不触发切换，避免误收起
+    $("#accordionExample").on('click', '.safe-card-ala', function (e) {
+      if ($(e.target).closest('.collapse').length > 0) {
+        return;
+      }
+      $(this).find('.collapse').collapse('toggle');
+    });
+
+
+  });
+</script>
+<style>
+  /* FAQ 标题：左右留白 320px、靠左，Roboto Black 900（旧引擎 ala-* 分档，与页面其它模块对齐） */
+  .swiper6-box-wrap{
+    --base-pt: 48px;
+    --base-pb: 0;
+    --base-pl: 320px;
+    --base-pr: 320px;
+    background: #F2F5FA;
+  }
+  /* ── tab 分类按钮（ala 流体自适应） ── */
+  .safe-box-tab{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
+  .safe-box-item{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    --base-pt: 16px;
+    --base-pb: 16px;
+    --base-pl: 32px;
+    --base-pr: 32px;
+    --base-radius: 28px;
+    --base-mr: 16px;                 /* 一个 tab 距右侧 16px */
+    border: 1px solid rgba(30, 31, 34, 0.24);   /* 边框不缩放，固定 1px */
+    box-sizing: border-box;
+    cursor: pointer;
+  }
+  .safe-box-item p{
+    font-family: Roboto, sans-serif;
+    font-weight: 700;
+    --base-size: 18px;
+    --base-lh: 24px;
+    letter-spacing: 0;
+    text-align: right;               /* 右对齐 */
+    margin-bottom: 0;
+    white-space: nowrap;
+    color: #1E1F22B8;
+  }
+  .safe-box-item-active{
+    background: #0949F5;
+    border-color: #0949F5;
+  }
+  .safe-box-item-active p{
+    color: #fff;
+  }
+
+  /* 品牌 FAQ 页（channel_faq.html，.safe-tab-scroll 由 JS 按 faqSource='brand' 添加）：
+     tab 较多时左右横向滚动，PC/移动端通用；tab 少时不超宽则不会出现滚动条 */
+  .safe-box-tab.safe-tab-scroll{
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    justify-content: flex-start;   /* 横向滚动容器用 flex-start，避免首 tab 被裁掉、无法滚回开头 */
+  }
+  .safe-box-tab.safe-tab-scroll::-webkit-scrollbar{
+    display: none;
+  }
+  .safe-box-tab.safe-tab-scroll .safe-box-item{
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  /* ── FAQ 手风琴 item（ala 流体自适应） ── */
+  .safe-card-ala{
+    background: #E6EAF2;
+    cursor: pointer;                          /* 整卡可点击，鼠标悬停显示手型 */
+    transition: box-shadow 0.25s ease, background-color 0.25s ease;
+    --base-mt: 24px;                 /* item 距上方 24px */
+    --base-pt: 40px;
+    --base-pb: 40px;
+    --base-pl: 48px;
+    --base-pr: 48px;
+    --base-radius: 24px;
+  }
+  .safe-card-ala:hover{
+    box-shadow: 0 6px 20px rgba(9, 73, 245, 0.12);   /* hover 阴影提示可点击（仅视觉，不触发展开） */
+  }
+  .safe-card-ala.safe-card-avtive{
+    background: #fff;                /* 展开时背景变白 */
+  }
+  .card-header-click{
+    display: flex;
+    align-items: center;             /* title 与图标上下居中 */
+    justify-content: space-between;
+    cursor: pointer;
+  }
+  .card-header-title{
+    flex: 1;
+    min-width: 0;
+    font-family: Roboto, sans-serif;
+    font-weight: 700;
+    --base-size: 22px !important;
+    --base-lh: 30px !important;
+    letter-spacing: 0;
+    text-align: left;
+    --base-mr: 10px;                 /* 距右侧图标 10px */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;         /* 超长一行点点点 */
+  }
+  .icon-arrow{
+    flex-shrink: 0;
+    --base-width: 24px;
+    --base-height: 24px;
+    transition: transform 0.3s ease;   /* 旋转过渡动画 */
+  }
+  .safe-card-ala.safe-card-avtive .icon-arrow{
+    transform: rotate(180deg);         /* 展开时图标旋转 180° */
+  }
+  .card-body.safe-desc-detail-wrap{
+    font-family: "Roboto-Regular", Roboto, sans-serif;
+    font-weight: 400;
+    --base-size: 16px;
+    --base-lh: 24px;
+    letter-spacing: 0;
+    text-align: left;
+    --base-mt: 16px;                 /* title 距描述 16px */
+  }
+  .safe-desc-detail-wrap p{
+    margin-bottom: 0;
+    padding-left: 8px;
+  }
+  .safe-desc-detail-wrap a{
+    color: #294BFF;
+    font-weight: 500;
+    text-decoration: none;
+  }
+  .safe-desc-detail-wrap a:hover{
+    text-decoration: underline;
+  }
+  .safe-detail-link{
+    margin-left: 8px;
+    color: #294BFF;
+    font-weight: 500;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  .safe-detail-link:hover{
+    text-decoration: underline;
+  }
+
+
+  @media screen and (max-width: 991px) {
+    .flex-column-mobile{
+      padding-top: 20px;
+    }
+    .safe-box-tab{
+      flex-wrap: nowrap;             /* 不换行 */
+      overflow-x: auto;              /* 超长横向滚动 */
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      justify-content: flex-start;   /* 覆盖基础样式的 center：横向滚动容器用 center 会导致首个 tab 被左侧裁掉、无法滚回开头 */
+    }
+    .safe-box-tab::-webkit-scrollbar{
+      display: none;
+    }
+    .safe-box-item{
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+    .swiper6-box-wrap{
+      padding-left: 24px !important;
+      padding-right: 0 !important;
+      padding-top: 24px !important;
+      padding-bottom: 0 !important;
+    }
+    .swiper6-box-wrap .accordion{
+      padding-right: 24px !important;
+    }
+    .safe-card-ala{
+      padding-left: 24px !important;
+      padding-right: 24px !important;
+      padding-top: 24px !important;
+      padding-bottom: 24px !important;
+      margin-top: 16px !important;
+    }
+    .safe-box-wrap .icon-arrow{
+      position: initial !important;
+      width: 16px !important;
+      height: auto !important;
+    }
+    .safe-card-ala .card-header{
+      align-items: center;
+      top: 0;
+    }
+    .safe-box-wrap .card-header-title{
+      padding-right: 16px;
+    }
+    .safe-box-item{
+      padding-top: 11px !important;
+      padding-right: 24px !important;
+      padding-bottom: 11px !important;
+      padding-left: 24px !important;
+      margin-right: 12px !important;
+      border-radius: 24px !important
+    }
+    .safe-box-item:not(.safe-box-item-active){
+      border-color: rgba(30, 31, 34, 0.24) !important;   /* 未选中边框：#1E1F22 24% */
+    }
+    .safe-box-item p{
+      font-size: 14px !important;
+      font-weight: 500 !important;
+      line-height: 19px !important;
+      color: #1B1E28;
+    }
+    .safe-box-item-active p{
+      font-size: 16px !important;
+      color: #fff !important;
+    }
+    .safe-box-wrap .card-header-title{
+      font-size: 16px !important;
+    }
+    .safe-card-ala .ala-collapse .card-body{
+      font-size: 14px !important;
+      color: #00000099 !important;
+    }
+  }
+
+</style>
+
+        <div class="ala-pt ala-pb to-faq-wrap swiper6-link" style="--base-pt: 32px;background: #F2F5FA;--base-pb:80px;">
+          <span class="to-faq-text ala-size ala-lh">
+          <span class="to-faq-text-1">Resuelve tus dudas en nuestro </span>
+          <a href="https://www.alaprestamo.com/channel/loan_faq" class="to-faq-link">centro de ayuda</a>
+        </span>
+        </div>
+      </div>
+
+      <section id="more-articles">
+        <div class="ala-size ala-lh ala-mt title-wrap motion-element ala-width title-wrap-sg" style="--base-width: 1000px;margin-left: auto;margin-right:auto;">
+          <span style="display: inline-block;">Artículos recomendados</span>
         </div>
 
-        <p class="faq-help-prompt">
-          Resuelve tus dudas en nuestro <a class="faq-help-link" href="./help.html?v=20260908-1315">centro de ayuda</a>
-        </p>
+        <div class="ala-gap ala-mr ala-ml ala-mt articles-list-wrap d-none d-lg-flex motion-element custom-pc-motion-element">
+          <section class="ala-padding ala-width ala-height ala-radius article-item">
+            <a class="ala-size ala-lh ala-height ala-pl ala-pr ala-mb article-tag no-default-alink-column" href="https://www.alaprestamo.com/channel/guia-de-prestamos">Guía de préstamos</a>
+            <a class="ala-size ala-lh ala-mb ala-height article-title no-default-alink-title" href="https://www.alaprestamo.com/article/como-elegir-un-prestamo-personal-en-mexico-segun-tu-capacidad-de-pago">Cómo elegir un préstamo personal en México según tu capacidad de pago</a>
+            <a class="ala-size ala-lh ala-mb ala-height article-desc no-default-alink-desc" href="https://www.alaprestamo.com/article/como-elegir-un-prestamo-personal-en-mexico-segun-tu-capacidad-de-pago">Cuando necesitas dinero para cubrir un imprevisto, organizar tus gastos o impulsar un proyecto personal, solicitar un préstamo en línea puede ser una alternativa. Sin embargo, antes de elegir, es importante saber cuánto necesitas y cuánto puedes pagar.</a>
+            <a class="ala-size ala-lh article-time no-default-alink-time" href="https://www.alaprestamo.com/article/como-elegir-un-prestamo-personal-en-mexico-segun-tu-capacidad-de-pago">05/11/2026</a>
+            <a class="ala-size ala-height article-img" href="https://www.alaprestamo.com/article/como-elegir-un-prestamo-personal-en-mexico-segun-tu-capacidad-de-pago"><img src="./live/uploads/1/image/2026/11/20261105030621521_n6jsui3uosos_compressed.png" alt="Cómo elegir un préstamo personal en México según tu capacidad de pago" loading="lazy" /></a>
+          </section>
+
+          <section class="ala-padding ala-width ala-height ala-radius article-item">
+            <a class="ala-size ala-lh ala-height ala-pl ala-pr ala-mb article-tag no-default-alink-column" href="https://www.alaprestamo.com/channel/guia-de-prestamos">Guía de préstamos</a>
+            <a class="ala-size ala-lh ala-mb ala-height article-title no-default-alink-title" href="https://www.alaprestamo.com/article/que-hacer-ante-la-presunta-suplantacion-de-ala-o-dudas-sobre-el-proceso-de-cobranza">¿Qué hacer ante la presunta suplantación de ALA o dudas sobre el proceso de cobranza?</a>
+            <div class="article-author ala-mb">
+              <img class="article-author-avatar ala-mr" src="./live/uploads/1/image/2026/05/20260526025322989_iau7cji0d2sf.png" alt="ALA" loading="lazy">
+              <div class="article-author-name ala-size">ALA</div>
+            </div>
+            <a class="ala-size ala-lh ala-mb ala-height article-desc no-default-alink-desc" href="https://www.alaprestamo.com/article/que-hacer-ante-la-presunta-suplantacion-de-ala-o-dudas-sobre-el-proceso-de-cobranza">Si recibe mensajes de amenaza, solicitudes de pago a cuentas personales, o llamadas de empresas o personas cuya identidad no pueda confirmar, no asuma que este contacto proviene necesariamente de ALA. Le sugerimos verificar la información y levantar el reporte correspondiente a través de nuestros canales oficiales de inmediato.</a>
+            <a class="ala-size ala-lh article-time no-default-alink-time" href="https://www.alaprestamo.com/article/que-hacer-ante-la-presunta-suplantacion-de-ala-o-dudas-sobre-el-proceso-de-cobranza">19/10/2026</a>
+            <a class="ala-size ala-height article-img" href="https://www.alaprestamo.com/article/que-hacer-ante-la-presunta-suplantacion-de-ala-o-dudas-sobre-el-proceso-de-cobranza"><img src="./live/uploads/1/image/2026/10/20261019205013483_0ww2qgysv0d2_compressed.png" alt="¿Qué hacer ante la presunta suplantación de ALA o dudas sobre el proceso de cobranza?" loading="lazy" /></a>
+          </section>
+
+          <section class="ala-padding ala-width ala-height ala-radius article-item">
+            <a class="ala-size ala-lh ala-height ala-pl ala-pr ala-mb article-tag no-default-alink-column" href="https://www.alaprestamo.com/channel/guia-de-prestamos">Guía de préstamos</a>
+            <a class="ala-size ala-lh ala-mb ala-height article-title no-default-alink-title" href="https://www.alaprestamo.com/article/que-pasa-si-tengo-un-atraso-en-mi-prestamo-ala">¿Qué pasa si tengo un atraso en mi préstamo ALA?</a>
+            <div class="article-author ala-mb">
+              <img class="article-author-avatar ala-mr" src="./live/uploads/1/image/2026/05/20260526025322989_iau7cji0d2sf.png" alt="ALA" loading="lazy">
+              <div class="article-author-name ala-size">ALA</div>
+            </div>
+            <a class="ala-size ala-lh ala-mb ala-height article-desc no-default-alink-desc" href="https://www.alaprestamo.com/article/que-pasa-si-tengo-un-atraso-en-mi-prestamo-ala">De acuerdo con tu contrato, los atrasos pueden generar cargos y afectar tu historial crediticio. Si por ahora no puedes pagar a tiempo, no te recomendamos ignorar tu préstamo ni dejar de comunicarte con ALA. Entre más pronto revises el estado de tu préstamo y contactes a ALA, más fácil será confirmar tu saldo real y conocer las opciones disponibles.</a>
+            <a class="ala-size ala-lh article-time no-default-alink-time" href="https://www.alaprestamo.com/article/que-pasa-si-tengo-un-atraso-en-mi-prestamo-ala">19/10/2026</a>
+            <a class="ala-size ala-height article-img" href="https://www.alaprestamo.com/article/que-pasa-si-tengo-un-atraso-en-mi-prestamo-ala"><img src="./live/uploads/1/image/2026/10/20261019200422527_nn8nw51icnno_compressed.png" alt="¿Qué pasa si tengo un atraso en mi préstamo ALA?" loading="lazy" /></a>
+          </section>
+
+          <section class="ala-padding ala-width ala-height ala-radius article-item">
+            <a class="ala-size ala-lh ala-height ala-pl ala-pr ala-mb article-tag no-default-alink-column" href="https://www.alaprestamo.com/channel/guia-de-prestamos">Guía de préstamos</a>
+            <a class="ala-size ala-lh ala-mb ala-height article-title no-default-alink-title" href="https://www.alaprestamo.com/article/como-identificar-prestamos-en-linea-seguros-en-mexico-guia-para-evitar-fraudes-y-elegir-con-confianza">Cómo identificar préstamos en línea seguros en México: guía para evitar fraudes y elegir con confianza</a>
+            <div class="article-author ala-mb">
+              <img class="article-author-avatar ala-mr" src="./live/uploads/1/image/2026/05/20260526025322989_iau7cji0d2sf.png" alt="ALA" loading="lazy">
+              <div class="article-author-name ala-size">ALA</div>
+            </div>
+            <a class="ala-size ala-lh ala-mb ala-height article-desc no-default-alink-desc" href="https://www.alaprestamo.com/article/como-identificar-prestamos-en-linea-seguros-en-mexico-guia-para-evitar-fraudes-y-elegir-con-confianza">Solicitar un crédito desde el celular es cada vez más sencillo. Pero entre tantas opciones de préstamos en línea en México, también puedes encontrarte con ofertas poco transparentes, intentos de fraude o personas que se hacen pasar por instituciones financieras reales.</a>
+            <a class="ala-size ala-lh article-time no-default-alink-time" href="https://www.alaprestamo.com/article/como-identificar-prestamos-en-linea-seguros-en-mexico-guia-para-evitar-fraudes-y-elegir-con-confianza">23/09/2026</a>
+            <a class="ala-size ala-height article-img" href="https://www.alaprestamo.com/article/como-identificar-prestamos-en-linea-seguros-en-mexico-guia-para-evitar-fraudes-y-elegir-con-confianza"><img src="./live/uploads/1/image/2026/09/20260923033831495_qdtigwvx32wy_compressed.png" alt="Cómo identificar préstamos en línea seguros en México: guía para evitar fraudes y elegir con confianza" loading="lazy" /></a>
+          </section>
+
+          <section class="ala-padding ala-width ala-height ala-radius article-item">
+            <a class="ala-size ala-lh ala-height ala-pl ala-pr ala-mb article-tag no-default-alink-column" href="https://www.alaprestamo.com/channel/guia-de-prestamos">Guía de préstamos</a>
+            <a class="ala-size ala-lh ala-mb ala-height article-title no-default-alink-title" href="https://www.alaprestamo.com/article/solicitar-un-prestamo-3-errores-que-debes-evitar">Solicitar un préstamo: 3 errores que debes evitar</a>
+            <div class="article-author ala-mb">
+              <img class="article-author-avatar ala-mr" src="./live/uploads/1/image/2026/05/20260526025322989_iau7cji0d2sf.png" alt="ALA" loading="lazy">
+              <div class="article-author-name ala-size">ALA</div>
+            </div>
+            <a class="ala-size ala-lh ala-mb ala-height article-desc no-default-alink-desc" href="https://www.alaprestamo.com/article/solicitar-un-prestamo-3-errores-que-debes-evitar">Al pedir un crédito en efectivo en México, mantener buenos hábitos financieros es fundamental. Evitar estos tres comportamientos aumentará tus posibilidades de aprobación y protegerá tu historial crediticio.</a>
+            <a class="ala-size ala-lh article-time no-default-alink-time" href="https://www.alaprestamo.com/article/solicitar-un-prestamo-3-errores-que-debes-evitar">19/08/2026</a>
+            <a class="ala-size ala-height article-img" href="https://www.alaprestamo.com/article/solicitar-un-prestamo-3-errores-que-debes-evitar"><img src="./live/uploads/1/image/2026/08/20260819015719558_xsp6ukl2v0f1_compressed.jpg" alt="Solicitar un préstamo: 3 errores que debes evitar" loading="lazy" /></a>
+          </section>
+
+          <section class="ala-padding ala-width ala-height ala-radius article-item">
+            <a class="ala-size ala-lh ala-height ala-pl ala-pr ala-mb article-tag no-default-alink-column" href="https://www.alaprestamo.com/channel/guia-de-prestamos">Guía de préstamos</a>
+            <a class="ala-size ala-lh ala-mb ala-height article-title no-default-alink-title" href="https://www.alaprestamo.com/article/como-funciona-el-proceso-de-control-de-riesgos-en-creditos-en-linea-y-por-que-recopilamos-sus-datos">¿Cómo funciona el proceso de control de riesgos en créditos en línea y por qué recopilamos sus datos?</a>
+            <div class="article-author ala-mb">
+              <img class="article-author-avatar ala-mr" src="./live/uploads/1/image/2026/05/20260526025322989_iau7cji0d2sf.png" alt="ALA" loading="lazy">
+              <div class="article-author-name ala-size">ALA</div>
+            </div>
+            <a class="ala-size ala-lh ala-mb ala-height article-desc no-default-alink-desc" href="https://www.alaprestamo.com/article/como-funciona-el-proceso-de-control-de-riesgos-en-creditos-en-linea-y-por-que-recopilamos-sus-datos">En los productos de crédito en línea, el control de riesgos es un proceso esencial para proteger la seguridad de los usuarios y garantizar la estabilidad de la institución. Su función principal es identificar, evaluar y mitigar riesgos potenciales, previniendo fraudes, suplantación de identidad y morosidad.</a>
+            <a class="ala-size ala-lh article-time no-default-alink-time" href="https://www.alaprestamo.com/article/como-funciona-el-proceso-de-control-de-riesgos-en-creditos-en-linea-y-por-que-recopilamos-sus-datos">10/08/2026</a>
+            <a class="ala-size ala-height article-img" href="https://www.alaprestamo.com/article/como-funciona-el-proceso-de-control-de-riesgos-en-creditos-en-linea-y-por-que-recopilamos-sus-datos"><img src="./live/uploads/1/image/2026/08/20260810015746275_4f2w71s6nsmr_compressed.jpg" alt="¿Cómo funciona el proceso de control de riesgos en créditos en línea y por qué recopilamos sus datos?" loading="lazy" /></a>
+          </section>
+
+        </div>
+        <div class="ala-height ala-mt ala-mb more-article-button d-none d-lg-block motion-element" style="cursor: pointer">
+          <img class="gotoBlog" src="./live/ala-www/img/home-button-more-article-pc.png" loading="lazy" />
+        </div>
+      </section>
+      <!-- more article swiper -->
+<style>
+  .mobile-swiper-article {
+    max-width: 100%;
+    box-sizing: border-box;
+    margin-top: 32px;
+  }
+
+  .mobile-swiper-article .swiper-slide {
+    width: 90%;
+    background-color: #F3F4F9;
+    transition: all 0.3s ease-in-out;
+    border-radius: 16px;
+  }
+
+  .mobile-swiper-article .swiper-slide-prev {
+    transform: scale(0.9);
+  }
+
+  .mobile-swiper-article .swiper-slide-next {
+    transform: scale(0.9);
+  }
+
+
+  .mobile-swiper-article .swiper-slide-prev {
+    transform: scale(0.9) !important;
+  }
+
+  .mobile-swiper-article .swiper-slide-next {
+    transform: scale(0.9) !important;
+  }
+
+  .mobile-swiper-article-item {}
+
+  .mobile-swiper-article-item .mobile-article-img {
+    width: 100%;
+    overflow: hidden;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px
+  }
+
+  .mobile-swiper-article-item .mobile-article-img-wrap {
+    height: 145px;
+    width: 100%;
+  }
+
+  .mobile-swiper-article-item .mobile-article-img>img {
+    width: 100%;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+  }
+
+  .mobile-swiper-article-item .article-text {
+    padding: 24px;
+  }
+
+  .mobile-swiper-article-item .article-title {
+    font-size: 20px;
+    line-height: 23px;
+    height: 46px;
+    font-family: 'Roboto-Bold';
+    margin-bottom: 8px;
+  }
+
+  .mobile-swiper-article-item .article-time {
+    font-size: 14px;
+    color: #ABACAF;
+  }
+
+  .mobile-swiper-article-item .article-tag {
+    display: inline-block;
+    font-size: 14px;
+    padding: 4px 8px;
+    line-height: 26px;
+    box-sizing: border-box;
+  }
+
+  .mobile-swiper-article-item .article-desc {
+    font-family: 'Roboto-Regular';
+    font-size: 16px;
+    color: #6D6E75;
+    margin-bottom: 24px;
+    line-height: 19px;
+    height: 38px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    -webkit-line-clamp: 2;
+    text-overflow: ellipsis;
+    white-space: normal;
+  }
+  .mobile-swiper-article-item .article-author {
+    display: flex;
+    align-items: center;
+    margin-bottom: 14px;
+  }
+  .mobile-swiper-article-item .article-author-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    margin-right: 12px;
+    object-fit: cover;
+  }
+  .mobile-swiper-article-item .article-author-name {
+    font-family: "Roboto-Bold";
+    font-weight: 700;
+    font-size: 16px;
+    color: #000;
+  }
+
+  .mobile-swiper-article-pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 24px;
+  }
+
+  .mobile-swiper-article-pagination .swiper-pagination-bullet {
+    width: 8px;
+    height: 8px;
+    margin: 0 15px;
+    opacity: 1;
+    background-color: #D8DAFF;
+  }
+
+  .mobile-swiper-article-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
+    width: 12px;
+    height: 8px;
+    border-radius: 8px;
+    background-color: rgb(255, 186, 0);
+  }
+  @media screen and (max-width: 992px) {
+    .mobile-swiper-article{
+      overflow: hidden;
+    }
+    .mobile-swiper-article-item .article-tag{
+      margin-bottom: 16px;
+      border-radius: 8px;
+    }
+    .mobile-swiper-article-item .article-desc,.mobile-swiper-article-item .article-title{
+      height: fit-content;
+      word-break: break-word;
+    }
+    .mobile-swiper-article-item .article-desc{
+      margin-top: 14px;
+    }
+  }
+
+</style>
+
+<div class="mobile-swiper-article d-lg-none" id="mobile-more-articles">
+  <div class="swiper" id="mobileArticle">
+    <div class="swiper-wrapper">
+              <div class="swiper-slide mobile-swiper-article-item">
+          <div class="article-text">
+              <a class="article-tag no-default-alink-column" href="https://www.alaprestamo.com/channel/guia-de-prestamos">Guía de préstamos</a>
+              <a class="article-title text-three-line no-default-alink-title" href="https://www.alaprestamo.com/article/como-elegir-un-prestamo-personal-en-mexico-segun-tu-capacidad-de-pago">Cómo elegir un préstamo personal en México según tu capacidad de pago</a>
+              <a class="article-desc no-default-alink-desc" href="https://www.alaprestamo.com/article/como-elegir-un-prestamo-personal-en-mexico-segun-tu-capacidad-de-pago">Cuando necesitas dinero para cubrir un imprevisto, organizar tus gastos o impulsar un proyecto personal, solicitar un préstamo en línea puede ser una alternativa. Sin embargo, antes de elegir, es importante saber cuánto necesitas y cuánto puedes pagar.</a>
+              <a class="article-time no-default-alink-time" href="https://www.alaprestamo.com/article/como-elegir-un-prestamo-personal-en-mexico-segun-tu-capacidad-de-pago">05/11/2026</a>
+          </div>
+          <div class="mobile-article-img" style="height: 145px;width: 100%;">
+<a href="https://www.alaprestamo.com/article/como-elegir-un-prestamo-personal-en-mexico-segun-tu-capacidad-de-pago" title="C&oacute;mo elegir un pr&eacute;stamo personal en M&eacute;xico seg&uacute;n tu capacidad de pago" class="mobile-article-img-wrap">                <img src="./live/uploads/1/image/2026/11/20261105030621521_n6jsui3uosos.png" alt="Cómo elegir un préstamo personal en México según tu capacidad de pago" style="height: 145px;width: 100%;object-fit: cover;"/>
+</a>          </div>
+        </div>
+        <div class="swiper-slide mobile-swiper-article-item">
+          <div class="article-text">
+              <a class="article-tag no-default-alink-column" href="https://www.alaprestamo.com/channel/guia-de-prestamos">Guía de préstamos</a>
+              <a class="article-title text-three-line no-default-alink-title" href="https://www.alaprestamo.com/article/que-hacer-ante-la-presunta-suplantacion-de-ala-o-dudas-sobre-el-proceso-de-cobranza">¿Qué hacer ante la presunta suplantación de ALA o dudas sobre el proceso de cobranza?</a>
+              <div class="article-author">
+                <img class="article-author-avatar" src="./live/uploads/1/image/2026/05/20260526025322989_iau7cji0d2sf.png" alt="ALA" loading="lazy">
+                <div class="article-author-name">ALA</div>
+              </div>
+              <a class="article-desc no-default-alink-desc" href="https://www.alaprestamo.com/article/que-hacer-ante-la-presunta-suplantacion-de-ala-o-dudas-sobre-el-proceso-de-cobranza">Si recibe mensajes de amenaza, solicitudes de pago a cuentas personales, o llamadas de empresas o personas cuya identidad no pueda confirmar, no asuma que este contacto proviene necesariamente de ALA. Le sugerimos verificar la información y levantar el reporte correspondiente a través de nuestros canales oficiales de inmediato.</a>
+              <a class="article-time no-default-alink-time" href="https://www.alaprestamo.com/article/que-hacer-ante-la-presunta-suplantacion-de-ala-o-dudas-sobre-el-proceso-de-cobranza">19/10/2026</a>
+          </div>
+          <div class="mobile-article-img" style="height: 145px;width: 100%;">
+<a href="https://www.alaprestamo.com/article/que-hacer-ante-la-presunta-suplantacion-de-ala-o-dudas-sobre-el-proceso-de-cobranza" title="&iquest;Qu&eacute; hacer ante la presunta suplantaci&oacute;n de ALA o dudas sobre el proceso de cobranza?" class="mobile-article-img-wrap">                <img src="./live/uploads/1/image/2026/10/20261019205013483_0ww2qgysv0d2.png" alt="¿Qué hacer ante la presunta suplantación de ALA o dudas sobre el proceso de cobranza?" style="height: 145px;width: 100%;object-fit: cover;"/>
+</a>          </div>
+        </div>
+        <div class="swiper-slide mobile-swiper-article-item">
+          <div class="article-text">
+              <a class="article-tag no-default-alink-column" href="https://www.alaprestamo.com/channel/guia-de-prestamos">Guía de préstamos</a>
+              <a class="article-title text-three-line no-default-alink-title" href="https://www.alaprestamo.com/article/que-pasa-si-tengo-un-atraso-en-mi-prestamo-ala">¿Qué pasa si tengo un atraso en mi préstamo ALA?</a>
+              <div class="article-author">
+                <img class="article-author-avatar" src="./live/uploads/1/image/2026/05/20260526025322989_iau7cji0d2sf.png" alt="ALA" loading="lazy">
+                <div class="article-author-name">ALA</div>
+              </div>
+              <a class="article-desc no-default-alink-desc" href="https://www.alaprestamo.com/article/que-pasa-si-tengo-un-atraso-en-mi-prestamo-ala">De acuerdo con tu contrato, los atrasos pueden generar cargos y afectar tu historial crediticio. Si por ahora no puedes pagar a tiempo, no te recomendamos ignorar tu préstamo ni dejar de comunicarte con ALA. Entre más pronto revises el estado de tu préstamo y contactes a ALA, más fácil será confirmar tu saldo real y conocer las opciones disponibles.</a>
+              <a class="article-time no-default-alink-time" href="https://www.alaprestamo.com/article/que-pasa-si-tengo-un-atraso-en-mi-prestamo-ala">19/10/2026</a>
+          </div>
+          <div class="mobile-article-img" style="height: 145px;width: 100%;">
+<a href="https://www.alaprestamo.com/article/que-pasa-si-tengo-un-atraso-en-mi-prestamo-ala" title="&iquest;Qu&eacute; pasa si tengo un atraso en mi pr&eacute;stamo ALA?" class="mobile-article-img-wrap">                <img src="./live/uploads/1/image/2026/10/20261019200422527_nn8nw51icnno.png" alt="¿Qué pasa si tengo un atraso en mi préstamo ALA?" style="height: 145px;width: 100%;object-fit: cover;"/>
+</a>          </div>
+        </div>
+        <div class="swiper-slide mobile-swiper-article-item">
+          <div class="article-text">
+              <a class="article-tag no-default-alink-column" href="https://www.alaprestamo.com/channel/guia-de-prestamos">Guía de préstamos</a>
+              <a class="article-title text-three-line no-default-alink-title" href="https://www.alaprestamo.com/article/como-identificar-prestamos-en-linea-seguros-en-mexico-guia-para-evitar-fraudes-y-elegir-con-confianza">Cómo identificar préstamos en línea seguros en México: guía para evitar fraudes y elegir con confianza</a>
+              <div class="article-author">
+                <img class="article-author-avatar" src="./live/uploads/1/image/2026/05/20260526025322989_iau7cji0d2sf.png" alt="ALA" loading="lazy">
+                <div class="article-author-name">ALA</div>
+              </div>
+              <a class="article-desc no-default-alink-desc" href="https://www.alaprestamo.com/article/como-identificar-prestamos-en-linea-seguros-en-mexico-guia-para-evitar-fraudes-y-elegir-con-confianza">Solicitar un crédito desde el celular es cada vez más sencillo. Pero entre tantas opciones de préstamos en línea en México, también puedes encontrarte con ofertas poco transparentes, intentos de fraude o personas que se hacen pasar por instituciones financieras reales.</a>
+              <a class="article-time no-default-alink-time" href="https://www.alaprestamo.com/article/como-identificar-prestamos-en-linea-seguros-en-mexico-guia-para-evitar-fraudes-y-elegir-con-confianza">23/09/2026</a>
+          </div>
+          <div class="mobile-article-img" style="height: 145px;width: 100%;">
+<a href="https://www.alaprestamo.com/article/como-identificar-prestamos-en-linea-seguros-en-mexico-guia-para-evitar-fraudes-y-elegir-con-confianza" title="C&oacute;mo identificar pr&eacute;stamos en l&iacute;nea seguros en M&eacute;xico: gu&iacute;a para evitar fraudes y elegir con confianza" class="mobile-article-img-wrap">                <img src="./live/uploads/1/image/2026/09/20260923033831495_qdtigwvx32wy.png" alt="Cómo identificar préstamos en línea seguros en México: guía para evitar fraudes y elegir con confianza" style="height: 145px;width: 100%;object-fit: cover;"/>
+</a>          </div>
+        </div>
+        <div class="swiper-slide mobile-swiper-article-item">
+          <div class="article-text">
+              <a class="article-tag no-default-alink-column" href="https://www.alaprestamo.com/channel/guia-de-prestamos">Guía de préstamos</a>
+              <a class="article-title text-three-line no-default-alink-title" href="https://www.alaprestamo.com/article/solicitar-un-prestamo-3-errores-que-debes-evitar">Solicitar un préstamo: 3 errores que debes evitar</a>
+              <div class="article-author">
+                <img class="article-author-avatar" src="./live/uploads/1/image/2026/05/20260526025322989_iau7cji0d2sf.png" alt="ALA" loading="lazy">
+                <div class="article-author-name">ALA</div>
+              </div>
+              <a class="article-desc no-default-alink-desc" href="https://www.alaprestamo.com/article/solicitar-un-prestamo-3-errores-que-debes-evitar">Al pedir un crédito en efectivo en México, mantener buenos hábitos financieros es fundamental. Evitar estos tres comportamientos aumentará tus posibilidades de aprobación y protegerá tu historial crediticio.</a>
+              <a class="article-time no-default-alink-time" href="https://www.alaprestamo.com/article/solicitar-un-prestamo-3-errores-que-debes-evitar">19/08/2026</a>
+          </div>
+          <div class="mobile-article-img" style="height: 145px;width: 100%;">
+<a href="https://www.alaprestamo.com/article/solicitar-un-prestamo-3-errores-que-debes-evitar" title="Solicitar un pr&eacute;stamo: 3 errores que debes evitar" class="mobile-article-img-wrap">                <img src="./live/uploads/1/image/2026/08/20260819015719558_xsp6ukl2v0f1.jpg" alt="Solicitar un préstamo: 3 errores que debes evitar" style="height: 145px;width: 100%;object-fit: cover;"/>
+</a>          </div>
+        </div>
+        <div class="swiper-slide mobile-swiper-article-item">
+          <div class="article-text">
+              <a class="article-tag no-default-alink-column" href="https://www.alaprestamo.com/channel/guia-de-prestamos">Guía de préstamos</a>
+              <a class="article-title text-three-line no-default-alink-title" href="https://www.alaprestamo.com/article/como-funciona-el-proceso-de-control-de-riesgos-en-creditos-en-linea-y-por-que-recopilamos-sus-datos">¿Cómo funciona el proceso de control de riesgos en créditos en línea y por qué recopilamos sus datos?</a>
+              <div class="article-author">
+                <img class="article-author-avatar" src="./live/uploads/1/image/2026/05/20260526025322989_iau7cji0d2sf.png" alt="ALA" loading="lazy">
+                <div class="article-author-name">ALA</div>
+              </div>
+              <a class="article-desc no-default-alink-desc" href="https://www.alaprestamo.com/article/como-funciona-el-proceso-de-control-de-riesgos-en-creditos-en-linea-y-por-que-recopilamos-sus-datos">En los productos de crédito en línea, el control de riesgos es un proceso esencial para proteger la seguridad de los usuarios y garantizar la estabilidad de la institución. Su función principal es identificar, evaluar y mitigar riesgos potenciales, previniendo fraudes, suplantación de identidad y morosidad.</a>
+              <a class="article-time no-default-alink-time" href="https://www.alaprestamo.com/article/como-funciona-el-proceso-de-control-de-riesgos-en-creditos-en-linea-y-por-que-recopilamos-sus-datos">10/08/2026</a>
+          </div>
+          <div class="mobile-article-img" style="height: 145px;width: 100%;">
+<a href="https://www.alaprestamo.com/article/como-funciona-el-proceso-de-control-de-riesgos-en-creditos-en-linea-y-por-que-recopilamos-sus-datos" title="&iquest;C&oacute;mo funciona el proceso de control de riesgos en cr&eacute;ditos en l&iacute;nea y por qu&eacute; recopilamos sus datos?" class="mobile-article-img-wrap">                <img src="./live/uploads/1/image/2026/08/20260810015746275_4f2w71s6nsmr.jpg" alt="¿Cómo funciona el proceso de control de riesgos en créditos en línea y por qué recopilamos sus datos?" style="height: 145px;width: 100%;object-fit: cover;"/>
+</a>          </div>
+        </div>
+    </div>
+  </div>
+  <div class="mobile-swiper-article-pagination"></div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var curAdvantageIndex = 0;
+
+    new Swiper("#mobileArticle", {
+      // autoplay: {
+      //     delay: 3000,
+      //     disableOnInteraction: false
+      // },
+      // loop: true,
+
+      slidesPerView: 'auto',
+      centeredSlides: true,
+      spaceBetween: -8,
+      pagination: {
+        el: ".mobile-swiper-article-pagination",
+        clickable: true,
+      },
+
+      on: {
+        slideChange: function () {
+          curAdvantageIndex = this.realIndex;
+        }
+      }
+    });
+
+
+
+  });
+</script>
+
+      <div class="more-article-button-mobile d-lg-none" style="margin-bottom: 72px">
+        <img class="gotoBlog" src="./live/ala-www/img/home-button-more-article-mobile.png" loading="lazy" />
+      </div>
+    </div>
+    <style>
+  * {
+    box-sizing: border-box;
+  }
+
+  .pc-footer-container {
+    background-color: #1b1e28;
+    color: #fff;
+    position: relative;
+    z-index: 1;
+    overflow: visible;
+  }
+
+  .footer-section-title {
+    font-family: 'Roboto';
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 33px;
+    letter-spacing: 0px;
+    text-align: left;
+    margin-bottom: 18px;
+  }
+
+  .pc-footer-container .footer-span-val {
+    color: #fff;
+    margin-top: 8px;
+    font-family: 'Roboto';
+  }
+
+  .pc-footer-container .footer-span-title {
+    color: #96989c;
+  }
+
+  .title-pointer {
+    cursor: pointer;
+  }
+  .hot-articles{
+    --base-pr:20px
+  }
+
+  .hot-articles .hot-item {
+    --base-pt: 14px;
+    --base-pr: 16px;
+    --base-pb: 14px;
+    --base-pl: 16px;
+    --base-mt: 18px;
+    --base-radius: 12px;
+    color: #96989C;
+    --base-size: 16px;
+    background-color: #272B37;
+
+  }
+
+  .hot-articles .hot-time {
+    --base-mt: 8px;
+  }
+
+  .hot-articles .hot-item-arrow {
+    --base-mt: 18px;
+    border-radius: 12px;
+    color: #96989C;
+    --base-size: 16px;
+    text-align: end;
+    cursor: pointer;
+  }
+
+ .pc-footer-container .img-title{
+  font-family: 'Roboto-Medium';
+  --base-size:42px;
+ }
+
+  .rate-info-container {
+    font-family: 'Roboto';
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    color: #96989C;
+    letter-spacing: 0;
+  }
+  .footer-txt-item-box{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 120px;
+  }
+  .footer-txt-item{
+    min-width: 0;
+  }
+
+
+  @media (max-width: 1024px) {
+    .pc-footer-container {
+      padding: 56px 24px 72px 24px !important;
+      background-color: #1b1e28;
+      color: #fff;
+    }
+    .footer-txt-item-box{
+      display: block !important;
+      gap: 0;
+    }
+
+    .pc-footer-container .footer-span-val {
+      color: #fff;
+    }
+    .foot-span-color{
+      color: #96989C !important;
+    }
+
+    .pc-footer-container .footer-span-title {
+      color: #96989C;
+    }
+
+    .pc-footer-container .condusef {
+      width: 108px;
+      height: 42px;
+    }
+    .footer-link-row-box{
+      margin-bottom: 32px;
+    }
+    .mtPhone25{
+      margin-top: 25px !important;
+    }
+    .mtPhone54{
+      margin-top: 54px !important;
+    }
+
+    .pc-footer-container .profeco {
+      width: 42px;
+      height: 42px;
+      margin-left: 36px;
+    }
+
+    .hot-articles .hot-item {
+      background-color: #E6E8EE;
+      color: #4D525D;
+    }
+
+    .hot-articles .hot-item .hot-title {
+      font-size: 13px;
+      height: auto! important;
+    }
+
+    .footer-section-title {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    .row {
+      margin-top: 0 !important;
+    }
+
+    .rate-info-container {
+      font-size: 14px;
+      line-height: 18px;
+      color: #96989C;
+      padding: 0;
+    }
+
+    .rate-info-row {
+      margin-top: 72px !important;
+    }
+    .footer-contact-link-row a {
+      color: #fff !important;
+      font-size: 14px;
+    }
+    /* 移动端无 hover：下拉内容直接展开，保证可点击访问 */
+    .footer-dropdown-menu {
+      position: relative;
+      display: block;
+      background: transparent;
+      padding: 0 0 0 9px;
+      border-radius: 0;
+    }
+    .footer-dropdown-item {
+      padding: 6px 0;
+    }
+    .footer-custom-box{
+      display: block !important;
+    }
+    .footer-custom-item{
+      margin-bottom: 40px;
+    }
+    .footer-custom-item-desc{
+      color: #fff;
+    }
+    .footer-custom-item-desc a{
+      color: #fff;
+      text-decoration: underline;
+    }
+  }
+
+  /* 联系入口行 */
+  .footer-contact-link-row {
+    display: flex;
+    align-items: center;
+    margin-top: 18px;
+  }
+  .footer-contact-link-icon {
+    width: 32px;
+    height: 32px;
+    margin-right: 6px;
+    object-fit: contain;
+  }
+  .footer-contact-link {
+    font-family: 'Roboto-Regular';
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 19px;
+    letter-spacing: 0px;
+    text-align: left;
+    color: #ffffff;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  .footer-contact-link:hover,
+  .footer-contact-link:visited {
+    color: #ffffff;
+  }
+
+  /* ── Documentos Legales 下拉菜单（Aviso de Privacidad / Términos y Condiciones de Uso） ── */
+  .footer-dropdown {
+    position: relative;
+    cursor: pointer;
+  }
+  .footer-dropdown-menu {
+    display: none;
+    position: relative;          /* 占位展开：hover 时把下方内容挤下去，不再遮住 */
+    min-width: 180px;
+    background: transparent;     /* 无背景 */
+    border-radius: 0;
+    padding: 0 0 0 24px;          /* 左侧 9px 给竖线留空间（1px 线 + 8px 间距） */
+  }
+  .footer-dropdown:hover .footer-dropdown-menu {
+    display: block;
+  }
+  .footer-dropdown-item {
+    display: flex;
+    align-items: center;
+    padding: 6px 0;
+    white-space: nowrap;
+  }
+  .footer-dropdown-line {
+    position: absolute;          /* 竖线贴在菜单左侧，高度贯穿两个 item */
+    left: 14px;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: rgba(255, 255, 255, 0.24);
+  }
+  /* 下拉链接：默认 #fff 48%，hover 变 #fff */
+  .footer-store-title {
+    color: rgba(255, 255, 255, 0.48);
+    transition: color 0.2s;
+  }
+  .footer-store-title:hover {
+    color: #fff;
+  }
+
+  /* ── 底部图文配置（后台区块 footer_custom）：九宫格图文 ── */
+  .footer-custom-box{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 120px;
+    row-gap: 86px;
+    margin-top: 86px;
+  }
+  .footer-custom-item{
+    min-width: 0;
+    text-align: left;
+  }
+  .footer-custom-item-img{
+    margin-bottom: 24px;
+  }
+  .footer-custom-item-img img{
+    height: 64px;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+  }
+  .footer-custom-item-desc{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1;
+    letter-spacing: 0;
+    text-align: left;
+    color: #fff;
+  }
+  .footer-custom-item-desc a{
+    color: #fff;
+    text-decoration: underline;
+  }
+
+</style>
+<div class="ala-pt ala-pr ala-pb ala-pl pc-footer-container" id="footer"
+  style="--base-pt: 96px; --base-pr: 320px; --base-pb: 176px; --base-pl: 320px;">
+  <div style="--base-size:16px" class="ala-size footer-txt-item-box">
+    <section class="footer-txt-item">
+      <div style="--base-size:28px;--base-mb:18px" class="ala-size ala-mb footer-section-title">Contáctanos</div>
+      <div style="--base-mb:32px;" class="ala-mb footer-link-row-box">
+        <div class="ala-mb" style="font-family:Roboto;font-size:14px;font-weight:500;--base-mb:18px;color: #fff;">Si necesitas ayuda, <br/>llama a nuestra línea de atención o envíanos un correo electrónico.</div>
+        <div class="footer-contact-link-row">
+          <img class="footer-contact-link-icon" src="./live/ala-www/img/contact.webp" alt="contacto" title="footer联系入口">
+          <a href="https://www.alaprestamo.com/channel/help-center" class="footer-contact-link" id="footerContactLink">Atención en línea</a>
+        </div>
+      </div>
+      <div class="footer-span-title">Teléfono</div>
+      <div class="footer-span-val">
+
+        <span>8009530794,8002883450</span>
+      </div>
+      <div style="--base-mt:24px" class="ala-mt footer-span-title mtPhone25">Correo electrónico</div>
+      <div class="footer-span-val">contacto-ala@alaprestamo.com</div>
+      <div style="--base-mt:24px" class="ala-mt footer-span-title mtPhone25">Horario de atención</div>
+      <div class="footer-span-val">De lunes a domingo, de 9:00 a 18:00.</div>
+      <div style="--base-mt:24px" class="ala-mt footer-span-title mtPhone25">Por favor, envía por correo electrónico el problema que presentas e incluye tu número de teléfono para que podamos confirmarlo contigo y solucionarlo más rápido.</div>
+
+    </section>
+    <section class="footer-txt-item mtPhone54">
+      <div style="--base-size:28px;--base-mb:18px" class="ala-size ala-mb footer-section-title ">Sobre nosotros</div>
+
+      <div class="footer-span-title">Razón social</div>
+      <div class="footer-span-val">Quantum Wealth Solutions, S.A.P.I. DE C.V. SOFOM E.N.R</div>
+
+      <div style="--base-mt:24px" class="ala-mt footer-span-title mtPhone25">Dirección de la empresa</div>
+      <div class="footer-span-val">AV. PASEO DE LA REFORMA 295, PISO 6 OFICINA 1503,
+COL. CUAUHTÉMOC, CUAUHTÉMOC,
+CIUDAD DE MÉXICO, C.P. 06500, MÉXICO</div>
+
+      <div class="ala-mt footer-span-title mtPhone25" style="--base-mt:24px;">Unidad especializada de atención a usuarios (UNE)</div>
+
+      <a href="https://www.alaprestamo.com/uploads/1/file/2026/10/20261023022307329_60t758u3yvvt.pdf" target="_blank" style="text-decoration: underline; cursor: pointer; color: inherit; display: block;" class="footer-span-val" id="footerUneAla">UNE ALA</a>
+      <a href="https://www.alaprestamo.com/uploads/1/file/2026/10/20261023022320284_vkqzhbx9x110.pdf" target="_blank" style="text-decoration: underline; cursor: pointer; color: inherit; display: block;" class="footer-span-val" id="footerUneAla2">Despacho de cobranza</a>
+      <div style="--base-mt:48px; --base-size: 28px;font-family:'Roboto';" class="ala-size ala-mt img-title footer-section-title mtPhone54">Síguenos</div>
+
+      <!-- pc 社媒图标 img -->
+      <div style="--base-mt:18px;  align-items: center;" class="ala-mt img-wrap d-none d-lg-flex custom-footer-icon">
+
+        <a id="footerImgSrc1" href="https://youtube.com/@alaprestamos?si=FPzN9blgS330QpHy" target="_blank" class="" style="text-decoration: none;display:inline-block;">
+          <img style="width:36px;height:36px;margin-right:20px;display:inline-block;"
+               src="./live/uploads/1/image/2026/03/20260310033236462_sv2bk8bvzq2c.png" alt="alaprestamo-youtube" title="全局底部footer适用">
+        </a>
+
+        <a id="footerImgSrc2" href="https://www.facebook.com/share/1BQbcFUN5h/" target="_blank" class="" style="text-decoration: none;display:inline-block;">
+          <img style="width:36px;height:36px;margin-right:20px;display:inline-block;"
+               src="./live/uploads/1/image/2026/03/20260310033232218_ysg633k7owib.png" alt="alaprestamo-facebook" title="全局底部footer适用">
+        </a>
+
+        <a id="footerImgSrc3" href="https://www.tiktok.com/@ala_prestamos?_r=1&amp;_t=ZS-93Iat2GL6Cz" target="_blank" class="" style="text-decoration: none;display:inline-block;">
+          <img style="width:36px;height:36px;margin-right:20px;display:inline-block;"
+               src="./live/uploads/1/image/2026/03/20260310033220973_y0zpm4fgzo41.png" alt="alaprestamo-tiktok" title="全局底部footer适用">
+        </a>
+
+
+
+      </div>
+      <!-- mobile 社媒图标 img -->
+      <div style="--base-mt:18px; --base-size: 28px;" class="ala-mt ala-size img-wrap d-lg-none">
+
+
+        <a id="footerImgSrc1_m" href="https://youtube.com/@alaprestamos?si=FPzN9blgS330QpHy" target="_blank" class="" style="text-decoration: none;display:inline-block;">
+          <img style="width: 36px;height: 36px;display:inline-block;" src="./live/uploads/1/image/2026/03/20260310033236462_sv2bk8bvzq2c.png" alt="alaprestamo-youtube" title="全局底部footer适用">
+        </a>
+
+        <a id="footerImgSrc2_m" href="https://www.facebook.com/share/1BQbcFUN5h/" target="_blank" class="" style="text-decoration: none;display:inline-block;">
+          <img style="width: 36px;height: 36px; margin-left: 15px;display:inline-block;" src="./live/uploads/1/image/2026/03/20260310033232218_ysg633k7owib.png" alt="alaprestamo-facebook" title="全局底部footer适用">
+        </a>
+
+        <a id="footerImgSrc3_m" href="https://www.tiktok.com/@ala_prestamos?_r=1&amp;_t=ZS-93Iat2GL6Cz" target="_blank" class="" style="text-decoration: none;display:inline-block;">
+          <img style="width: 36px;height: 36px; margin-left: 15px;display:inline-block;" src="./live/uploads/1/image/2026/03/20260310033220973_y0zpm4fgzo41.png" alt="alaprestamo-tiktok" title="全局底部footer适用">
+        </a>
+
+
+
+      </div>
+<!--      <div style="&#45;&#45;base-mt:60px;font-family: 'Roboto-Medium'" class="ala-size ala-mt img-title">Mapa del sitio web</div>-->
+    </section>
+    <section class="footer-txt-item mtPhone54">
+      <div style="--base-size:28px;--base-mb:18px" class="ala-size ala-mb footer-section-title">Documentos Legales </div>
+      <!-- Contrato de Préstamo：仅一个版本，无下拉，直接点击跳转 -->
+      <div class="footer-span-val">
+        <a href="https://www.alaprestamo.com/channel/ios_contract" target="_blank" class="footer-span-title" id="footerContract" style="text-decoration: none;">Contrato de Préstamo</a>
+        <img style="--base-width:24px;--base-height:24px" class="ala-width ala-height"
+          src="./live/ala-www/img/footer/arrow_right.png" alt="arrow">
+      </div>
+      <!-- Aviso de Privacidad：hover 下拉 Google Play / App Store -->
+      <div class="footer-dropdown">
+        <div style="--base-mt:12px" class="ala-mt footer-span-val footer-dropdown-trigger">
+          <span class="footer-span-title" style="text-decoration: none;">Aviso de Privacidad</span>
+          <img style="--base-width:24px;--base-height:24px" class="ala-width ala-height"
+            src="./live/ala-www/img/footer/arrow_right.png" alt="arrow">
+        </div>
+        <div class="footer-dropdown-menu">
+          <span class="footer-dropdown-line"></span>
+          <div class="footer-dropdown-item">
+            <a href="https://www.alaprestamo.com/channel/privacy" class="footer-store-title" id="footerPrivacyGp" style="text-decoration: none; font-size: 14px;font-family:Roboto;font-weight:400;">Google Play</a>
+          </div>
+          <div class="footer-dropdown-item">
+            <a href="https://www.alaprestamo.com/channel/ios_privacy" class="footer-store-title" id="footerPrivacyAs" style="text-decoration: none; font-size: 14px;font-family:Roboto;font-weight:400;">App Store</a>
+          </div>
+        </div>
+      </div>
+      <!-- Términos y Condiciones de Uso：hover 下拉 Google Play / App Store -->
+      <div class="footer-dropdown">
+        <div style="--base-mt:12px" class="ala-mt footer-span-val footer-dropdown-trigger">
+          <span class="footer-span-title" style="text-decoration: none;">Términos y Condiciones de Uso</span>
+          <img style="--base-width:24px;--base-height:24px" class="ala-width ala-height"
+            src="./live/ala-www/img/footer/arrow_right.png" alt="arrow">
+        </div>
+        <div class="footer-dropdown-menu">
+          <span class="footer-dropdown-line"></span>
+          <div class="footer-dropdown-item">
+            <a href="https://www.alaprestamo.com/channel/regist" class="footer-store-title" id="footerRegistGp" style="text-decoration: none; font-size: 14px;font-family:Roboto;font-weight:400;">Google Play</a>
+          </div>
+          <div class="footer-dropdown-item">
+            <a href="https://www.alaprestamo.com/channel/ios_regist" class="footer-store-title" id="footerRegistAs" style="text-decoration: none; font-size: 14px;font-family:Roboto;font-weight:400;">App Store</a>
+          </div>
+        </div>
       </div>
     </section>
+  </div>
 
-    <footer class="site-footer" id="informacion">
-      <div class="footer-inner">
-        <section class="footer-contact" id="contacto">
-          <h2>Contáctanos</h2>
-          <p class="contact-intro">Si necesitas ayuda,<br />llama a nuestra línea de atención o envíanos un correo electrónico.</p>
-          <a class="phone-link" href="tel:40009877866456">
-            <span><img src="./public/assets/help-center.png" alt="" /></span>
-            Teléfono
-          </a>
-          <dl class="contact-list">
-            <div><dt>Teléfono</dt><dd>400-0987-7866-456</dd></div>
-            <div><dt>Correo electrónico</dt><dd>contacto@prestifymx.com</dd></div>
-            <div><dt>Horario de atención</dt><dd>De lunes a domingo, de 9:00 a 18:00.</dd></div>
-          </dl>
-          <p class="contact-note">Por favor, envía por correo electrónico el problema que presentas, te telefoneará para que podamos confirmarlo contigo y solucionarlo.</p>
-        </section>
+  <!-- 底部图文配置（后台区块 footer_custom）：图片 + 富文本摘要，九宫格布局 -->
+  <div class="footer-custom-box">
+  </div>
 
-        <section class="footer-about" id="sobre-ala">
-          <h2>Sobre nosotros</h2>
-          <dl class="about-list">
-            <div><dt>Razón social</dt><dd>Quantum Wealth Solutions, S.A.P.I. DE C.V.<br />SOFOM E.N.R</dd></div>
-            <div><dt>Dirección de la empresa</dt><dd>AV. PASEO DE LA REFORMA 295, PISO 6 OFICINA<br />1503, COL. CUAUHTÉMOC, CUAUHTÉMOC,<br />CIUDAD DE MÉXICO, C.P. 06500,MEXICO</dd></div>
-            <div>
-              <dt>idad especializada de atención a usuarios (UNE)</dt>
-              <dd><a href="#une">UNE ALA</a><a href="#cobranza">Despacho de cobranza</a></dd>
-            </div>
-          </dl>
-          <div class="social-block">
-            <h2>Síguenos</h2>
-            <div class="social-links">
-              <a href="#youtube" aria-label="YouTube"><img src="./public/assets/youtube.png" alt="" loading="lazy" decoding="async" /></a>
-              <a href="#facebook" aria-label="Facebook"><img src="./public/assets/facebook.png" alt="" loading="lazy" decoding="async" /></a>
-              <a href="#tiktok" aria-label="TikTok"><img src="./public/assets/tiktok.png" alt="" loading="lazy" decoding="async" /></a>
-            </div>
-          </div>
-        </section>
+  <div class="rate-info-row" style="margin-top: 100px;">
+    <div class="col-12 rate-info-container">
+      Los montos de los préstamos van desde $100 MXN hasta $50,000 MXN, con plazos de pago flexibles de 61 a 154 días. La tasa de interés diaria comienza en 0.1% (equivalente a una tasa de interés anual del 36%). El CAT promedio es de 548.61% sin IVA, calculado al 30 de junio de 2026, para fines informativos y de comparación. Ejemplo representativo: Si solicitas un préstamo de $5,000 MXN con un plazo de 61 días, pagarás un total de $5,353.80 MXN en 4 pagos. Este total incluye $305 MXN de intereses (calculados a una tasa diaria de 0.1%) y $48.80 MXN de IVA.
+    </div>
+  </div>
+</div>
 
-        <section class="footer-agreement" id="documentos-legales">
-          <h2>Documentos Legales</h2>
-          <div class="legal-documents">
-            <a class="legal-document-link" href="#terms-conditions">
-              <span>Términos y Condiciones de Uso</span>
-              <i class="legal-chevron" aria-hidden="true"></i>
-            </a>
 
-            <div class="legal-document">
-              <button class="legal-document-trigger" type="button" aria-expanded="false" aria-controls="legal-privacy-versions">
-                <span>Aviso de Privacidad</span>
-                <i class="legal-chevron" aria-hidden="true"></i>
-              </button>
-              <div class="legal-submenu" id="legal-privacy-versions" hidden>
-                <a href="#google-privacy">Google Play <span aria-hidden="true">›</span></a>
-                <a href="#apple-privacy">App Store <span aria-hidden="true">›</span></a>
-              </div>
-            </div>
 
-            <div class="legal-document">
-              <button class="legal-document-trigger" type="button" aria-expanded="false" aria-controls="legal-contract-versions">
-                <span>Contracto de Prestamo</span>
-                <i class="legal-chevron" aria-hidden="true"></i>
-              </button>
-              <div class="legal-submenu" id="legal-contract-versions" hidden>
-                <a href="#google-loan-contract">Google Play <span aria-hidden="true">›</span></a>
-                <a href="#apple-loan-contract">App Store <span aria-hidden="true">›</span></a>
-              </div>
-            </div>
-          </div>
-        </section>
 
-        <section class="footer-compliance footer-condusef" id="proteccion">
-          <div class="compliance-logo-slot">
-            <img src="./public/assets/footer-condusef-20260904-v2.png" alt="CONDUSEF" loading="lazy" decoding="async" />
-          </div>
-          <p class="compliance-copy">La Comisión Nacional para la Protección y Defensa de los Usuarios de Servicios Financieros (CONDUSEF) es el organismo público encargado de promover, asesorar, proteger y defender los derechos e intereses de los usuarios frente a las instituciones financieras. Para más información, consulta el sitio oficial de la <a href="https://www.condusef.gob.mx/">CONDUSEF</a>. (<a href="https://www.condusef.gob.mx/">https://www.condusef.gob.mx/</a>)</p>
-        </section>
+<style>
+  .help-float {
+    position: fixed;
+    /* qr-code: bottom 100 + height 180 + 间距 12 */
+    bottom: 238px;
+    right: 50px;
+    width: 346px;
+    z-index: 102;
+    display: none; /* 初始隐藏，由入口点击展开 */
+  }
+  .help-float.open {
+    display: block; /* PC：右上浮窗 */
+  }
+  .help-float-card {
+    background: #fff;
+    border-radius: 16px;
+    position: relative;
+  }
+  .help-float-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    border: none;
+    background: transparent;
+    font-size: 22px;
+    line-height: 1;
+    color: #96989C;
+    cursor: pointer;
+    z-index: 2;
+  }
+  .help-float-header {
+    padding: 20px 24px;
+    border-bottom: 1px solid #F2F2F7;
+  }
+  .help-float-title {
+    font-family: 'Roboto-Bold';
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: 0;
+    text-align: left;
+    color: #1E1F22;
+    margin: 0;
+    padding-right: 24px;
+  }
+  .help-float-body {
+    padding: 24px 27px;
+  }
+  .help-float-row1 {
+    display: flex;
+    align-items: center;
+  }
+  .help-float-avatar {
+    width: 40px;
+    height: 40px;
+    margin-right: 14px;
+    border-radius: 12px;
+    object-fit: cover;
+  }
+  .help-float-info {
+    text-align: left;
+  }
+  .help-float-name {
+    font-family: 'Roboto-Bold';
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: 0;
+    text-align: left;
+    margin: 0 0 2px;
+    color: #1E1F22;
+  }
+  .help-float-role {
+    font-family: 'Roboto-Regular';
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 20px;
+    letter-spacing: 0;
+    text-align: left;
+    margin: 0;
+    color: #1E1F22;
+  }
+  .help-float-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #107838;
+    border-radius: 10px;
+    margin-top: 24px;
+    margin-bottom: 14px;
+    padding: 11px;
+    width: 100%;
+    box-sizing: border-box;
+    text-decoration: none;
+  }
+  .help-float-btn img {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+  }
+  .help-float-btn span {
+    font-family: 'Roboto-Bold';
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: 0;
+    text-align: center;
+    color: #fff;
+  }
+  .help-float-footer {
+    font-family: 'Roboto-Regular';
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0;
+    text-align: center;
+    color: #1E1F22;
+    margin: 0;
+  }
+  .help-float-link {
+    color: #173CFF;
+    text-decoration: underline;
+  }
+  @media screen and (max-width: 991px) {
+    .help-float {
+      bottom: auto;
+      right: auto;
+      width: auto;
+    }
+    .help-float.open {
+      display: flex;
+      position: fixed;
+      inset: 0;
+      background: #00000066; /* 蒙层 */
+      align-items: flex-end;  /* 弹窗从底部弹出 */
+      justify-content: center;
+      z-index: 1000;
+    }
+    .help-float-card {
+      width: 100%;            /* 充满屏幕宽度 */
+      border-radius: 16px 16px 0 0; /* 顶部圆角，底部贴底 */
+      animation: helpFloatSlideUp 0.3s ease;
+    }
+  }
+  @keyframes helpFloatSlideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+  }
+</style>
 
-        <section class="footer-compliance footer-sipres">
-          <div class="compliance-logo-slot">
-            <img src="./public/assets/footer-sipres-20260904-v2.png" alt="CONDUSEF y SIPRES" loading="lazy" decoding="async" />
-          </div>
-          <p class="compliance-copy">ALA se encuentra inscrita en el Sistema de Registro de Prestadores de Servicios Financieros (SIPRES). Este registro otorga constancia del reconocimiento oficial de la entidad, ofreciendo validación con efectos frente a terceros sobre su presencia real y funcionamiento regular. Puedes validar la información directamente en el portal de <a href="https://webapps.condusef.gob.mx/SIPRES/jsp/pub/index.jsp">SIPRES - CONDUSEF</a>.<br />(<a href="https://webapps.condusef.gob.mx/SIPRES/jsp/pub/index.jsp">https://<wbr />webapps.condusef.gob.mx/<wbr />SIPRES/jsp/pub/<wbr />index.jsp</a>)</p>
-        </section>
-
-        <section class="footer-compliance footer-cnbv">
-          <div class="compliance-logo-slot">
-            <img src="./public/assets/footer-cnbv-20260904.png" alt="CNBV" loading="lazy" decoding="async" />
-          </div>
-          <p class="compliance-copy">ALA es una entidad supervisada por la Comisión Nacional Bancaria y de Valores (CNBV), autoridad encargada de regular y monitorear nuestro funcionamiento operativo y financiero en conjunto con la CONDUSEF. Puedes verificar nuestra situación regulatoria en el portal oficial de la <a href="https://www.gob.mx/cnbv">CNBV</a>.</p>
-        </section>
-
-        <section class="footer-compliance footer-buro">
-          <div class="compliance-logo-slot">
-            <img src="./public/assets/footer-buro-20260904.png" alt="Buró de Entidades Financieras" loading="lazy" decoding="async" />
-          </div>
-          <p class="compliance-copy"><a href="http://www.gob.mx/cnbv">El Buró de Entidades Financieras</a> da reconocimiento e integra el historial general de cumplimiento normativo, desempeño operativo y actualizaciones de valor con las que cuenta ALA para brindar mayor transparencia a los usuarios. Puedes consultar la información en el portal del <a href="http://www.gob.mx/cnbv">Buró de Entidades Financieras</a>. (<a href="http://www.gob.mx/cnbv">http://www.gob.mx/cnbv</a>)</p>
-        </section>
+<div class="help-float" id="helpFloat">
+  <div class="help-float-card">
+    <button class="help-float-close" id="helpFloatClose" type="button">×</button>
+    <div class="help-float-header">
+      <h3 class="help-float-title">Centro de ayuda</h3>
+    </div>
+    <div class="help-float-body">
+      <div class="help-float-row1">
+        <img class="help-float-avatar" src="./live/ala-www/img/sofia-avatar.webp" alt="Sofía">
+        <div class="help-float-info">
+          <p class="help-float-name">Habla con Sofía.</p>
+          <p class="help-float-role">Tu asesora de ALA</p>
+        </div>
       </div>
-    </footer>
+      <a class="help-float-btn" href="javascript:void(0);">
+        <img src="./live/ala-www/img/whatsapp.webp" alt="WhatsApp">
+        <span>Iniciar conversación</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var float = document.getElementById('helpFloat');
+    var closeBtn = document.getElementById('helpFloatClose');
+
+    function openFloat() {
+      if (!float) return;
+      // 移动端：若下载浮窗 #mobile-entry 可见，弹窗底部抬高，避免被遮挡
+      var card = float.querySelector('.help-float-card');
+      if (card) {
+        var mobileEntry = document.getElementById('mobile-entry');
+        var offset = 0;
+        if (mobileEntry && window.getComputedStyle(mobileEntry).display !== 'none') {
+          offset = mobileEntry.offsetHeight;
+        }
+        card.style.marginBottom = offset ? offset + 'px' : '';
+      }
+      float.classList.add('open');
+    }
+    function closeFloat() {
+      if (float) float.classList.remove('open');
+    }
+
+    // 暴露给其它入口调用（如 banner 里的按钮、移动端浮动按钮）
+    window.openHelpFloat = openFloat;
+
+    // 关闭按钮
+    if (closeBtn) closeBtn.addEventListener('click', function () {
+      closeFloat();
+    });
+    // 点击蒙层关闭（移动端 .help-float 是全屏蒙层）
+    if (float) float.addEventListener('click', function (e) {
+      if (e.target === float) closeFloat();
+    });
+
+    // Use the official help center for the production WhatsApp connection.
+    window.openAlaWhatsApp = function () {
+      window.open('https://www.alaprestamo.com/channel/help-center', '_blank', 'noopener');
+    };
+
+    var waBtn = float ? float.querySelector('.help-float-btn') : null;
+    if (waBtn) {
+      waBtn.style.cursor = 'pointer';
+      waBtn.addEventListener('click', function () {
+        window.openAlaWhatsApp();
+      });
+    }
+
+
+    // 入口：qr-code 的 chat-btn 点击展开。
+    // chat-btn 在 qr-code.html，晚于本片段加载，故在 DOMContentLoaded 后绑定。
+    document.addEventListener('DOMContentLoaded', function () {
+      var chatBtn = document.querySelector('.chat-btn');
+      if (chatBtn) {
+        chatBtn.style.cursor = 'pointer';
+        chatBtn.addEventListener('click', function () {
+          openFloat();
+        });
+      }
+    });
+  })();
+</script>
+
+ <style>
+  .qr-code {
+    width: 220px;
+    height: 180px;
+    padding: 13px 14px;
+    background: linear-gradient(to bottom right, #294BFFFF, #667EFFFF);
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    z-index: 10;
+  }
+  .qr-image {
+    width: 88px;
+    height: 88px;
+    border-radius: 6px;
+  }
+  .logo-image {
+    width: 24px;
+    height: 24px;
+    margin-top: 4px;
+  }
+  .qr-content {
+    margin-top: 15px;
+    font-size: 20px;
+    font-family: 'Roboto-Bold';
+    color: #FFFFFF;
+  }
+  .qr-row {
+    display: flex;
+  }
+  .chat-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: rgba(16, 43, 181, 1);
+    border-radius: 12px;
+    margin-top: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    cursor: pointer;
+  }
+  .chat-btn-icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 10px;
+  }
+  .chat-btn-text {
+    font-family: 'Roboto-Regular';
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0px;
+    text-align: left;
+    color: #FFFFFF;
+  }
+  @media screen and (max-width: 991px) {
+    .qr-code {
+      display: none;
+    }
+  }
+</style>
+<div class="qr-code">
+  <div class="qr-row">
+    <div>
+      <img src="./live/ala-www/img/ala-logo.png" class="logo-image" />
+      <div class="qr-content">Escanea y descarga</div>
+    </div>
+    <img src="./live/ala-www/img/qr-code.png" class="qr-image" />
+  </div>
+  <div class="chat-btn">
+    <img src="./live/ala-www/img/contact-s.webp" class="chat-btn-icon" />
+    <span class="chat-btn-text">Chats en línea</span>
+  </div>
+</div>
+
+<style>
+  .mobile-entry {
+    width: 100%;
+    height: 72px;
+    background: #fff;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 10000;
+    overflow-x: hidden;
+  }
+  .mobile-entry-box {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  .mobile-entry-wrap {
+    box-sizing: border-box;
+    width: 100%;
+    padding-top: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .mobile-button-tip {
+    font-size: 13px;
+    font-family: "Robot-bold";
+    font-weight: 700;
+  }
+  .mobile-button-wrap {
+    display: flex;
+    height: 42px;
+    justify-content: center;
+    align-items: center;
+  }
+  .mobile-download-button {
+    height: 38px;
+    width: auto;
+  }
+  .m-android-button {
+    margin-right: 7px;
+  }
+  @media screen and (min-width: 992px) {
+    .mobile-entry {
+      display: none;
+    }
+  }
+  @media screen and (max-width: 360px) {
+    .mobile-button-tip {
+      font-size: 12px;
+    }
+  }
+</style>
+<div class="mobile-entry" id="mobile-entry">
+   <div class="mobile-entry-box">
+      <div class="mobile-entry-wrap">
+        <div class="mobile-button-tip">Descargar ALA</div>
+        <div class="mobile-button-wrap">
+          <img src="./live/ala-www/img/home-download-google-m.png" alt="Botón descargar ALA desde Google Play" class="mobile-download-button m-android-button" onclick="androidMobileButton()"/>
+          <img src="./live/ala-www/img/home-download-ios-m.png" class="mobile-download-button m-apple-button" alt="Botón descargar ALA desde App Store" onclick="appleMobileButton()"/>
+        </div>
+      </div>
+    </div>
+</div>
+<script>
+  function androidMobileButton() {
+    window.open('https://sofom-ala.onelink.me/uTdM/taq3lvd3', '_blank', 'noopener');
+  }
+  function appleMobileButton() {
+    window.open('https://sofom-ala.onelink.me/ndX5/mbzy0s0s', '_blank', 'noopener');
+  }
+</script>
+
+    <!-- 移动端浮动按钮：可拖动，点击打开帮助浮窗 -->
+    <div class="help-float-trigger d-lg-none" id="helpFloatTrigger">
+      <img src="./live/ala-www/img/consult-m.webp" alt="Centro de ayuda">
+    </div>
+    <script>
+      (function () {
+        var trigger = document.getElementById('helpFloatTrigger');
+        if (!trigger) return;
+        var startY, startTop, moved;
+        // 只允许上下拖动，保持贴右边缘
+        trigger.addEventListener('touchstart', function (e) {
+          startY = e.touches[0].clientY;
+          startTop = trigger.getBoundingClientRect().top;
+          moved = false;
+        }, { passive: true });
+        trigger.addEventListener('touchmove', function (e) {
+          var dy = e.touches[0].clientY - startY;
+          if (Math.abs(dy) > 5) moved = true;
+          if (moved) {
+            e.preventDefault();
+            var newTop = Math.max(0, Math.min(startTop + dy, window.innerHeight - trigger.offsetHeight));
+            trigger.style.top = newTop + 'px';
+            trigger.style.bottom = 'auto';
+          }
+        }, { passive: false });
+        trigger.addEventListener('touchend', function () {
+          if (!moved && window.openHelpFloat) window.openHelpFloat();
+        });
+      })();
+    </script>
   </body>
+
 </html>
