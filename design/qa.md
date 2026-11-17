@@ -1,29 +1,15 @@
-prototype: ALA homepage FAQ + footer
-source: latest “Preguntas frecuentes” reference image, homepage hero typography, and the whole-page consistency direction
+# ALA homepage module verification
 
-visual:
-- PASS: Desktop heading ladder is 64px hero → 48px FAQ → 24px footer.
-- PASS: Supporting scale is 18px hero CTA → 16px FAQ controls/body → 14px footer auxiliary/legal copy.
-- PASS: FAQ title, category tabs, and cards share the same left edge, matching the new reference structure.
-- PASS: The category row contains Solicitud, Crédito, Problemas, and Otros; the final help action is a centered sentence-style prompt.
-- PASS: The help prompt follows the final card with a controlled 48px desktop gap instead of consuming leftover viewport space.
-- PASS: The 769–1100px range preserves proportional FAQ gutters rather than switching prematurely to 24px mobile padding.
-- PASS: FAQ component scale remains consistent with the hero: 48px tab height, 96px cards, 20px gaps, 20px icons, and 20px radii.
-- PASS: Shared 320px desktop gutters remain unchanged.
-- MANUAL: Browser security policy blocked a rendered screenshot capture, so final pixel appearance still needs an in-app visual glance.
+## Layout
 
-behavior:
-- PASS: FAQ items remain collapsed by default.
-- PASS: Active and inactive tabs share identical height, padding, type size, and weight, so selection does not shift their position.
-- PASS: Expanded cards retain natural height and reserved bottom space, preventing the center-help prompt from being covered.
+- Application steps, regulatory protection, reviews, FAQ, and articles share the content rail and centered 28–40px section-heading scale.
+- FAQ and article cards share the 16px radius. The FAQ link sits inside its content rail and a single section gap precedes articles.
+- The homepage and 20 city pages render one regulatory section with three cards. Chrome layout checks covered 320–1920px, including 991px, 992px, the 1101px navigation breakpoint, and wider desktop rails.
+- Stretched copy using nested text elements and long words wraps at 320px. Regulatory and FAQ cards grow with their content. Regulatory artwork stays within its grid and clear of reviews.
+- Reviews use one title and align their carousel frame to the article rail. Desktop buttons and mobile swipe continue to change the active review.
 
-requirements:
-- PASS: The hero remains the strongest visual layer.
-- PASS: FAQ reads as a secondary content section.
-- PASS: Footer reads as supporting and compliance information rather than another primary screen.
+## Controls
 
-a11y:
-- PASS: FAQ controls and the center-help link retain accessible target sizing or visible focus styles as appropriate.
-- MANUAL: Screen-reader and full contrast testing were not performed.
-
-verdict: READY at code level; rendered pixel confirmation remains manual because browser capture was blocked by policy.
+- Shared continuation controls render text only. The 44px target, visible keyboard focus, and underline on hover support navigation.
+- Chrome exercised the homepage FAQ accordion and destination, blog article navigation, article return, loading more articles, and both pagination directions. Static inspection covered all 233 shared continuation controls.
+- `python3 scripts/check_routes.py` checks local links and demo-prefix compatibility. `python3 scripts/render_article_pages.py --check` verifies the article template output.

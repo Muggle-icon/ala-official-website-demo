@@ -794,104 +794,115 @@
 .moboile-download {
   display: none;
 }
-.ala-todo-wrap {
-  --base-mr:400px;
-  --base-ml:400px;
-  --base-height: fit-content;
-  --base-mt: 72px;
-  display: flex;
-  width: auto !important;
-}
-.todo-header-title {
-  font-family: Roboto;
-  font-weight:700;
-  --base-size: 30px;
-  --base-lh: 36px;
-  color: #1B1E28;
-}
-.todo-header-body {
-  font-family: Roboto;
-  --base-size: 22px;
-  --base-lh: 30px;
-  color: #666;
-  --base-mt: 20px;
-}
-.todo-left{
-  --base-width: 514px;
-  --base-height: auto;
-  box-sizing: border-box;
-  --base-pr: 40px;
-  --base-pt: 40px;
-  --base-pl: 40px;
-  --base-radius: 26px;
-  position: relative;
-  background-image: linear-gradient(to bottom,#B6E5C6,#A9DEBD,#D2F7D9);
-  overflow: hidden;
-  flex-shrink: 0;
-}
-.todo-left img.todo-icon-bg{
-  position: absolute;
-  width: 100% !important;
-  --base-height: 236px;
-  bottom: 0 !important;
-  left: 0 !important;
-  z-index: 1;
-}
-.todo-left img.todo-icon{
-  position: absolute;
-  --base-width: 346px;
-  --base-height: 136px;
-  --base-bottom: 83px !important;
-  left: 50% !important;
-  transform: translateX(-50%);
-  z-index: 2;
-}
-.todo-left .todo-header-title, .todo-left .todo-header-body{
-  position: relative;
-  z-index: 2;
-}
-.todo-right{
-  --base-ml: 20px;
-}
-.todo-right .todo-header-title{
-  --base-size: 24px;
-  --base-lh: 26px;
-}
-.todo-right .todo-header-body{
-  --base-size: 18px;
-  --base-lh: 24px;
-}
-.todo-right1 {
-  position: relative;
-  --base-width: fit-content;
-  --base-height: auto;
-  background: #F3F4F9;
-  --base-radius:26px;
-  --base-pt: 40px;
-  --base-pr: 206px;
-  --base-pb: 40px;
-  --base-pl: 40px;
-}
-.todo-right2 {
-  position: relative;
-  --base-mt: 20px;
-  --base-width: fit-content;
-  --base-height: auto;
-  background: #F3F4F9;
-  --base-radius:26px;
-  --base-pt: 40px;
-  --base-pr: 206px;
-  --base-pb: 40px;
-  --base-pl: 40px;
+.ala-home-protection {
+  width: var(--ala-content-width);
+  margin: var(--ala-section-space) auto 0;
+  color: var(--ala-ink);
+  font-family: var(--ala-font);
 }
 
-.todo-right1 img,.todo-right2 img {
-  --base-width: 140px;
-  --base-height: 140px;
-  position: absolute;
-  --base-top: 60px;
-  --base-right: 40px;
+.ala-home-protection__intro {
+  margin-block-end: var(--ala-group-space);
+  text-align: center;
 }
+
+.ala-home-protection__intro .ala-editorial-heading {
+  margin-block-end: 12px;
+}
+
+.ala-home-protection__intro p {
+  max-width: 58ch;
+  margin: 0 auto;
+  color: var(--ala-muted);
+  font-size: var(--ala-body-size);
+  line-height: var(--ala-body-leading);
+  text-wrap: pretty;
+}
+
+.ala-home-protection__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: var(--ala-grid-gap);
+}
+
+.ala-home-protection__card {
+  min-width: 0;
+  border: 1px solid var(--ala-line);
+  border-radius: 16px;
+  background: var(--ala-panel);
+}
+
+.ala-home-protection__copy {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.ala-home-protection__copy h3 {
+  margin: 0 0 8px;
+  font: 700 clamp(1.125rem, 1.4vw, 1.375rem) / 1.3 var(--ala-font);
+  text-wrap: pretty;
+}
+
+.ala-home-protection__copy p {
+  margin: 0;
+  color: var(--ala-muted);
+  font-size: var(--ala-body-size);
+  line-height: var(--ala-body-leading);
+}
+
+.ala-home-protection__card--certifications {
+  display: flex;
+  grid-row: span 2;
+  flex-direction: column;
+  overflow: hidden;
+  border-color: #d4eada;
+  background: #e8f7ed;
+}
+
+.ala-home-protection__card--certifications .ala-home-protection__copy {
+  padding: clamp(16px, 2.1vw, 28px);
+}
+
+.ala-home-protection__brand {
+  display: grid;
+  flex: 1;
+  align-items: center;
+  justify-items: center;
+  min-block-size: clamp(8rem, 16vw, 14rem);
+  padding: var(--ala-grid-gap);
+  background: url("../img/todo-icon-bg.webp") center bottom / cover no-repeat;
+}
+
+.ala-home-protection__brand img {
+  display: block;
+  width: min(75%, 18rem);
+  height: auto;
+}
+
+.ala-home-protection__card--feature {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) clamp(3.5rem, 7vw, 6.5rem);
+  align-items: center;
+  gap: var(--ala-grid-gap);
+  padding: clamp(16px, 2.1vw, 28px);
+}
+
+.ala-home-protection__card--feature img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (max-width: 720px) {
+  .ala-home-protection__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .ala-home-protection__card--certifications {
+    grid-row: auto;
+  }
+}
+
 @media screen and (min-width: 993px) {
   .title-wrap2{
     --base-width: 1000px;
@@ -1368,79 +1379,7 @@
     width: 100% !important;
   }
 
-  .ala-todo-wrap-sg{
-    margin-left: 0;
-    margin-right: 0;
-    height: auto;
-    margin-top: 0;
-    flex-direction: column;
-  }
-  .ala-todo-wrap-sg .todo-left{
-    width: auto;
-    margin-left: 24px;
-    margin-right: 24px;
-    height: 312px;
-    margin-bottom: 12px;
-    border-radius: 16px;
-    overflow: hidden;
-    padding-top: 32px;
-    padding-left: 24px;
-    padding-right: 24px;
-  }
-  .ala-todo-wrap-sg .todo-right{
-    margin-left: 24px;
-    margin-right: 24px;
-  }
-  .ala-todo-wrap-sg .todo-right1{
-    width: 100%;
-    height: auto;
-  }
-  .ala-todo-wrap-sg .todo-right2{
-    width: 100%;
-    height: auto;
-  }
-  .ala-todo-wrap-sg .todo-header-title{
-    font-size: 16px;
-    line-height: 19px;
-    text-align: center;
-  }
-  .ala-todo-wrap-sg .todo-header-body{
-    font-size: 14px;
-    line-height: 18px;
-    text-align: center;
-  }
-  .ala-todo-wrap-sg .todo-icon-bg{
-    height: auto;
-    width: 100%;
-  }
-  .ala-todo-wrap-sg .todo-icon{
-    width: 225px;
-    height: 88px;
-    bottom: 58px;
-  }
-  .ala-todo-wrap-sg .todo-right .todo-right1{
-    padding: 168px 24px 24px 24px;
-    margin-bottom: 12px;
-    border-radius: 16px;
-  }
-  .ala-todo-wrap-sg .todo-right .todo-right2{
-    padding: 158px 24px 24px 24px;
-    border-radius: 16px;
-  }
-  .ala-todo-wrap-sg .todo-right .todo-right1 img {
-    top: 24px;
-    left: 50%;
-    width: 120px;
-    height: 120px;
-    transform: translateX(-50%)
-  }
-  .ala-todo-wrap-sg .todo-right .todo-right2 img {
-    top: 24px;
-    left: 50%;
-    width: 120px;
-    height: 120px;
-    transform: translateX(-50%)
-  }
+
 }
 
 /* ===== 首页 banner 统计数据 ===== */

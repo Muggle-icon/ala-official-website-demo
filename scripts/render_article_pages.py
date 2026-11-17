@@ -122,7 +122,7 @@ def recommendation_markup(article, category, href, faq_links):
     <h2 class="ala-editorial-heading" id="articleRecommendationsTitle"{hidden}>{heading}</h2>
     <ul class="ala-editorial-grid ala-editorial-grid--swipe"{hidden}>{cards}</ul>
     <div class="ala-editorial-actions">
-      <a class="ala-section-more" href="{escape(href, quote=True)}">{action} <span aria-hidden="true">→</span></a>
+      <a class="ala-section-more" href="{escape(href, quote=True)}">{action}</a>
     </div>
   </section>'''
 

@@ -35,7 +35,7 @@
   height: 100%;
   flex-direction: column;
   border: 1px solid var(--ala-line);
-  border-radius: 16px;
+  border-radius: var(--ala-card-radius);
   background: #fff;
   color: var(--ala-ink);
   text-align: left;

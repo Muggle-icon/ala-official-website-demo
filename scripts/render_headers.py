@@ -50,7 +50,7 @@ def render_header(prefix, route):
     notice = """
   <button class="ala-site-notice ala-notice-more" type="button" aria-haspopup="dialog" aria-controls="ala-security">
     <span class="ala-notice-copy"><strong>Aviso importante:</strong> El sitio web oficial de ALA es alaprestamo.com.</span>
-    <span class="ala-notice-label">Ver aviso <span aria-hidden="true">›</span></span>
+    <span class="ala-notice-label">Ver aviso</span>
   </button>""" if home else ''
     return f"""<!-- ALA header start -->
 <div class="ala-site-chrome"{home_attr}>
