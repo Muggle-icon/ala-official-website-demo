@@ -1,15 +1,15 @@
 .application-steps {
-  --step-gap: clamp(16px, 1.7vw, 24px);
+  --step-gap: var(--ala-grid-gap);
   --step-columns: 1;
-  width: min(100% - 48px, 1280px, max(960px, 66.667vw));
-  margin: clamp(56px, 7vw, 104px) auto 0;
+  width: var(--ala-content-width);
+  margin: var(--ala-section-space) auto 0;
   scroll-margin-block-start: 16px;
   color: var(--ala-ink, #191e2b);
   font-family: var(--ala-font, Roboto, Arial, sans-serif);
 }
 
 .application-steps__intro {
-  margin-block-end: clamp(24px, 2.8vw, 40px);
+  margin-block-end: var(--ala-group-space);
   text-align: center;
 }
 
@@ -17,7 +17,7 @@
   max-width: 26ch;
   margin: 0 auto;
   color: inherit;
-  font: 700 clamp(1.75rem, 1.35rem + 1.4vw, 2.5rem) / 1.14 var(--ala-font, Roboto, Arial, sans-serif);
+  font: 700 var(--ala-content-heading) / 1.14 var(--ala-font, Roboto, Arial, sans-serif);
   letter-spacing: -.025em;
   text-wrap: balance;
 }
@@ -44,10 +44,9 @@
   list-style: none;
 }
 
-.application-steps__list:focus-visible,
-.application-steps__button:focus-visible {
-  outline: 2px solid var(--ala-blue, #173cff);
-  outline-offset: 3px;
+.application-steps__list:focus-visible {
+  outline: var(--ala-focus-ring);
+  outline-offset: var(--ala-focus-offset);
 }
 
 .application-steps__list:has(+ .application-steps__controls:not([hidden])) {
@@ -108,7 +107,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 8px;
+  gap: var(--ala-control-gap);
   margin-block-start: 16px;
 }
 
@@ -122,35 +121,14 @@
   font-variant-numeric: tabular-nums;
 }
 
-.application-steps__button {
-  display: grid;
-  width: 44px;
-  height: 44px;
-  place-items: center;
+.application-steps__button.ala-button {
+  width: var(--ala-control-height);
+  height: var(--ala-control-height);
   padding: 0;
-  border: 1px solid var(--ala-line, #e0e5ef);
   border-radius: 50%;
-  background: #fff;
-  color: var(--ala-ink, #191e2b);
-  cursor: pointer;
 }
 
 .application-steps__button svg { width: 20px; height: 20px; }
-
-.application-steps__button[aria-disabled="true"] {
-  color: #818896;
-  border-color: #e0e5ef;
-  background: #f6f7f9;
-  cursor: default;
-}
-
-@media (hover: hover) {
-  .application-steps__button:not([aria-disabled="true"]):hover {
-    color: var(--ala-blue, #173cff);
-    border-color: #bec9f8;
-    background: #f2f5ff;
-  }
-}
 
 @media (min-width: 768px) {
   .application-steps { --step-columns: 2; }

@@ -571,86 +571,6 @@ video {
   background: #f2f5fa;
 }
 
-.faq-list {
-  display: grid;
-}
-
-.faq details {
-  border-radius: 16px;
-  background: rgba(64, 64, 64, 0.06);
-  box-shadow: none;
-  overflow: hidden;
-  transition:
-    background-color 150ms ease-out,
-    box-shadow 150ms ease-out;
-}
-
-.faq details:not([open]):hover,
-.faq details:not([open]):focus-within {
-  background: rgba(64, 64, 64, 0.1);
-}
-
-.faq details[open] {
-  background: rgba(64, 64, 64, 0.08);
-  box-shadow: none;
-  padding: 0;
-}
-
-.faq summary {
-  position: relative;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  list-style: none;
-  letter-spacing: 0;
-  text-align: left;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: geometricPrecision;
-  border-radius: inherit;
-  transition:
-    background-color 0.3s ease,
-    color 0.3s ease;
-}
-
-.faq summary:hover,
-.faq summary:focus-visible {
-  background: transparent;
-}
-
-.faq details[open] summary:hover,
-.faq details[open] summary:focus-visible {
-  background: transparent;
-}
-
-.faq summary::-webkit-details-marker {
-  display: none;
-}
-
-.faq summary::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  right: 24px;
-  flex: 0 0 auto;
-  width: 24px;
-  height: 24px;
-  margin-left: 0;
-  background: center / 24px 24px no-repeat
-    url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none'%3E%3Cpath d='M18 9L12 15L6 9' stroke='rgb(0,0,0)' stroke-opacity='0.6' stroke-linecap='round' stroke-width='2'/%3E%3C/svg%3E");
-  transform: translateY(-50%) rotate(0deg);
-  transition: transform 180ms ease-out;
-}
-
-.faq details[open] summary::after {
-  transform: translateY(-50%) rotate(180deg);
-}
-
-.faq details p {
-  margin: 0;
-  font-weight: 400;
-}
-
 .footer {
   position: relative;
   height: auto;
@@ -874,8 +794,8 @@ video {
 a:focus-visible,
 button:focus-visible,
 summary:focus-visible {
-  outline: 3px solid rgba(8, 87, 255, 0.38);
-  outline-offset: 4px;
+  outline: var(--ala-focus-ring);
+  outline-offset: var(--ala-focus-offset);
 }
 
 .header-cta:hover,
@@ -1308,14 +1228,6 @@ summary:focus-visible {
 
   .proof-grid article {
     grid-template-columns: 44px 1fr;
-  }
-
-  .faq details[open] {
-    padding: 0;
-  }
-
-  .faq details p {
-    margin: 0;
   }
 
   .brand-light img {
@@ -1754,15 +1666,6 @@ summary:focus-visible {
     background: #f2f6ff;
   }
 
-  .faq details {
-    border-radius: 16px;
-    background: rgba(32, 49, 78, 0.07);
-  }
-
-  .faq details[open] {
-    background: #ffffff;
-  }
-
   .footer {
     background: #091866;
   }
@@ -1845,10 +1748,6 @@ summary:focus-visible {
 
 /* Content typography and spacing follow the homepage's hero and application sections. */
 .ala-brand-page {
-  --brand-heading-size: clamp(1.75rem, 1.35rem + 1.4vw, 2.5rem);
-  --brand-section-space: clamp(56px, 7vw, 104px);
-  --brand-group-space: clamp(24px, 2.8vw, 40px);
-  --brand-grid-gap: clamp(16px, 1.7vw, 24px);
   --brand-content-gutter: max(24px, calc((100% - min(1280px, max(960px, 66.667vw))) / 2));
   font: 400 var(--ala-body-size) / var(--ala-body-leading) var(--ala-font);
   color: var(--ala-ink);
@@ -1873,7 +1772,7 @@ summary:focus-visible {
 
 .hero-copy {
   max-width: 58ch;
-  margin-bottom: var(--brand-grid-gap);
+  margin-bottom: var(--ala-grid-gap);
   font-size: var(--ala-body-size);
   line-height: var(--ala-body-leading);
   text-wrap: pretty;
@@ -1891,7 +1790,7 @@ summary:focus-visible {
 }
 
 .section {
-  padding: var(--brand-section-space) var(--brand-content-gutter);
+  padding: var(--ala-section-space) var(--brand-content-gutter);
 }
 
 .section-heading h2,
@@ -1899,7 +1798,7 @@ summary:focus-visible {
 .faq h2 {
   max-width: 26ch;
   margin: 0;
-  font-size: var(--brand-heading-size);
+  font-size: var(--ala-content-heading);
   line-height: 1.14;
   font-weight: 700;
   letter-spacing: -.025em;
@@ -1918,15 +1817,14 @@ summary:focus-visible {
 .section-heading p,
 .info-item span,
 .service-grid p,
-.proof-grid p,
-.faq details p {
+.proof-grid p {
   color: var(--ala-muted);
 }
 
 .info-grid {
-  margin-top: var(--brand-group-space);
+  margin-top: var(--ala-group-space);
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: var(--brand-group-space) var(--brand-grid-gap);
+  gap: var(--ala-group-space) var(--ala-grid-gap);
 }
 
 .info-item {
@@ -1946,13 +1844,13 @@ summary:focus-visible {
 
 .services {
   grid-template-columns: minmax(0, 5fr) minmax(0, 4fr);
-  gap: var(--brand-group-space);
+  gap: var(--ala-group-space);
 }
 
 .services-copy {
   display: grid;
   align-content: start;
-  gap: var(--brand-group-space);
+  gap: var(--ala-group-space);
 }
 
 .services .services-more {
@@ -1963,7 +1861,7 @@ summary:focus-visible {
 
 .service-grid {
   margin: 0;
-  gap: var(--brand-group-space) var(--brand-grid-gap);
+  gap: var(--ala-group-space) var(--ala-grid-gap);
 }
 
 .service-grid article img {
@@ -1992,7 +1890,7 @@ summary:focus-visible {
 }
 
 .official {
-  padding: 0 0 var(--brand-section-space);
+  padding: 0 0 var(--ala-section-space);
 }
 
 .official-card {
@@ -2005,7 +1903,7 @@ summary:focus-visible {
   position: relative;
   bottom: auto;
   min-width: 0;
-  padding: var(--brand-group-space) var(--brand-content-gutter);
+  padding: var(--ala-group-space) var(--brand-content-gutter);
 }
 
 .official-card p {
@@ -2013,14 +1911,14 @@ summary:focus-visible {
 }
 
 .proof-grid {
-  margin: var(--brand-group-space) var(--brand-content-gutter) 0;
-  column-gap: var(--brand-group-space);
+  margin: var(--ala-group-space) var(--brand-content-gutter) 0;
+  column-gap: var(--ala-group-space);
 }
 
 .proof-grid article {
   align-items: start;
-  gap: var(--brand-grid-gap);
-  padding-block: var(--brand-grid-gap);
+  gap: var(--ala-grid-gap);
+  padding-block: var(--ala-grid-gap);
 }
 
 .proof-grid span {
@@ -2029,37 +1927,17 @@ summary:focus-visible {
 }
 
 .faq-list {
-  margin: var(--brand-group-space) 0 0;
-  gap: 12px;
-}
-
-.faq summary {
-  min-height: 56px;
-  padding: 16px 56px 16px 24px;
-  color: var(--ala-ink);
-  font: 700 max(1rem, 1.05vw) / 1.5 var(--ala-font);
-}
-
-.faq summary:focus-visible {
-  outline: 2px solid var(--ala-blue);
-  outline-offset: -3px;
-}
-
-.faq details p {
-  max-width: 80ch;
-  padding: 0 24px 20px;
-  font-size: var(--ala-body-size);
-  line-height: var(--ala-body-leading);
+  margin: var(--ala-group-space) 0 0;
 }
 
 .footer {
-  padding: var(--brand-section-space) var(--brand-content-gutter) 32px;
+  padding: var(--ala-section-space) var(--brand-content-gutter) 32px;
   overflow-wrap: anywhere;
 }
 
 .footer-top {
   grid-template-columns: minmax(0, 1.35fr) repeat(3, minmax(0, 1fr));
-  gap: var(--brand-grid-gap);
+  gap: var(--ala-grid-gap);
 }
 
 .footer h3 {
@@ -2088,12 +1966,12 @@ summary:focus-visible {
 }
 
 .footer-divider {
-  margin-top: var(--brand-group-space);
+  margin-top: var(--ala-group-space);
 }
 
 .footer-bottom {
-  margin-top: var(--brand-grid-gap);
-  gap: var(--brand-group-space);
+  margin-top: var(--ala-grid-gap);
+  gap: var(--ala-group-space);
 }
 
 @media (min-width: 1366px) {
@@ -2146,7 +2024,7 @@ summary:focus-visible {
   }
 
   .official-card div {
-    padding-block: var(--brand-group-space) 0;
+    padding-block: var(--ala-group-space) 0;
   }
 
   .official-card h2 {
@@ -2169,12 +2047,12 @@ summary:focus-visible {
   }
 
   .footer-top {
-    gap: var(--brand-group-space);
+    gap: var(--ala-group-space);
   }
 
   .footer-certifications {
     grid-template-columns: repeat(3, minmax(0, auto));
-    gap: var(--brand-grid-gap);
+    gap: var(--ala-grid-gap);
   }
 }
 

@@ -1,38 +1,49 @@
 /* Protection page styles */
 .production-page {
-  background-color: #f1f3ff;
-  border-top: 1px solid transparent;
-  padding-inline: var(--ala-nav-gutter, 24px) !important;
+  width: var(--ala-content-width);
+  margin-inline: auto;
+  padding-block-start: var(--ala-group-space);
+}
+
+.ala-regulatory-page-title {
+  margin: 0;
+  color: var(--ala-ink);
+  font: 700 var(--ala-content-heading) / 1.14 var(--ala-font);
+  letter-spacing: -.025em;
+  text-align: center;
 }
 
 .production-page .product-imgs {
-  margin-top: clamp(24px, 2.3vw, 40px) !important;
+  margin-top: var(--ala-group-space) !important;
   background-image: url("../img/product/product-bg.webp");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
 }
 
-.production-page .product-con { padding-top: clamp(32px, 2.8vw, 40px) !important; }
+.production-page .product-con { padding-block: var(--ala-group-space) var(--ala-section-space) !important; }
 
 .production-page .con-fir {
-  color: #1E1F22;
+  color: var(--ala-ink);
 }
 
 .production-page .con-sec {
-  color: #1E1F22;
+  color: var(--ala-ink);
 }
 
 .production-page .con-thi {
-  color: #6D6E75;
+  color: var(--ala-muted);
 }
 
 .production-page .con-sec section {
   display: flex;
   align-items: center;
-  margin-bottom: 15px;
-  line-height: 1.3;
-  background-color: #FFFFFF;
+  margin-bottom: 12px;
+  padding: 16px;
+  border: 1px solid var(--ala-line);
+  border-radius: 12px;
+  line-height: var(--ala-body-leading);
+  background-color: var(--ala-surface);
 }
 
 .production-page .con-sec section::before {
@@ -76,17 +87,6 @@
     padding: 12px;
   }
 
-  .production-page .con-fir {
-    font-size: 18px !important;
-  }
-
-  .production-page .con-sec {
-    font-size: 16px !important;
-  }
-
-  .production-page .con-thi {
-    font-size: 16px !important;
-  }
 }
 
 @media screen and (min-width: 1600px) {
@@ -104,11 +104,7 @@
   font-size: var(--ala-body-size, 1rem) !important;
   line-height: var(--ala-body-leading, 1.625);
 }
-.production-page :is(.con-fir, .con-thi) a {
-  color: var(--ala-blue, #173cff) !important;
-  text-decoration: underline !important;
-  text-underline-offset: 0.16em;
-}
+.production-page :is(.con-fir, .con-thi) a { overflow-wrap: anywhere; }
 @media (max-width: 991px) {
   .production-page .product-imgs {
     height: clamp(260px, 76vw, 424px) !important;

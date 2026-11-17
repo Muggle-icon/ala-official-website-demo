@@ -1,19 +1,19 @@
 .ala-editorial-index {
-  width: min(100% - 48px, 1280px, max(960px, 66.667vw));
+  width: var(--ala-content-width);
   margin-inline: auto;
-  padding-block: clamp(40px, 5vw, 72px) clamp(56px, 7vw, 104px);
+  padding-block: clamp(40px, 5vw, 72px) var(--ala-section-space);
   color: var(--ala-ink);
   font: 400 var(--ala-body-size) / var(--ala-body-leading) var(--ala-font);
 }
 
 .ala-editorial-index-header {
-  margin-block-end: clamp(24px, 2.8vw, 40px);
+  margin-block-end: var(--ala-group-space);
   text-align: center;
 }
 
 .ala-editorial-index-header h1 {
   margin: 0;
-  font: 700 clamp(1.75rem, 1.35rem + 1.4vw, 2.5rem) / 1.14 var(--ala-font);
+  font: 700 var(--ala-content-heading) / 1.14 var(--ala-font);
   letter-spacing: -.025em;
   text-wrap: balance;
 }
@@ -42,7 +42,7 @@
 .ala-editorial-index-nav a {
   display: inline-flex;
   align-items: center;
-  min-height: 44px;
+  min-height: var(--ala-control-height);
   padding: 4px 12px;
   color: var(--ala-ink);
   font-weight: 500;
@@ -69,10 +69,10 @@
 
 .ala-editorial-index-controls select {
   width: min(100%, 24rem);
-  min-height: 44px;
+  min-height: var(--ala-control-height);
   padding: 6px 12px;
   border: 1px solid var(--ala-line);
-  border-radius: 8px;
+  border-radius: var(--ala-control-radius);
   background-color: #fff;
   color: var(--ala-ink);
   font: inherit;
@@ -81,8 +81,8 @@
 
 .ala-editorial-index-nav a:focus-visible,
 .ala-editorial-index-controls select:focus-visible {
-  outline: 2px solid var(--ala-blue);
-  outline-offset: 3px;
+  outline: var(--ala-focus-ring);
+  outline-offset: var(--ala-focus-offset);
 }
 
 .ala-editorial-index-pagination {
@@ -91,7 +91,7 @@
   justify-content: center;
   align-items: center;
   gap: 12px 20px;
-  margin-block-start: clamp(24px, 2.8vw, 40px);
+  margin-block-start: var(--ala-group-space);
 }
 
 .ala-editorial-index-status {
@@ -104,11 +104,6 @@
   display: none;
 }
 
-@media (min-width: 1101px) {
-  .ala-editorial-index {
-    width: min(100% - 2 * var(--ala-nav-gutter), 1280px);
-  }
-}
 
 @media (max-width: 600px) {
   .ala-editorial-index-nav ul {
@@ -134,11 +129,11 @@
 .ala-editorial-letter-nav a {
   min-width: 44px;
   justify-content: center;
-  border-radius: 8px;
+  border-radius: var(--ala-control-radius);
 }
 
 .ala-editorial-letter-nav a[aria-current] {
-  background: #eef2ff;
+  background: var(--ala-pressed);
   color: var(--ala-blue);
 }
 

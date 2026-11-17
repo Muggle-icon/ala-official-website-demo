@@ -25,6 +25,22 @@
   --ala-line: #e0e5ef;
   --ala-hover: #f0f3ff;
   --ala-surface: #fff;
+  --ala-panel: #f2f5fa;
+  --ala-pressed: #e7edff;
+  --ala-interaction-line: #bdc9f8;
+  --ala-blue-hover: #1230d9;
+  --ala-blue-pressed: #1026b5;
+  --ala-focus-ring: 2px solid var(--ala-blue);
+  --ala-focus-offset: 3px;
+  --ala-control-height: 44px;
+  --ala-control-gap: 8px;
+  --ala-control-radius: 8px;
+  --ala-control-font: 700 1rem / 1.5 var(--ala-font);
+  --ala-content-width: min(100% - 48px, 1280px, max(960px, 66.667vw));
+  --ala-content-heading: clamp(1.75rem, 1.35rem + 1.4vw, 2.5rem);
+  --ala-section-space: clamp(56px, 7vw, 104px);
+  --ala-group-space: clamp(24px, 2.8vw, 40px);
+  --ala-grid-gap: clamp(16px, 1.7vw, 24px);
   --ala-page-title: clamp(2rem, 2.25vw + 0.8rem, 3rem);
   --ala-section-title: clamp(1.5rem, 1.15vw + 0.9rem, 2.125rem);
   --ala-body-size: 1rem;
@@ -194,7 +210,7 @@ html { scroll-padding-top: var(--ala-scroll-offset, calc(var(--ala-nav-height) +
 }
 .ala-header-trigger[aria-expanded="true"] .ala-header-chevron { transform: translateY(2px) rotate(225deg); }
 .ala-site-chrome :is(a, button):focus-visible,
-.ala-security-dialog :is(a, button):focus-visible { outline: 2px solid #1048ff; outline-offset: 4px; border-radius: 3px; }
+.ala-security-dialog :is(a, button):focus-visible { outline: var(--ala-focus-ring); outline-offset: var(--ala-focus-offset); border-radius: 3px; }
 
 .ala-header-drop {
   position: absolute;
@@ -454,11 +470,6 @@ html { scroll-padding-top: var(--ala-scroll-offset, calc(var(--ala-nav-height) +
   }
 }
 
-.ala-home .card-header-title {
-  font-size: max(1rem, 1.05vw);
-  line-height: 1.5;
-}
-
 .ala-brand-page { --nav-height: var(--ala-nav-height); }
 .ala-brand-page main { padding-top: 0; }
 .ala-collection-page .article-intro h1,
@@ -504,74 +515,263 @@ body #richTextContent h2 {
 body #richTextContent h3 { font-size: 1.1875rem; line-height: 1.35; }
 
 
-/* Standalone continuation links use the same treatment across content sections. */
+/* Shared controls use one hit area, typography, and interaction palette. */
+.ala-button,
+.ala-section-more,
+.ala-category-tab {
+  box-sizing: border-box;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--ala-control-gap);
+  min-height: var(--ala-control-height);
+  max-width: 100%;
+  padding: 9px 16px;
+  border: 1px solid var(--ala-line);
+  border-radius: var(--ala-control-radius);
+  background: var(--ala-surface);
+  color: var(--ala-ink);
+  font: var(--ala-control-font);
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 150ms ease, background-color 150ms ease, border-color 150ms ease;
+}
+
+.ala-button--primary {
+  border-color: var(--ala-blue);
+  background: var(--ala-blue);
+  color: #fff;
+}
+
+.ala-button > :is(svg, img),
+.ala-section-more > [aria-hidden="true"] { flex: none; }
+
+.ala-button:is(:disabled, [aria-disabled="true"]),
+.ala-section-more:is(:disabled, [aria-disabled="true"]) {
+  border-color: var(--ala-line);
+  background: var(--ala-panel);
+  color: var(--ala-muted);
+  cursor: default;
+}
+
+.ala-section-more:is(:disabled, [aria-disabled="true"]) {
+  border-color: transparent;
+  background: transparent;
+  opacity: .7;
+}
+
 .ala-section-actions,
 .ala-editorial-actions {
   display: flex;
   justify-content: center;
-  margin-block-start: clamp(24px, 2.8vw, 40px);
+  gap: var(--ala-control-gap);
+  margin-block-start: var(--ala-group-space);
 }
 
 .ala-section-more {
-  box-sizing: border-box;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  min-height: 44px;
-  max-width: 100%;
-  padding: 10px 12px;
-  border: 0;
-  border-radius: 8px;
+  padding-inline: 12px;
+  border-color: transparent;
   background: transparent;
   color: var(--ala-section-more-color, var(--ala-blue));
-  font: 700 1rem / 1.5 var(--ala-font);
-  text-align: center;
-  text-decoration: none;
   text-underline-offset: .2em;
 }
 
-button.ala-section-more {
-  cursor: pointer;
-}
-
-button.ala-section-more:disabled {
-  opacity: .55;
-  cursor: wait;
-}
-
-.ala-section-more > [aria-hidden="true"] {
-  flex: none;
-}
-
-.ala-section-more:is(:hover, :focus-visible) {
+.ala-section-more:focus-visible {
   color: var(--ala-section-more-color, var(--ala-blue));
+  text-decoration: underline;
+  outline: 2px solid currentColor;
+  outline-offset: var(--ala-focus-offset);
+}
+
+.ala-button:focus-visible,
+.ala-category-tab:focus-visible,
+.ala-faq-answer a:focus-visible,
+.ala-regulatory-page .product-con a:focus-visible {
+  outline: var(--ala-focus-ring);
+  outline-offset: var(--ala-focus-offset);
+}
+
+.ala-button:active:not(:disabled, [aria-disabled="true"]),
+.ala-faq-toggle:active,
+.ala-category-tab:active {
+  border-color: var(--ala-interaction-line);
+  background: var(--ala-pressed);
+  color: var(--ala-blue);
+}
+
+.ala-button--primary:active:not(:disabled, [aria-disabled="true"]) {
+  border-color: var(--ala-blue-pressed);
+  background: var(--ala-blue-pressed);
+  color: #fff;
+}
+
+.ala-section-more:active:not(:disabled, [aria-disabled="true"]) {
+  color: var(--ala-section-more-color, var(--ala-blue-pressed));
   text-decoration: underline;
 }
 
-.ala-section-more:focus-visible {
-  outline: 2px solid currentColor;
-  outline-offset: 2px;
+.ala-category-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--ala-control-gap);
+  margin: 0 0 var(--ala-grid-gap);
 }
 
-.ala-home-faq-actions {
-  margin-block-start: 0;
-  padding: clamp(24px, 2.8vw, 40px) 24px clamp(56px, 7vw, 104px);
-  background: #f2f5fa;
+.ala-category-tab:is([aria-selected="true"], [aria-pressed="true"]) {
+  border-color: var(--ala-interaction-line);
+  background: var(--ala-pressed);
+  color: var(--ala-blue);
 }
 
-.ala-home .safe-box-item:not(.safe-box-item-active) { background: transparent; }
-.ala-home .safe-box-item span { font-size: .9375rem; line-height: 1.3; }
-.ala-home .safe-card-ala .card-header-click {
+.ala-faq-stack {
+  --ala-faq-inset: 24px;
+  display: grid;
+  gap: 12px;
+}
+
+.ala-faq-stack[hidden] { display: none; }
+
+.ala-faq-item {
+  border: 1px solid var(--ala-line);
+  border-radius: 12px;
+  background: var(--ala-surface);
+  color: var(--ala-ink);
+  transition: border-color 150ms ease;
+}
+
+.ala-faq-item:is([open], :has(> .ala-faq-toggle[aria-expanded="true"])) {
+  border-color: var(--ala-interaction-line);
+}
+
+.ala-faq-toggle {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
   width: 100%;
-  min-height: 44px;
-  color: inherit;
-  font: inherit;
-  text-align: left;
+  min-height: 56px;
+  padding: 15px var(--ala-faq-inset, 24px);
+  border: 0;
+  border-radius: 11px;
+  background: transparent;
+  color: var(--ala-ink);
+  font: var(--ala-control-font);
+  text-align: start;
+  overflow-wrap: anywhere;
+  list-style: none;
+  cursor: pointer;
+  transition: background-color 150ms ease;
 }
-.ala-home :is(.card-header-click, .safe-box-item):focus-visible {
-  outline: 2px solid var(--ala-blue);
-  outline-offset: 4px;
+
+.ala-faq-toggle::-webkit-details-marker { display: none; }
+
+.ala-faq-toggle::after {
+  content: "";
+  flex: 0 0 16px;
+  width: 16px;
+  height: 16px;
+  background:
+    linear-gradient(currentColor, currentColor) center / 12px 2px no-repeat,
+    linear-gradient(currentColor, currentColor) center / 2px 12px no-repeat;
+  color: var(--ala-muted);
+  transition: background-size 150ms ease;
+}
+
+.ala-faq-item[open] > .ala-faq-toggle::after,
+.ala-faq-toggle[aria-expanded="true"]::after {
+  background-size: 12px 2px, 2px 0;
+  color: var(--ala-blue);
+}
+
+.ala-faq-toggle:focus-visible {
+  outline: var(--ala-focus-ring);
+  outline-offset: -3px;
+}
+
+.ala-faq-answer {
+  box-sizing: border-box;
+  max-width: 76ch;
+  margin: 0;
+  padding: 0 var(--ala-faq-inset, 24px) 20px;
+  color: var(--ala-muted);
+  font: 400 var(--ala-body-size) / var(--ala-body-leading) var(--ala-font);
+  overflow-wrap: anywhere;
+}
+
+.ala-faq-answer p { margin: 0 0 12px; }
+.ala-faq-answer > :last-child { margin-bottom: 0; }
+.ala-faq-detail { font-weight: 700; }
+
+.ala-faq-answer a,
+.ala-regulatory-page .product-con a {
+  color: var(--ala-blue);
+  text-decoration: underline;
+  text-underline-offset: .18em;
+}
+
+.ala-faq-section {
+  padding-block: var(--ala-section-space);
+  background: var(--ala-panel);
+}
+
+.ala-faq-section-content {
+  width: var(--ala-content-width);
+  margin-inline: auto;
+}
+
+.ala-faq-section h2 {
+  margin: 0 0 var(--ala-group-space);
+  color: var(--ala-ink);
+  font: 700 var(--ala-content-heading) / 1.14 var(--ala-font);
+  letter-spacing: -.025em;
+  text-align: center;
+}
+
+@media (hover: hover) {
+  .ala-button:hover:not(:active, :disabled, [aria-disabled="true"]),
+  .ala-category-tab:hover:not(:active, [aria-selected="true"], [aria-pressed="true"]),
+  .ala-faq-toggle:hover:not(:active) {
+    border-color: var(--ala-interaction-line);
+    background: var(--ala-hover);
+    color: var(--ala-blue);
+    text-decoration: none;
+  }
+
+  .ala-button--primary:hover:not(:active, :disabled, [aria-disabled="true"]) {
+    border-color: var(--ala-blue-hover);
+    background: var(--ala-blue-hover);
+    color: #fff;
+  }
+
+  .ala-section-more:hover:not(:active, :disabled, [aria-disabled="true"]),
+  .ala-faq-answer a:hover,
+  .ala-regulatory-page .product-con a:hover {
+    color: var(--ala-section-more-color, var(--ala-blue-hover));
+    text-decoration: underline;
+  }
+}
+
+@media (max-width: 720px) {
+  .ala-faq-stack { --ala-faq-inset: 16px; }
+
+  .ala-category-tabs {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .ala-category-tab { padding-inline: 8px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ala-button,
+  .ala-section-more,
+  .ala-category-tab,
+  .ala-faq-item,
+  .ala-faq-toggle,
+  .ala-faq-toggle::after { transition: none; }
 }
 
 @media (min-width: 992px) {
@@ -603,5 +803,5 @@ button.ala-section-more:disabled {
 }
 
 @media (min-width: 1101px) {
-  .application-steps { width: min(calc(100% - 2 * var(--ala-nav-gutter)), 1280px); }
+  :root { --ala-content-width: min(calc(100% - 2 * var(--ala-nav-gutter)), 1280px); }
 }

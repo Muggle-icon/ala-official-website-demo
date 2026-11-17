@@ -1,9 +1,9 @@
 # ALA collection page review
 
-- Production capture: https://www.alaprestamo.com/
-- Competitor reference: https://mexicash.com/cobranza/
-- Content references: the supplied MXG-ALA collection page brief, bilingual HTML prototype, and ALA's official help center.
+The MXG-ALA product brief v1.1 §3.9.1 and §3.9.6 specify an independent public URL. The homepage and primary navigation use their existing destinations. The demo page is at `/cobranza/` and is also linked contextually from Ayuda and the security advice in Centro de ayuda.
 
-The topic page follows the article pattern in the brief. It uses one article heading, a section index, a linear reading order, and collapsible questions. The Spanish text retains the five topics and six questions. Keep phone and online support visible, and group suspected impersonation, private-account requests, and verification under complaints. Payment timing is expressed without a specific processing window or SMS commitment while the final Spanish copy is under review.
+The bilingual HTML prototype informs the Spanish reading order. The page retains one H1 and five sections for payment timing, payment difficulties, complaints, common questions, and official support. The complaint section presents the information to collect and groups private-account requests with account security guidance. The FAQ retains six questions. Both support buttons link to the official contact channels.
 
-The homepage snapshot retains production's Roboto fonts, blue accents, neutral surfaces, fluid layout and CSS breakpoints. The collection page uses a narrow article column on a white surface with desktop side navigation and a collapsible mobile index. The original brand page retains its own design.
+The payment stages take their structure from [MexiCash](https://mexicash.com/cobranza/). The early support path follows the situation-based approach in [Ayuda Nu](https://blog.nu.com.mx/ayuda-nu/). Payment terms and contact information follow the ALA demo copy. The visual treatment uses the shared ALA type scale, spacing, control states, and FAQ component.
+
+The preview carries the demo's search-indexing restriction. The formal ALA site requires indexable article content and the final legal and localization copy per §3.9.2 and §3.9.5. CMS editing and UBS events are production requirements specified by §3.9.3 and §3.9.4.

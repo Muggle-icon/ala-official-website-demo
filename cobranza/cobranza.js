@@ -1,38 +1,40 @@
-const mobile = window.matchMedia("(max-width: 820px)");
-const header = document.querySelector(".ala-site-chrome");
-const disclosure = document.querySelector(".index-disclosure");
+const compactIndex = matchMedia('(max-width: 900px)');
+const disclosure = document.querySelector('.index-disclosure');
+const header = document.querySelector('.ala-header-bar');
 const links = Array.from(disclosure.querySelectorAll('a[href^="#"]'));
-const sections = links.map((link) => document.querySelector(link.hash));
-let activeLink = links.find((link) => link.hasAttribute("aria-current"));
+const sections = links.map(link => document.querySelector(link.hash));
+let activeLink = links.find(link => link.hasAttribute('aria-current'));
 
 function syncDisclosure() {
-  disclosure.open = !mobile.matches;
+  disclosure.open = !compactIndex.matches;
+}
+
+function setCurrent(link) {
+  if (activeLink === link) return;
+  activeLink?.removeAttribute('aria-current');
+  link.setAttribute('aria-current', 'location');
+  activeLink = link;
 }
 
 function syncIndex() {
-  const threshold = header.offsetHeight + 60;
-  const sectionIndex = sections.findLastIndex((section) => section.getBoundingClientRect().top <= threshold);
-  const reachedEnd = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 1;
-  const lastLink = links.at(-1);
-  const currentLink = reachedEnd && window.location.hash === lastLink.hash ? lastLink : links[Math.max(0, sectionIndex)];
-
-  if (activeLink === currentLink) return;
-
-  activeLink?.removeAttribute("aria-current");
-  currentLink.setAttribute("aria-current", "location");
-  activeLink = currentLink;
+  const threshold = Math.max(0, header.getBoundingClientRect().bottom) + 32;
+  const visible = sections.findLastIndex(section => section.getBoundingClientRect().top <= threshold);
+  const reachedEnd = scrollY + innerHeight >= document.documentElement.scrollHeight - 1;
+  setCurrent(reachedEnd ? links.at(-1) : links[Math.max(0, visible)]);
 }
 
-disclosure.addEventListener("click", (event) => {
-  if (event.target.closest("a") && mobile.matches) {
-    disclosure.open = false;
-  }
+disclosure.addEventListener('click', event => {
+  const link = event.target.closest('a');
+  if (!link || event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+
+  if (compactIndex.matches) disclosure.open = false;
+  setCurrent(link);
 });
 
-mobile.addEventListener("change", syncDisclosure);
-window.addEventListener("scroll", syncIndex, { passive: true });
-window.addEventListener("resize", syncIndex);
-window.addEventListener("hashchange", syncIndex);
-window.addEventListener("load", syncIndex);
+compactIndex.addEventListener('change', syncDisclosure);
+addEventListener('scroll', syncIndex, { passive: true });
+addEventListener('resize', syncIndex);
+addEventListener('hashchange', syncIndex);
+addEventListener('load', syncIndex);
 syncDisclosure();
 syncIndex();

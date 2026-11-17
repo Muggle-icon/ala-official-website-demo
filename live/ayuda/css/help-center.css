@@ -59,47 +59,20 @@
   text-align: left;
 }
 .sofia-name {
-  font-family: 'Roboto';
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 32px;
-  letter-spacing: 0;
-  text-align: left;
   margin: 0 0 2px;
-  color: #161922;
+  color: var(--ala-ink);
+  font: var(--ala-control-font);
 }
+
 .sofia-role {
-  font-family: 'Roboto-Regular';
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 24px;
-  letter-spacing: 0;
-  text-align: left;
   margin: 0;
-  color: #1E1F227A;
+  color: var(--ala-muted);
+  font: 400 var(--ala-body-size) / var(--ala-body-leading) var(--ala-font);
 }
-.sofia-whatsapp-btn {
-  display: flex;
-  align-items: center;
-  width: fit-content !important;
-  background: rgba(16, 120, 56, 1);
-  padding: 11px 32px;
-  border-radius: 10px;
-  text-decoration: none;
-}
+
 .sofia-whatsapp-btn img {
   width: 20px;
   height: 20px;
-  margin-right: 10px;
-}
-.sofia-whatsapp-btn span {
-  font-family: 'Roboto-Medium';
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 24px;
-  letter-spacing: 0;
-  text-align: center;
-  color: #fff;
 }
 .help-banner-footer {
   margin-top: 32px;
@@ -246,17 +219,8 @@
     width: 64px;
     height: 64px;
   }
-  .sofia-name {
-    font-size: 20px;
-    line-height: 28px;
-  }
-  .sofia-role{
-    font-size: 15px;
-  }
   .sofia-whatsapp-btn {
-    width: 100% !important;
-    justify-content: center;
-    padding: 14px 32px;
+    width: 100%;
   }
   .warn-box {
     width: calc(100% - 32px);

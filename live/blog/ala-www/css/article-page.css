@@ -47,20 +47,12 @@
   gap: 8px 12px;
 }
 
-.ala-article-share-button {
-  min-height: 44px;
-  padding: 8px 12px;
-  border: 1px solid var(--ala-line);
-  border-radius: 8px;
-  background-color: #fff;
-  color: var(--ala-ink);
-  font: 500 .875rem / 1.5 var(--ala-font);
-  cursor: pointer;
+.ala-article-outline summary:hover {
+  background-color: var(--ala-hover);
 }
 
-.ala-article-share-button:hover,
-.ala-article-outline summary:hover {
-  background-color: #f3f6ff;
+.ala-article-outline summary:active {
+  background-color: var(--ala-pressed);
 }
 
 .ala-article-share-status {
@@ -91,7 +83,7 @@
 
 .ala-article-outline summary {
   display: list-item;
-  min-height: 44px;
+  min-height: var(--ala-control-height);
   padding: 10px 16px;
   border-radius: inherit;
   color: var(--ala-ink);
@@ -250,6 +242,6 @@
 }
 
 .ala-article-page :focus-visible {
-  outline: 2px solid var(--ala-blue);
-  outline-offset: 3px;
+  outline: var(--ala-focus-ring);
+  outline-offset: var(--ala-focus-offset);
 }

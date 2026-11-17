@@ -8,11 +8,11 @@
   <meta name="theme-color" content="#ffffff">
   <title>Cobranza, pagos atrasados y soluciones | ALA</title>
   <link rel="icon" href="../public/assets/ala-app-icon.png">
-  <link rel="stylesheet" href="./cobranza.css?v=0fa9f91128">
-  <script src="./cobranza.js" defer></script>
+  <link rel="stylesheet" href="./cobranza.css?v=6e6bf9d260">
+  <script src="./cobranza.js?v=d29a6f81bd" defer></script>
 
 <link rel="stylesheet" href="../shared/breadcrumbs.css?v=27c08cdd0d">
-  <link rel="stylesheet" href="../shared/site-header.css?v=efdeddd310">
+  <link rel="stylesheet" href="../shared/site-header.css?v=c8a1b0433a">
   <script src="../shared/site-header.js?v=2b9e96d297" defer></script>
 </head>
 <body class="ala-collection-page">
@@ -84,19 +84,15 @@
 <!-- ALA breadcrumbs end -->
 
   <main id="contenido" tabindex="-1">
-    <article aria-labelledby="page-title">
-      <header class="article-header">
-        <div class="frame">
-          <div class="article-intro">
-            <div>
-              <h1 id="page-title">Cobranza, pagos atrasados y soluciones</h1>
-              <p>Consulta qué hacer si no puedes pagar a tiempo, cómo verificar un contacto de cobranza y dónde pedir ayuda a ALA.</p>
-            </div>
-            <div class="intro-action">
-              <a class="button" href="../channel/help-center/">Contactar a ALA <span class="arrow" aria-hidden="true">→</span></a>
-              <p>Todos los días de 9:00 a 18:00</p>
-            </div>
-          </div>
+    <article class="collection-page" aria-labelledby="page-title">
+      <header class="frame collection-hero">
+        <div class="collection-hero-copy">
+          <h1 id="page-title">Cobranza, pagos atrasados y soluciones</h1>
+          <p>Consulta qué hacer si no puedes pagar a tiempo, cómo verificar un contacto de cobranza y dónde pedir ayuda a ALA.</p>
+          <a class="ala-button ala-button--primary" href="../channel/help-center/#canales-de-atencion">Contactar a ALA</a>
+        </div>
+        <div class="collection-hero-media">
+          <img src="./assets/guia-de-pago.webp" width="1120" height="840" alt="" fetchpriority="high" decoding="async">
         </div>
       </header>
 
@@ -119,15 +115,21 @@
           </details>
         </aside>
 
-        <div class="article-content">
+        <div class="collection-content">
           <section aria-labelledby="vencimiento">
             <h2 id="vencimiento" tabindex="-1">¿Qué sucede si se vence tu pago?</h2>
-            <h3>Antes del vencimiento</h3>
-            <p>En la app oficial de ALA puedes consultar la fecha de pago, el monto actualizado, las formas de pago oficiales y la información de tu préstamo o contrato.</p>
-            <p>ALA puede enviarte recordatorios por teléfono, SMS, WhatsApp, correo electrónico o notificaciones de la app.</p>
-            <h3>Si no pagas en la fecha acordada</h3>
-            <p>ALA puede comunicarse contigo por el saldo pendiente. Un atraso puede afectar tu historial crediticio y generar cargos según las condiciones de tu contrato.</p>
-            <p>Si anticipas un atraso, <a href="#opciones-de-pago">consulta qué hacer si no puedes pagar a tiempo</a>.</p>
+            <div class="payment-phases">
+              <div class="payment-phase">
+                <h3>Antes del vencimiento</h3>
+                <p>Consulta en la app oficial de ALA la fecha, el monto, las formas de pago y la información de tu contrato.</p>
+                <p>ALA puede enviarte recordatorios por teléfono, SMS, WhatsApp, correo o notificaciones de la app.</p>
+              </div>
+              <div class="payment-phase">
+                <h3>Si no pagas en la fecha acordada</h3>
+                <p>ALA puede comunicarse contigo por el saldo pendiente. Un atraso puede afectar tu historial crediticio y generar cargos según tu contrato.</p>
+                <p><a href="#opciones-de-pago">Consulta qué hacer ante un atraso</a>.</p>
+              </div>
+            </div>
           </section>
 
           <section aria-labelledby="opciones-de-pago">
@@ -151,43 +153,57 @@
 
           <section aria-labelledby="reclamaciones">
             <h2 id="reclamaciones" tabindex="-1">Cómo presentar una reclamación</h2>
-            <p>Si tienes dudas sobre un contacto de cobranza, si ya pagaste o si no reconoces el préstamo, comunícate con ALA para que revisemos tu caso. Puedes aportar la fecha y hora del contacto, el número de origen y una descripción de lo ocurrido. Si ya tienes capturas, mensajes o grabaciones, puedes compartirlos por un canal oficial de atención.</p>
-            <div class="payment-notice">
-              <span class="notice-icon" aria-hidden="true">!</span>
-              <div>
-                <h3>Si te piden pagar a una cuenta personal</h3>
-                <p>Reporta el contacto a ALA antes de hacer otro pago. Protege tus contraseñas y códigos de verificación.</p>
-              </div>
-            </div>
-            <a class="inline-action" href="../channel/help-center/">Contactar a ALA <span class="arrow" aria-hidden="true">→</span></a>
+            <p>Si tienes dudas sobre un contacto de cobranza, si ya pagaste o si no reconoces el préstamo, <a href="#contacto">comunícate con ALA</a> para que revisemos tu caso.</p>
+            <h3>Datos que ayudan a revisar tu caso</h3>
+            <ul class="report-checklist">
+              <li>Fecha y hora en que te contactaron.</li>
+              <li>Número de origen y una descripción de lo ocurrido.</li>
+              <li>Capturas, mensajes o grabaciones, si ya los tienes.</li>
+            </ul>
+            <aside class="payment-notice" aria-labelledby="cuenta-personal">
+              <h3 id="cuenta-personal">Si te piden pagar a una cuenta personal</h3>
+              <p>Reporta el contacto a ALA antes de hacer otro pago. Protege tus contraseñas y códigos de verificación.</p>
+            </aside>
           </section>
 
           <section aria-labelledby="preguntas-frecuentes">
             <h2 id="preguntas-frecuentes" tabindex="-1">Preguntas frecuentes</h2>
-            <div class="faq">
-              <details>
-                <summary>¿ALA contactará a mis familiares o compañeros de trabajo después del vencimiento?</summary>
-                <p>ALA realiza la cobranza conforme a la legislación aplicable y prohíbe las prácticas de cobranza indebida. Si alguien contacta a familiares, amistades o compañeros que no están relacionados con tu crédito, háznoslo saber por los <a href="#contacto">canales oficiales</a>.</p>
+            <div class="ala-faq-stack">
+              <details class="ala-faq-item">
+                <summary class="ala-faq-toggle">¿ALA contactará a mis familiares o compañeros de trabajo después del vencimiento?</summary>
+                <div class="ala-faq-answer">
+                  <p>ALA realiza la cobranza conforme a la legislación aplicable y prohíbe las prácticas de cobranza indebida. Si alguien contacta a familiares, amistades o compañeros que no están relacionados con tu crédito, háznoslo saber por los <a href="#contacto">canales oficiales</a>.</p>
+                </div>
               </details>
-              <details>
-                <summary>¿Puedo solicitar una prórroga u otro acuerdo si no puedo pagar a tiempo?</summary>
-                <p>Comunícate cuanto antes con ALA para explicar tu situación. Las opciones disponibles dependen de tu contrato, del estado de tu préstamo y de las políticas vigentes.</p>
+              <details class="ala-faq-item">
+                <summary class="ala-faq-toggle">¿Puedo solicitar una prórroga u otro acuerdo si no puedo pagar a tiempo?</summary>
+                <div class="ala-faq-answer">
+                  <p>Comunícate cuanto antes con ALA para explicar tu situación. Las opciones disponibles dependen de tu contrato, del estado de tu préstamo y de las políticas vigentes.</p>
+                </div>
               </details>
-              <details>
-                <summary>¿Cómo verifico que la persona que me contacta está autorizada por ALA?</summary>
-                <p>Solicita su nombre, el nombre de la empresa o entidad y los datos del préstamo al que se refiere. Verifica esa información directamente con ALA. Una foto de perfil, un nombre de empresa o un enlace que te envíen no bastan para confirmar la identidad.</p>
+              <details class="ala-faq-item">
+                <summary class="ala-faq-toggle">¿Cómo verifico que la persona que me contacta está autorizada por ALA?</summary>
+                <div class="ala-faq-answer">
+                  <p>Solicita su nombre, el nombre de la empresa o entidad y los datos del préstamo al que se refiere. Verifica esa información directamente con ALA. Una foto de perfil, un nombre de empresa o un enlace que te envíen no bastan para confirmar la identidad.</p>
+                </div>
               </details>
-              <details>
-                <summary>Ya pagué. ¿Por qué sigo recibiendo mensajes de cobranza?</summary>
-                <p>El tiempo en que se refleja un pago puede variar. Si tu pago todavía no aparece o sigues recibiendo avisos de cobranza, conserva tu comprobante y comunícate con ALA para confirmar que el pago se registró.</p>
+              <details class="ala-faq-item">
+                <summary class="ala-faq-toggle">Ya pagué. ¿Por qué sigo recibiendo mensajes de cobranza?</summary>
+                <div class="ala-faq-answer">
+                  <p>El tiempo en que se refleja un pago puede variar. Si tu pago todavía no aparece o sigues recibiendo avisos de cobranza, conserva tu comprobante y comunícate con ALA para confirmar que el pago se registró.</p>
+                </div>
               </details>
-              <details>
-                <summary>¿Qué hago si recibo mensajes agresivos o sospechosos?</summary>
-                <p>Repórtalos a ALA por un canal oficial. Indica cuándo te contactaron, el número de origen y lo que ocurrió. Si ya tienes capturas, mensajes o grabaciones, puedes compartirlos para facilitar la revisión. Evita pagar a cuentas personales y mantén en privado tus contraseñas y códigos.</p>
+              <details class="ala-faq-item">
+                <summary class="ala-faq-toggle">¿Qué hago si recibo mensajes agresivos o sospechosos?</summary>
+                <div class="ala-faq-answer">
+                  <p>Repórtalos a ALA por un canal oficial. Indica cuándo te contactaron, el número de origen y lo que ocurrió. Si ya tienes capturas, mensajes o grabaciones, puedes compartirlos para facilitar la revisión. Evita pagar a cuentas personales y mantén en privado tus contraseñas y códigos.</p>
+                </div>
               </details>
-              <details>
-                <summary>No reconozco este préstamo. ¿Qué debo hacer?</summary>
-                <p>Solicita a ALA que verifique el préstamo antes de realizar un pago. Mantén en privado tus contraseñas y códigos de verificación. ALA revisará los datos y registros correspondientes y te indicará los pasos a seguir.</p>
+              <details class="ala-faq-item">
+                <summary class="ala-faq-toggle">No reconozco este préstamo. ¿Qué debo hacer?</summary>
+                <div class="ala-faq-answer">
+                  <p>Solicita a ALA que verifique el préstamo antes de realizar un pago. Mantén en privado tus contraseñas y códigos de verificación. ALA revisará los datos y registros correspondientes y te indicará los pasos a seguir.</p>
+                </div>
               </details>
             </div>
           </section>
@@ -209,7 +225,7 @@
                   <dd>Todos los días de 9:00 a 18:00</dd>
                 </div>
               </dl>
-              <a class="button" href="../channel/help-center/">Contactar a ALA <span class="arrow" aria-hidden="true">→</span></a>
+              <a class="ala-button ala-button--primary" href="../channel/help-center/#canales-de-atencion">Contactar a ALA</a>
             </div>
           </section>
         </div>

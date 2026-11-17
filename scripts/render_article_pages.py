@@ -168,7 +168,7 @@ def article_markup(html, route, article_html):
       </div>
       <h1 class="ala-article-title" id="article-title">{escape(title)}</h1>
       <div class="ala-article-share" hidden>
-        <button class="ala-article-share-button" type="button">Copiar enlace</button>
+        <button class="ala-article-share-button ala-button" type="button">Copiar enlace</button>
         <span class="ala-article-share-status" role="status"></span>
       </div>
     </header>''']
