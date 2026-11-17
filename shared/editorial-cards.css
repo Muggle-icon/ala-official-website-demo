@@ -1,0 +1,203 @@
+/* One editorial card across the homepage and article indexes. */
+.ala-editorial-section {
+  width: min(100% - 48px, 1280px, max(960px, 66.667vw));
+  margin: clamp(56px, 7vw, 104px) auto;
+  scroll-margin-block-start: calc(var(--ala-nav-height, 64px) + 16px);
+}
+
+@media (min-width: 1101px) {
+  .ala-editorial-section {
+    width: min(calc(100% - 2 * var(--ala-nav-gutter)), 1280px);
+  }
+}
+
+.ala-editorial-heading {
+  margin: 0 auto clamp(24px, 2.8vw, 40px);
+  color: var(--ala-ink);
+  font: 700 clamp(1.75rem, 1.35rem + 1.4vw, 2.5rem) / 1.14 var(--ala-font);
+  letter-spacing: -.025em;
+  text-align: center;
+  text-wrap: balance;
+}
+
+.ala-editorial-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(16px, 1.7vw, 24px);
+  margin: 0;
+  padding: 0;
+  font-family: var(--ala-font);
+  list-style: none;
+}
+
+.ala-editorial-card {
+  min-width: 0;
+}
+
+.ala-editorial-link {
+  display: flex;
+  min-width: 0;
+  height: 100%;
+  flex-direction: column;
+  border: 1px solid var(--ala-line);
+  border-radius: 16px;
+  background: #fff;
+  color: var(--ala-ink);
+  text-align: left;
+  text-decoration: none;
+  overflow: hidden;
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.ala-editorial-link:hover {
+  border-color: #bcc7ef;
+  box-shadow: 0 6px 18px #191e2b0d;
+  color: var(--ala-ink);
+  text-decoration: none;
+}
+
+.ala-editorial-link:focus-visible,
+.ala-editorial-cta:focus-visible {
+  outline: 2px solid var(--ala-blue);
+  outline-offset: 3px;
+}
+
+.ala-editorial-media {
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #eaf0fb;
+}
+
+.ala-editorial-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ala-editorial-copy {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: start;
+  padding: clamp(16px, 1.5vw, 24px);
+  gap: 8px;
+}
+
+.ala-editorial-category,
+.ala-editorial-date,
+.ala-editorial-description,
+.ala-editorial-title {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.ala-editorial-category {
+  color: var(--ala-blue);
+  font-size: .8125rem;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.ala-editorial-title {
+  color: var(--ala-ink);
+  font-size: clamp(1.125rem, 1rem + .32vw, 1.375rem);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -.01em;
+  text-wrap: pretty;
+}
+
+.ala-editorial-link:hover .ala-editorial-title,
+.ala-editorial-link:focus-visible .ala-editorial-title {
+  color: var(--ala-blue);
+}
+
+.ala-editorial-description {
+  color: var(--ala-muted);
+  font-size: .9375rem;
+  line-height: 1.5;
+  text-wrap: pretty;
+}
+
+.ala-editorial-date {
+  margin-top: auto;
+  padding-top: 4px;
+  color: var(--ala-muted);
+  font-size: .8125rem;
+  line-height: 1.45;
+  font-variant-numeric: tabular-nums;
+}
+
+.ala-editorial-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(24px, 2.8vw, 40px);
+}
+
+.ala-editorial-cta {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 20px;
+  border: 1px solid var(--ala-blue);
+  border-radius: 999px;
+  background: var(--ala-blue);
+  color: #fff;
+  font: 700 1rem / 1.5 var(--ala-font);
+  text-align: center;
+  text-decoration: none;
+}
+
+.ala-editorial-cta:hover {
+  border-color: #1229ba;
+  background: #1229ba;
+  color: #fff;
+  text-decoration: none;
+}
+
+.ala-editorial-cta--secondary {
+  background: #fff;
+  color: var(--ala-blue);
+}
+
+.ala-editorial-cta--secondary:hover {
+  background: #eef2ff;
+  color: var(--ala-blue);
+}
+
+@media (max-width: 860px) {
+  .ala-editorial-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .ala-editorial-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .ala-editorial-grid--swipe {
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: 87%;
+    margin: 0 -24px;
+    padding: 4px 24px 12px;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-padding-inline: 24px;
+    scroll-snap-type: x mandatory;
+  }
+
+  .ala-editorial-grid--swipe .ala-editorial-card {
+    scroll-snap-align: start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ala-editorial-link {
+    transition: none;
+  }
+}

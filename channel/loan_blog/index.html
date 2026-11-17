@@ -20,13 +20,9 @@
   <link rel="stylesheet" href="../../live/ala-www/css/main.css">
   <link rel="stylesheet" href="../../live/ala-www/css/custom.css">
   <link rel="stylesheet" href="../../live/ala-www/css/custom-links.css">
-  <link rel="stylesheet" href="../../live/ala-www/css/swiper.min.css" />
-  <link rel="stylesheet" href="../../live/ala-www/css/animate.min.css" />
-  <link rel="stylesheet" href="../../live/blog/ala-www/css/blog-page.css" />
 <!-- 核心脚本 - 保持同步加载 -->
 <script src="../../live/ala-www/vendor/jquery/dist/jquery.min.js"></script>
 <script src="../../live/ala-www/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="../../live/ala-www/vendor/axios/dist/axios.min.js" defer></script>
 <!-- ala-f 流体缩放因子：--fluid-scale = min(1, 视口宽/设计稿宽, 视口高/设计稿高)，供 .ala-f-* 引擎使用（设计稿基准从 :root 的 --ala-design-w/h 读取） -->
 <script>
   (function () {
@@ -42,8 +38,6 @@
     setFluidScale();
   })();
 </script>
-<script src="../../live/ala-www/js/swiper.min.js" defer></script>
-  <script src="../../live/ala-www/js/swiper.animate1.0.3.min.js" defer></script>
 
 
 <meta name="robots" content="noindex,nofollow">
@@ -53,6 +47,8 @@
 <link rel="stylesheet" href="../../shared/breadcrumbs.css?v=27c08cdd0d">
   <link rel="stylesheet" href="../../shared/site-header.css?v=e37331c083">
   <script src="../../shared/site-header.js?v=2b9e96d297" defer></script>
+<link rel="stylesheet" href="../../shared/editorial-cards.css?v=20261117-editorial">
+<link rel="stylesheet" href="../../live/blog/article-index.css?v=20261117-editorial">
 </head>
 
 <body>
@@ -121,390 +117,134 @@
   </ol>
 </nav>
 <!-- ALA breadcrumbs end -->
-  <div id="messageContainer"></div>
-  <div class="ala-ml ala-mr ala-pl ala-pr blog-container">
-    <div class="ala-height ala-mt ala-mb ala-mr ala-ml ala-radius blog-banner-wrap motion-element">
-      <h1 class="ala-size ala-lh blog-title"
-        style="--base-size: 72px; --base-lh: 72px; font-weight: 700; color: #ffba01">Blog</h1>
-      <div class="ala-size ala-lh ala-mt blog-des"
-        style="--base-mt: 20px; --base-size: 34px; --base-lh: 34px; font-weight: 700; color: #ffffff">de préstamos ALA
-      </div>
-    </div>
-    <div id="top-article-container" class="ala-mr ala-ml d-none d-lg-block"></div>
-    <div id="mobile-top-article-container" class="ala-mr ala-ml d-lg-none"></div>
+  <main class="ala-editorial-index">
+    <header class="ala-editorial-index-header">
+      <h1>Blog de préstamos ALA</h1>
+    </header>
 
-    <div class="d-none d-lg-block">
-      <div class="ala-mt ala-ml ala-mr swiper-article-wrap motion-element">
-        <div class="swiper-article swiper-wrapper"></div>
-        <div class="swiper-article-mask">
-          <img src="../../live/blog/ala-www/img/blog-article-mask.png" />
-        </div>
-      </div>
-      <div class="ala-mt ala-ml ala-mr swiper-article-navigtion motion-element">
-        <button class="ala-height ala-width swiper-article-navigtion-right"
-          style="--base-width: 60px; --base-height: 60px;"></button>
-        <button class="ala-ml ala-height ala-width swiper-article-navigtion-left"
-          style="--base-ml: 32px; --base-width: 60px; --base-height: 60px;"></button>
-      </div>
-    </div>
+    <nav class="ala-editorial-index-nav" aria-label="Secciones del blog">
+      <ul>
+        <li><a href="../guia-de-prestamos/">Guía de préstamos</a></li>
+        <li><a href="../loan_financiero/">Diccionario financiero</a></li>
+        <li><a href="../noticias-financieras/">Noticias financieras</a></li>
+        <li><a href="../loan_city/">Préstamo en tu ciudad</a></li>
+      </ul>
+    </nav>
 
-    <div class="mobile-blog-swiper1 d-lg-none">
-      <div class="swiper" id="blog-swiper1-mobile">
-        <div class="swiper-wrapper"></div>
+    <section aria-label="Artículos del blog">
+      <div class="ala-editorial-index-controls">
+        <label for="blogTopic">Filtrar por tema</label>
+        <select id="blogTopic" aria-controls="blogList">
+          <option value="Todo">Todo</option>
+          <option value="100866747192005633">Cómo elegir un préstamo personal en México según tu capacidad de pago</option>
+          <option value="100130165386192385">¿Qué hacer ante la presunta suplantación de ALA o dudas sobre el proceso de cobranza?</option>
+          <option value="100129085958465025">¿Qué pasa si tengo un atraso en mi préstamo ALA?</option>
+          <option value="98919949525079554">Cómo identificar préstamos en línea seguros en México: guía para evitar fraudes y elegir con confianza</option>
+          <option value="98919710839922690">Cómo identificar préstamos en línea seguros en México</option>
+          <option value="97331355251241985">Solicitar un préstamo: 3 errores que debes evitar</option>
+          <option value="96923634130949634">¿Cómo funciona el proceso de control de riesgos en créditos en línea y por qué recopilamos sus datos?</option>
+          <option value="96923204543931393">Tasa de interés, comisiones y CAT: ¿Cómo entender el costo real de un crédito?</option>
+          <option value="96696063139714562">Préstamos de día de pago en México: ventajas, riesgos y alternativas</option>
+          <option value="96650593942050306">Disfruta Cancún sin preocupaciones: Guía de viaje y finanzas</option>
+          <option value="95741740633270274">¿Por qué mi primer préstamo en línea es tan bajo?</option>
+          <option value="95509687776703490">¿Cómo identificar un sitio web oficial de préstamos y evitar fraudes?</option>
+          <option value="95144681278366722">¿Por qué rechazan mi solicitud de préstamo en línea?</option>
+          <option value="94783149801149953">¿Cómo leer un contrato de préstamo? Guía paso a paso</option>
+          <option value="94519732195145217">¿Cómo presentar una reclamación ante la CONDUSEF en CDMX?</option>
+          <option value="94466181593413121">¿Para qué sirve el reconocimiento facial al solicitar un préstamo?</option>
+          <option value="94390256784530433">¿Qué es el comprobante de ingresos para solicitar préstamos en CDMX?</option>
+          <option value="94377935643237377">Cómo verificar una app de préstamo en el SIPRES de CONDUSEF en CDMX</option>
+          <option value="94163658799799809">¿Cómo checar números telefónicos de préstamos en Aguascalientes?</option>
+          <option value="94104947459513345">Lugares donde solicitar préstamos en Querétaro</option>
+          <option value="93785535221750785">¿Cómo solicitar préstamos en efectivo en Walmart Mexicali?</option>
+          <option value="93573961847889410">Las 5 mejores opciones de préstamos urgentes y sin buró en Monterrey</option>
+          <option value="93515242679262722">Deducible y Coaseguro: ¿Cómo elegir para no perder dinero?</option>
+          <option value="93256786782181889">Cómo usar la CONDUSEF para que no te estafen</option>
+          <option value="92880911902940162">¿Préstamo muy bajo? Haz esto para subir tu límite</option>
+          <option value="92880832733503490">La verdad sobre el Buró de Crédito y cómo repararlo</option>
+          <option value="92034687285042177">¿Cómo funciona el pago sin intereses?</option>
+          <option value="92019623241048066">¿Cómo eliminar tus datos de apps de préstamos?</option>
+          <option value="91944474671294465">¿Cuáles son los 7 tipos de préstamos?</option>
+          <option value="91672720427856386">¿Cuál es el proceso de aprobación de un préstamo?</option>
+          <option value="91670655876701185">¿Cuánto es un buen límite de crédito?</option>
+          <option value="91669913626615298">¿Qué pasa si gasto todo mi crédito?</option>
+          <option value="91582236543654913">¿Por qué motivos puedo retirar dinero de mi Afore?</option>
+          <option value="91033754497705474">Diferencia entre CLABE y número de cuenta</option>
+          <option value="90719549271978497">Qué hacer si no te pagan la tanda en México</option>
+          <option value="90719505653687809">¿Cuánto cuesta un divorcio rápido y barato en 2026?</option>
+          <option value="90629261453420033">Problemas al cobrar incapacidad por maternidad</option>
+          <option value="90584621377008129">Lo que debes hablar antes de casarte por el civil en México</option>
+          <option value="90403015977412098">¿Cuál es el costo del pasaporte mexicano en 2026?</option>
+          <option value="90402959663240705">Cómo usar tu prima vacacional de forma inteligente</option>
+          <option value="90357712950631426">¿Por qué se regalan flores amarillas el 21 de marzo?</option>
+          <option value="90357641028803585">Cómo hacer una fiesta de cumpleaños con poco dinero</option>
+          <option value="90312418094283778">¿Qué puedo reciclar y vender para ganar dinero en México?</option>
+          <option value="90312332340165633">¿Cuál es la regla 3, 6 y 9 del dinero?</option>
+          <option value="90312275642612737">¿Cuáles son los 5 hábitos que la gente rica no te contará?</option>
+          <option value="90267532752076801">¿Qué es un crédito educativo y cómo funciona?</option>
+          <option value="90132441420191746">Crédito Cash: Cómo Conseguir Dinero Rápido y Fácil</option>
+          <option value="90086443518541825">¿Cómo dejar de pedir dinero prestado?</option>
+          <option value="90072077713436674">¿Quién está detrás de ALA Préstamos?</option>
+          <option value="90072016271826946">¿Cuánto dinero deberías pedir prestado? Guía  con ALA préstamos</option>
+          <option value="90071841552326657">Estrés financiero: ¿Por qué el cerebro nos traiciona y nos impulsa a pedir más crédito?</option>
+          <option value="89995723169108994">Consejos para pedir dinero en ALA préstamos</option>
+          <option value="89995639131509762">¿Cuánto dinero necesitas para asegurar tu auto en México?</option>
+          <option value="89995409896495617">¿Cómo registrarse en ALA préstamos?</option>
+          <option value="89984367905772546">¿Cómo cubrir gastos durante un puente largo?</option>
+          <option value="89950379506439170">¿Qué hacer si mi empresa no me paga el triple en días festivos?</option>
+          <option value="89950333476574209">¿Qué pasa si no tienes seguro médico en México?</option>
+          <option value="89815738922341377">Por qué las ofertas nos hacen gastar más: La psicología detrás del descuento</option>
+          <option value="89815635409540097">¿Cómo Controlar tus Gastos Diarios y Ahorrar con Éxito?</option>
+          <option value="89815516863304705">Consejos para manejar compras grandes: Guía completa para una salud financiera sólida</option>
+          <option value="89770222661392897">Guía Completa: Consejos para Controlar Gastos en Celebraciones Familiares sin Perder la Alegría</option>
+          <option value="89770156686611458">¿ALA préstamos cuánto dinero me puede prestar? Guía completa 2026</option>
+          <option value="89769549089200641">¿ALA préstamos es confiable? Todo lo que debes saber antes de solicitar crédito online en México</option>
+          <option value="89723721510803969">Contrata un seguro para tu mascota: Preparación financiera para el amor y la responsabilidad en México</option>
+          <option value="89723680458529282">¿Qué regalar el Día Internacional de la Mujer? Prepara un detalle con significado para las mujeres en tu vida en México</option>
+          <option value="89679373011293186">¿Es buena idea pedir un préstamo para comprar un celular? Guía racional para usuarios en México</option>
+          <option value="89679297821006338">¿Problemas de capital en su negocio? Elija los préstamos en línea de ala México para un flujo de capital más eficiente</option>
+          <option value="89361994280065538">Cómo evitar Fraudes de Préstamos en Torreón y elegir opciones seguras</option>
+          <option value="89223338781348866">Guía Económica de Saltillo 2026: El Motor Industrial de México y Oportunidades de Inversión</option>
+          <option value="89171000709387266">Operaciones Causantes de Pasivo Contingente: Guía de Gestión de Riesgos</option>
+          <option value="89170881030642177">¿Qué son las Pérdidas Esperadas Totales y por qué ignorarlas puede hundir tu cartera?</option>
+          <option value="89100143899743234">Inflexión histórica en el mercado de capitales: entre la expansión de múltiplos y el riesgo de complacencia</option>
+          <option value="89100010212022786">¿Qué hacer si no puedo pagar el hospital?</option>
+          <option value="89037677983947265">¿Cómo usar ALA Préstamo para pedir dinero?</option>
+          <option value="88894372262435329">Cuando la universidad se encarece de golpe: cómo cubrir gastos inesperados sin desordenar tus finanzas</option>
+          <option value="88851534915605505">Reservas Admisibles Totales: definición, alcance y criterios regulatorios</option>
+          <option value="88803617483774466">Razones Financieras: Qué Son y Por Qué Importan en la Gestión Empresarial</option>
+          <option value="88803072791057409">Operaciones en finanza: qué son, cómo funcionan y por qué son clave en la economía</option>
+          <option value="88725828305458177">¿Amenazas de apps de préstamo en México? Lo que sí cumplen, lo que no y cómo proteger tu lana</option>
+          <option value="88715614633120258">Rendimiento sobre el Capital (ROE): Qué es y cómo interpretarlo</option>
+          <option value="88668396382376449">El Motor Mexicano en una Encrucijada: Entre el Récord Histórico y la Sombra Arancelaria</option>
+          <option value="88668279805044225">¿Qué es la Unidad Especializada y por qué es tu mejor guardaespaldas ante los bancos?</option>
+          <option value="88501133420520962">Diccionario Financiero: ¿Qué es el Plazo Efectivo o de Vencimiento (V)?</option>
+          <option value="88454938755308546">Guía Completa de las Unidades de Inversión (UDIs): Qué son y cómo protegen tu dinero</option>
+          <option value="88365107166394882">Pérdida en Caso de Incumplimiento (Loss Given Default - LGD)</option>
+          <option value="88229305675652098">Ventas Netas vs. Ingresos Netos: Guía para no confundir facturación con ganancia</option>
+          <option value="88229169022082050">Préstamos sin intereses: guía práctica para pedir dinero sin pagar extra</option>
+          <option value="88223927791335938">Quitas, condonaciones, bonificaciones y descuentos: ¿Qué son y cómo usarlos para liquidar tus deudas?</option>
+          <option value="88223808753998849">¿Te deben dinero y no te pagan? Guía para recuperar tu préstamo sin perder la calma</option>
+          <option value="88138881148992001">¿Préstamo familiar o dolor de cabeza? Cómo ayudar sin poner en riesgo tu lana</option>
+          <option value="88138685390862850">Periodo de Facturación: Guía completa para entender tus finanzas</option>
+          <option value="88093129783304705">El Avance de la Informalidad: Un Diagnóstico del Estancamiento y su Impacto en el Patrimonio Familiar</option>
+          <option value="88092817766408705">¿Qué son los préstamos interbancarios y por qué te conviene saber quién se presta lana con quién?</option>
+          <option value="88092527773803010">¿Tu dinero rinde menos? 3 formas en que la inflación está golpeando el bolsillo de los mexicanos en 2026</option>
+          <option value="88092373980257281">Reglas de Capitalización: qué son, para qué sirven y cómo funcionan</option>
+          <option value="88033298727279618">Operaciones sujetas a riesgo de crédito: conceptos clave y aplicaciones reales</option>
+          <option value="87868583320412674">Digitalización y Ahorro en 2026: La Tecnología como Herramienta de Gestión Financiera</option>
+          <option value="87868531406987778">Si las apps de préstamos te acosan, cómo protegerte</option>
+          <option value="87868471737246209">Remuneración ordinaria: qué es y cómo funciona</option>
+          <option value="87854328263250946">Probabilidad de Incumplimiento (PI): Qué es, cómo se calcula y por qué define tu acceso al crédito</option>
+        </select>
       </div>
-      <div class="mobile-blog-swiper1-navigtion">
-        <button class="mobile-blog-swiper1-navigtion-right" style="width: 44px;height: 44px"></button>
-        <button class="mobile-blog-swiper1-navigtion-left" style="width: 44px;height: 44px;"></button>
+      <ul id="blogList" class="ala-editorial-grid" aria-busy="true"></ul>
+      <p id="blogStatus" class="ala-editorial-index-status" role="status" hidden></p>
+      <div class="ala-editorial-index-pagination">
+        <button type="button" class="ala-editorial-cta" id="loadMoreArticles" aria-controls="blogList" hidden>Cargar más artículos</button>
       </div>
-    </div>
-
-    <div class="ala-size ala-lh ala-mt title-wrap motion-element " style="--base-mt: 160px">
-      <span style="display: inline-block; width: 75%">Secciones</span>
-    </div>
-    <div style="transform: scale(0.9)">
-      <div class="ala-mt swiper-menu-wrap d-none d-lg-block motion-element  ala-mr ala-ml" style="overflow-x: hidden; --base-mr: 128px; --base-ml: 128px;">
-        <div class="blog-menu-wrap swiper-wrapper"></div>
-      </div>
-    </div>
-
-    <div class="mobile-blog-menu d-lg-none">
-      <div class="swiper" id="mobileBlogMenuSwiper">
-        <div class="swiper-wrapper"></div>
-      </div>
-    </div>
-
-    <div class="ala-mt blog-bottom-wrap motion-element"
-      style="--base-mt: 185px; width: 100%; overflow: hidden; background-color: #ffffff">
-      <div class="ala-size ala-lh ala-mt title-wrap" style="--base-mt: 160px">
-        <span class="ala-width" style="display: inline-block; --base-width: 1120px;">Más contenido</span>
-      </div>
-      <div class="ala-mt ala-mr ala-mb ala-ml ala-gap blog-tag-box">
-        <button class="ala-height ala-width blog-tag-navigtion-right" style=""></button>
-        <div class="blog-tag-wrap-box">
-          <div class="blog-tag-wrap">
-            <div class="blog-swiper-contailer swiper-wrapper">
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="Todo">Todo</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="100866747192005633">Cómo elegir un préstamo personal en México según tu capacidad de pago</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="100130165386192385">¿Qué hacer ante la presunta suplantación de ALA o dudas sobre el proceso de cobranza?</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="100129085958465025">¿Qué pasa si tengo un atraso en mi préstamo ALA?</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="98919949525079554">Cómo identificar préstamos en línea seguros en México: guía para evitar fraudes y elegir con confianza</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="98919710839922690">Cómo identificar préstamos en línea seguros en México</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="97331355251241985">Solicitar un préstamo: 3 errores que debes evitar</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="96923634130949634">¿Cómo funciona el proceso de control de riesgos en créditos en línea y por qué recopilamos sus datos?</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="96923204543931393">Tasa de interés, comisiones y CAT: ¿Cómo entender el costo real de un crédito?</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="96696063139714562">Préstamos de día de pago en México: ventajas, riesgos y alternativas</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="96650593942050306">Disfruta Cancún sin preocupaciones: Guía de viaje y finanzas</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="95741740633270274">¿Por qué mi primer préstamo en línea es tan bajo?</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="95509687776703490">¿Cómo identificar un sitio web oficial de préstamos y evitar fraudes?</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="95144681278366722">¿Por qué rechazan mi solicitud de préstamo en línea?</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="94783149801149953">¿Cómo leer un contrato de préstamo? Guía paso a paso</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="94519732195145217">¿Cómo presentar una reclamación ante la CONDUSEF en CDMX?</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="94466181593413121">¿Para qué sirve el reconocimiento facial al solicitar un préstamo?</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="94390256784530433">¿Qué es el comprobante de ingresos para solicitar préstamos en CDMX?</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="94377935643237377">Cómo verificar una app de préstamo en el SIPRES de CONDUSEF en CDMX</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="94163658799799809">¿Cómo checar números telefónicos de préstamos en Aguascalientes?</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="94104947459513345">Lugares donde solicitar préstamos en Querétaro</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="93785535221750785">¿Cómo solicitar préstamos en efectivo en Walmart Mexicali? </div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="93573961847889410">Las 5 mejores opciones de préstamos urgentes y sin buró en Monterrey</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="93515242679262722">Deducible y Coaseguro: ¿Cómo elegir para no perder dinero?</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="93256786782181889">Cómo usar la CONDUSEF para que no te estafen</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="92880911902940162">¿Préstamo muy bajo? Haz esto para subir tu límite</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="92880832733503490">La verdad sobre el Buró de Crédito y cómo repararlo</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="92034687285042177">¿Cómo funciona el pago sin intereses? </div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="92019623241048066">¿Cómo eliminar tus datos de apps de préstamos?</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="91944474671294465">¿Cuáles son los 7 tipos de préstamos?</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="91672720427856386">¿Cuál es el proceso de aprobación de un préstamo?</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="91670655876701185">¿Cuánto es un buen límite de crédito?</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="91669913626615298">¿Qué pasa si gasto todo mi crédito?</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="91582236543654913">¿Por qué motivos puedo retirar dinero de mi Afore?</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="91033754497705474">Diferencia entre CLABE y número de cuenta</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="90719549271978497">Qué hacer si no te pagan la tanda en México</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="90719505653687809">¿Cuánto cuesta un divorcio rápido y barato en 2026?</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="90629261453420033">Problemas al cobrar incapacidad por maternidad</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="90584621377008129">Lo que debes hablar antes de casarte por el civil en México</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="90403015977412098">¿Cuál es el costo del pasaporte mexicano en 2026?</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="90402959663240705">Cómo usar tu prima vacacional de forma inteligente</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="90357712950631426">¿Por qué se regalan flores amarillas el 21 de marzo?</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="90357641028803585">Cómo hacer una fiesta de cumpleaños con poco dinero</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="90312418094283778">¿Qué puedo reciclar y vender para ganar dinero en México?</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="90312332340165633">¿Cuál es la regla 3, 6 y 9 del dinero?</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="90312275642612737">¿Cuáles son los 5 hábitos que la gente rica no te contará?</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="90267532752076801">¿Qué es un crédito educativo y cómo funciona?</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="90132441420191746">Crédito Cash: Cómo Conseguir Dinero Rápido y Fácil</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="90086443518541825">¿Cómo dejar de pedir dinero prestado?</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="90072077713436674">¿Quién está detrás de ALA Préstamos? </div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="90072016271826946">¿Cuánto dinero deberías pedir prestado? Guía  con ALA préstamos</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="90071841552326657">Estrés financiero: ¿Por qué el cerebro nos traiciona y nos impulsa a pedir más crédito?</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="89995723169108994">Consejos para pedir dinero en ALA préstamos</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="89995639131509762">¿Cuánto dinero necesitas para asegurar tu auto en México?</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="89995409896495617">¿Cómo registrarse en ALA préstamos?</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="89984367905772546">¿Cómo cubrir gastos durante un puente largo?</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="89950379506439170">¿Qué hacer si mi empresa no me paga el triple en días festivos? </div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="89950333476574209">¿Qué pasa si no tienes seguro médico en México? </div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="89815738922341377">Por qué las ofertas nos hacen gastar más: La psicología detrás del descuento</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="89815635409540097">¿Cómo Controlar tus Gastos Diarios y Ahorrar con Éxito?</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="89815516863304705">Consejos para manejar compras grandes: Guía completa para una salud financiera sólida</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="89770222661392897">Guía Completa: Consejos para Controlar Gastos en Celebraciones Familiares sin Perder la Alegría</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="89770156686611458">¿ALA préstamos cuánto dinero me puede prestar? Guía completa 2026</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="89769549089200641">¿ALA préstamos es confiable? Todo lo que debes saber antes de solicitar crédito online en México</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="89723721510803969">Contrata un seguro para tu mascota: Preparación financiera para el amor y la responsabilidad en México</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="89723680458529282">¿Qué regalar el Día Internacional de la Mujer? Prepara un detalle con significado para las mujeres en tu vida en México</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="89679373011293186">¿Es buena idea pedir un préstamo para comprar un celular? Guía racional para usuarios en México</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="89679297821006338">¿Problemas de capital en su negocio? Elija los préstamos en línea de ala México para un flujo de capital más eficiente</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="89361994280065538">Cómo evitar Fraudes de Préstamos en Torreón y elegir opciones seguras</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="89223338781348866">Guía Económica de Saltillo 2026: El Motor Industrial de México y Oportunidades de Inversión</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="89171000709387266">Operaciones Causantes de Pasivo Contingente: Guía de Gestión de Riesgos</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="89170881030642177">¿Qué son las Pérdidas Esperadas Totales y por qué ignorarlas puede hundir tu cartera?</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="89100143899743234">Inflexión histórica en el mercado de capitales: entre la expansión de múltiplos y el riesgo de complacencia</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="89100010212022786">¿Qué hacer si no puedo pagar el hospital?</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="89037677983947265">¿Cómo usar ALA Préstamo para pedir dinero?</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="88894372262435329">Cuando la universidad se encarece de golpe: cómo cubrir gastos inesperados sin desordenar tus finanzas</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="88851534915605505">Reservas Admisibles Totales: definición, alcance y criterios regulatorios</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="88803617483774466">Razones Financieras: Qué Son y Por Qué Importan en la Gestión Empresarial</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="88803072791057409">Operaciones en finanza: qué son, cómo funcionan y por qué son clave en la economía</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="88725828305458177">¿Amenazas de apps de préstamo en México? Lo que sí cumplen, lo que no y cómo proteger tu lana</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="88715614633120258">Rendimiento sobre el Capital (ROE): Qué es y cómo interpretarlo</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="88668396382376449">El Motor Mexicano en una Encrucijada: Entre el Récord Histórico y la Sombra Arancelaria</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="88668279805044225">¿Qué es la Unidad Especializada y por qué es tu mejor guardaespaldas ante los bancos?</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="88501133420520962">Diccionario Financiero: ¿Qué es el Plazo Efectivo o de Vencimiento (V)?</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="88454938755308546">Guía Completa de las Unidades de Inversión (UDIs): Qué son y cómo protegen tu dinero</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="88365107166394882">Pérdida en Caso de Incumplimiento (Loss Given Default - LGD)</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="88229305675652098">Ventas Netas vs. Ingresos Netos: Guía para no confundir facturación con ganancia</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="88229169022082050">Préstamos sin intereses: guía práctica para pedir dinero sin pagar extra</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="88223927791335938">Quitas, condonaciones, bonificaciones y descuentos: ¿Qué son y cómo usarlos para liquidar tus deudas?</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="88223808753998849">¿Te deben dinero y no te pagan? Guía para recuperar tu préstamo sin perder la calma</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="88138881148992001">¿Préstamo familiar o dolor de cabeza? Cómo ayudar sin poner en riesgo tu lana </div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="88138685390862850">Periodo de Facturación: Guía completa para entender tus finanzas</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="88093129783304705">El Avance de la Informalidad: Un Diagnóstico del Estancamiento y su Impacto en el Patrimonio Familiar</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="88092817766408705">¿Qué son los préstamos interbancarios y por qué te conviene saber quién se presta lana con quién?</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="88092527773803010">¿Tu dinero rinde menos? 3 formas en que la inflación está golpeando el bolsillo de los mexicanos en 2026</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="88092373980257281">Reglas de Capitalización: qué son, para qué sirven y cómo funcionan</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="88033298727279618">Operaciones sujetas a riesgo de crédito: conceptos clave y aplicaciones reales</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="87868583320412674">Digitalización y Ahorro en 2026: La Tecnología como Herramienta de Gestión Financiera</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="87868531406987778">Si las apps de préstamos te acosan, cómo protegerte</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="87868471737246209">Remuneración ordinaria: qué es y cómo funciona</div>
-              </div>
-              <div class="ala-pr ala-pl ala-pt ala-pb blog-tag-slide swiper-slide" tabindex="0" role="button">
-                <div class="ala-size ala-lh blog-tag-name" data-tagId="87854328263250946">Probabilidad de Incumplimiento (PI): Qué es, cómo se calcula y por qué define tu acceso al crédito</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <button class="ala-height ala-width blog-tag-navigtion-left" style=""></button>
-      </div>
-
-      <div id="blogList" class="ala-pl ala-pr ala-mt ala-mr ala-ml"></div>
-      <div class="more-articles-container">
-        <div class="ala-height ala-mt ala-mb more-article-button d-none d-lg-block appendArticlesButton">
-          <img class="ala-height" src="../../live/blog/ala-www/img/blog-more-button-pc.png" onclick="loadMoreArticles()" />
-        </div>
-        <div class="more-article-button-mobile d-lg-none appendArticlesButton">
-          <img src="../../live/blog/ala-www/img/blog-more-button-mobile.png" onclick="loadMoreArticles()" />
-        </div>
-        <div id="noMoreTips" class="text-center text-muted res-mt" style="display: none;"></div>
-      </div>
-    </div>
-  </div>
+    </section>
+  </main>
 <style>
   * {
     box-sizing: border-box;
@@ -1258,7 +998,7 @@ CIUDAD DE MÉXICO, C.P. 06500, MÉXICO</div>
     </div>
 </div>
 </body>
-  <script src="../../live/blog/ala-www/js/utils.js" defer></script>
-  <script src="../../live/blog/ala-www/js/blog-page.js" defer></script>
+  <script src="../../live/blog/article-cards.js?v=20261117-editorial" defer></script>
+  <script src="../../live/blog/ala-www/js/blog-page.js?v=20261117-editorial" defer></script>
 
 </html>
