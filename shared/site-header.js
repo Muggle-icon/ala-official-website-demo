@@ -1,125 +1,192 @@
 (() => {
   const siteHeader = document.querySelector('.ala-site-chrome');
+  if (!siteHeader) return;
 
-  if (siteHeader) {
-    const menu = siteHeader.querySelector('.ala-header-menu');
-    const nav = siteHeader.querySelector('.ala-header-nav');
-    const blog = siteHeader.querySelector('.ala-header-item--blog');
-    const trigger = blog.querySelector('.ala-header-trigger');
-    const submenu = blog.querySelector('.ala-header-drop');
-    const desktop = matchMedia('(min-width: 992px)');
-    const finePointer = matchMedia('(hover: hover) and (pointer: fine)');
-    let openTimer;
-    let closeTimer;
-    let pointerInNav = false;
+  const bar = siteHeader.querySelector('.ala-header-bar');
+  const nav = siteHeader.querySelector('.ala-header-nav');
+  const menu = siteHeader.querySelector('.ala-header-menu');
+  const notice = siteHeader.querySelector('.ala-site-notice');
+  const desktop = matchMedia('(min-width: 1101px)');
+  const finePointer = matchMedia('(hover: hover) and (pointer: fine)');
+  const disclosures = [...nav.querySelectorAll('[data-ala-menu]')].map(trigger => ({
+    trigger,
+    panel: document.getElementById(trigger.getAttribute('aria-controls')),
+  }));
+  let active = null;
+  let openTimer;
+  let closeTimer;
+  let scrollFrame = 0;
+  let releasePage = null;
 
-    function updateTone() {
-      siteHeader.toggleAttribute('data-solid', window.scrollY > 16 || !submenu.hidden || pointerInNav);
+  function positionHeader() {
+    const noticeHeight = notice?.offsetHeight ?? 0;
+    const top = Math.max(0, noticeHeight - window.scrollY);
+    siteHeader.style.setProperty('--ala-header-top', top + 'px');
+    siteHeader.toggleAttribute('data-solid', !notice || top === 0 || Boolean(active));
+    document.documentElement.style.setProperty('--ala-scroll-offset', (top + bar.offsetHeight + 16) + 'px');
+
+    if (desktop.matches && active) {
+      const { trigger, panel } = active;
+      const bounds = trigger.getBoundingClientRect();
+      const panelWidth = panel.offsetWidth;
+      const left = Math.max(16, Math.min(
+        bounds.left + (bounds.width - panelWidth) / 2,
+        document.documentElement.clientWidth - panelWidth - 16,
+      ));
+      panel.style.setProperty('--ala-dropdown-left', (left - trigger.parentElement.getBoundingClientRect().left) + 'px');
     }
+  }
 
-    function setSubmenu(open) {
-      clearTimeout(openTimer);
-      clearTimeout(closeTimer);
-      submenu.hidden = !open;
-      trigger.setAttribute('aria-expanded', String(open));
-      updateTone();
+  function showDisclosure(item, moveFocus = false) {
+    clearTimeout(openTimer);
+    clearTimeout(closeTimer);
+    active = item;
+    for (const disclosure of disclosures) {
+      const expanded = disclosure === active;
+      disclosure.trigger.setAttribute('aria-expanded', String(expanded));
+      disclosure.panel.hidden = !expanded;
     }
+    positionHeader();
+    if (moveFocus) active?.panel.querySelector('a')?.focus({ preventScroll: true });
+  }
 
-    function setMobile(open) {
-      siteHeader.toggleAttribute('data-mobile-open', open);
-      menu.setAttribute('aria-expanded', String(open));
-      menu.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
-      if (!open) setSubmenu(false);
+  function lockPage() {
+    const siblings = [...document.body.children].filter(element =>
+      element !== siteHeader && !['SCRIPT', 'STYLE', 'LINK'].includes(element.tagName)
+    );
+    const inertStates = [...siblings, notice, siteHeader.querySelector('.ala-header-skip')]
+      .filter(Boolean).map(element => [element, element.inert]);
+    for (const [element] of inertStates) element.inert = true;
+    const scrollY = window.scrollY;
+    const overflow = document.documentElement.style.overflow;
+    document.documentElement.style.overflow = 'hidden';
+    return () => {
+      document.documentElement.style.overflow = overflow;
+      for (const [element, inert] of inertStates) element.inert = inert;
+      if (window.scrollY !== scrollY) window.scrollTo({ top: scrollY, behavior: 'instant' });
+    };
+  }
+
+  function setMobile(open, restoreFocus = false) {
+    if (siteHeader.hasAttribute('data-mobile-open') === open) return;
+    siteHeader.toggleAttribute('data-mobile-open', open);
+    menu.setAttribute('aria-expanded', String(open));
+    menu.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+
+    if (open) {
+      bar.setAttribute('role', 'dialog');
+      bar.setAttribute('aria-modal', 'true');
+      bar.setAttribute('aria-label', 'Menú de navegación');
+      releasePage = lockPage();
+      menu.focus({ preventScroll: true });
+    } else {
+      bar.removeAttribute('role');
+      bar.removeAttribute('aria-modal');
+      bar.removeAttribute('aria-label');
+      releasePage?.();
+      releasePage = null;
+      showDisclosure(null);
+      if (restoreFocus && !desktop.matches) menu.focus({ preventScroll: true });
     }
+  }
 
-    menu.addEventListener('click', () => setMobile(!siteHeader.hasAttribute('data-mobile-open')));
-    trigger.addEventListener('click', () => setSubmenu(submenu.hidden));
-    nav.addEventListener('pointerenter', () => {
-      pointerInNav = desktop.matches && finePointer.matches;
-      updateTone();
-    });
-    nav.addEventListener('pointerleave', () => {
-      pointerInNav = false;
-      updateTone();
-    });
+  menu.addEventListener('click', () => setMobile(!siteHeader.hasAttribute('data-mobile-open'), true));
 
-
-    blog.addEventListener('pointerenter', () => {
-      if (!desktop.matches || !finePointer.matches) return;
-      clearTimeout(closeTimer);
-      if (submenu.hidden) openTimer = setTimeout(() => setSubmenu(true), 100);
-    });
-
-    blog.addEventListener('pointerleave', () => {
-      if (!desktop.matches || !finePointer.matches) return;
-      clearTimeout(openTimer);
-      if (!submenu.contains(document.activeElement)) closeTimer = setTimeout(() => setSubmenu(false), 150);
-    });
-
-    nav.querySelectorAll('.ala-header-list > .ala-header-item:not(.ala-header-item--blog)').forEach(item => {
-      item.addEventListener('pointerenter', () => {
-        if (desktop.matches && !submenu.contains(document.activeElement)) setSubmenu(false);
-      });
-    });
-
-    blog.addEventListener('focusout', event => {
-      if (!blog.contains(event.relatedTarget)) setSubmenu(false);
-    });
-
-    blog.addEventListener('keydown', event => {
-      if (event.key !== 'ArrowDown' || submenu.contains(event.target)) return;
+  for (const item of disclosures) {
+    item.trigger.addEventListener('click', () => showDisclosure(active === item ? null : item));
+    item.trigger.addEventListener('keydown', event => {
+      if (event.key !== 'ArrowDown') return;
       event.preventDefault();
-      setSubmenu(true);
-      submenu.querySelector('a').focus();
+      showDisclosure(item, true);
     });
+  }
 
-    document.addEventListener('pointerdown', event => {
-      if (!siteHeader.contains(event.target)) setMobile(false);
+  for (const control of nav.querySelectorAll('.ala-header-item > :is(a, button)')) {
+    control.addEventListener('pointerenter', () => {
+      if (!desktop.matches || !finePointer.matches) return;
+      const item = disclosures.find(disclosure => disclosure.trigger === control) ?? null;
+      if (!item || active) showDisclosure(item);
+      else openTimer = setTimeout(() => showDisclosure(item), 120);
     });
+    control.addEventListener('pointerleave', () => clearTimeout(openTimer));
+  }
 
-    document.addEventListener('keydown', event => {
-      if (event.key !== 'Escape' || document.querySelector('.ala-security-dialog[open]')) return;
-      if (!submenu.hidden) {
-        setSubmenu(false);
-        if (blog.contains(document.activeElement)) trigger.focus();
-      } else if (siteHeader.hasAttribute('data-mobile-open')) {
-        setMobile(false);
-        menu.focus();
+  bar.addEventListener('pointerenter', () => clearTimeout(closeTimer));
+  bar.addEventListener('pointerleave', () => {
+    clearTimeout(openTimer);
+    if (!desktop.matches || !finePointer.matches) return;
+    closeTimer = setTimeout(() => {
+      if (!active?.panel.contains(document.activeElement)) showDisclosure(null);
+    }, 180);
+  });
+
+  nav.addEventListener('focusout', event => {
+    if (desktop.matches && !nav.contains(event.relatedTarget)) showDisclosure(null);
+  });
+
+  nav.addEventListener('click', event => {
+    if (!event.target.closest('a')) return;
+    setMobile(false);
+    showDisclosure(null);
+  });
+
+  document.addEventListener('pointerdown', event => {
+    if (desktop.matches && !bar.contains(event.target)) showDisclosure(null);
+  });
+
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && !document.querySelector('.ala-security-dialog[open]')) {
+      if (active) {
+        const { trigger } = active;
+        showDisclosure(null);
+        trigger.focus({ preventScroll: true });
+      } else setMobile(false, true);
+    }
+
+    if (event.key === 'Tab' && releasePage) {
+      const visible = [...bar.querySelectorAll('button, a')].filter(element => element.getClientRects().length);
+      const first = visible[0];
+      const last = visible.at(-1);
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
       }
-    });
-
-    desktop.addEventListener('change', () => {
-      pointerInNav = false;
-      setMobile(false);
-    });
-    window.addEventListener('scroll', updateTone, { passive: true });
-    window.addEventListener('pageshow', updateTone);
-    updateTone();
-
-    const observer = new ResizeObserver(() => {
-      document.documentElement.style.setProperty('--ala-scroll-offset', `${siteHeader.offsetHeight + 12}px`);
-    });
-    observer.observe(siteHeader);
-
-    const homeHero = document.querySelector('.ala-home .main-top-bg');
-    if (homeHero) {
-      const dockVisibility = new IntersectionObserver(([entry]) => {
-        document.body.toggleAttribute('data-after-home-hero', !entry.isIntersecting && entry.boundingClientRect.bottom <= 0);
-      });
-      dockVisibility.observe(homeHero);
     }
+  });
 
+  window.addEventListener('scroll', () => {
+    if (desktop.matches && active) showDisclosure(null);
+    if (scrollFrame) return;
+    scrollFrame = requestAnimationFrame(() => {
+      scrollFrame = 0;
+      positionHeader();
+    });
+  }, { passive: true });
+  window.addEventListener('resize', positionHeader);
+  window.addEventListener('hashchange', () => showDisclosure(null));
+  window.addEventListener('pageshow', positionHeader);
+  desktop.addEventListener('change', () => {
+    setMobile(false);
+    showDisclosure(null);
+  });
 
-    const dialog = document.querySelector('.ala-security-dialog');
-    if (dialog) {
-      const opener = siteHeader.querySelector('.ala-notice-more');
-      opener.addEventListener('click', () => dialog.showModal());
-      dialog.addEventListener('click', event => {
-        if (event.target !== dialog) return;
-        const { left, right, top, bottom } = dialog.getBoundingClientRect();
-        if (event.clientX < left || event.clientX > right || event.clientY < top || event.clientY > bottom) dialog.close();
-      });
-      dialog.addEventListener('close', () => opener.focus());
-    }
+  const sizes = new ResizeObserver(positionHeader);
+  sizes.observe(bar);
+  if (notice) sizes.observe(notice);
+  document.fonts.ready.then(positionHeader);
+  positionHeader();
+
+  const dialog = document.querySelector('.ala-security-dialog');
+  if (notice && dialog) {
+    notice.addEventListener('click', () => dialog.showModal());
+    dialog.addEventListener('click', event => {
+      if (event.target !== dialog) return;
+      const { left, right, top, bottom } = dialog.getBoundingClientRect();
+      if (event.clientX < left || event.clientX > right || event.clientY < top || event.clientY > bottom) dialog.close();
+    });
+    dialog.addEventListener('close', () => notice.focus({ preventScroll: true }));
   }
 })();

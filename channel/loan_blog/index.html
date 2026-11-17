@@ -49,44 +49,63 @@
 <meta name="robots" content="noindex,nofollow">
 <link rel="stylesheet" href="../../live/blog/blog-content.css">
 <script src="../../live/blog/blog-runtime.js"></script>
-  <link rel="stylesheet" href="../../shared/site-header.css?v=fa7d3493ca">
-  <script src="../../shared/site-header.js?v=79b12105f8" defer></script>
+  <link rel="stylesheet" href="../../shared/site-header.css?v=8fe9755d2b">
+  <script src="../../shared/site-header.js?v=2b9e96d297" defer></script>
 </head>
 
 <body>
   <!-- ALA header start -->
 <div class="ala-site-chrome">
   <a class="ala-header-skip" href="#ala-content">Ir al contenido</a>
+  <div class="ala-header-reserve" aria-hidden="true"></div>
   <header class="ala-header-bar">
     <div class="ala-header-frame">
       <a class="ala-header-logo" href="../../" aria-label="ALA, inicio">
-        <img class="ala-header-icon" src="../../live/ala-www/img/logo.png" width="36" height="36" alt="">
-        <img class="ala-header-wordmark" src="../../live/ala-www/img/alaText.png" width="52" height="16" alt="">
-        <img class="ala-header-wordmark ala-header-wordmark--white" src="../../live/ala-www/img/alaTextWhite.png" width="52" height="16" alt="">
+        <img class="ala-header-wordmark ala-header-wordmark--white" src="../../public/assets/ala-logo.png" width="126" height="48" alt="">
+        <img class="ala-header-wordmark ala-header-wordmark--dark" src="../../public/assets/nav-logo-dark.png" width="126" height="48" alt="">
+        <img class="ala-header-icon" src="../../public/assets/ala-app-icon.png" width="29" height="29" alt="">
       </a>
+      <a class="ala-header-about" href="../../channel/about-ala/">Sobre ALA <span aria-hidden="true">›</span></a>
       <button class="ala-header-menu" type="button" aria-label="Abrir menú" aria-controls="ala-nav" aria-expanded="false">
-        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
       </button>
       <nav class="ala-header-nav" id="ala-nav" aria-label="Navegación principal">
         <ul class="ala-header-list">
-        <li class="ala-header-item"><a class="ala-header-link" href="../../">Introducción del producto</a></li>
-        <li class="ala-header-item"><a class="ala-header-link" href="../../channel/loan_protection/">Protección regulatoria</a></li>
-        <li class="ala-header-item ala-header-item--blog">
-          <a class="ala-header-link" href="../../channel/loan_blog/" aria-current="page">Blog</a>
-          <button class="ala-header-trigger" type="button" aria-label="Categorías de Blog" aria-controls="ala-blog-nav" aria-expanded="false"><span class="ala-header-chevron" aria-hidden="true"></span></button>
-          <div class="ala-header-drop" id="ala-blog-nav" hidden>
-            <ul class="ala-header-drop-list">
-              <li><a class="ala-header-link" href="../../channel/guia-de-prestamos/">Guía de préstamos</a></li>
-              <li><a class="ala-header-link" href="../../channel/loan_financiero/">Diccionario financiero</a></li>
-              <li><a class="ala-header-link" href="../../channel/noticias-financieras/">Noticias financieras</a></li>
-              <li><a class="ala-header-link" href="../../channel/loan_city/">Préstamo en tu ciudad</a></li>
-            </ul>
-          </div>
-        </li>
-        <li class="ala-header-item"><a class="ala-header-link" href="../../channel/loan_faq/">Ayuda</a></li>
-        <li class="ala-header-item"><a class="ala-header-link" href="../../channel/about-ala/">Acerca de ALA</a></li>
+      <li class="ala-header-item"><a class="ala-header-link" href="../../">Introducción del producto</a></li>
+      <li class="ala-header-item"><a class="ala-header-link" href="../../channel/loan_protection/">Protección regulatoria</a></li>
+      <li class="ala-header-item ala-header-disclosure">
+        <button class="ala-header-trigger" type="button" data-ala-menu="blog" aria-controls="ala-nav-blog" aria-expanded="false">
+          Blog <span class="ala-header-chevron" aria-hidden="true"></span>
+        </button>
+        <ul class="ala-header-drop" id="ala-nav-blog" hidden>
+            <li><a class="ala-header-link" href="../../channel/loan_blog/" aria-current="page">Blog de préstamos ALA</a></li>
+            <li><a class="ala-header-link" href="../../channel/guia-de-prestamos/">Guía de préstamos</a></li>
+            <li><a class="ala-header-link" href="../../channel/loan_financiero/">Diccionario financiero</a></li>
+            <li><a class="ala-header-link" href="../../channel/noticias-financieras/">Noticias financieras</a></li>
+            <li><a class="ala-header-link" href="../../channel/loan_city/">Préstamo en tu ciudad</a></li>
         </ul>
+      </li>
+      <li class="ala-header-item ala-header-disclosure">
+        <button class="ala-header-trigger" type="button" data-ala-menu="more" aria-controls="ala-nav-more" aria-expanded="false">
+          Más información <span class="ala-header-chevron" aria-hidden="true"></span>
+        </button>
+        <ul class="ala-header-drop" id="ala-nav-more" hidden>
+            <li><a class="ala-header-link" href="../../channel/about-ala/">Sobre ALA</a></li>
+            <li><a class="ala-header-link" href="../../channel/help-center/#canales-de-atencion">Contáctanos</a></li>
+            <li><a class="ala-header-link" href="../../#documentos-legales">Documentos legales</a></li>
+            <li><a class="ala-header-link" href="../../channel/help-center/">Centro de ayuda</a></li>
+            <li><a class="ala-header-link" href="../../channel/loan_faq/">Preguntas frecuentes</a></li>
+            <li><a class="ala-header-link" href="../../channel/loan_protection/">Protección regulatoria</a></li>
+        </ul>
+      </li>
+      <li class="ala-header-item"><a class="ala-header-link" href="../../channel/loan_faq/">Preguntas frecuentes</a></li>
+        </ul>
+        <a class="ala-header-help" href="../../channel/help-center/">Centro de ayuda <span aria-hidden="true">↗</span></a>
       </nav>
+      <div class="ala-header-downloads" aria-label="Descargar ALA">
+        <a href="https://sofom-ala.onelink.me/uTdM/taq3lvd3" aria-label="Descargar ALA en Google Play"><img src="../../public/assets/nav-google.png" width="48" height="48" alt=""></a>
+        <a href="https://sofom-ala.onelink.me/ndX5/mbzy0s0s" aria-label="Descargar ALA en App Store"><img src="../../public/assets/nav-ios.png" width="48" height="48" alt=""></a>
+      </div>
     </div>
   </header>
 </div>

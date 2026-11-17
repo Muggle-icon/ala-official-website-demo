@@ -1,11 +1,15 @@
-# Navigation and reading review
+# ALA homepage and global navigation
 
-| Priority | Observation | Change |
-| --- | --- | --- |
-| High | Primary navigation and article links could leave the demo | Localize primary routes, article details, listings, help and public legal files. Review cross-page links on the deployed project prefix. |
-| High | The homepage, secondary pages and review pages used different header implementations | Use one rendered HTML header, a 64px desktop row, a 60px mobile row and 15px labels. Keep the current page underlined on desktop and highlighted in the mobile list. |
-| High | Dropdown state depended on pointer position and the position of crossed elements | Use a 100ms intent delay and a 150ms leave delay with a contiguous pointer target. Close immediately on moving to another main item. Support Arrow Down, Escape, outside click and visible keyboard focus. |
-| Medium | Hero text faded in after the layout was already visible, and desktop help promos could cover reading controls | Render the home title on first paint. The security notice remains in the header, and its details open on request. Show a compact contact button and reveal the larger home QR after the hero leaves the viewport on wide screens. |
-| Medium | The same navigation roles and page headings had inconsistent sizes | Use Roboto throughout shared navigation and unify its labels, principal headers and reading styles. Apply 32–48px to page titles and 16px with 26px leading to reading copy. |
+The reviewed home reference is the original Demo's 1945 navigation worktree, which includes the final adjustment to the symmetric dropdown. The same proportions and behavior apply to each page in the review site. The homepage also uses the approved portrait crops and restores the original content entrance rhythm. Current product disclosures remain in the hero.
 
-The visible structure of [Wise Mexico](https://wise.com/mx/) informed keeping help separate from product navigation. [GOV.UK service navigation](https://design-system.service.gov.uk/components/service-navigation/) informed reuse, mobile disclosure and current-page semantics. [Stripe Mexico](https://stripe.com/mx) was used to compare how grouped links and primary destinations are presented. The ALA timing and size values are design decisions for this demo.
+| Item | Review specifications |
+| --- | --- |
+| Desktop header | At 1920 × 1080 the bar is 72px, the logo is 126 × 48px, and links use Roboto 16/24 at weight 400. At 1440 × 900 the same values are 54px, 94.5 × 36px and 12/18. |
+| Scroll states | The notice is part of the page flow. The fixed bar follows its remaining height as it leaves the viewport and becomes solid white when it reaches the top. The white bar also appears while a desktop disclosure is open. |
+| Drop-downs | Links and triggers use the same type. The surface is centered on the trigger, padded 12px and rounded to 12px. Active or hovered triggers receive a gray fill. Moving between menus clears the previous highlight immediately. Route position is conveyed semantically. |
+| Mobile | Retain the app icon, centered Sobre ALA pill and unboxed hamburger. Opening the menu provides independent scrolling, a focus boundary and Escape to return focus. The real browser supplies the device status bar. |
+| Homepage hero | Title, store links and statistics enter in order at 0, 80 and 160ms. The 440ms desktop duration becomes 320ms on phones. Their position and size stay stable. |
+| Application steps | Section title is 28–40px in one ink color. Step headings use 24/30 and copy uses 16/24. Four equally sized cards use manual arrow, keyboard and touch scrolling. The cards extend together when text needs extra room. |
+| Help and download | The compact control stays at 44px high throughout the page. The QR opens on demand. The mobile control appears after the hero clears, leaving both app-store links unobscured on entry. |
+
+At 1496 × 716, [ChatGPT Business](https://chatgpt.com/zh-Hans-CN/business/) uses the same 14px regular type for nav labels and drop-down rows, with a subdued fill on the open trigger. At 1440 × 900 in Spanish, [Wise Mexico](https://wise.com/mx/) uses a shared 18/26 navigation scale and symmetric row padding. ALA retains its reviewed sizes and uses these references to check consistency across roles. [Vercel's Web Interface Guidelines](https://github.com/vercel-labs/web-interface-guidelines) and the [W3C disclosure example](https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/examples/disclosure-navigation/) informed focus handling, motion preferences and keyboard behavior.

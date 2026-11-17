@@ -1,0 +1,244 @@
+.ala-assistance {
+  --assistance-inset: 24px;
+  --assistance-control: 44px;
+  --assistance-gap: 8px;
+  --assistance-ink: #1e1f22;
+  --assistance-muted: #565963;
+  --assistance-line: #e5e7ec;
+  --assistance-blue: #173cff;
+  position: fixed;
+  right: max(var(--assistance-inset), env(safe-area-inset-right));
+  bottom: calc(var(--assistance-inset) + env(safe-area-inset-bottom, 0px));
+  z-index: 90;
+  width: max-content;
+  color: var(--assistance-ink);
+  font: 14px/1.5 var(--ala-font, "Roboto-Regular", Arial, sans-serif);
+  text-align: left;
+}
+
+.ala-assistance [hidden] {
+  display: none !important;
+}
+
+.ala-assistance-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--assistance-gap);
+}
+
+.ala-assistance button,
+.ala-assistance a {
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.ala-assistance-actions button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: var(--assistance-control);
+  min-width: var(--assistance-control);
+  padding: 0 12px;
+  font: 500 14px/20px var(--ala-font, "Roboto-Regular", Arial, sans-serif);
+  box-shadow: 0 3px 12px rgb(30 31 34 / 13%);
+}
+
+.ala-assistance-download {
+  color: var(--assistance-ink);
+  background: #fff;
+  border: 1px solid var(--assistance-line);
+}
+
+.ala-assistance-help {
+  color: #fff;
+  background: var(--assistance-blue);
+  border: 1px solid var(--assistance-blue);
+}
+
+.ala-assistance-help img {
+  display: block;
+  flex: none;
+}
+
+.ala-assistance .ala-assistance-help {
+  width: var(--assistance-control);
+  padding: 0;
+}
+
+.ala-assistance-download-icon {
+  position: relative;
+  display: block;
+  width: 13px;
+  height: 12px;
+  border-bottom: 1.5px solid currentColor;
+}
+
+.ala-assistance-download-icon::before,
+.ala-assistance-download-icon::after {
+  position: absolute;
+  left: 50%;
+  content: "";
+}
+
+.ala-assistance-download-icon::before {
+  top: 0;
+  width: 1.5px;
+  height: 7px;
+  transform: translateX(-50%);
+  background: currentColor;
+}
+
+.ala-assistance-download-icon::after {
+  top: 2px;
+  width: 6px;
+  height: 6px;
+  border: 1.5px solid currentColor;
+  border-width: 0 1.5px 1.5px 0;
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.ala-assistance-panel {
+  position: absolute;
+  right: 0;
+  bottom: calc(var(--assistance-control) + var(--assistance-gap));
+  width: min(264px, calc(100vw - var(--assistance-inset) * 2));
+  max-height: calc(100dvh - 100px);
+  padding: 16px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border: 1px solid var(--assistance-line);
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 8px 32px rgb(30 31 34 / 14%);
+}
+
+.ala-assistance-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.ala-assistance h2 {
+  margin: 0;
+  color: inherit;
+  font: 700 18px/24px var(--ala-font, "Roboto-Bold", Arial, sans-serif);
+}
+
+.ala-assistance-panel-header button {
+  display: grid;
+  flex: 0 0 44px;
+  height: 44px;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  color: var(--assistance-muted);
+  background: #f5f6f8;
+  font-size: 22px;
+  line-height: 1;
+}
+
+.ala-assistance-panel p {
+  margin: 0;
+  color: var(--assistance-muted);
+}
+
+.ala-assistance-scan {
+  display: grid;
+  place-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.ala-assistance-scan img {
+  display: block;
+  box-sizing: content-box;
+  padding: 8px;
+  border: 1px solid var(--assistance-line);
+  border-radius: 10px;
+  background: #fff;
+}
+
+.ala-assistance-advisor {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.ala-assistance-advisor img {
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.ala-assistance-stores {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.ala-assistance-stores a,
+.ala-assistance-contact {
+  display: grid;
+  min-height: 44px;
+  place-items: center;
+  padding: 8px;
+  color: var(--assistance-blue);
+  background: #f4f6ff;
+  text-decoration: none;
+  text-align: center;
+  font-weight: 500;
+}
+
+.ala-assistance-contact {
+  color: #fff;
+  background: var(--assistance-blue);
+}
+
+.ala-assistance button:focus-visible,
+.ala-assistance a:focus-visible {
+  outline: 2px solid var(--assistance-blue);
+  outline-offset: 3px;
+}
+
+@media (hover: hover) {
+  .ala-assistance-download:hover,
+  .ala-assistance-panel-header button:hover {
+    background: #eff1f5;
+  }
+
+  .ala-assistance-help:hover,
+  .ala-assistance-contact:hover {
+    color: #fff;
+    background: #102bb5;
+  }
+
+  .ala-assistance-stores a:hover {
+    background: #e9eeff;
+    text-decoration: none;
+  }
+}
+
+@media (max-width: 1279px) {
+  .ala-assistance-download-label {
+    display: none;
+  }
+}
+
+@media (max-width: 1100px) {
+  .ala-assistance {
+    --assistance-inset: 16px;
+  }
+}
+
+@media (max-width: 767px) {
+  .ala-assistance-scan {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .ala-home:not([data-hero-passed]) .ala-assistance { visibility: hidden; }
+}

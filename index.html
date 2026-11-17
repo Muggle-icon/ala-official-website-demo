@@ -58,11 +58,11 @@
     <script src="./live/ala-www/js/swiper.animate1.0.3.min.js" defer></script>
     <link rel="stylesheet" href="./live/ala-www/css/swiper.min.css" />
     <link rel="stylesheet" href="./live/ala-www/css/animate.min.css" />
-    <link rel="stylesheet" href="./live/ala-www/css/index.css" />
+    <link rel="stylesheet" href="./live/ala-www/css/index.css?v=6aac263edb" />
     <link rel="stylesheet" href="./live/ala-www/css/home-main.css" />
     <link rel="stylesheet" href="./live/ala-www/css/home-page.css" />
     <script src="./live/ala-www/js/motion.js" defer></script>
-    <script src="./live/ala-www/js/home-init.js" defer></script>
+    <script src="./live/ala-www/js/home-init.js?v=efbc307b8c" defer></script>
     <script src="./live/ala-www/js/home-page.js" defer></script>
 <style>
   #messageContainer {
@@ -136,8 +136,13 @@
     }, duration);
   };
 
-</script>  <link rel="stylesheet" href="./shared/site-header.css?v=fa7d3493ca">
-  <script src="./shared/site-header.js?v=79b12105f8" defer></script>
+</script><link rel="stylesheet" href="./live/ala-www/css/home-assistance.css?v=880d542813">
+  <script src="./live/ala-www/js/home-assistance.js?v=a66e4e2187" defer></script>
+  <link rel="stylesheet" href="./live/ala-www/css/home-hero.css?v=3fbc6c67ba">
+  <link rel="stylesheet" href="./live/ala-www/css/application-steps.css?v=31e548e8e6">
+  <script src="./live/ala-www/js/application-steps.js?v=62ac55a51b" defer></script>
+  <link rel="stylesheet" href="./shared/site-header.css?v=8fe9755d2b">
+  <script src="./shared/site-header.js?v=2b9e96d297" defer></script>
 </head>
 
   <script>
@@ -148,40 +153,59 @@
 <!-- ALA header start -->
 <div class="ala-site-chrome" data-home>
   <a class="ala-header-skip" href="#ala-content">Ir al contenido</a>
-  <div class="ala-site-notice">
-    <p><strong>Aviso importante.</strong> El sitio web oficial de ALA es alaprestamo.com.</p>
-    <button class="ala-notice-more" type="button" aria-haspopup="dialog" aria-controls="ala-security">Ver más <span aria-hidden="true">›</span></button>
-  </div>
+  <button class="ala-site-notice ala-notice-more" type="button" aria-haspopup="dialog" aria-controls="ala-security">
+    <span class="ala-notice-copy"><strong>Aviso importante:</strong> El sitio web oficial de ALA es alaprestamo.com.</span>
+    <span class="ala-notice-label">Ver aviso <span aria-hidden="true">›</span></span>
+  </button>
+  <div class="ala-header-reserve" aria-hidden="true"></div>
   <header class="ala-header-bar">
     <div class="ala-header-frame">
       <a class="ala-header-logo" href="./" aria-label="ALA, inicio">
-        <img class="ala-header-icon" src="./live/ala-www/img/logo.png" width="36" height="36" alt="">
-        <img class="ala-header-wordmark" src="./live/ala-www/img/alaText.png" width="52" height="16" alt="">
-        <img class="ala-header-wordmark ala-header-wordmark--white" src="./live/ala-www/img/alaTextWhite.png" width="52" height="16" alt="">
+        <img class="ala-header-wordmark ala-header-wordmark--white" src="./public/assets/ala-logo.png" width="126" height="48" alt="">
+        <img class="ala-header-wordmark ala-header-wordmark--dark" src="./public/assets/nav-logo-dark.png" width="126" height="48" alt="">
+        <img class="ala-header-icon" src="./public/assets/ala-app-icon.png" width="29" height="29" alt="">
       </a>
+      <a class="ala-header-about" href="./channel/about-ala/">Sobre ALA <span aria-hidden="true">›</span></a>
       <button class="ala-header-menu" type="button" aria-label="Abrir menú" aria-controls="ala-nav" aria-expanded="false">
-        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
       </button>
       <nav class="ala-header-nav" id="ala-nav" aria-label="Navegación principal">
         <ul class="ala-header-list">
-        <li class="ala-header-item"><a class="ala-header-link" href="./" aria-current="page">Introducción del producto</a></li>
-        <li class="ala-header-item"><a class="ala-header-link" href="./channel/loan_protection/">Protección regulatoria</a></li>
-        <li class="ala-header-item ala-header-item--blog">
-          <a class="ala-header-link" href="./channel/loan_blog/">Blog</a>
-          <button class="ala-header-trigger" type="button" aria-label="Categorías de Blog" aria-controls="ala-blog-nav" aria-expanded="false"><span class="ala-header-chevron" aria-hidden="true"></span></button>
-          <div class="ala-header-drop" id="ala-blog-nav" hidden>
-            <ul class="ala-header-drop-list">
-              <li><a class="ala-header-link" href="./channel/guia-de-prestamos/">Guía de préstamos</a></li>
-              <li><a class="ala-header-link" href="./channel/loan_financiero/">Diccionario financiero</a></li>
-              <li><a class="ala-header-link" href="./channel/noticias-financieras/">Noticias financieras</a></li>
-              <li><a class="ala-header-link" href="./channel/loan_city/">Préstamo en tu ciudad</a></li>
-            </ul>
-          </div>
-        </li>
-        <li class="ala-header-item"><a class="ala-header-link" href="./channel/loan_faq/">Ayuda</a></li>
-        <li class="ala-header-item"><a class="ala-header-link" href="./channel/about-ala/">Acerca de ALA</a></li>
+      <li class="ala-header-item"><a class="ala-header-link" href="#ala-content" aria-current="page">Introducción del producto</a></li>
+      <li class="ala-header-item"><a class="ala-header-link" href="./channel/loan_protection/">Protección regulatoria</a></li>
+      <li class="ala-header-item ala-header-disclosure">
+        <button class="ala-header-trigger" type="button" data-ala-menu="blog" aria-controls="ala-nav-blog" aria-expanded="false">
+          Blog <span class="ala-header-chevron" aria-hidden="true"></span>
+        </button>
+        <ul class="ala-header-drop" id="ala-nav-blog" hidden>
+            <li><a class="ala-header-link" href="./channel/loan_blog/">Blog de préstamos ALA</a></li>
+            <li><a class="ala-header-link" href="./channel/guia-de-prestamos/">Guía de préstamos</a></li>
+            <li><a class="ala-header-link" href="./channel/loan_financiero/">Diccionario financiero</a></li>
+            <li><a class="ala-header-link" href="./channel/noticias-financieras/">Noticias financieras</a></li>
+            <li><a class="ala-header-link" href="./channel/loan_city/">Préstamo en tu ciudad</a></li>
         </ul>
+      </li>
+      <li class="ala-header-item ala-header-disclosure">
+        <button class="ala-header-trigger" type="button" data-ala-menu="more" aria-controls="ala-nav-more" aria-expanded="false">
+          Más información <span class="ala-header-chevron" aria-hidden="true"></span>
+        </button>
+        <ul class="ala-header-drop" id="ala-nav-more" hidden>
+            <li><a class="ala-header-link" href="./channel/about-ala/">Sobre ALA</a></li>
+            <li><a class="ala-header-link" href="./channel/help-center/#canales-de-atencion">Contáctanos</a></li>
+            <li><a class="ala-header-link" href="./#documentos-legales">Documentos legales</a></li>
+            <li><a class="ala-header-link" href="./channel/help-center/">Centro de ayuda</a></li>
+            <li><a class="ala-header-link" href="./channel/loan_faq/">Preguntas frecuentes</a></li>
+            <li><a class="ala-header-link" href="./channel/loan_protection/">Protección regulatoria</a></li>
+        </ul>
+      </li>
+      <li class="ala-header-item"><a class="ala-header-link" href="./channel/loan_faq/">Preguntas frecuentes</a></li>
+        </ul>
+        <a class="ala-header-help" href="./channel/help-center/">Centro de ayuda <span aria-hidden="true">↗</span></a>
       </nav>
+      <div class="ala-header-downloads" aria-label="Descargar ALA">
+        <a href="https://sofom-ala.onelink.me/uTdM/taq3lvd3" aria-label="Descargar ALA en Google Play"><img src="./public/assets/nav-google.png" width="48" height="48" alt=""></a>
+        <a href="https://sofom-ala.onelink.me/ndX5/mbzy0s0s" aria-label="Descargar ALA en App Store"><img src="./public/assets/nav-ios.png" width="48" height="48" alt=""></a>
+      </div>
     </div>
   </header>
 </div>
@@ -223,80 +247,34 @@
 </dialog>
 
     <div class="index-wrap" id="ala-content" tabindex="-1">
-      <div class="main-bg-container d-none d-lg-block">
-        <div class="main-bg-wrap">
-          <div class="mainTopBg main-top-bg">
-            <div class="target-position">
-                <div class="ala-pl ala-width ala-ml desc adjust-position">
-                 <div class="ala-size" style="--base-size: 64px;">
-                   <h1 class="top-desc ala-size" style="--base-size: 64px;display:inline;">
-                     Te brindamos apoyo <br />
-                     financiero flexible, con <br />
-                     montos de $100 a <br />
-                   </h1>
-                    <span class="top-desc">$50,000</span>
-                  </div>
-                  <span class="top-desc-note ala-size">El monto final del préstamo dependerá del resultado de la evaluación crediticia.</span>
-                  <div class="ala-mt ala-height download-button-wrap">
-                    <img src="./live/ala-www/img/home-download-google2.webp" alt="ala-prestamos en linea_google play" title="ala-prestamos en linea_google play" class="ala-mr android-down" style="--base-mr: 30px" loading="lazy" />
-                    <img id="apple-down" src="./live/ala-www/img/home-download-ios2.webp" alt="ala-prestamos en linea_app store" title="ala-prestamos en linea_app store" class="apple-down" data-toggle="modal" data-target="#appleModal" loading="lazy" />
-                  </div>
-
-                  <div class="home-stats-bar ala-mt" style="--base-mt: 92px;">
-                    <div class="home-stats-item">
-                      <div class="home-stats-value">1,000,000+</div>
-                      <div class="home-stats-label">DESCARGAS</div>
-                    </div>
-                    <div class="home-stats-item">
-                      <div class="home-stats-value">4.8</div>
-                      <div class="home-stats-stars">★★★★★</div>
-                    </div>
-                    <div class="home-stats-item home-stats-item-last">
-                      <div class="home-stats-value">96%</div>
-                      <div class="home-stats-label">SATISFACCIÓN</div>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-            </div>
-        </div>
-
-      </div>
-      <!-- mobile bg start-->
-      <div class="ala-pt mainTopBg d-lg-none mainTopBg-m">
-        <div class="motion-element">
-          <div>
-            <div class="ala-pl desc">
-              <div class="ala-size" style="text-align: left;color: #fff;">
-                <h1 class="top-desc ala-size" style="text-align: left;--base-size: 25px;display:inline;">
-                     Te brindamos apoyo financiero flexible, con montos de $100 a
-                </h1>
-                <span class="top-desc">$50,000</span>
-              </div>
-              <div class="ala-mt ala-height download-button-wrap moboile-download" id="mobile-download">
-                <img src="./live/ala-www/img/home-download-google2-m.webp" alt="ala-prestamos en linea_google play" title="ala-prestamos en linea_google play" class="ala-mr android-down" style="--base-mr: 15px;height: 44px;" loading="lazy" />
-                <img src="./live/ala-www/img/home-download-ios2-m.webp" class="apple-down" alt="ala-prestamos en linea_app store" title="ala-prestamos en linea_app store" style="height: 44px;" loading="lazy" />
-              </div>
-              <div class="home-stats-bar" style="margin-top: 28px;">
-                <div class="home-stats-item">
-                  <div class="home-stats-value">1,000,000+</div>
-                  <div class="home-stats-label">DESCARGAS</div>
-                </div>
-                <div class="home-stats-item">
-                  <div class="home-stats-value">4.8</div>
-                  <div class="home-stats-stars">★★★★★</div>
-                </div>
-                <div class="home-stats-item home-stats-item-last">
-                  <div class="home-stats-value">96%</div>
-                  <div class="home-stats-label">SATISFACCIÓN</div>
-                </div>
-              </div>
-            </div>
+      <section class="ala-home-hero" aria-labelledby="ala-hero-title">
+        <picture class="ala-home-hero-media" aria-hidden="true">
+          <source media="(max-aspect-ratio: 4/3)" srcset="./public/assets/hero-person-full.webp">
+          <source media="(max-width: 600px)" srcset="./public/assets/mobile-hero-background.webp">
+          <img src="./public/assets/hero-background-20260812.webp" alt="" width="3840" height="2080" fetchpriority="high" decoding="async">
+        </picture>
+        <div class="ala-home-hero-copy">
+          <div class="ala-home-hero-intro">
+            <h1 id="ala-hero-title">Te brindamos apoyo financiero flexible, con montos de $100 a $50,000</h1>
+            <p>El monto final del préstamo dependerá del resultado de la evaluación crediticia.</p>
           </div>
+          <div class="ala-home-hero-stores" aria-label="Descarga la aplicación de ALA">
+            <a href="https://sofom-ala.onelink.me/uTdM/taq3lvd3" aria-label="Descargar ALA en Google Play">
+              <img src="./public/assets/google-play-icon.png" width="32" height="32" alt="">
+              <span>Google Play</span>
+            </a>
+            <a href="https://sofom-ala.onelink.me/ndX5/mbzy0s0s" aria-label="Descargar ALA en App Store">
+              <img src="./public/assets/app-store-icon.png" width="32" height="32" alt="">
+              <span>App Store</span>
+            </a>
+          </div>
+          <ul class="ala-home-hero-stats" aria-label="Estadísticas de ALA" role="list">
+            <li><strong>1,000,000+</strong><span>Descargas</span></li>
+            <li><strong>4.8</strong><span class="ala-home-hero-stars" role="img" aria-label="5 estrellas">★★★★★</span></li>
+            <li><strong>96%</strong><span>Satisfacción</span></li>
+          </ul>
         </div>
-      </div>
-      <!-- mobile bg end-->
+      </section>
       <div class="ala-size ala-pl ala-pr ala-lh ala-mt title-wrap motion-element title-wrap-lg">
         <span class="ala-size" style="display: inline-block;">ALA: préstamos rápidos de crédito en línea</span>
       </div>
@@ -304,272 +282,52 @@
         Con ALA, pide tu préstamo en línea cuando quieras y recibe el dinero <i class="ala-size" style="--base-size: 28px; color: #294bff;line-height:34px; font-style: normal; font-weight: 700">sin largas esperas</i> | Montos altos y el respaldo de una SOFOM registrada ante CONDUSEF para tu tranquilidad.
         <img src="./live/ala-www/img/home-iphone.webp" srcset="./live/ala-www/img/home-iphone.webp 1x, ./live/ala-www/img/home-iphone@2x.webp 2x, ./live/ala-www/img/home-iphone@3x.webp 3x" class="ala-width ala-height" alt="home-iphone" loading="lazy" />
       </div>
-      <div class="ala-size ala-lh ala-mt title-wrap motion-element ala-width ala-mr ala-ml title-wrap2">
-        <span style="display: inline-block">Cómo solicitar tu</span>
-        <span style="display: inline-block; color: rgb(255, 186, 0)">crédito</span>
-      </div>
-      <div class="ala-lh ala-size ala-mt des-wrap motion-element ala-width des-wrap-mobile" style="--base-mt: 28px; --base-width: 1000px;text-align:center;">Para obtener tu línea de crédito, sigue estos pasos:</div>
-      <!-- swiper1 pc-->
-<div class="ala-mt ala-height ala-pl ala-pr swiper-container-wrapper d-none d-lg-block motion-element"
-    style="--base-mt: 100px; --base-height: 748px; --base-pl: 320px; --base-pr: 320px;">
-    <div class="swiper-container swiper-container-horizontal">
-        <div class="ala-height swiper-wrapper" style="--base-height: 660px;">
-            <div class="swiper-slide" style="background-image: url(./live/ala-www/img/applying/img1.webp)">
-                <div class="ala-pl ala-pt ala-pr ala-width text-con"
-                    style="--base-pl: 60px; --base-pr: 60px; --base-pt: 60px; --base-width: 405px; overflow: hidden">
-                    <div class="ala-size ala-lh ala-height ala-mt text-con-title"
-                        style="--base-height: 72px; --base-size: 42px; --base-lh: 49px; color: #000; text-align: left">
-                        Paso 1</div>
-                    <div class="ala-size ala-lh" style="--base-size: 24px; --base-lh: 32px; text-align: left">Busca ALA en la tienda de aplicaciones móviles y descárgalo.</div>
-                    <div class="ala-width ala-height ala-mt"
-                        style="--base-width: 32px; --base-height: 8px; --base-mt: 26px; background-color: rgb(255, 116, 59)">
-                    </div>
-                </div>
-
-            </div>
-            <div class="swiper-slide" style="background-image: url(./live/ala-www/img/applying/img2.webp)">
-                <div class="ala-pl ala-pt ala-pr  ala-width text-con"
-                    style="--base-pl: 60px; --base-pr: 60px; --base-pt: 60px; --base-width: 405px; overflow: hidden">
-                    <div class="ala-size ala-lh ala-height ala-mt text-con-title"
-                        style="--base-height: 72px; --base-size: 42px; --base-lh: 49px; color: #000; text-align: left">
-                        Paso 2</div>
-                    <div class="ala-size ala-lh" style="--base-size: 24px; --base-lh: 32px; text-align: left">Regístrate con tu número de teléfono.</div>
-                    <div class="ala-width ala-height ala-mt"
-                        style="--base-width: 32px; --base-height: 8px; --base-mt: 26px; background-color: rgb(255, 116, 59)">
-                    </div>
-                </div>
-
-            </div>
-            <div class="swiper-slide" style="background-image: url(./live/ala-www/img/applying/img3.webp)">
-                <div class="ala-pl ala-pt ala-pr ala-width text-con"
-                    style="--base-pl: 60px; --base-pr: 40px; --base-pt: 60px; --base-width: 405px; overflow: hidden">
-                    <div class="ala-size ala-lh ala-height ala-mt text-con-title"
-                        style="--base-height: 72px; --base-size: 42px; --base-lh: 49px; color: #000; text-align: left">
-                        Paso 3</div>
-                    <div class="ala-size ala-lh" style="--base-size: 24px; --base-lh: 32px; text-align: left">
-                        Proporciona tu identificación oficial y una cuenta bancaria para recibir el depósito.</div>
-                    <div class="ala-width ala-height ala-mt"
-                        style="--base-width: 32px; --base-height: 8px; --base-mt: 26px; background-color: rgb(255, 116, 59)">
-                    </div>
-                </div>
-
-            </div>
-            <div class="swiper-slide" style="background-image: url(./live/ala-www/img/applying/img4.webp)">
-                <div class="ala-pl ala-pt ala-pr ala-width text-con"
-                    style="--base-pl: 60px; --base-pr: 60px; --base-pt: 60px; --base-width: 405px; overflow: hidden">
-                    <div class="ala-size ala-lh ala-height ala-mt text-con-title"
-                        style="--base-height: 72px; --base-size: 42px; --base-lh: 49px; color: #000; text-align: left">
-                        Paso 4</div>
-                    <div class="ala-size ala-lh" style="--base-size: 24px; --base-lh: 32px; text-align: left">Una vez aprobada tu solicitud, el dinero se depositará en tu cuenta.</div>
-                    <div class="ala-width ala-height ala-mt"
-                        style="--base-width: 32px; --base-height: 8px; --base-mt: 26px; background-color: rgb(255, 116, 59)">
-                    </div>
-                </div>
-
-            </div>
+      <section class="application-steps" id="como-solicitar" aria-labelledby="application-steps-title">
+        <div class="application-steps__intro">
+          <h2 id="application-steps-title">Cómo solicitar tu crédito</h2>
+          <p>Para obtener tu línea de crédito, sigue estos pasos:</p>
         </div>
-        <div class="swiper1-navigtion">
-            <button class="ala-height ala-width ala-ml swiper1-navigtion-right"
-                style="--base-width: 60px; --base-height: 60px; --base-ml: 110px"></button>
-            <button class="ala-ml ala-height ala-width swiper1-navigtion-left"
-                style="--base-ml: 39px; --base-width: 60px; --base-height: 60px"></button>
+        <ol class="application-steps__list" id="application-steps-list" tabindex="0" role="list" aria-label="Pasos de la solicitud">
+          <li class="application-steps__card">
+            <img src="./live/ala-www/img/applying/img1.webp" width="912" height="1320" loading="lazy" decoding="async" alt="">
+            <div class="application-steps__copy">
+              <h3>Paso 1</h3>
+              <p>Busca ALA en la tienda de aplicaciones móviles y descárgalo.</p>
+            </div>
+          </li>
+          <li class="application-steps__card">
+            <img src="./live/ala-www/img/applying/img2.webp" width="912" height="1321" loading="lazy" decoding="async" alt="">
+            <div class="application-steps__copy">
+              <h3>Paso 2</h3>
+              <p>Regístrate con tu número de teléfono.</p>
+            </div>
+          </li>
+          <li class="application-steps__card">
+            <img src="./live/ala-www/img/applying/img3.webp" width="912" height="1320" loading="lazy" decoding="async" alt="">
+            <div class="application-steps__copy">
+              <h3>Paso 3</h3>
+              <p>Proporciona tu identificación oficial y una cuenta bancaria para recibir el depósito.</p>
+            </div>
+          </li>
+          <li class="application-steps__card">
+            <img src="./live/ala-www/img/applying/img4.webp" width="912" height="1320" loading="lazy" decoding="async" alt="">
+            <div class="application-steps__copy">
+              <h3>Paso 4</h3>
+              <p>Una vez aprobada tu solicitud, el dinero se depositará en tu cuenta.</p>
+            </div>
+          </li>
+        </ol>
+        <div class="application-steps__controls" hidden>
+          <p class="application-steps__status" aria-live="polite" aria-atomic="true"></p>
+          <button class="application-steps__button" type="button" data-step-previous aria-label="Anterior" aria-controls="application-steps-list">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m11 6-6 6 6 6M5 12h14"/></svg>
+          </button>
+          <button class="application-steps__button" type="button" data-step-next aria-label="Siguiente" aria-controls="application-steps-list">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m13 6 6 6-6 6M5 12h14"/></svg>
+          </button>
         </div>
-    </div>
-</div>
+      </section>
 
-      <!-- swiper1 mobile-->
-<style>
-    .mobile-swiper1 {
-        max-width: 100%;
-        padding: 0 16px;
-        box-sizing: border-box;
-        overflow: hidden;
-    }
-
-    .mobile-swiper1 .swiper-slide {
-        width: 85%;
-        height: 446px;
-        transition: all 0.3s ease-in-out;
-    }
-
-    .mobile-swiper1 .swiper-slide-prev {
-        transform: scale(0.9);
-    }
-
-    .mobile-swiper1 .swiper-slide-next {
-        transform: scale(0.9);
-    }
-
-    .mobile-swiper1 .item-con {
-        width: 100%;
-        height: 100%;
-/*        background-image: url("./live/ala-www/img/home-pc-bg.webp");*/
-        background-position: center;
-        background-size: cover;
-        border-radius: 20px;
-        position: relative;
-    }
-
-    .mobile-swiper1 .item-con img {
-        position: absolute;
-        right: 2%;
-        bottom: 0;
-        width: 100%;
-        height: 100%;
-    }
-
-    .mobile-swiper1 .text-con {
-        position: absolute;
-        z-index: 1;
-        left: 10%;
-        top: 8%;
-        text-align: left;
-        color: #000;
-    }
-
-    .mobile-swiper1 .text-con div:nth-child(1) {
-        font-family: 'Roboto-Bold';
-        font-size: 24px;
-        font-weight: 700;
-    }
-
-    .mobile-swiper1 .text-con div:nth-child(2) {
-        margin-top: 8px;
-        font-size: 16px;
-        font-weight: 500;
-        line-height: 22px;
-    }
-
-    .mobile-swiper1 .text-con .mobile-line {
-        width: 16px;
-        height: 4px;
-        margin-top: 12px;
-        background-color: rgb(255, 116, 59);
-    }
-
-    .mobile-swiper1 .swiper-slide-prev {
-        transform: scale(0.9) !important;
-    }
-
-    .mobile-swiper1 .swiper-slide-next {
-        transform: scale(0.9) !important;
-    }
-
-    .mobile-swiper1-navigtion {
-        display: flex;
-        justify-content: center;
-        gap: 24px;
-    }
-
-    .mobile-swiper1-navigtion .mobile-swiper1-navigtion-right,
-    .mobile-swiper1-navigtion .mobile-swiper1-navigtion-left {
-        background: url("./live/ala-www/img/swiper1-arrow.png");
-        background-size: cover;
-    }
-
-    .mobile-swiper1-navigtion .mobile-swiper1-navigtion-right.mobile-swiper1-navigtion-isabled,
-    .mobile-swiper1-navigtion .mobile-swiper1-navigtion-left.mobile-swiper1-navigtion-isabled {
-        background: url("./live/ala-www/img/swiper1-disable-arrow.png");
-        background-size: cover;
-    }
-
-    .mobile-swiper1-navigtion .mobile-swiper1-navigtion-left,
-    .mobile-swiper1-navigtion .mobile-swiper1-navigtion-right.mobile-swiper1-navigtion-isabled {
-        transform: rotateZ(180deg);
-    }
-
-    .mobile-swiper1-navigtion .mobile-swiper1-navigtion-left.mobile-swiper1-navigtion-isabled {
-        transform: rotateZ(0deg);
-    }
-
-    .mobile-swiper1-navigtion button {
-        border: none;
-        margin-top: 24px;
-    }
-</style>
-
-<div class="mobile-swiper1 d-lg-none">
-    <div class="swiper" id="mobileSwiper1">
-        <div class="swiper-wrapper">
-            <div class="swiper-slide">
-                <div class="item-con">
-                    <img src="./live/ala-www/img/applying/img1.webp" alt="Ilustración paso 1: descargar aplicación" />
-                    <div class="text-con">
-                        <div>Paso 1</div>
-                        <div style="padding-right: 10px;">Busca ALA en la tienda de aplicaciones y descárgala</div>
-                        <div class="mobile-line"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="swiper-slide">
-                <div class="item-con">
-                    <img src="./live/ala-www/img/applying/img2.webp" alt="Ilustración paso 2: registro con teléfono" />
-                    <div class="text-con">
-                        <div>Paso 2</div>
-                        <div style="padding-right: 10px;">Regístrate con tu número de teléfono.</div>
-                        <div class="mobile-line"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="swiper-slide">
-                <div class="item-con">
-                    <img src="./live/ala-www/img/applying/img3.webp" alt="Ilustración paso 3: identificación y cuenta bancaria" />
-                    <div class="text-con">
-                        <div>Paso 3</div>
-                        <div style="padding-right: 10px;">Proporciona tu identificación oficial y una cuenta bancaria para recibir el depósito.</div>
-                        <div class="mobile-line"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="swiper-slide">
-                <div class="item-con">
-                    <img src="./live/ala-www/img/applying/img4.webp" alt="Ilustración paso 4: depósito aprobado" />
-                    <div class="text-con">
-                        <div>Paso 4</div>
-                        <div style="padding-right: 10px;">Una vez aprobada tu solicitud, el dinero se depositará en tu cuenta.</div>
-                        <div class="mobile-line"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="mobile-swiper1-navigtion">
-        <button class="mobile-swiper1-navigtion-right" style="width: 44px;height: 44px"></button>
-        <button class="mobile-swiper1-navigtion-left" style="width: 44px;height: 44px;"></button>
-    </div>
-
-</div>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var curAdvantageIndex = 0;
-
-        new Swiper("#mobileSwiper1", {
-            // autoplay: {
-            //     delay: 3000,
-            //     disableOnInteraction: false
-            // },
-            // loop: true,
-            slidesPerView: 'auto',
-            centeredSlides: true,
-            // spaceBetween: 10,
-
-            navigation: {
-                nextEl: ".mobile-swiper1-navigtion-left",
-                prevEl: ".mobile-swiper1-navigtion-right",
-                disabledClass: "mobile-swiper1-navigtion-isabled",
-            },
-            on: {
-                slideChange: function () {
-                    curAdvantageIndex = this.realIndex;
-                }
-            }
-        });
-
-
-
-    });
-</script>
 
       <div class="ala-size ala-mb ala-lh ala-mt title-wrap d-none d-lg-block motion-element" style="--base-mt: 150px">
         <span class="ala-width" style="display: inline-block; --base-width: 860px">Ventajas de solicitar un préstamo personal con ALA</span>
@@ -2292,7 +2050,7 @@ CIUDAD DE MÉXICO, C.P. 06500, MÉXICO</div>
 <!--      <div style="&#45;&#45;base-mt:60px;font-family: 'Roboto-Medium'" class="ala-size ala-mt img-title">Mapa del sitio web</div>-->
     </section>
     <section class="footer-txt-item mtPhone54">
-      <div style="--base-size:28px;--base-mb:18px" class="ala-size ala-mb footer-section-title">Documentos Legales </div>
+      <div style="--base-size:28px;--base-mb:18px" class="ala-size ala-mb footer-section-title" id="documentos-legales">Documentos Legales </div>
       <!-- Contrato de Préstamo：仅一个版本，无下拉，直接点击跳转 -->
       <div class="footer-span-val">
         <a href="./channel/ios_contract/" class="footer-span-title" id="footerContract" style="text-decoration: none;">Contrato de Préstamo</a>
@@ -2350,421 +2108,48 @@ CIUDAD DE MÉXICO, C.P. 06500, MÉXICO</div>
 
 
 
-<style>
-  .help-float {
-    position: fixed;
-    /* qr-code: bottom 100 + height 180 + 间距 12 */
-    bottom: 238px;
-    right: 50px;
-    width: 346px;
-    z-index: 102;
-    display: none; /* 初始隐藏，由入口点击展开 */
-  }
-  .help-float.open {
-    display: block; /* PC：右上浮窗 */
-  }
-  .help-float-card {
-    background: #fff;
-    border-radius: 16px;
-    position: relative;
-  }
-  .help-float-close {
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    border: none;
-    background: transparent;
-    font-size: 22px;
-    line-height: 1;
-    color: #96989C;
-    cursor: pointer;
-    z-index: 2;
-  }
-  .help-float-header {
-    padding: 20px 24px;
-    border-bottom: 1px solid #F2F2F7;
-  }
-  .help-float-title {
-    font-family: 'Roboto-Bold';
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 22px;
-    letter-spacing: 0;
-    text-align: left;
-    color: #1E1F22;
-    margin: 0;
-    padding-right: 24px;
-  }
-  .help-float-body {
-    padding: 24px 27px;
-  }
-  .help-float-row1 {
-    display: flex;
-    align-items: center;
-  }
-  .help-float-avatar {
-    width: 40px;
-    height: 40px;
-    margin-right: 14px;
-    border-radius: 12px;
-    object-fit: cover;
-  }
-  .help-float-info {
-    text-align: left;
-  }
-  .help-float-name {
-    font-family: 'Roboto-Bold';
-    font-weight: 700;
-    font-size: 14px;
-    line-height: 22px;
-    letter-spacing: 0;
-    text-align: left;
-    margin: 0 0 2px;
-    color: #1E1F22;
-  }
-  .help-float-role {
-    font-family: 'Roboto-Regular';
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 20px;
-    letter-spacing: 0;
-    text-align: left;
-    margin: 0;
-    color: #1E1F22;
-  }
-  .help-float-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #107838;
-    border-radius: 10px;
-    margin-top: 24px;
-    margin-bottom: 14px;
-    padding: 11px;
-    width: 100%;
-    box-sizing: border-box;
-    text-decoration: none;
-  }
-  .help-float-btn img {
-    width: 24px;
-    height: 24px;
-    margin-right: 8px;
-  }
-  .help-float-btn span {
-    font-family: 'Roboto-Bold';
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 22px;
-    letter-spacing: 0;
-    text-align: center;
-    color: #fff;
-  }
-  .help-float-footer {
-    font-family: 'Roboto-Regular';
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 20px;
-    letter-spacing: 0;
-    text-align: center;
-    color: #1E1F22;
-    margin: 0;
-  }
-  .help-float-link {
-    color: #173CFF;
-    text-decoration: underline;
-  }
-  @media screen and (max-width: 991px) {
-    .help-float {
-      bottom: auto;
-      right: auto;
-      width: auto;
-    }
-    .help-float.open {
-      display: flex;
-      position: fixed;
-      inset: 0;
-      background: #00000066; /* 蒙层 */
-      align-items: flex-end;  /* 弹窗从底部弹出 */
-      justify-content: center;
-      z-index: 1000;
-    }
-    .help-float-card {
-      width: 100%;            /* 充满屏幕宽度 */
-      border-radius: 16px 16px 0 0; /* 顶部圆角，底部贴底 */
-      animation: helpFloatSlideUp 0.3s ease;
-    }
-  }
-  @keyframes helpFloatSlideUp {
-    from { transform: translateY(100%); }
-    to { transform: translateY(0); }
-  }
-</style>
-
-<div class="help-float" id="helpFloat">
-  <div class="help-float-card">
-    <button class="help-float-close" id="helpFloatClose" type="button">×</button>
-    <div class="help-float-header">
-      <h3 class="help-float-title">Centro de ayuda</h3>
-    </div>
-    <div class="help-float-body">
-      <div class="help-float-row1">
-        <img class="help-float-avatar" src="./live/ala-www/img/sofia-avatar.webp" alt="Sofía">
-        <div class="help-float-info">
-          <p class="help-float-name">Habla con Sofía.</p>
-          <p class="help-float-role">Tu asesora de ALA</p>
-        </div>
-      </div>
-      <a class="help-float-btn" href="./channel/help-center/#canales-de-atencion">
-        <img src="./live/ala-www/img/whatsapp.webp" alt="WhatsApp">
-        <span>Ver opciones de contacto</span>
-      </a>
-    </div>
-  </div>
-</div>
-
-<script>
-  (function () {
-    var float = document.getElementById('helpFloat');
-    var closeBtn = document.getElementById('helpFloatClose');
-
-    function openFloat() {
-      if (!float) return;
-      // 移动端：若下载浮窗 #mobile-entry 可见，弹窗底部抬高，避免被遮挡
-      var card = float.querySelector('.help-float-card');
-      if (card) {
-        var mobileEntry = document.getElementById('mobile-entry');
-        var offset = 0;
-        if (mobileEntry && window.getComputedStyle(mobileEntry).display !== 'none') {
-          offset = mobileEntry.offsetHeight;
-        }
-        card.style.marginBottom = offset ? offset + 'px' : '';
-      }
-      float.classList.add('open');
-      document.querySelectorAll('[aria-controls=helpFloat]').forEach(button => button.setAttribute('aria-expanded', 'true'));
-    }
-    function closeFloat() {
-      if (float) float.classList.remove('open');
-      document.querySelectorAll('[aria-controls=helpFloat]').forEach(button => button.setAttribute('aria-expanded', 'false'));
-    }
-
-    // 暴露给其它入口调用（如 banner 里的按钮、移动端浮动按钮）
-    window.openHelpFloat = openFloat;
-
-    document.addEventListener('keydown', event => {
-      if (event.key === 'Escape' && float?.classList.contains('open')) closeFloat();
-    });
-
-    // 关闭按钮
-    if (closeBtn) closeBtn.addEventListener('click', function () {
-      closeFloat();
-    });
-    // 点击蒙层关闭（移动端 .help-float 是全屏蒙层）
-    if (float) float.addEventListener('click', function (e) {
-      if (e.target === float) closeFloat();
-    });
-
-    // 入口：qr-code 的 chat-btn 点击展开。
-    // chat-btn 在 qr-code.html，晚于本片段加载，故在 DOMContentLoaded 后绑定。
-    document.addEventListener('DOMContentLoaded', function () {
-      var chatBtn = document.querySelector('.chat-btn');
-      if (chatBtn) {
-        chatBtn.style.cursor = 'pointer';
-        chatBtn.addEventListener('click', function () {
-          openFloat();
-        });
-      }
-    });
-  })();
-</script>
-
- <style>
-  .qr-code {
-    width: 220px;
-    height: 180px;
-    padding: 13px 14px;
-    background: linear-gradient(to bottom right, #294BFFFF, #667EFFFF);
-    position: fixed;
-    bottom: 50px;
-    right: 50px;
-    display: flex;
-    flex-direction: column;
-    border-radius: 15px;
-    z-index: 10;
-  }
-  .qr-image {
-    width: 88px;
-    height: 88px;
-    border-radius: 6px;
-  }
-  .logo-image {
-    width: 24px;
-    height: 24px;
-    margin-top: 4px;
-  }
-  .qr-content {
-    margin-top: 15px;
-    font-size: 20px;
-    font-family: 'Roboto-Bold';
-    color: #FFFFFF;
-  }
-  .qr-row {
-    display: flex;
-  }
-  .chat-btn {
-    width: 100%;
-    padding: 12px;
-    background-color: rgba(16, 43, 181, 1);
-    border-radius: 12px;
-    margin-top: 16px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-sizing: border-box;
-    cursor: pointer;
-  }
-  .chat-btn-icon {
-    width: 16px;
-    height: 16px;
-    margin-right: 10px;
-  }
-  .chat-btn-text {
-    font-family: 'Roboto-Regular';
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 20px;
-    letter-spacing: 0px;
-    text-align: left;
-    color: #FFFFFF;
-  }
-  @media screen and (max-width: 991px) {
-    .qr-code {
-      display: none;
-    }
-  }
-</style>
-<div class="qr-code">
-  <div class="qr-row">
-    <div>
-      <img src="./live/ala-www/img/ala-logo.png" class="logo-image" />
-      <div class="qr-content">Escanea y descarga</div>
-    </div>
-    <img src="./live/ala-www/img/qr-code.png" class="qr-image" />
-  </div>
-  <button type="button" class="chat-btn" aria-controls="helpFloat" aria-expanded="false">
-    <img src="./live/ala-www/img/contact-s.webp" class="chat-btn-icon" alt="">
-    <span class="chat-btn-text">Chats en línea</span>
-  </button>
-</div>
-
-<style>
-  .mobile-entry {
-    width: 100%;
-    height: 72px;
-    background: #fff;
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    z-index: 10000;
-    overflow-x: hidden;
-  }
-  .mobile-entry-box {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  }
-  .mobile-entry-wrap {
-    box-sizing: border-box;
-    width: 100%;
-    padding-top: 15px;
-    padding-left: 20px;
-    padding-right: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .mobile-button-tip {
-    font-size: 13px;
-    font-family: "Robot-bold";
-    font-weight: 700;
-  }
-  .mobile-button-wrap {
-    display: flex;
-    height: 42px;
-    justify-content: center;
-    align-items: center;
-  }
-  .mobile-download-button {
-    height: 38px;
-    width: auto;
-  }
-  .m-android-button {
-    margin-right: 7px;
-  }
-  @media screen and (min-width: 992px) {
-    .mobile-entry {
-      display: none;
-    }
-  }
-  @media screen and (max-width: 360px) {
-    .mobile-button-tip {
-      font-size: 12px;
-    }
-  }
-</style>
-<div class="mobile-entry" id="mobile-entry">
-   <div class="mobile-entry-box">
-      <div class="mobile-entry-wrap">
-        <div class="mobile-button-tip">Descargar ALA</div>
-        <div class="mobile-button-wrap">
-          <img src="./live/ala-www/img/home-download-google-m.png" alt="Botón descargar ALA desde Google Play" class="mobile-download-button m-android-button" onclick="androidMobileButton()"/>
-          <img src="./live/ala-www/img/home-download-ios-m.png" class="mobile-download-button m-apple-button" alt="Botón descargar ALA desde App Store" onclick="appleMobileButton()"/>
-        </div>
-      </div>
-    </div>
-</div>
-<script>
-  function androidMobileButton() {
-    window.open('https://sofom-ala.onelink.me/uTdM/taq3lvd3', '_blank', 'noopener');
-  }
-  function appleMobileButton() {
-    window.open('https://sofom-ala.onelink.me/ndX5/mbzy0s0s', '_blank', 'noopener');
-  }
-</script>
-
-    <!-- 移动端浮动按钮：可拖动，点击打开帮助浮窗 -->
-    <button type="button" class="help-float-trigger d-lg-none" id="helpFloatTrigger" aria-label="Abrir centro de ayuda" aria-controls="helpFloat" aria-expanded="false">
-      <img src="./live/ala-www/img/consult-m.webp" alt="">
+<aside class="ala-assistance" aria-label="Descargas y ayuda">
+  <div class="ala-assistance-actions">
+    <button class="ala-assistance-download" type="button" aria-controls="ala-download-panel" aria-expanded="false" aria-label="Descargar ALA">
+      <span class="ala-assistance-download-icon" aria-hidden="true"></span>
+      <span class="ala-assistance-download-label">Descargar ALA</span>
     </button>
-    <script>
-      (function () {
-        var trigger = document.getElementById('helpFloatTrigger');
-        if (!trigger) return;
-        var startY, startTop, moved;
-        trigger.addEventListener('click', function () {
-          if (!moved && window.openHelpFloat) window.openHelpFloat();
-        });
-        // 只允许上下拖动，保持贴右边缘
-        trigger.addEventListener('touchstart', function (e) {
-          startY = e.touches[0].clientY;
-          startTop = trigger.getBoundingClientRect().top;
-          moved = false;
-        }, { passive: true });
-        trigger.addEventListener('touchmove', function (e) {
-          var dy = e.touches[0].clientY - startY;
-          if (Math.abs(dy) > 5) moved = true;
-          if (moved) {
-            e.preventDefault();
-            var newTop = Math.max(0, Math.min(startTop + dy, window.innerHeight - trigger.offsetHeight));
-            trigger.style.top = newTop + 'px';
-            trigger.style.bottom = 'auto';
-          }
-        }, { passive: false });
-        trigger.addEventListener('touchend', function () {
-          if (moved) requestAnimationFrame(() => { moved = false; });
-        });
-      })();
-    </script>
+    <button class="ala-assistance-help" type="button" aria-controls="ala-help-panel" aria-expanded="false" aria-label="Centro de ayuda">
+      <img src="./public/assets/help-center.png" width="22" height="22" alt="">
+    </button>
+  </div>
+
+  <section class="ala-assistance-panel" id="ala-download-panel" aria-labelledby="ala-download-title" hidden>
+    <header class="ala-assistance-panel-header">
+      <h2 id="ala-download-title">Descargar ALA</h2>
+      <button type="button" data-assistance-close aria-label="Cerrar descarga">×</button>
+    </header>
+    <div class="ala-assistance-scan">
+      <p>Escanea el código QR.</p>
+      <img src="./live/ala-www/img/qr-code.png" width="144" height="144" alt="Código QR para descargar ALA">
+    </div>
+    <div class="ala-assistance-stores">
+      <a href="https://sofom-ala.onelink.me/uTdM/taq3lvd3" target="_blank" rel="noopener noreferrer">Google Play</a>
+      <a href="https://sofom-ala.onelink.me/ndX5/mbzy0s0s" target="_blank" rel="noopener noreferrer">App Store</a>
+    </div>
+  </section>
+
+  <section class="ala-assistance-panel" id="ala-help-panel" aria-labelledby="ala-help-title" hidden>
+    <header class="ala-assistance-panel-header">
+      <h2 id="ala-help-title">Centro de ayuda</h2>
+      <button type="button" data-assistance-close aria-label="Cerrar centro de ayuda">×</button>
+    </header>
+    <div class="ala-assistance-advisor">
+      <img src="./live/ala-www/img/sofia-avatar.webp" width="40" height="40" alt="">
+      <div>
+        <strong>Habla con Sofía.</strong>
+        <p>Tu asesora de ALA</p>
+      </div>
+    </div>
+    <a class="ala-assistance-contact" href="./channel/help-center/#canales-de-atencion">Ver opciones de contacto</a>
+  </section>
+</aside>
+
   </body>
 
 </html>

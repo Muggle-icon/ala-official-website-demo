@@ -8,87 +8,78 @@ import re
 
 ROOT = Path(__file__).resolve().parents[1]
 HEADER = re.compile(r'<div\s+data-ala-header\s*></div>|<!-- ALA header start -->.*?<!-- ALA header end -->', re.S)
-BLOG = [
+BLOG = (
+    ('Blog de préstamos ALA', 'channel/loan_blog/'),
     ('Guía de préstamos', 'channel/guia-de-prestamos/'),
     ('Diccionario financiero', 'channel/loan_financiero/'),
     ('Noticias financieras', 'channel/noticias-financieras/'),
     ('Préstamo en tu ciudad', 'channel/loan_city/'),
-]
-MENU = [
-    ('Introducción del producto', ''),
+)
+MORE = (
+    ('Sobre ALA', 'channel/about-ala/'),
+    ('Contáctanos', 'channel/help-center/#canales-de-atencion'),
+    ('Documentos legales', '#documentos-legales'),
+    ('Centro de ayuda', 'channel/help-center/'),
+    ('Preguntas frecuentes', 'channel/loan_faq/'),
     ('Protección regulatoria', 'channel/loan_protection/'),
-    ('Blog', 'channel/loan_blog/'),
-    ('Ayuda', 'channel/loan_faq/'),
-    ('Acerca de ALA', 'channel/about-ala/'),
-]
-LEGAL = {'channel/' + slug + '/' for slug in (
-    'ios_contract', 'privacy', 'ios_privacy', 'regist', 'ios_regist'
-)}
+)
 
 
 def render_header(prefix, route):
+    home = not route
+    home_attr = ' data-home' if home else ''
+    assets = f'{prefix}public/assets/'
+
     def link(label, target):
         active = ' aria-current="page"' if route == target else ''
-        return f'<a class="ala-header-link" href="{prefix}{target}"{active}>{escape(label)}</a>'
+        href = '#ala-content' if home and not target else f'{prefix}{target}'
+        return f'<a class="ala-header-link" href="{href}"{active}>{escape(label)}</a>'
 
-    def group(label, target):
-        active = False
-        if target == 'channel/loan_blog/':
-            active = route.startswith('article/') or any(route.startswith(path) for _, path in BLOG)
-            active |= route.startswith(target) and route != target
-            items = '\n'.join(f'              <li>{link(name, path)}</li>' for name, path in BLOG)
-            button = f"""
-          {link(label, target)}
-          <button class="ala-header-trigger" type="button" aria-label="Categorías de Blog" aria-controls="ala-blog-nav" aria-expanded="false"><span class="ala-header-chevron" aria-hidden="true"></span></button>
-          <div class="ala-header-drop" id="ala-blog-nav" hidden>
-            <ul class="ala-header-drop-list">
+    def disclosure(label, name, links):
+        items = '\n'.join(f'            <li>{link(text, target)}</li>' for text, target in links)
+        return f"""<li class="ala-header-item ala-header-disclosure">
+        <button class="ala-header-trigger" type="button" data-ala-menu="{name}" aria-controls="ala-nav-{name}" aria-expanded="false">
+          {escape(label)} <span class="ala-header-chevron" aria-hidden="true"></span>
+        </button>
+        <ul class="ala-header-drop" id="ala-nav-{name}" hidden>
 {items}
-            </ul>
-          </div>
-        """
-            active_attr = ' aria-current="true"' if active else ''
-            return f'<li class="ala-header-item ala-header-item--blog"{active_attr}>{button}</li>'
+        </ul>
+      </li>"""
 
-        if target == 'channel/loan_protection/':
-            active = route in LEGAL
-        elif target == 'channel/loan_faq/':
-            active = route == 'channel/help-center/' or route == 'cobranza/'
-        elif target == 'channel/about-ala/':
-            active = route == 'marca/'
-        elif not target:
-            active = route.startswith(('city/', 'channel/loan_city/')) and not route.startswith('channel/')
-        active_attr = ' aria-current="true"' if active else ''
-        return f'<li class="ala-header-item"{active_attr}>{link(label, target)}</li>'
-
-    home = not route or route.startswith('city/')
-    home_attr = ' data-home' if home else ''
-    assets = f'{prefix}live/ala-www/img/'
-    notice = (
-        """
-  <div class="ala-site-notice">
-    <p><strong>Aviso importante.</strong> El sitio web oficial de ALA es alaprestamo.com.</p>
-    <button class="ala-notice-more" type="button" aria-haspopup="dialog" aria-controls="ala-security">Ver más <span aria-hidden="true">›</span></button>
-  </div>""" if not route else ''
-    )
-    items = '\n'.join(f'        {group(label, target)}' for label, target in MENU)
+    notice = """
+  <button class="ala-site-notice ala-notice-more" type="button" aria-haspopup="dialog" aria-controls="ala-security">
+    <span class="ala-notice-copy"><strong>Aviso importante:</strong> El sitio web oficial de ALA es alaprestamo.com.</span>
+    <span class="ala-notice-label">Ver aviso <span aria-hidden="true">›</span></span>
+  </button>""" if home else ''
     return f"""<!-- ALA header start -->
 <div class="ala-site-chrome"{home_attr}>
   <a class="ala-header-skip" href="#ala-content">Ir al contenido</a>{notice}
+  <div class="ala-header-reserve" aria-hidden="true"></div>
   <header class="ala-header-bar">
     <div class="ala-header-frame">
       <a class="ala-header-logo" href="{prefix}" aria-label="ALA, inicio">
-        <img class="ala-header-icon" src="{assets}logo.png" width="36" height="36" alt="">
-        <img class="ala-header-wordmark" src="{assets}alaText.png" width="52" height="16" alt="">
-        <img class="ala-header-wordmark ala-header-wordmark--white" src="{assets}alaTextWhite.png" width="52" height="16" alt="">
+        <img class="ala-header-wordmark ala-header-wordmark--white" src="{assets}ala-logo.png" width="126" height="48" alt="">
+        <img class="ala-header-wordmark ala-header-wordmark--dark" src="{assets}nav-logo-dark.png" width="126" height="48" alt="">
+        <img class="ala-header-icon" src="{assets}ala-app-icon.png" width="29" height="29" alt="">
       </a>
+      <a class="ala-header-about" href="{prefix}channel/about-ala/">Sobre ALA <span aria-hidden="true">›</span></a>
       <button class="ala-header-menu" type="button" aria-label="Abrir menú" aria-controls="ala-nav" aria-expanded="false">
-        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
       </button>
       <nav class="ala-header-nav" id="ala-nav" aria-label="Navegación principal">
         <ul class="ala-header-list">
-{items}
+      <li class="ala-header-item">{link('Introducción del producto', '')}</li>
+      <li class="ala-header-item">{link('Protección regulatoria', 'channel/loan_protection/')}</li>
+      {disclosure('Blog', 'blog', BLOG)}
+      {disclosure('Más información', 'more', MORE)}
+      <li class="ala-header-item">{link('Preguntas frecuentes', 'channel/loan_faq/')}</li>
         </ul>
+        <a class="ala-header-help" href="{prefix}channel/help-center/">Centro de ayuda <span aria-hidden="true">↗</span></a>
       </nav>
+      <div class="ala-header-downloads" aria-label="Descargar ALA">
+        <a href="https://sofom-ala.onelink.me/uTdM/taq3lvd3" aria-label="Descargar ALA en Google Play"><img src="{assets}nav-google.png" width="48" height="48" alt=""></a>
+        <a href="https://sofom-ala.onelink.me/ndX5/mbzy0s0s" aria-label="Descargar ALA en App Store"><img src="{assets}nav-ios.png" width="48" height="48" alt=""></a>
+      </div>
     </div>
   </header>
 </div>

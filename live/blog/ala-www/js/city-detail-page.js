@@ -1,34 +1,9 @@
 /* City detail page JavaScript */
-let swiper1, swiper2;
+let swiper2;
 let currentPage = 1;
 let isLoading = false;
 
 window.onload = function () {
-  swiper1 = new Swiper(".swiper-container", {
-    centeredSlides: true,
-    initialSlide: 0,
-    loop: false,
-    width: (window.innerWidth - 100) * 0.8,
-    observer: true,
-    observeParents: true,
-    roundLengths: true,
-    navigation: {
-      nextEl: ".swiper1-navigtion-left",
-      prevEl: ".swiper1-navigtion-right",
-      disabledClass: "swiper1-navigtion-isabled",
-    },
-    on: {
-      init: function () {
-        this.updateSize();
-      },
-      resize: function () {
-
-        this.params.width = 456;
-        this.updateSize();
-        this.update();
-      },
-    },
-  });
   swiper2 = new Swiper(".swiper-container2", {
     centeredSlides: false,
     loop: true,
