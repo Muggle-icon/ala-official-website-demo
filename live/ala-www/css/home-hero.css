@@ -1,6 +1,6 @@
 .ala-home-hero {
   position: relative;
-  height: calc(100svh - var(--ala-notice-height));
+  height: calc(100svh - var(--ala-notice-size, var(--ala-notice-height)) - var(--ala-nav-height));
   min-height: 440px;
   overflow: clip;
   container-type: size;
@@ -101,7 +101,6 @@
 .ala-home-hero-stats .ala-home-hero-stars { color: #ffd03b; font-size: min(17px, .8854cqw, 1.6346cqh); }
 
 @media (max-width: 1100px) {
-  .ala-home-hero { height: calc(100svh - var(--ala-notice-height) - var(--ala-nav-height)); }
   .ala-home-hero::after { background: linear-gradient(180deg, transparent 20%, #131b2b24 37%, #090b11ab 68%, #090b11e8); }
   .ala-home-hero-copy {
     inset: auto 24px clamp(24px, 4.3svh, 40px);

@@ -101,6 +101,7 @@ def render_faq_links(links, category):
 
 def recommendation_markup(article, category, href, faq_links):
     if article:
+        href = "../../channel/loan_blog/"
         paths = article["channel"]["paths"]
         parent = paths[-2]["alias"] if len(paths) > 2 else ""
         data = (f' data-article-id="{article["id"]}"'

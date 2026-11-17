@@ -19,11 +19,9 @@
   let releasePage = null;
 
   function positionHeader() {
-    const noticeHeight = notice?.offsetHeight ?? 0;
-    const top = Math.max(0, noticeHeight - window.scrollY);
-    siteHeader.style.setProperty('--ala-header-top', top + 'px');
-    siteHeader.toggleAttribute('data-solid', !notice || top === 0 || Boolean(active));
-    document.documentElement.style.setProperty('--ala-scroll-offset', (top + bar.offsetHeight + 16) + 'px');
+    const barBounds = bar.getBoundingClientRect();
+    siteHeader.style.setProperty('--ala-header-top', Math.max(0, barBounds.top) + 'px');
+    document.documentElement.style.setProperty('--ala-scroll-offset', (barBounds.bottom + 16) + 'px');
 
     if (desktop.matches && active) {
       const { trigger, panel } = active;
@@ -173,11 +171,17 @@
     showDisclosure(null);
   });
 
-  const sizes = new ResizeObserver(positionHeader);
+  function measureHeader() {
+    if (notice) {
+      document.documentElement.style.setProperty('--ala-notice-size', notice.getBoundingClientRect().height + 'px');
+    }
+    positionHeader();
+  }
+
+  const sizes = new ResizeObserver(measureHeader);
   sizes.observe(bar);
   if (notice) sizes.observe(notice);
-  document.fonts.ready.then(positionHeader);
-  positionHeader();
+  measureHeader();
 
   const dialog = document.querySelector('.ala-security-dialog');
   if (notice && dialog) {

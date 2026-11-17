@@ -46,12 +46,13 @@
 <script src="../../live/blog/blog-runtime.js"></script>
 
 <link rel="stylesheet" href="../../shared/breadcrumbs.css?v=27c08cdd0d">
-  <link rel="stylesheet" href="../../shared/site-header.css?v=c8a1b0433a">
-  <script src="../../shared/site-header.js?v=2b9e96d297" defer></script>
+  <link rel="stylesheet" href="../../shared/site-header.css?v=9ae6852fa7">
+  <script src="../../shared/site-header.js?v=0ebdec00ee" defer></script>
   <link rel="stylesheet" href="../../shared/editorial-cards.css?v=b7ec4194f5">
-  <link rel="stylesheet" href="../../live/blog/article-index.css?v=eb1ae30be8">
+  <link rel="stylesheet" href="../../live/blog/article-index.css?v=59ded0f30f">
   <script src="../../live/blog/article-cards.js?v=167d76f767" defer></script>
-  <script src="../../live/blog/ala-www/js/financiero-page.js?v=7b6d10b321" defer></script>
+  <script src="../../live/blog/article-search.js?v=506783c4ef" defer></script>
+  <script src="../../live/blog/ala-www/js/financiero-page.js?v=439b57dc4d" defer></script>
 </head>
 
 <body>
@@ -124,21 +125,35 @@
   <main class="ala-editorial-index">
     <header class="ala-editorial-index-header">
       <h1>Diccionario financiero</h1>
-      <p>La guía financiera que todos los mexicanos consultan. Educación financiera explicada de forma clara y accesible para todos</p>
+      <p>Consulta el significado de los términos que aparecen en un préstamo, un estado de cuenta o un contrato.</p>
     </header>
 
-    <nav class="ala-editorial-index-nav ala-editorial-letter-nav" aria-label="Índice alfabético" hidden>
-      <ul id="dictionaryLetters"></ul>
+    <form class="ala-article-search" id="dictionarySearch" role="search" aria-label="Buscar términos financieros" method="get" action="./">
+      <div class="ala-article-search-field">
+        <label for="dictionaryQuery">Buscar un término financiero</label>
+        <input class="ala-article-search-input" id="dictionaryQuery" type="search" name="q" maxlength="120" placeholder="Ej. CAT, comisiones o plazo">
+      </div>
+      <div class="ala-article-search-actions">
+        <button class="ala-button ala-button--primary" type="submit">Buscar</button>
+      </div>
+    </form>
+
+    <nav class="ala-article-search-topics" aria-label="Temas del diccionario financiero">
+      <a class="ala-category-tab" href="./" data-dictionary-topic="" aria-current="page">Todos</a>
+      <a class="ala-category-tab" href="?tema=credito-y-costos" data-dictionary-topic="credito-y-costos">Crédito y costos</a>
+      <a class="ala-category-tab" href="?tema=pagos-y-deudas" data-dictionary-topic="pagos-y-deudas">Pagos y deudas</a>
+      <a class="ala-category-tab" href="?tema=dinero-e-inversion" data-dictionary-topic="dinero-e-inversion">Dinero e inversión</a>
+      <a class="ala-category-tab" href="?tema=riesgo-y-regulacion" data-dictionary-topic="riesgo-y-regulacion">Riesgo y regulación</a>
     </nav>
 
     <section class="ala-editorial-index-group" id="dictionaryFeatured" aria-labelledby="dictionaryFeaturedTitle">
       <h2 class="ala-editorial-heading" id="dictionaryFeaturedTitle">Términos destacados</h2>
-      <ul class="ala-editorial-grid">
+      <ul class="ala-editorial-grid ala-editorial-grid--swipe">
           <li class="ala-editorial-card">
             <a class="ala-editorial-link" href="../../article/ventas-netas-vs-ingresos-netos-guia-para-no-confundir-facturacion-con-ganancia/">
               <div class="ala-editorial-media"><img src="../../live/blog/uploads/1/image/2026/01/20260130033018522_yx2sj4jgbg6n_compressed.png" alt="" loading="lazy" decoding="async"></div>
               <div class="ala-editorial-copy">
-                <p class="ala-editorial-category">Término del día</p>
+                <p class="ala-editorial-category">Dinero e inversión</p>
                 <h3 class="ala-editorial-title">Ventas Netas vs. Ingresos Netos</h3>
                 <p class="ala-editorial-description">Son el dinero real que queda tras restar devoluciones y descuentos al total.</p>
                 <time class="ala-editorial-date" datetime="2026-05-26">26/05/2026</time>
@@ -149,7 +164,7 @@
             <a class="ala-editorial-link" href="../../article/tasa-de-interes-comisiones-y-cat-como-entender-el-costo-real-de-un-credito/">
               <div class="ala-editorial-media"><img src="../../live/blog/uploads/1/image/2026/08/20260810014522513_kizeuho86ydr.jpg" alt="" loading="lazy" decoding="async"></div>
               <div class="ala-editorial-copy">
-                <p class="ala-editorial-category">Términos más buscados</p>
+                <p class="ala-editorial-category">Crédito y costos</p>
                 <h3 class="ala-editorial-title">Tasa de interés vs Comisiones vs CAT</h3>
                 <p class="ala-editorial-description">¿Qué es la tasa de interés?
 La tasa de interés es el precio del dinero. Cuando pides un préstamo, determina cuánto pagarás de más por usar ese dinero; cuando ahorras, indica cuánto ganarás por tu depósito. Se expresa en porcentaje y puede calcularse por distintos periodos: anual, mensual o diario.</p>
@@ -161,7 +176,7 @@ La tasa de interés es el precio del dinero. Cuando pides un préstamo, determin
             <a class="ala-editorial-link" href="../../article/reglas-de-capitalizacion-que-son-para-que-sirven-y-como-funcionan/">
               <div class="ala-editorial-media"><img src="../../live/blog/uploads/1/image/2026/01/20260127030854077_ylvkv7n5egf7_compressed.png" alt="" loading="lazy" decoding="async"></div>
               <div class="ala-editorial-copy">
-                <p class="ala-editorial-category">Términos más buscados</p>
+                <p class="ala-editorial-category">Riesgo y regulación</p>
                 <h3 class="ala-editorial-title">Reglas de Capitalización</h3>
                 <p class="ala-editorial-description">Imagínate que un amigo quiere poner un negocio de tacos. Si todo el dinero para abrirlo se lo pide prestado a sus vecinos y el primer mes le va mal, el negocio quiebra de inmediato y deja a todo el barrio colgado. Pero si tu amigo mete dinero de su propio bolsillo para aguantar los meses malos, el negocio sobrevive.
 A gran escala, eso mismo son las reglas de capitalización. Son las leyes que obligan a los bancos a tener un colchón de dinero propio (de los dueños del banco, no de los clientes) para soportar las temporadas de crisis sin tener que cerrar ni tocar tus ahorros.</p>
@@ -173,7 +188,7 @@ A gran escala, eso mismo son las reglas de capitalización. Son las leyes que ob
             <a class="ala-editorial-link" href="../../article/operaciones-en-finanza-que-son-como-funcionan-y-por-que-son-clave-en-la-economia/">
               <div class="ala-editorial-media"><img src="../../live/blog/uploads/1/image/2026/02/20260211192901961_ntq2ubbswkpx_compressed.png" alt="" loading="lazy" decoding="async"></div>
               <div class="ala-editorial-copy">
-                <p class="ala-editorial-category">Términos más buscados</p>
+                <p class="ala-editorial-category">Dinero e inversión</p>
                 <h3 class="ala-editorial-title">Operaciones</h3>
                 <p class="ala-editorial-description">No te dejes asustar por el nombre. Una operación financiera no es más que cualquier movimiento que haces con tu dinero para lograr un objetivo, ya sea hoy, mañana o en unos años.
 Cada vez que pides un préstamo, metes dinero a tu cuenta de ahorros, compras algo a meses sin intereses o inviertes en CETES, estás haciendo una operación financiera. Así de simple.</p>
@@ -185,7 +200,7 @@ Cada vez que pides un préstamo, metes dinero a tu cuenta de ahorros, compras al
             <a class="ala-editorial-link" href="../../article/periodo-de-facturacion-guia-completa-para-entender-tus-finanzas/">
               <div class="ala-editorial-media"><img src="../../live/blog/uploads/1/image/2026/01/20260128033132116_3ovkr7mi15qu_compressed.png" alt="" loading="lazy" decoding="async"></div>
               <div class="ala-editorial-copy">
-                <p class="ala-editorial-category">Términos más buscados</p>
+                <p class="ala-editorial-category">Pagos y deudas</p>
                 <h3 class="ala-editorial-title">Periodo de Facturación</h3>
                 <p class="ala-editorial-description">El periodo de facturación es el mes completo que te dan para gastar antes de cobrarte. Es el rango de fechas (por ejemplo, del día 15 de un mes al 14 del siguiente) en el que todo lo que compres con tu tarjeta, o lo que gastes de luz y Netflix, se va juntando en una sola cuenta.
 No siempre empieza el día 1 del mes; eso depende de tu fecha de corte.</p>
@@ -195,8 +210,16 @@ No siempre empieza el día 1 del mes; eso depende de tu fecha de corte.</p>
           </li>
       </ul>
     </section>
-    <div id="dictionaryGroups" aria-busy="true"></div>
-    <p id="dictionaryStatus" class="ala-editorial-index-status" role="status" hidden></p>
+    <section class="ala-editorial-index-group" aria-labelledby="dictionaryTermsTitle">
+      <div class="ala-article-search-results">
+        <h2 class="ala-article-search-heading" id="dictionaryTermsTitle">Todos los términos</h2>
+        <div class="ala-article-search-summary">
+          <p class="ala-article-search-count" id="dictionaryStatus" role="status"></p>
+          <button class="ala-section-more" id="dictionaryClear" type="button" hidden>Limpiar filtros</button>
+        </div>
+      </div>
+      <ul class="ala-editorial-grid" id="dictionaryTerms" aria-busy="true"></ul>
+    </section>
   </main>
 <style>
   * {
