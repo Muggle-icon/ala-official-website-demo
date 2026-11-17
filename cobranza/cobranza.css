@@ -87,6 +87,12 @@ body {
 }
 
 .index-disclosure > summary {
+  min-height: var(--ala-control-height);
+  font: var(--ala-control-font);
+  cursor: pointer;
+}
+
+.index-disclosure[open] > summary {
   display: none;
 }
 
@@ -388,16 +394,14 @@ body {
     border-block: 1px solid var(--ala-line);
   }
 
-  .index-disclosure > summary {
+  .index-disclosure > summary,
+  .index-disclosure[open] > summary {
     display: flex;
-    min-height: var(--ala-control-height);
     align-items: center;
     justify-content: space-between;
     gap: var(--ala-control-gap);
     padding: 10px 2px;
-    font: var(--ala-control-font);
     list-style: none;
-    cursor: pointer;
   }
 
   .index-disclosure > summary::-webkit-details-marker {
