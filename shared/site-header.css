@@ -122,6 +122,17 @@ html { scroll-padding-top: var(--ala-scroll-offset, calc(var(--ala-nav-height) +
   box-shadow: 0 1px 0 rgba(28, 31, 39, .08);
 }
 
+.ala-site-chrome[data-home]:not([data-solid], [data-mobile-open]) .ala-header-bar {
+  color: #fff;
+  background: rgba(16, 21, 32, .58);
+  box-shadow: none;
+}
+
+.ala-site-chrome[data-home]:not([data-solid], [data-mobile-open])
+  :is(.ala-header-logo, .ala-header-about, .ala-header-menu, .ala-header-item > :is(a, button)):focus-visible {
+  outline-color: #fff;
+}
+
 .ala-header-frame {
   height: var(--ala-nav-height);
   padding-inline: var(--ala-nav-gutter);
@@ -228,6 +239,7 @@ html { scroll-padding-top: var(--ala-scroll-offset, calc(var(--ala-nav-height) +
   border-radius: 12px;
   box-shadow: 0 12px 28px -10px #00000029;
   background: #f5f5f5f7;
+  color: #24252a;
   backdrop-filter: blur(16px);
   list-style: none;
   animation: ala-dropdown-in 160ms ease-out both;
@@ -321,6 +333,20 @@ html { scroll-padding-top: var(--ala-scroll-offset, calc(var(--ala-nav-height) +
 .ala-dialog-close { font-size: 1.5rem; }
 .ala-dialog-confirm { padding: 0 18px; background: var(--ala-blue); color: #fff; }
 
+@media (min-width: 1101px) {
+  .ala-site-chrome[data-home]:not([data-solid]) .ala-header-wordmark--white { display: block; }
+  .ala-site-chrome[data-home]:not([data-solid]) :is(.ala-header-wordmark--dark, .ala-header-downloads) { display: none; }
+  .ala-site-chrome[data-home]:not([data-solid]) .ala-header-item > button[aria-expanded="true"]::before {
+    background: #ffffff26;
+  }
+}
+
+@media (min-width: 1101px) and (hover: hover) {
+  .ala-site-chrome[data-home]:not([data-solid]) .ala-header-item > :is(a, button):hover::before {
+    background: #ffffff26;
+  }
+}
+
 @media (max-width: 1100px) {
   :root {
     --ala-nav-height: clamp(52px, 6.25vw, 64px);
@@ -368,6 +394,7 @@ html { scroll-padding-top: var(--ala-scroll-offset, calc(var(--ala-nav-height) +
     background: #151515;
     transition: transform 180ms ease, opacity 180ms ease;
   }
+  .ala-site-chrome[data-home]:not([data-solid], [data-mobile-open]) .ala-header-menu span { background: #fff; }
   .ala-header-menu[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
   .ala-header-menu[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
   .ala-header-menu[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }

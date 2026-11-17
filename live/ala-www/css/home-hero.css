@@ -1,7 +1,8 @@
 .ala-home-hero {
   position: relative;
-  height: calc(100svh - var(--ala-notice-size, var(--ala-notice-height)) - var(--ala-nav-height));
-  min-height: 440px;
+  margin-block-start: calc(0px - var(--ala-nav-height));
+  height: calc(100svh - var(--ala-notice-size, var(--ala-notice-height)));
+  min-height: calc(440px + var(--ala-nav-height));
   overflow: clip;
   container-type: size;
   color: #fff;
@@ -124,7 +125,7 @@
 }
 
 @media (max-width: 600px) {
-  .ala-home-hero { min-height: 490px; }
+  .ala-home-hero { min-height: calc(490px + var(--ala-nav-height)); }
   .ala-home-hero-intro h1 {
     font-size: min(30px, 8vw, max(24px, 3.694581svh));
     line-height: 1.13;

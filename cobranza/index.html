@@ -8,12 +8,12 @@
   <meta name="theme-color" content="#ffffff">
   <title>Cobranza, pagos atrasados y soluciones | ALA</title>
   <link rel="icon" href="../public/assets/ala-app-icon.png">
-  <link rel="stylesheet" href="./cobranza.css?v=6e6bf9d260">
+  <link rel="stylesheet" href="./cobranza.css?v=b61cbd57f6">
   <script src="./cobranza.js?v=d29a6f81bd" defer></script>
 
 <link rel="stylesheet" href="../shared/breadcrumbs.css?v=27c08cdd0d">
-  <link rel="stylesheet" href="../shared/site-header.css?v=9ae6852fa7">
-  <script src="../shared/site-header.js?v=0ebdec00ee" defer></script>
+  <link rel="stylesheet" href="../shared/site-header.css?v=1e690ea6c8">
+  <script src="../shared/site-header.js?v=fa30b9015e" defer></script>
 </head>
 <body class="ala-collection-page">
   <!-- ALA header start -->
@@ -89,10 +89,13 @@
         <div class="collection-hero-copy">
           <h1 id="page-title">Cobranza, pagos atrasados y soluciones</h1>
           <p>Consulta qué hacer si no puedes pagar a tiempo, cómo verificar un contacto de cobranza y dónde pedir ayuda a ALA.</p>
-          <a class="ala-button ala-button--primary" href="../channel/help-center/#canales-de-atencion">Contactar a ALA</a>
+          <div class="collection-hero-actions">
+            <a class="ala-button ala-button--primary" href="#opciones-de-pago">Ver los pasos</a>
+            <a class="ala-section-more" href="../channel/help-center/#canales-de-atencion">Contactar a ALA</a>
+          </div>
         </div>
         <div class="collection-hero-media">
-          <img src="./assets/guia-de-pago.webp" width="1120" height="840" alt="" fetchpriority="high" decoding="async">
+          <img src="./assets/guia-de-pago.webp?v=7aa7fee2fa" width="1120" height="840" alt="" fetchpriority="high" decoding="async">
         </div>
       </header>
 
@@ -104,8 +107,8 @@
               <p class="index-title" aria-hidden="true">En esta página</p>
               <nav aria-label="Secciones del artículo">
                 <ol>
-                  <li><a href="#vencimiento" aria-current="location">Antes y después del vencimiento</a></li>
-                  <li><a href="#opciones-de-pago">Si no puedes pagar a tiempo</a></li>
+                  <li><a href="#opciones-de-pago" aria-current="location">Si no puedes pagar a tiempo</a></li>
+                  <li><a href="#vencimiento">Antes y después del vencimiento</a></li>
                   <li><a href="#reclamaciones">Dudas o reclamaciones</a></li>
                   <li><a href="#preguntas-frecuentes">Preguntas frecuentes</a></li>
                   <li><a href="#contacto">Canales oficiales de ALA</a></li>
@@ -116,23 +119,7 @@
         </aside>
 
         <div class="collection-content">
-          <section aria-labelledby="vencimiento">
-            <h2 id="vencimiento" tabindex="-1">¿Qué sucede si se vence tu pago?</h2>
-            <div class="payment-phases">
-              <div class="payment-phase">
-                <h3>Antes del vencimiento</h3>
-                <p>Consulta en la app oficial de ALA la fecha, el monto, las formas de pago y la información de tu contrato.</p>
-                <p>ALA puede enviarte recordatorios por teléfono, SMS, WhatsApp, correo o notificaciones de la app.</p>
-              </div>
-              <div class="payment-phase">
-                <h3>Si no pagas en la fecha acordada</h3>
-                <p>ALA puede comunicarse contigo por el saldo pendiente. Un atraso puede afectar tu historial crediticio y generar cargos según tu contrato.</p>
-                <p><a href="#opciones-de-pago">Consulta qué hacer ante un atraso</a>.</p>
-              </div>
-            </div>
-          </section>
-
-          <section aria-labelledby="opciones-de-pago">
+          <section class="repayment-guide" aria-labelledby="opciones-de-pago">
             <h2 id="opciones-de-pago" tabindex="-1">¿No puedes pagar a tiempo?</h2>
             <p>Una reducción de ingresos, un gasto imprevisto o un problema de salud puede afectar tu plan de pago. Comunícate con ALA cuanto antes para revisar tu situación.</p>
             <ol class="steps">
@@ -151,6 +138,22 @@
             </ol>
           </section>
 
+          <section aria-labelledby="vencimiento">
+            <h2 id="vencimiento" tabindex="-1">¿Qué sucede si se vence tu pago?</h2>
+            <div class="payment-phases">
+              <div class="payment-phase">
+                <h3>Antes del vencimiento</h3>
+                <p>Consulta en la app oficial de ALA la fecha, el monto, las formas de pago y la información de tu contrato.</p>
+                <p>ALA puede enviarte recordatorios por teléfono, SMS, WhatsApp, correo o notificaciones de la app.</p>
+              </div>
+              <div class="payment-phase">
+                <h3>Si no pagas en la fecha acordada</h3>
+                <p>ALA puede comunicarse contigo por el saldo pendiente. Un atraso puede afectar tu historial crediticio y generar cargos según tu contrato.</p>
+                <p><a href="#opciones-de-pago">Consulta qué hacer ante un atraso</a>.</p>
+              </div>
+            </div>
+          </section>
+
           <section aria-labelledby="reclamaciones">
             <h2 id="reclamaciones" tabindex="-1">Cómo presentar una reclamación</h2>
             <p>Si tienes dudas sobre un contacto de cobranza, si ya pagaste o si no reconoces el préstamo, <a href="#contacto">comunícate con ALA</a> para que revisemos tu caso.</p>
@@ -166,7 +169,7 @@
             </aside>
           </section>
 
-          <section aria-labelledby="preguntas-frecuentes">
+          <section class="collection-reference" aria-labelledby="preguntas-frecuentes">
             <h2 id="preguntas-frecuentes" tabindex="-1">Preguntas frecuentes</h2>
             <div class="ala-faq-stack">
               <details class="ala-faq-item">
@@ -208,7 +211,7 @@
             </div>
           </section>
 
-          <section aria-labelledby="contacto">
+          <section class="collection-reference" aria-labelledby="contacto">
             <h2 id="contacto" tabindex="-1">Canales oficiales de ALA</h2>
             <p>ALA exige un trato respetuoso en toda comunicación de cobranza. Si tienes dudas sobre el trato recibido o sobre el avance de una reclamación, el mismo servicio de atención puede revisar tu caso y darle seguimiento.</p>
             <div class="contact-panel">
@@ -225,7 +228,7 @@
                   <dd>Todos los días de 9:00 a 18:00</dd>
                 </div>
               </dl>
-              <a class="ala-button ala-button--primary" href="../channel/help-center/#canales-de-atencion">Contactar a ALA</a>
+              <a class="ala-button" href="../channel/help-center/#canales-de-atencion">Contactar a ALA</a>
             </div>
           </section>
         </div>

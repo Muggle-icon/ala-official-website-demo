@@ -6,6 +6,7 @@
   const nav = siteHeader.querySelector('.ala-header-nav');
   const menu = siteHeader.querySelector('.ala-header-menu');
   const notice = siteHeader.querySelector('.ala-site-notice');
+  const hero = siteHeader.hasAttribute('data-home') ? document.querySelector('.ala-home-hero') : null;
   const desktop = matchMedia('(min-width: 1101px)');
   const finePointer = matchMedia('(hover: hover) and (pointer: fine)');
   const disclosures = [...nav.querySelectorAll('[data-ala-menu]')].map(trigger => ({
@@ -20,6 +21,7 @@
 
   function positionHeader() {
     const barBounds = bar.getBoundingClientRect();
+    if (hero) siteHeader.toggleAttribute('data-solid', hero.getBoundingClientRect().bottom <= barBounds.bottom);
     siteHeader.style.setProperty('--ala-header-top', Math.max(0, barBounds.top) + 'px');
     document.documentElement.style.setProperty('--ala-scroll-offset', (barBounds.bottom + 16) + 'px');
 
