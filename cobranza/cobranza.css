@@ -261,6 +261,14 @@ body {
   color: #573800;
 }
 
+.collection-faq-section {
+  max-inline-size: 48rem;
+}
+
+.collection-faq-section :is(h3, p) {
+  max-width: none;
+}
+
 .collection-faq > div {
   padding-block: clamp(16px, 2.4vw, 24px);
   border-block-start: 1px solid var(--ala-line);
