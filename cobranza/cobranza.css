@@ -130,8 +130,9 @@ body {
 .collection-outline .index-title {
   margin: 0;
   color: #1b1e28;
+  font-size: 1.375rem;
   font-weight: 700;
-  line-height: 1.16;
+  line-height: 1.25;
 }
 
 .collection-outline #anchorDirectory {
@@ -140,34 +141,41 @@ body {
   list-style: none;
 }
 
+.collection-outline #anchorDirectory,
+.collection-outline .index-content {
+  scrollbar-width: thin;
+  scrollbar-color: #bfc5d0 transparent;
+}
+
 .collection-outline #anchorDirectory li {
   padding: 0;
 }
 
-.collection-outline .link-H2 {
+.collection-outline .link-H2:not(:first-child) {
   margin-block-start: 12px;
 }
 
 .collection-outline a {
   display: block;
-  min-height: 36px;
-  padding: 6px 10px;
+  min-height: 32px;
+  padding: 5px 10px;
   border: 1px solid transparent;
   border-radius: 8px;
   color: #666;
-  font-size: .8125rem;
-  line-height: 1.4;
+  font-size: .875rem;
+  line-height: 1.45;
   text-decoration: none;
 }
 
 .collection-outline .link-H2 a {
   color: #1b1e28;
-  font-size: .875rem;
+  font-size: .9375rem;
   font-weight: 500;
+  line-height: 1.35;
 }
 
 .collection-outline li:not(.link-H2) a {
-  padding-inline-start: 22px;
+  padding-inline-start: 24px;
 }
 
 @media (hover: hover) {
@@ -225,10 +233,6 @@ body {
     background-size: 12px 2px, 0 0;
   }
 
-  .collection-outline .link-H2:first-child {
-    margin-block-start: 0;
-  }
-
   .collection-outline a {
     min-height: var(--ala-control-height);
   }
@@ -265,33 +269,13 @@ body {
 
   .collection-outline .index-title {
     margin-inline-end: calc(-50px * var(--outline-scale));
-    font-size: calc(42px * var(--outline-scale));
   }
 
   .collection-outline #anchorDirectory {
     max-block-size: min(422px, calc(100dvh - var(--ala-scroll-offset, var(--ala-nav-height)) - 104px));
-    margin-block: 16px 0;
+    margin-block: 12px 0;
     overflow-y: auto;
-  }
-
-  .collection-outline li.link-H2 {
-    margin-block-start: 20px;
-  }
-
-  .collection-outline a {
-    min-height: auto;
-    padding: calc(10px * var(--outline-scale)) calc(20px * var(--outline-scale));
-    border-radius: 18px;
-    font-size: calc(22px * var(--outline-scale));
-    line-height: 1.16;
-  }
-
-  .collection-outline .link-H2 a {
-    font-size: calc(26px * var(--outline-scale));
-  }
-
-  .collection-outline li:not(.link-H2) a {
-    padding-inline-start: 40px;
+    scrollbar-gutter: stable;
   }
 }
 
