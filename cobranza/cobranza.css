@@ -179,15 +179,23 @@ body {
 }
 
 @media (hover: hover) {
-  .collection-outline a:hover {
+  .collection-outline .link-H2 > a:hover {
     border-color: #f3f4f9;
     background: #f3f4f9;
   }
+
+  .collection-outline li:not(.link-H2) > a:hover {
+    color: #1b1e28;
+  }
 }
 
-.collection-outline a[aria-current="location"] {
+.collection-outline .link-H2 > a[aria-current="location"] {
   border-color: #f3f4f9;
   background: #f3f4f9;
+}
+
+.collection-outline li:not(.link-H2) > a:is(:active, [aria-current="location"]) {
+  color: #1b1e28;
 }
 
 .collection-outline a:focus-visible,
