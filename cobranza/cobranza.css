@@ -11,6 +11,11 @@ body {
   padding-inline: calc((100% - var(--ala-content-width)) / 2);
 }
 
+.ala-collection-page :is(.collection-page, .ala-breadcrumbs, .site-footer) a {
+  text-decoration-skip-ink: none;
+  text-underline-offset: calc(.18em + 2px);
+}
+
 .collection-page,
 .site-footer {
   color: var(--ala-ink);
@@ -43,11 +48,7 @@ body {
 
 .collection-verification {
   grid-column: 1 / -1;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--ala-grid-gap);
-  padding-block-start: 16px;
+  padding-block-start: 12px;
   border-block-start: 1px solid var(--ala-line);
 }
 
@@ -62,8 +63,8 @@ body {
 }
 
 .collection-verification .ala-section-more {
-  flex: none;
   padding-inline: 0;
+  border-inline-width: 0;
 }
 
 .collection-intro h1 {
@@ -195,7 +196,6 @@ body {
 .collection-content :is(p, li, dd) a,
 .site-footer a {
   color: var(--ala-blue);
-  text-underline-offset: .18em;
 }
 
 .collection-content :is(p, li, dd) a:hover,
@@ -475,16 +475,16 @@ body {
 
   .collection-verification {
     grid-area: 2 / 1;
-    display: block;
-    padding: 8px 0 0;
+    padding-block-start: 8px;
   }
 
   .collection-verification h2 {
     font-size: 1rem;
   }
 
-  .collection-verification .verification-help {
-    display: none;
+  .collection-verification p {
+    font-size: .875rem;
+    line-height: 1.5;
   }
 
   .collection-intro h1 {
