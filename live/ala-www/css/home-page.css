@@ -28,12 +28,8 @@ body {
   scroll-margin-block-start: var(--ala-news-edge-gap);
 }
 
-.ala-news-shell {
-  width: var(--ala-content-width);
-  margin-inline: auto;
-}
-
 .ala-news-intro {
+  width: var(--ala-content-width);
   max-width: 44rem;
   margin: 0 auto clamp(28px, 4vw, 48px);
   text-align: center;
@@ -51,16 +47,43 @@ body {
 }
 
 .ala-news-grid {
+  --ala-news-rail-start: calc((100% - var(--ala-content-width)) / 2);
+  --ala-news-rail-end: 24px;
+  --ala-news-card-gap: 16px;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 16px;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% - 3 * var(--ala-news-card-gap)) / 3.12);
+  gap: var(--ala-news-card-gap);
   margin: 0;
-  padding: 0;
+  padding-block: 4px 8px;
+  padding-inline: var(--ala-news-rail-start) var(--ala-news-rail-end);
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scroll-padding-inline: var(--ala-news-rail-start) var(--ala-news-rail-end);
+  scroll-snap-type: x mandatory;
   list-style: none;
+}
+
+.ala-news-grid:focus-visible {
+  outline: var(--ala-focus-ring);
+  outline-offset: -3px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .ala-news-grid {
+    cursor: grab;
+  }
+}
+
+.ala-news-grid.is-dragging {
+  cursor: grabbing;
+  scroll-snap-type: none;
+  user-select: none;
 }
 
 .ala-news-grid li {
   min-width: 0;
+  scroll-snap-align: start;
 }
 
 .ala-news-card {
@@ -160,26 +183,10 @@ body {
   text-decoration-line: underline;
 }
 
-@media (max-width: 1279px) {
-  .ala-news-grid {
-    grid-template-columns: none;
-    grid-auto-flow: column;
-    grid-auto-columns: 29.5%;
-    padding-block: 4px 8px;
-    overflow-x: auto;
-    overscroll-behavior-inline: contain;
-    scroll-snap-type: x mandatory;
-  }
-
-  .ala-news-grid li {
-    scroll-snap-align: start;
-  }
-}
-
 @media (max-width: 767px) {
   .ala-news-grid {
+    --ala-news-card-gap: 12px;
     grid-auto-columns: 44%;
-    gap: 12px;
   }
 }
 

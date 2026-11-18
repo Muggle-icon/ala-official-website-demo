@@ -141,7 +141,8 @@
   <script src="./live/ala-www/js/application-steps.js?v=62ac55a51b" defer></script>
   <link rel="stylesheet" href="./shared/site-header.css?v=66f04efd44">
   <link rel="stylesheet" href="./shared/editorial-cards.css?v=f64b9b80dd">
-  <link rel="stylesheet" href="./live/ala-www/css/home-page.css?v=deb549b47d">
+  <link rel="stylesheet" href="./live/ala-www/css/home-page.css?v=8832da281b">
+  <script src="./live/ala-www/js/home-news.js?v=8f0d0c98d7" defer></script>
   <script src="./shared/faq.js?v=06e0e04998" defer></script>
   <script src="./shared/site-header.js?v=fa30b9015e" defer></script>
 </head>
@@ -810,83 +811,81 @@ nacionalidad mexicana" />
       </section>
 
       <section class="ala-news" id="ala-en-los-medios" aria-labelledby="ala-news-title">
-        <div class="ala-news-shell">
-          <header class="ala-news-intro">
-            <h2 class="ala-editorial-heading" id="ala-news-title">ALA en los medios</h2>
-            <p>Noticias y comunicados sobre ALA y su participación en el ecosistema fintech de México.</p>
-          </header>
+        <header class="ala-news-intro">
+          <h2 class="ala-editorial-heading" id="ala-news-title">ALA en los medios</h2>
+          <p>Noticias y comunicados sobre ALA y su participación en el ecosistema fintech de México.</p>
+        </header>
 
-          <ul class="ala-news-grid" role="list">
-            <li>
-              <article class="ala-news-card" aria-labelledby="ala-news-cnt-title">
-                <img class="ala-news-cover" src="./public/assets/news/cnt-cover.webp?v=77e8d4431a" alt="" width="606" height="412" loading="lazy" decoding="async">
-                <div class="ala-news-content">
-                  <div class="ala-news-meta">
-                    <img class="ala-news-logo" src="./public/assets/news/cnt-logo.webp?v=d3d6923034" alt="Centro Noticias Tamaulipas" width="206" height="43" loading="lazy" decoding="async">
-                    <time datetime="2026-01-15">15/01/2026</time>
-                  </div>
-                  <h3 id="ala-news-cnt-title">La fintech mexicana ALA Préstamos redefine la experiencia del microcrédito mediante la autonomía tecnológica</h3>
-                  <span class="ala-news-badge">NEWS</span>
-                  <a class="ala-news-link" href="https://cntamaulipas.mx/2026/01/15/la-fintech-mexicana-ala-prestamos-redefine-la-experiencia-del-microcredito-mediante-la-autonomia-tecnologica/" target="_blank" rel="noopener noreferrer" aria-label="cntamaulipas.mx (se abre en otra pestaña)">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18"/></svg>
-                    <span>cntamaulipas.mx</span>
-                  </a>
+        <ul class="ala-news-grid" role="list" aria-label="Noticias y comunicados de ALA" tabindex="0">
+          <li>
+            <article class="ala-news-card" aria-labelledby="ala-news-cnt-title">
+              <img class="ala-news-cover" src="./public/assets/news/cnt-cover.webp?v=77e8d4431a" alt="" width="606" height="412" loading="lazy" decoding="async">
+              <div class="ala-news-content">
+                <div class="ala-news-meta">
+                  <img class="ala-news-logo" src="./public/assets/news/cnt-logo.webp?v=d3d6923034" alt="Centro Noticias Tamaulipas" width="206" height="43" loading="lazy" decoding="async">
+                  <time datetime="2026-01-15">15/01/2026</time>
                 </div>
-              </article>
-            </li>
-            <li>
-              <article class="ala-news-card" aria-labelledby="ala-news-el-reportero-title">
-                <img class="ala-news-cover" src="./public/assets/news/el-reportero-cover.webp?v=a416080615" alt="" width="607" height="412" loading="lazy" decoding="async">
-                <div class="ala-news-content">
-                  <div class="ala-news-meta">
-                    <img class="ala-news-logo" src="./public/assets/news/el-reportero-logo.webp?v=a762aee1bb" alt="elReportero.mx" width="274" height="52" loading="lazy" decoding="async">
-                    <time datetime="2026-01-25">25/01/2026</time>
-                  </div>
-                  <h3 id="ala-news-el-reportero-title">ALA Préstamos: Tecnología que cierra la brecha de los servicios financieros</h3>
-                  <span class="ala-news-badge">NEWS</span>
-                  <a class="ala-news-link" href="https://elreportero.mx/2026/01/25/ala-prestamos-tecnologia-para-cerrar-la-brecha-de-los-servicios-financieros-tradicionales-en-mexico/" target="_blank" rel="noopener noreferrer" aria-label="elreportero.mx (se abre en otra pestaña)">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18"/></svg>
-                    <span>elreportero.mx</span>
-                  </a>
+                <h3 id="ala-news-cnt-title">La fintech mexicana ALA Préstamos redefine la experiencia del microcrédito mediante la autonomía tecnológica</h3>
+                <span class="ala-news-badge">NEWS</span>
+                <a class="ala-news-link" href="https://cntamaulipas.mx/2026/01/15/la-fintech-mexicana-ala-prestamos-redefine-la-experiencia-del-microcredito-mediante-la-autonomia-tecnologica/" target="_blank" rel="noopener noreferrer" aria-label="cntamaulipas.mx (se abre en otra pestaña)">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18"/></svg>
+                  <span>cntamaulipas.mx</span>
+                </a>
+              </div>
+            </article>
+          </li>
+          <li>
+            <article class="ala-news-card" aria-labelledby="ala-news-el-reportero-title">
+              <img class="ala-news-cover" src="./public/assets/news/el-reportero-cover.webp?v=a416080615" alt="" width="607" height="412" loading="lazy" decoding="async">
+              <div class="ala-news-content">
+                <div class="ala-news-meta">
+                  <img class="ala-news-logo" src="./public/assets/news/el-reportero-logo.webp?v=a762aee1bb" alt="elReportero.mx" width="274" height="52" loading="lazy" decoding="async">
+                  <time datetime="2026-01-25">25/01/2026</time>
                 </div>
-              </article>
-            </li>
-            <li>
-              <article class="ala-news-card" aria-labelledby="ala-news-financialcontent-title">
-                <img class="ala-news-cover" src="./public/assets/news/financialcontent-cover.webp?v=f1ece4d3e3" alt="" width="607" height="412" loading="lazy" decoding="async">
-                <div class="ala-news-content">
-                  <div class="ala-news-meta">
-                    <span class="ala-news-outlet">FinancialContent</span>
-                    <time datetime="2026-01-17">17/01/2026</time>
-                  </div>
-                  <h3 id="ala-news-financialcontent-title" lang="en">Quantum Subsidiary ALA Préstamos Drives Financial Inclusion in Mexico Through Digital-First Credit Solutions</h3>
-                  <span class="ala-news-badge">Comunicado de prensa</span>
-                  <a class="ala-news-link" href="https://markets.financialcontent.com/stocks/article/getnews-2026-1-17-quantum-subsidiary-ala-prstamos-drives-financial-inclusion-in-mexico-through-digital-first-credit-solutions" target="_blank" rel="noopener noreferrer" aria-label="financialcontent.com (se abre en otra pestaña)">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18"/></svg>
-                    <span>financialcontent.com</span>
-                  </a>
+                <h3 id="ala-news-el-reportero-title">ALA Préstamos: Tecnología que cierra la brecha de los servicios financieros</h3>
+                <span class="ala-news-badge">NEWS</span>
+                <a class="ala-news-link" href="https://elreportero.mx/2026/01/25/ala-prestamos-tecnologia-para-cerrar-la-brecha-de-los-servicios-financieros-tradicionales-en-mexico/" target="_blank" rel="noopener noreferrer" aria-label="elreportero.mx (se abre en otra pestaña)">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18"/></svg>
+                  <span>elreportero.mx</span>
+                </a>
+              </div>
+            </article>
+          </li>
+          <li>
+            <article class="ala-news-card" aria-labelledby="ala-news-financialcontent-title">
+              <img class="ala-news-cover" src="./public/assets/news/financialcontent-cover.webp?v=f1ece4d3e3" alt="" width="607" height="412" loading="lazy" decoding="async">
+              <div class="ala-news-content">
+                <div class="ala-news-meta">
+                  <span class="ala-news-outlet">FinancialContent</span>
+                  <time datetime="2026-01-17">17/01/2026</time>
                 </div>
-              </article>
-            </li>
-            <li>
-              <article class="ala-news-card" aria-labelledby="ala-news-barchart-title">
-                <img class="ala-news-cover" src="./public/assets/news/barchart-cover.webp?v=d179cf6ef4" alt="" width="607" height="412" loading="lazy" decoding="async">
-                <div class="ala-news-content">
-                  <div class="ala-news-meta">
-                    <span class="ala-news-outlet">Barchart</span>
-                    <time datetime="2026-01-23">23/01/2026</time>
-                  </div>
-                  <h3 id="ala-news-barchart-title" lang="en">Quantum Subsidiary ALA Préstamos Precision-Engineers Liquidity Solutions for Mexico’s Workforce</h3>
-                  <span class="ala-news-badge">Comunicado de prensa</span>
-                  <a class="ala-news-link" href="https://www.barchart.com/story/news/37208965/quantum-subsidiary-ala-prestamos-precision-engineers-liquidity-solutions-for-mexicos-workforce" target="_blank" rel="noopener noreferrer" aria-label="barchart.com (se abre en otra pestaña)">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18"/></svg>
-                    <span>barchart.com</span>
-                  </a>
+                <h3 id="ala-news-financialcontent-title" lang="en">Quantum Subsidiary ALA Préstamos Drives Financial Inclusion in Mexico Through Digital-First Credit Solutions</h3>
+                <span class="ala-news-badge">Comunicado de prensa</span>
+                <a class="ala-news-link" href="https://markets.financialcontent.com/stocks/article/getnews-2026-1-17-quantum-subsidiary-ala-prstamos-drives-financial-inclusion-in-mexico-through-digital-first-credit-solutions" target="_blank" rel="noopener noreferrer" aria-label="financialcontent.com (se abre en otra pestaña)">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18"/></svg>
+                  <span>financialcontent.com</span>
+                </a>
+              </div>
+            </article>
+          </li>
+          <li>
+            <article class="ala-news-card" aria-labelledby="ala-news-barchart-title">
+              <img class="ala-news-cover" src="./public/assets/news/barchart-cover.webp?v=d179cf6ef4" alt="" width="607" height="412" loading="lazy" decoding="async">
+              <div class="ala-news-content">
+                <div class="ala-news-meta">
+                  <span class="ala-news-outlet">Barchart</span>
+                  <time datetime="2026-01-23">23/01/2026</time>
                 </div>
-              </article>
-            </li>
-          </ul>
-        </div>
+                <h3 id="ala-news-barchart-title" lang="en">Quantum Subsidiary ALA Préstamos Precision-Engineers Liquidity Solutions for Mexico’s Workforce</h3>
+                <span class="ala-news-badge">Comunicado de prensa</span>
+                <a class="ala-news-link" href="https://www.barchart.com/story/news/37208965/quantum-subsidiary-ala-prestamos-precision-engineers-liquidity-solutions-for-mexicos-workforce" target="_blank" rel="noopener noreferrer" aria-label="barchart.com (se abre en otra pestaña)">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18"/></svg>
+                  <span>barchart.com</span>
+                </a>
+              </div>
+            </article>
+          </li>
+        </ul>
       </section>
 
       <section class="ala-faq-section" data-ala-faq="home" aria-labelledby="home-faq-title">
