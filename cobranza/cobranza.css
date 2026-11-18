@@ -385,16 +385,6 @@ body {
 }
 
 @media (min-width: 841px) {
-  .repayment-guide > :is(h2, p) {
-    text-align: center;
-  }
-
-  .repayment-guide > p {
-    max-inline-size: 64ch;
-    margin-inline: auto;
-    text-wrap: pretty;
-  }
-
   .steps {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -404,17 +394,12 @@ body {
 
   .steps li {
     padding: 46px 0 0;
-    text-align: center;
-  }
-
-  .steps li::before {
-    inset-inline-start: calc((100% - var(--step-size)) / 2);
   }
 
   .steps li:not(:last-child)::after {
     inset-block: calc(var(--step-size) / 2 - .5px) auto;
-    inset-inline: 50% calc(-50% - var(--ala-grid-gap));
-    width: auto;
+    inset-inline-start: calc(var(--step-size) / 2);
+    width: calc(100% + var(--ala-grid-gap));
     height: 1px;
   }
 
