@@ -189,7 +189,7 @@ body {
   }
 }
 
-.collection-outline .link-H2 > a[aria-current="location"] {
+.collection-outline .link-H2[data-current-chapter] > a {
   border-color: #f3f4f9;
   background: #f3f4f9;
 }
