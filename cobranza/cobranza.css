@@ -129,6 +129,7 @@ body {
 
 .collection-outline .index-title {
   margin: 0 0 8px;
+  font-size: .875rem;
   font-weight: 700;
 }
 
@@ -139,57 +140,32 @@ body {
   list-style: none;
 }
 
-.collection-outline .index-chapter + .index-chapter {
-  margin-block-start: 6px;
-}
-
-.collection-outline .index-chapter > a {
-  color: var(--ala-ink);
-  font-weight: 700;
-}
-
-.collection-outline .index-subsections {
-  margin: 0 0 0 14px;
-  padding: 0;
-  list-style: none;
-}
-
-.collection-outline .toc-subentry {
-  margin-inline-start: 0;
+.collection-outline #anchorDirectory li {
+  padding-inline-start: 0;
 }
 
 .collection-outline a {
   display: flex;
-  min-height: 44px;
+  min-height: 36px;
   align-items: center;
   margin-inline-start: -1px;
-  padding: 8px 12px;
+  padding: 6px 0 6px 12px;
   border-inline-start: 2px solid transparent;
-  border-radius: 0 8px 8px 0;
   color: var(--ala-muted);
   font-size: .875rem;
-  line-height: 1.5;
+  line-height: 1.4;
   text-decoration: none;
-}
-
-.collection-outline .toc-subentry a {
-  font-size: .8125rem;
 }
 
 @media (hover: hover) {
   .collection-outline a:hover {
-    background: var(--ala-panel);
     color: var(--ala-ink);
+    text-decoration: underline;
   }
-}
-
-.collection-outline a:active {
-  background: var(--ala-line);
 }
 
 .collection-outline a[aria-current="location"] {
   border-color: var(--ala-muted);
-  background: var(--ala-panel);
   color: var(--ala-ink);
   font-weight: 700;
 }
@@ -235,6 +211,10 @@ body {
 
   .collection-outline[open] > summary::after {
     background-size: 12px 2px, 0 0;
+  }
+
+  .collection-outline a {
+    min-height: var(--ala-control-height);
   }
 
   .collection-outline .index-content {

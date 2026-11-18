@@ -5,44 +5,31 @@ document.addEventListener('DOMContentLoaded', () => {
   const desktop = matchMedia('(min-width: 1101px)');
   const header = document.querySelector('.ala-header-bar');
   const list = outline.querySelector('#anchorDirectory');
-  const subsections = [];
-  let chapter;
-  let children;
-
-  for (const item of Array.from(list.children)) {
-    if (!item.classList.contains('toc-subentry') || !chapter) {
-      chapter = item;
-      chapter.classList.add('index-chapter');
-      children = null;
-    } else {
-      if (!children) {
-        children = document.createElement('ol');
-        children.className = 'index-subsections';
-        children.hidden = true;
-        chapter.append(children);
-        subsections.push(children);
-      }
-      children.append(item);
+  const headings = [];
+  for (const link of list.querySelectorAll('a')) {
+    const heading = document.getElementById(decodeURIComponent(link.hash.slice(1)));
+    if (heading?.tagName !== 'H2') {
+      link.parentElement.remove();
+      continue;
     }
+
+    const shortLabel = heading.dataset.outlineLabel?.trim();
+    if (shortLabel) link.textContent = shortLabel;
+    headings.push({ link, heading });
   }
 
-  const headings = Array.from(list.querySelectorAll('a'), link => ({
-    link,
-    heading: document.getElementById(decodeURIComponent(link.hash.slice(1))),
-  }));
+  if (!headings.length) {
+    outline.hidden = true;
+    return;
+  }
+
   let activeLink;
-  let activeChapter;
 
   function setCurrent(link) {
     if (activeLink === link) return;
     activeLink?.removeAttribute('aria-current');
     link.setAttribute('aria-current', 'location');
     activeLink = link;
-
-    const currentChapter = link.closest('.index-chapter');
-    if (activeChapter === currentChapter) return;
-    activeChapter = currentChapter;
-    for (const section of subsections) section.hidden = section.parentElement !== currentChapter;
   }
 
   function syncDisclosure() {

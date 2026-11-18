@@ -1,4 +1,4 @@
-<h2 id="opciones-de-pago" tabindex="-1">¿No puedes pagar a tiempo?</h2>
+<h2 id="opciones-de-pago" tabindex="-1" data-outline-label="Dificultades para pagar">¿No puedes pagar a tiempo?</h2>
 <p>Una reducción de ingresos, un gasto imprevisto o un problema de salud puede afectar tu plan de pago. Contacta a ALA cuanto antes, de preferencia antes del vencimiento, para revisar tu situación.</p>
 <ol>
   <li><strong>Comunícate con ALA.</strong> Usa los canales oficiales en cuanto sepas que podrías tener dificultades para pagar en la fecha acordada.</li>
@@ -6,14 +6,14 @@
   <li><strong>Revisa tus opciones.</strong> ALA revisará las opciones según tu contrato, el estado de tu préstamo y las políticas vigentes. Cualquier ajuste o acuerdo requiere evaluación y aprobación.</li>
 </ol>
 
-<h2 id="vencimiento" tabindex="-1">¿Qué sucede si se vence tu pago?</h2>
+<h2 id="vencimiento" tabindex="-1" data-outline-label="Vencimiento y atrasos">¿Qué sucede si se vence tu pago?</h2>
 <h3>Antes del vencimiento</h3>
 <p>En la app oficial de ALA, abre Mi cuenta y entra en Mis préstamos para consultar tu contrato, el saldo, la fecha límite y las formas de pago autorizadas. Antes de pagar, verifica el monto, el beneficiario y la referencia.</p>
 <p>ALA puede enviarte recordatorios por llamada, SMS, WhatsApp, correo electrónico o notificaciones de la app.</p>
 <h3>Si no pagas en la fecha acordada</h3>
 <p>ALA puede comunicarse contigo por el saldo pendiente. Según tu contrato, el atraso puede generar cargos y afectar tu historial crediticio. Consulta el saldo actualizado en la app oficial de ALA.</p>
 
-<h2 id="reclamaciones" tabindex="-1">Cómo presentar una reclamación</h2>
+<h2 id="reclamaciones" tabindex="-1" data-outline-label="Dudas o reclamaciones">Cómo presentar una reclamación</h2>
 <p>Si tienes dudas sobre un contacto de cobranza, si ya pagaste o si no reconoces el préstamo, comunícate con ALA para que revisemos tu caso.</p>
 <h3>Datos que ayudan a revisar tu caso</h3>
 <ul>
