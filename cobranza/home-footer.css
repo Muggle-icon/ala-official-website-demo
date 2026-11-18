@@ -3,10 +3,8 @@
   --footer-scale: 1;
   position: relative;
   z-index: 1;
-  padding: calc(var(--base-pt) * var(--footer-scale))
-    calc(var(--base-pr) * var(--footer-scale))
-    calc(var(--base-pb) * var(--footer-scale))
-    calc(var(--base-pl) * var(--footer-scale));
+  padding-block: calc(var(--base-pt) * var(--footer-scale)) calc(var(--base-pb) * var(--footer-scale));
+  padding-inline: calc((100% - var(--ala-content-width)) / 2);
   background: #1b1e28;
   color: #fff;
   font: 400 1rem / 1.15 var(--ala-font);
@@ -161,7 +159,6 @@
 }
 
 .pc-footer-container .rate-info-container {
-  padding-inline: 15px;
   color: #96989c;
   font: 400 1rem / 19px var(--ala-font);
 }
@@ -188,7 +185,7 @@
 
 @media (max-width: 1024px) {
   .pc-footer-container {
-    padding: 56px 24px 72px;
+    padding-block: 56px 72px;
   }
 
   .pc-footer-container .footer-txt-item-box,
@@ -226,7 +223,6 @@
   }
 
   .pc-footer-container .rate-info-container {
-    padding-inline: 0;
     font-size: 14px;
     line-height: 18px;
   }

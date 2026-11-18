@@ -113,8 +113,7 @@ body {
   text-wrap: pretty;
 }
 
-.frame.collection-content {
-  width: min(var(--ala-content-width), 46rem);
+.collection-content {
   padding-block: clamp(32px, 4.5vw, 64px) var(--ala-section-space);
 }
 
@@ -140,6 +139,7 @@ body {
 }
 
 .collection-content h3 {
+  max-width: 65ch;
   margin: 0 0 8px;
   font: 700 1.1875rem / 1.35 var(--ala-font);
   text-wrap: pretty;
