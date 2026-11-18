@@ -114,6 +114,7 @@ body {
 }
 
 .collection-content {
+  width: min(100% - 48px, 48rem);
   padding-block: clamp(32px, 4.5vw, 64px) var(--ala-section-space);
 }
 
@@ -139,14 +140,12 @@ body {
 }
 
 .collection-content h3 {
-  max-width: 65ch;
   margin: 0 0 8px;
   font: 700 1.1875rem / 1.35 var(--ala-font);
   text-wrap: pretty;
 }
 
 .collection-content p {
-  max-width: 72ch;
   margin: 0;
   color: var(--ala-muted);
   overflow-wrap: anywhere;
@@ -259,14 +258,6 @@ body {
 
 .payment-notice :is(h3, p) {
   color: #573800;
-}
-
-.collection-faq-section {
-  max-inline-size: 48rem;
-}
-
-.collection-faq-section :is(h3, p) {
-  max-width: none;
 }
 
 .collection-faq > div {
@@ -391,7 +382,17 @@ body {
   }
 }
 
-@media (min-width: 721px) {
+@media (min-width: 841px) {
+  .repayment-guide > :is(h2, p) {
+    text-align: center;
+  }
+
+  .repayment-guide > p {
+    max-inline-size: 64ch;
+    margin-inline: auto;
+    text-wrap: pretty;
+  }
+
   .steps {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -400,16 +401,27 @@ body {
   }
 
   .steps li {
-    padding: 44px 0 0;
+    padding: 46px 0 0;
+    text-align: center;
+  }
+
+  .steps li::before {
+    inset-inline-start: calc((100% - var(--step-size)) / 2);
   }
 
   .steps li:not(:last-child)::after {
     inset-block: calc(var(--step-size) / 2 - .5px) auto;
-    inset-inline: calc(var(--step-size) / 2) calc(-1 * (var(--ala-grid-gap) + var(--step-size) / 2));
+    inset-inline: 50% calc(-50% - var(--ala-grid-gap));
     width: auto;
     height: 1px;
   }
 
+  .steps p {
+    text-wrap: pretty;
+  }
+}
+
+@media (min-width: 721px) {
   .payment-phases,
   .report-details {
     grid-template-columns: repeat(2, minmax(0, 1fr));

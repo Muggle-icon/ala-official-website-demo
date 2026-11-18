@@ -2,7 +2,7 @@
 
 ## 页面和西语核对
 
-专题在 Demo 中通过 `/cobranza/` 直接访问。产品文档 v1.1 §3.9 要求正式站提供独立公开网址，首页和全局导航沿用现有入口。页面保留一个主标题、一个顺序阅读的正文区域、六条可见问答和官方联系方式。首屏、正文和页脚使用同一个内容宽度，FAQ 沿用正文左边线，标题、问题、答案和分隔线共用最大 `48rem` 的阅读栏，其他长段落保留 `72ch` 的最大行宽。
+专题在 Demo 中通过 `/cobranza/` 直接访问。产品文档 v1.1 §3.9 要求正式站提供独立公开网址，首页和全局导航沿用现有入口。页面保留一个主标题、一个顺序阅读的正文区域、六条可见问答和官方联系方式。首屏和页脚使用官网内容宽度。首屏以下所有正文模块使用居中的 `48rem` 阅读栏，窄屏左右各留 `24px`。步骤区在宽屏居中排成三列，窄屏按顺序竖排。FAQ 标题、问题、答案和分隔线共用阅读栏。
 
 | 核对项 | 当前西语口径 | 官网依据 |
 | --- | --- | --- |
@@ -22,7 +22,7 @@ Demo 文案按 ALA 已公开页面核对。正式发布使用产品文档 §3.9.
 | 索引和摘要 | 仅生产路径移除 Demo 的 `noindex`。检查 HTML 的 robots/googlebot meta 与 CDN 的 `X-Robots-Tag`，确保正式页可索引且可生成摘要，核心正文可用于摘要。 | 响应头和页面源码检查，无 `noindex`、`nosnippet` 或等效限制，核心正文不带 `data-nosnippet`。 |
 | 爬虫与边缘层 | 确认正式域名 `robots.txt` 的实际匹配规则允许 Googlebot、Bingbot 和 `OAI-SearchBot` 获取该路径，且 CDN/WAF 不向已验证爬虫返回验证码、登录重定向、403 或 429。按平台公开 IP 或官方验证方法确认身份。ChatGPT 搜索的 `OAI-SearchBot` 和训练的 `GPTBot` 按各自目的配置。 | robots 规则检查，边缘或服务端日志记录经过身份验证的爬虫、路径和 200 状态。手动改 User-Agent 的请求只能用于诊断。 |
 | 站点发现 | 把最终 canonical URL 加入官网 `sitemap-pages.xml`，由现有 `sitemap.xml` 索引引用，并在 Search Console 提交或确认已有提交。 | 公开 XML 返回 200，`<loc>` 与 canonical 一致。首页和全局导航继续沿用现有入口。 |
-| 客服、边距与埋点 | 客服按钮指向正式站帮助中心首页。验证拨号链接和页内电话锚点。首屏、正文和页脚共用内容容器。按产品文档记录 UBS 专题访问和官方客服入口点击。 | 320、390、1024 和桌面宽度截图，首屏和正文外边线一致，逐条核对 FAQ 问题、答案和分隔线的边线，无横向溢出。实际点击客服，记录跳转与 UBS 测试事件。 |
+| 客服、边距与埋点 | 客服按钮指向正式站帮助中心首页。验证拨号链接和页内电话锚点。步骤区、逾期说明、投诉、FAQ 和联系方式共用一个居中阅读栏。按产品文档记录 UBS 专题访问和官方客服入口点击。 | 320、390、1024 和桌面宽度截图，核对各正文模块的左右边距和居中轴，逐条核对 FAQ 问题、答案和分隔线的边线，无横向溢出。实际点击客服，记录跳转与 UBS 测试事件。 |
 
 配置依据 [Google 可抓取和 AI 摘要要求](https://developers.google.com/search/docs/appearance/ai-features) · [Google robots 指令](https://developers.google.com/search/docs/crawling-indexing/robots-meta-tag) · [OpenAI 爬虫](https://developers.openai.com/api/docs/bots) · [ALA 页面站点地图](https://www.alaprestamo.com/sitemap-pages.xml)
 
