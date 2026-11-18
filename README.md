@@ -17,7 +17,7 @@ Public legal pages and the two linked disclosures are included. Blog and city li
 
 The review site's internal pages, articles, and disclosures stay within the demo. App stores, social channels, regulator sites, and standard call and email links open their original destinations. Customer support actions use the demo contact page where the live chat would require a production service.
 
-The brand design contains historical product disclosures. The standalone collection article uses draft Spanish and can be opened directly at `/cobranza/`. Confirm the approved content before any production CMS release.
+The brand design contains historical product disclosures. The standalone collection article uses draft Spanish and can be opened directly at `/cobranza/`. Confirm the approved content before any production CMS release. To update the review copy, edit [the collection rich-text source](cobranza/body.html.txt), then run `python3 scripts/render_article_pages.py --collection` to regenerate the static page. Use `--collection --check` to verify it is up to date.
 
 ## Run locally
 

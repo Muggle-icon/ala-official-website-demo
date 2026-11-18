@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Render the article reading shell from the site's captured article data."""
+"""Render Blog article pages and the collection page rich text."""
 from datetime import datetime
 from hashlib import sha256
 from html import escape, unescape
@@ -8,6 +8,7 @@ import json
 from pathlib import Path
 import re
 import sys
+from textwrap import indent
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -77,12 +78,12 @@ def version(path):
     return sha256((ROOT / path).read_bytes()).hexdigest()[:10]
 
 
-def local_path(path):
-    return "../../" + path
+def asset(path, prefix="../../"):
+    return f"{prefix}{path}?v={version(path)}"
 
 
-def asset(path):
-    return f"{local_path(path)}?v={version(path)}"
+def rich_text_markup(body):
+    return f'<div class="article-content" id="richTextContent">{body}</div>'
 
 
 def render_faq_links(links, category):
@@ -192,7 +193,7 @@ def article_markup(html, route, article_html):
       <p>{definition[2].strip()}</p>
     </section>''')
 
-    parts.append(f'    <div class="article-content" id="richTextContent">{body}</div>')
+    parts.append("    " + rich_text_markup(body))
 
     avatar, name, about = author
     if name.strip():
@@ -225,16 +226,46 @@ def render(path):
     return html.replace("</head>", assets.strip("\n") + "\n</head>", 1)
 
 
+def replace_collection_region(html, name, padding, markup):
+    start = f"{padding}<!-- ALA collection {name} start -->"
+    end = f"{padding}<!-- ALA collection {name} end -->"
+    before, start_tag, remainder = html.partition(start)
+    _, end_tag, after = remainder.partition(end)
+    if not start_tag or not end_tag:
+        raise ValueError(f"Missing collection page markers for {name}")
+    return before + start_tag + "\n" + indent(markup, padding) + "\n" + end_tag + after
+
+
+def render_collection(path):
+    html = path.read_text()
+    body = path.with_name("body.html.txt").read_text().strip()
+    if not body:
+        raise ValueError("Missing collection rich text")
+    style = f'<link rel="stylesheet" href="{asset(STYLE, prefix="../")}">'
+    html = replace_collection_region(html, "rich text stylesheet", "  ", style)
+    markup = rich_text_markup("\n" + indent(body, "  ") + "\n")
+    return replace_collection_region(html, "rich text", "        ", markup)
+
+
 def main():
     check = "--check" in sys.argv
+    if "--collection" in sys.argv:
+        files = [ROOT / "cobranza/index.html"]
+        render_page = render_collection
+        label = "collection"
+    else:
+        files = sorted((ROOT / "article").glob("*/index.html"))
+        render_page = render
+        label = "Blog"
+
     changed = 0
-    for path in sorted((ROOT / "article").glob("*/index.html")):
-        new_html = render(path)
+    for path in files:
+        new_html = render_page(path)
         if new_html != path.read_text():
             changed += 1
             if not check:
                 path.write_text(new_html)
-    print(f"{changed} article pages {'need regeneration' if check else 'updated'}")
+    print(f"{changed} {label} pages {'need regeneration' if check else 'updated'}")
     return bool(check and changed)
 
 

@@ -8,7 +8,10 @@
   <meta name="theme-color" content="#ffffff">
   <title>Cobranza, pagos atrasados y soluciones | ALA</title>
   <link rel="icon" href="../public/assets/ala-app-icon.png">
-  <link rel="stylesheet" href="./cobranza.css?v=473ae36a74">
+  <!-- ALA collection rich text stylesheet start -->
+  <link rel="stylesheet" href="../live/blog/ala-www/css/article-page.css?v=cd5297d4c8">
+  <!-- ALA collection rich text stylesheet end -->
+  <link rel="stylesheet" href="./cobranza.css?v=3ebf5f166b">
   <link rel="stylesheet" href="../shared/site-header.css?v=60374d3672">
   <script src="../shared/site-header.js?v=fa30b9015e" defer></script>
   <link rel="stylesheet" href="./home-footer.css?v=0d866fedf5">
@@ -101,110 +104,59 @@
         </div>
       </header>
 
-      <div class="frame collection-content">
-        <section class="repayment-guide" aria-labelledby="opciones-de-pago">
+      <div class="frame collection-content ala-article-reading">
+        <!-- ALA collection rich text start -->
+        <div class="article-content" id="richTextContent">
           <h2 id="opciones-de-pago" tabindex="-1">¿No puedes pagar a tiempo?</h2>
           <p>Una reducción de ingresos, un gasto imprevisto o un problema de salud puede afectar tu plan de pago. Contacta a ALA cuanto antes, de preferencia antes del vencimiento, para revisar tu situación.</p>
-          <ol class="steps" role="list">
-            <li>
-              <h3>Comunícate con ALA</h3>
-              <p>Usa los canales oficiales en cuanto sepas que podrías tener dificultades para pagar en la fecha acordada.</p>
-            </li>
-            <li>
-              <h3>Explica qué pasó</h3>
-              <p>Indica qué situación afecta tu pago, cuánto puedes abonar y cuándo estimas que podrás hacerlo.</p>
-            </li>
-            <li>
-              <h3>Revisa tus opciones</h3>
-              <p>ALA revisará las opciones según tu contrato, el estado de tu préstamo y las políticas vigentes. Cualquier ajuste o acuerdo requiere evaluación y aprobación.</p>
-            </li>
+          <ol>
+            <li><strong>Comunícate con ALA.</strong> Usa los canales oficiales en cuanto sepas que podrías tener dificultades para pagar en la fecha acordada.</li>
+            <li><strong>Explica qué pasó.</strong> Indica qué situación afecta tu pago, cuánto puedes abonar y cuándo estimas que podrás hacerlo.</li>
+            <li><strong>Revisa tus opciones.</strong> ALA revisará las opciones según tu contrato, el estado de tu préstamo y las políticas vigentes. Cualquier ajuste o acuerdo requiere evaluación y aprobación.</li>
           </ol>
-        </section>
 
-        <section aria-labelledby="vencimiento">
           <h2 id="vencimiento" tabindex="-1">¿Qué sucede si se vence tu pago?</h2>
-          <div class="payment-phases">
-            <div class="payment-phase">
-              <h3>Antes del vencimiento</h3>
-              <p>En la app oficial de ALA, abre Mi cuenta y entra en Mis préstamos para consultar tu contrato, el saldo, la fecha límite y las formas de pago autorizadas. Antes de pagar, verifica el monto, el beneficiario y la referencia.</p>
-              <p>ALA puede enviarte recordatorios por llamada, SMS, WhatsApp, correo electrónico o notificaciones de la app.</p>
-            </div>
-            <div class="payment-phase">
-              <h3>Si no pagas en la fecha acordada</h3>
-              <p>ALA puede comunicarse contigo por el saldo pendiente. Según tu contrato, el atraso puede generar cargos y afectar tu historial crediticio. Consulta el saldo actualizado en la app oficial de ALA.</p>
-            </div>
-          </div>
-        </section>
+          <h3>Antes del vencimiento</h3>
+          <p>En la app oficial de ALA, abre Mi cuenta y entra en Mis préstamos para consultar tu contrato, el saldo, la fecha límite y las formas de pago autorizadas. Antes de pagar, verifica el monto, el beneficiario y la referencia.</p>
+          <p>ALA puede enviarte recordatorios por llamada, SMS, WhatsApp, correo electrónico o notificaciones de la app.</p>
+          <h3>Si no pagas en la fecha acordada</h3>
+          <p>ALA puede comunicarse contigo por el saldo pendiente. Según tu contrato, el atraso puede generar cargos y afectar tu historial crediticio. Consulta el saldo actualizado en la app oficial de ALA.</p>
 
-        <section aria-labelledby="reclamaciones">
           <h2 id="reclamaciones" tabindex="-1">Cómo presentar una reclamación</h2>
           <p>Si tienes dudas sobre un contacto de cobranza, si ya pagaste o si no reconoces el préstamo, comunícate con ALA para que revisemos tu caso.</p>
-          <div class="report-details">
-            <div>
-              <h3>Datos que ayudan a revisar tu caso</h3>
-              <ul class="report-checklist">
-                <li>Fecha y hora en que te contactaron.</li>
-                <li>Número o medio por el que te contactaron y una descripción de lo ocurrido.</li>
-                <li>Capturas, mensajes o grabaciones, si ya los tienes.</li>
-              </ul>
-            </div>
-            <aside class="payment-notice" aria-labelledby="cuenta-personal">
-              <h3 id="cuenta-personal">Si te piden pagar a una cuenta personal</h3>
-              <p>ALA nunca solicita pagos a cuentas personales. Si te lo piden, no hagas la transferencia y repórtalo de inmediato a Atención al Cliente. No compartas contraseñas ni códigos de verificación.</p>
-            </aside>
-          </div>
-        </section>
+          <h3>Datos que ayudan a revisar tu caso</h3>
+          <ul>
+            <li>Fecha y hora en que te contactaron.</li>
+            <li>Número o medio por el que te contactaron y una descripción de lo ocurrido.</li>
+            <li>Capturas, mensajes o grabaciones, si ya los tienes.</li>
+          </ul>
+          <h3 id="cuenta-personal">Si te piden pagar a una cuenta personal</h3>
+          <p>ALA nunca solicita pagos a cuentas personales. Si te lo piden, no hagas la transferencia y repórtalo de inmediato a Atención al Cliente. No compartas contraseñas ni códigos de verificación.</p>
 
-        <section aria-labelledby="preguntas-frecuentes">
           <h2 id="preguntas-frecuentes" tabindex="-1">Preguntas frecuentes</h2>
-          <div class="collection-faq">
-            <div>
-              <h3>¿ALA contactará a mis familiares o compañeros de trabajo después del vencimiento?</h3>
-              <p>ALA y sus despachos autorizados deben actuar sin amenazas, intimidación ni divulgación de datos personales. Si recibes un reporte de contacto con familiares, amistades o compañeros ajenos al crédito, comunícate con Atención al Cliente para que ALA lo revise.</p>
-            </div>
-            <div>
-              <h3>¿Puedo solicitar una prórroga u otro acuerdo si no puedo pagar a tiempo?</h3>
-              <p>Contacta a Atención al Cliente cuanto antes para explicar tu situación. ALA revisará las opciones según tu contrato, el estado del préstamo y las políticas vigentes. Una prórroga o un acuerdo requiere evaluación y aprobación.</p>
-            </div>
-            <div>
-              <h3>¿Cómo verifico que la persona que me contacta está autorizada por ALA?</h3>
-              <p>Confirma con Atención al Cliente de ALA el número o la cuenta desde donde recibiste la llamada o el mensaje. Mientras confirmas su identidad, no le pagues, no aceptes acuerdos verbales ni compartas contraseñas o códigos. Consulta tu saldo y las formas de pago en la app oficial.</p>
-            </div>
-            <div>
-              <h3>Ya pagué. ¿Por qué sigo recibiendo mensajes de cobranza?</h3>
-              <p>Conserva tu comprobante y revisa el estado del pago en la app. El registro suele tomar unas dos horas, aunque puede tardar más. Recibirás un SMS al procesarse el pago. Si pasan más de 24 horas sin confirmación o los avisos siguen tras el registro, comparte el comprobante con Atención al Cliente. Mientras verificas el saldo, no hagas un pago duplicado.</p>
-            </div>
-            <div>
-              <h3>¿Qué hago si recibo mensajes agresivos o sospechosos?</h3>
-              <p>Repórtalos a Atención al Cliente de inmediato. Indica cuándo y por qué medio te contactaron, describe lo ocurrido y comparte evidencia si la tienes. Si te piden una transferencia a una cuenta personal, no la hagas ni compartas contraseñas o códigos.</p>
-            </div>
-            <div>
-              <h3>No reconozco este préstamo. ¿Qué debo hacer?</h3>
-              <p>Contacta de inmediato a Atención al Cliente para solicitar una aclaración. ALA revisará la solicitud, la verificación de identidad y el desembolso, y te indicará los siguientes pasos. Si alguien te pide pagar por un medio no verificado, no hagas el pago ni compartas contraseñas o códigos.</p>
-            </div>
-          </div>
-        </section>
+          <h3>¿ALA contactará a mis familiares o compañeros de trabajo después del vencimiento?</h3>
+          <p>ALA y sus despachos autorizados deben actuar sin amenazas, intimidación ni divulgación de datos personales. Si recibes un reporte de contacto con familiares, amistades o compañeros ajenos al crédito, comunícate con Atención al Cliente para que ALA lo revise.</p>
+          <h3>¿Puedo solicitar una prórroga u otro acuerdo si no puedo pagar a tiempo?</h3>
+          <p>Contacta a Atención al Cliente cuanto antes para explicar tu situación. ALA revisará las opciones según tu contrato, el estado del préstamo y las políticas vigentes. Una prórroga o un acuerdo requiere evaluación y aprobación.</p>
+          <h3>¿Cómo verifico que la persona que me contacta está autorizada por ALA?</h3>
+          <p>Confirma con Atención al Cliente de ALA el número o la cuenta desde donde recibiste la llamada o el mensaje. Mientras confirmas su identidad, no le pagues, no aceptes acuerdos verbales ni compartas contraseñas o códigos. Consulta tu saldo y las formas de pago en la app oficial.</p>
+          <h3>Ya pagué. ¿Por qué sigo recibiendo mensajes de cobranza?</h3>
+          <p>Conserva tu comprobante y revisa el estado del pago en la app. El registro suele tomar unas dos horas, aunque puede tardar más. Recibirás un SMS al procesarse el pago. Si pasan más de 24 horas sin confirmación o los avisos siguen tras el registro, comparte el comprobante con Atención al Cliente. Mientras verificas el saldo, no hagas un pago duplicado.</p>
+          <h3>¿Qué hago si recibo mensajes agresivos o sospechosos?</h3>
+          <p>Repórtalos a Atención al Cliente de inmediato. Indica cuándo y por qué medio te contactaron, describe lo ocurrido y comparte evidencia si la tienes. Si te piden una transferencia a una cuenta personal, no la hagas ni compartas contraseñas o códigos.</p>
+          <h3>No reconozco este préstamo. ¿Qué debo hacer?</h3>
+          <p>Contacta de inmediato a Atención al Cliente para solicitar una aclaración. ALA revisará la solicitud, la verificación de identidad y el desembolso, y te indicará los siguientes pasos. Si alguien te pide pagar por un medio no verificado, no hagas el pago ni compartas contraseñas o códigos.</p>
 
-        <section class="collection-reference collection-contact" aria-labelledby="contacto">
           <h2 id="contacto" tabindex="-1">Canales oficiales de ALA</h2>
-          <div class="contact-panel">
-            <p>Si tienes dudas sobre un contacto de cobranza, un pago o una reclamación, Atención al Cliente de ALA puede verificar la información de tu préstamo, revisar tu reporte e indicarte qué sigue.</p>
-            <dl>
-              <div>
-                <dt>Atención telefónica</dt>
-                <dd class="phone-links">
-                  <a href="tel:8009530794">800 953 0794</a>
-                  <a href="tel:8002883450">800 288 3450</a>
-                </dd>
-              </div>
-              <div>
-                <dt>Horario de atención con asesor</dt>
-                <dd>De lunes a domingo, de 9:00 a 18:00.</dd>
-              </div>
-            </dl>
-            <a class="ala-button ala-button--primary" href="../channel/help-center/">Contactar a ALA</a>
-          </div>
-        </section>
+          <p>Si tienes dudas sobre un contacto de cobranza, un pago o una reclamación, Atención al Cliente de ALA puede verificar la información de tu préstamo, revisar tu reporte e indicarte qué sigue.</p>
+          <p><strong>Atención telefónica</strong><br>
+          <a href="tel:8009530794">800 953 0794</a><br>
+          <a href="tel:8002883450">800 288 3450</a></p>
+          <p><strong>Horario de atención con asesor</strong><br>
+          De lunes a domingo, de 9:00 a 18:00.</p>
+          <p><a href="../channel/help-center/">Contactar a ALA</a></p>
+        </div>
+        <!-- ALA collection rich text end -->
       </div>
     </article>
   </main>
