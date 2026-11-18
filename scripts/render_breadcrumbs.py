@@ -17,7 +17,6 @@ LABELS = {
     BLOG[1]: BLOG[0],
     AYUDA[1]: AYUDA[0],
     "channel/help-center/": "Centro de ayuda",
-    "cobranza/": "Cobranza",
 }
 LEGAL_ROUTES = {
     f"channel/{slug}/"
@@ -57,7 +56,7 @@ def trail(route, html):
         document = re.search(r'<iframe\b[^>]*\btitle="([^"]+)"', html)
         return [("Documentos legales", "#documentos-legales"), (unescape(document[1]), None)]
     if route in LABELS:
-        parents = [AYUDA] if route in ("cobranza/", "channel/help-center/") else []
+        parents = [AYUDA] if route == "channel/help-center/" else []
         return [*parents, (LABELS[route], None)]
     if route in CITY_ROUTES:
         return [BLOG, CITIES, (city_label(CITY_ROUTES[route]), None)]
@@ -115,7 +114,6 @@ if __name__ == "__main__":
     files = [ROOT / path for path in sys.argv[1:]] or [
         *(ROOT / "channel").glob("**/index.html"),
         *(ROOT / "article").glob("*/index.html"),
-        ROOT / "cobranza/index.html",
     ]
     for file in sorted(files):
         install(file)
