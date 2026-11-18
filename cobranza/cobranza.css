@@ -399,7 +399,7 @@ body {
 .phone-links a {
   display: inline-flex;
   align-items: center;
-  min-height: var(--ala-control-height);
+  min-height: 28px;
   text-decoration: none;
   white-space: nowrap;
 }
