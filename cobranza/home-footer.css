@@ -4,7 +4,7 @@
   position: relative;
   z-index: 1;
   padding-block: calc(var(--base-pt) * var(--footer-scale)) calc(var(--base-pb) * var(--footer-scale));
-  padding-inline: calc((100% - var(--ala-content-width)) / 2);
+  padding-inline: var(--ala-nav-gutter);
   background: #1b1e28;
   color: #fff;
   font: 400 1rem / 1.15 var(--ala-font);

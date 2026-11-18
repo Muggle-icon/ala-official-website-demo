@@ -16,9 +16,12 @@ body {
   font: 400 var(--ala-body-size) / var(--ala-body-leading) var(--ala-font);
 }
 
+.ala-collection-page .ala-header-downloads {
+  margin-inline-start: auto;
+}
+
 .frame {
-  width: var(--ala-content-width);
-  margin-inline: auto;
+  margin-inline: var(--ala-nav-gutter);
 }
 
 .collection-intro {
@@ -114,7 +117,6 @@ body {
 }
 
 .collection-content {
-  width: min(100% - 48px, 48rem);
   padding-block: clamp(32px, 4.5vw, 64px) var(--ala-section-space);
 }
 
