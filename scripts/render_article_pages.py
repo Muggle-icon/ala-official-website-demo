@@ -241,8 +241,12 @@ def render_collection(path):
     body = path.with_name("body.html.txt").read_text().strip()
     if not body:
         raise ValueError("Missing collection rich text")
-    style = f'<link rel="stylesheet" href="{asset(STYLE, prefix="../")}">'
-    html = replace_collection_region(html, "rich text stylesheet", "  ", style)
+    assets = "\n".join([
+        f'<link rel="stylesheet" href="{asset(STYLE, prefix="../")}">',
+        f'<script src="{asset(SCRIPT, prefix="../")}" defer></script>',
+        f'<script src="./outline.js?v={version("cobranza/outline.js")}" defer></script>',
+    ])
+    html = replace_collection_region(html, "rich text assets", "  ", assets)
     markup = rich_text_markup("\n" + indent(body, "  ") + "\n")
     return replace_collection_region(html, "rich text", "        ", markup)
 
