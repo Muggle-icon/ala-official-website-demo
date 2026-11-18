@@ -15,13 +15,12 @@ body {
   color: var(--ala-ink);
 }
 
-.ala-collection-page :is(.collection-page, .ala-breadcrumbs, .site-footer) a {
+.ala-collection-page :is(.collection-page, .ala-breadcrumbs) a {
   text-decoration-skip-ink: none;
   text-underline-offset: calc(.18em + 2px);
 }
 
-.collection-page,
-.site-footer {
+.collection-page {
   color: var(--ala-ink);
   font: 400 var(--ala-body-size) / var(--ala-body-leading) var(--ala-font);
 }
@@ -47,6 +46,11 @@ body {
   display: block;
   justify-self: end;
   width: min(100%, 22rem);
+}
+
+.collection-illustration img {
+  display: block;
+  width: 100%;
   height: auto;
 }
 
@@ -75,7 +79,9 @@ body {
 }
 
 .collection-verification > .ala-section-more {
+  --ala-section-more-color: var(--ala-blue);
   font-weight: 400;
+  text-decoration: underline;
 }
 
 .collection-intro h1 {
@@ -217,8 +223,7 @@ body {
 
 .index-content a:focus-visible,
 .index-disclosure > summary:focus-visible,
-.collection-content :is(p, li, dd) a:focus-visible,
-.site-footer a:focus-visible {
+.collection-content :is(p, li, dd) a:focus-visible {
   outline: var(--ala-focus-ring);
   outline-offset: var(--ala-focus-offset);
 }
@@ -321,7 +326,7 @@ body {
   margin-block-start: 24px;
 }
 
-.collection-content :is(.ala-faq-stack, .collection-contact) {
+.collection-content .ala-faq-stack {
   --ala-hover: var(--ala-panel);
   --ala-pressed: var(--ala-line);
   --ala-interaction-line: #c0c7d1;
@@ -340,24 +345,31 @@ body {
 }
 
 .contact-panel {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: var(--ala-grid-gap);
-  margin-block-start: 24px;
-  padding-block-start: 20px;
-  border-block-start: 1px solid var(--ala-line);
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  grid-template-areas: "description channels" "action channels";
+  align-content: start;
+  justify-items: start;
+  gap: 18px var(--ala-group-space);
+}
+
+.contact-panel > p {
+  grid-area: description;
 }
 
 .contact-panel dl {
+  grid-area: channels;
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
+  width: 100%;
   margin: 0;
+  padding-inline-start: var(--ala-grid-gap);
+  border-inline-start: 1px solid var(--ala-line);
 }
 
 .collection-content .contact-panel > .ala-button {
+  grid-area: action;
+  align-self: start;
   border-color: var(--ala-ink);
   background: var(--ala-ink);
   color: #fff;
@@ -382,24 +394,19 @@ body {
 .phone-links {
   display: grid;
   justify-items: start;
-  gap: 6px;
 }
 
 .phone-links a {
   display: inline-flex;
   align-items: center;
   min-height: var(--ala-control-height);
-  padding-inline: 10px;
-  border: 1px solid var(--ala-interaction-line);
-  border-radius: var(--ala-control-radius);
-  background: var(--ala-surface);
   text-decoration: none;
   white-space: nowrap;
 }
 
 @media (hover: hover) {
-  .phone-links a:hover {
-    background: var(--ala-hover);
+  .collection-content .phone-links a:hover {
+    color: var(--ala-muted);
   }
 
   .collection-content .contact-panel > .ala-button:hover:not(:active) {
@@ -407,65 +414,6 @@ body {
     background: #343c4c;
     color: #fff;
   }
-}
-
-.phone-links a:active {
-  background: var(--ala-pressed);
-}
-
-.site-footer {
-  background: var(--ala-ink);
-  color: #fff;
-}
-
-.footer-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 20px 24px;
-  padding-block: 32px;
-}
-
-.footer-brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 1.125rem;
-  font-weight: 700;
-  text-decoration: none;
-}
-
-.footer-brand img {
-  display: block;
-  border-radius: 8px;
-}
-
-.site-footer a {
-  color: #fff;
-}
-
-.site-footer p {
-  margin: 12px 0 0;
-  color: #d6ddeb;
-  font-size: .875rem;
-}
-
-.footer-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 16px;
-  font-size: .875rem;
-}
-
-.footer-links a {
-  color: #d6ddeb;
-  text-decoration: none;
-}
-
-.footer-links a:is(:hover, :focus-visible) {
-  color: #fff;
-  text-decoration: underline;
 }
 
 @media (max-width: 900px) {
@@ -605,9 +553,17 @@ body {
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 660px) {
+  .contact-panel {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "description" "channels" "action";
+  }
+
   .contact-panel dl {
-    grid-template-columns: 1fr;
+    padding-block-start: 16px;
+    padding-inline-start: 0;
+    border-block-start: 1px solid var(--ala-line);
+    border-inline-start: 0;
   }
 
   .contact-panel > .ala-button {

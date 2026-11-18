@@ -8,12 +8,14 @@
   <meta name="theme-color" content="#ffffff">
   <title>Cobranza, pagos atrasados y soluciones | ALA</title>
   <link rel="icon" href="../public/assets/ala-app-icon.png">
-  <link rel="stylesheet" href="./cobranza.css?v=ba8d9ed2cf">
+  <link rel="stylesheet" href="./cobranza.css?v=314d93fc53">
   <script src="./cobranza.js?v=c47b4065fc" defer></script>
 
 <link rel="stylesheet" href="../shared/breadcrumbs.css?v=27c08cdd0d">
   <link rel="stylesheet" href="../shared/site-header.css?v=d36cd97a96">
   <script src="../shared/site-header.js?v=fa30b9015e" defer></script>
+  <link rel="stylesheet" href="./home-footer.css?v=cdfec5dbe0">
+  <script src="./home-footer.js?v=36b5c60bc4" defer></script>
 </head>
 <body class="ala-collection-page">
   <!-- ALA header start -->
@@ -92,10 +94,11 @@
             <p>Consulta qué hacer si no puedes pagar a tiempo, cómo verificar un contacto de cobranza y dónde pedir ayuda a ALA.</p>
             <a class="ala-button ala-button--primary" href="#opciones-de-pago">Ver los pasos</a>
           </div>
-          <img class="collection-illustration" src="./assets/verificar-contacto-896.webp?v=2de0f22704"
-            srcset="./assets/verificar-contacto-320.webp?v=9d8e829fa1 320w, ./assets/verificar-contacto-896.webp?v=2de0f22704 896w"
-            sizes="(max-width: 720px) min(112px, calc((100vw - 48px) * .29)), (max-width: 1100px) 30vw, 352px"
-            width="896" height="672" alt="" decoding="async" fetchpriority="high">
+          <picture class="collection-illustration">
+            <source media="(max-width: 720px)" srcset="./assets/verificar-contacto-320.webp?v=9d8e829fa1">
+            <img src="./assets/verificar-contacto-896.webp?v=f5267673f5" width="896" height="672"
+              alt="" decoding="async" fetchpriority="high">
+          </picture>
           <aside class="collection-verification" aria-labelledby="verificar-contacto">
             <h2 id="verificar-contacto">Verifica un contacto de cobranza</h2>
             <p>Si recibes una llamada o un mensaje, confirma con ALA quién te contactó antes de pagar.</p>
@@ -222,8 +225,8 @@
 
           <section class="collection-reference collection-contact" aria-labelledby="contacto">
             <h2 id="contacto" tabindex="-1">Canales oficiales de ALA</h2>
-            <p>ALA exige un trato respetuoso en toda comunicación de cobranza. Si tienes dudas sobre el trato recibido o sobre el avance de una reclamación, el mismo servicio de atención puede revisar tu caso y darle seguimiento.</p>
             <div class="contact-panel">
+              <p>ALA exige un trato respetuoso en toda comunicación de cobranza. Si tienes dudas sobre el trato recibido o sobre el avance de una reclamación, el mismo servicio de atención puede revisar tu caso y darle seguimiento.</p>
               <dl>
                 <div>
                   <dt>Atención telefónica</dt>
@@ -245,20 +248,144 @@
     </article>
   </main>
 
-  <footer class="site-footer">
-    <div class="frame footer-inner">
-      <div>
-        <a class="footer-brand" href="../" aria-label="ALA, inicio">
-          <img src="../public/assets/ala-app-icon.png" alt="" width="32" height="32"><span>ALA</span>
-        </a>
-        <p>Quantum Wealth Solutions, S.A.P.I. de C.V. SOFOM E.N.R.</p>
+  <!-- Footer content from the homepage. -->
+<footer class="ala-pt ala-pr ala-pb ala-pl pc-footer-container" id="footer"
+  style="--base-pt: 96px; --base-pr: 320px; --base-pb: 176px; --base-pl: 320px;">
+  <div style="--base-size:16px" class="ala-size footer-txt-item-box">
+    <section class="footer-txt-item">
+      <div style="--base-size:28px;--base-mb:18px" class="ala-size ala-mb footer-section-title">Contáctanos</div>
+      <div style="--base-mb:32px;" class="ala-mb footer-link-row-box">
+        <div class="ala-mb" style="font-size:14px;font-weight:500;--base-mb:18px;color: #fff;">Si necesitas ayuda, <br/>llama a nuestra línea de atención o envíanos un correo electrónico.</div>
+        <div class="footer-contact-link-row">
+          <img class="footer-contact-link-icon" src="../live/ala-www/img/contact.webp" alt="contacto">
+          <a href="../channel/help-center/" class="footer-contact-link" id="footerContactLink">Atención en línea</a>
+        </div>
       </div>
-      <nav class="footer-links" aria-label="Enlaces de atención">
-        <a href="../channel/help-center/">Atención en línea</a>
-        <a href="../live/legal/docs/une-ala.pdf">UNE ALA</a>
-        <a href="../live/legal/docs/despacho-de-cobranza.pdf">Despacho de cobranza</a>
-      </nav>
+      <div class="footer-span-title">Teléfono</div>
+      <div class="footer-span-val">
+
+        <span>8009530794,8002883450</span>
+      </div>
+      <div style="--base-mt:24px" class="ala-mt footer-span-title mtPhone25">Correo electrónico</div>
+      <div class="footer-span-val">contacto-ala@alaprestamo.com</div>
+      <div style="--base-mt:24px" class="ala-mt footer-span-title mtPhone25">Horario de atención</div>
+      <div class="footer-span-val">De lunes a domingo, de 9:00 a 18:00.</div>
+      <div style="--base-mt:24px" class="ala-mt footer-span-title mtPhone25">Por favor, envía por correo electrónico el problema que presentas e incluye tu número de teléfono para que podamos confirmarlo contigo y solucionarlo más rápido.</div>
+
+    </section>
+    <section class="footer-txt-item mtPhone54">
+      <div style="--base-size:28px;--base-mb:18px" class="ala-size ala-mb footer-section-title ">Sobre nosotros</div>
+
+      <div class="footer-span-title">Razón social</div>
+      <div class="footer-span-val">Quantum Wealth Solutions, S.A.P.I. DE C.V. SOFOM E.N.R</div>
+
+      <div style="--base-mt:24px" class="ala-mt footer-span-title mtPhone25">Dirección de la empresa</div>
+      <div class="footer-span-val">AV. PASEO DE LA REFORMA 295, PISO 6 OFICINA 1503,
+COL. CUAUHTÉMOC, CUAUHTÉMOC,
+CIUDAD DE MÉXICO, C.P. 06500, MÉXICO</div>
+
+      <div class="ala-mt footer-span-title mtPhone25" style="--base-mt:24px;">Unidad especializada de atención a usuarios (UNE)</div>
+
+      <a href="../live/legal/docs/une-ala.pdf" target="_blank" rel="noopener" style="text-decoration: underline; cursor: pointer; color: inherit; display: block;" class="footer-span-val" id="footerUneAla">UNE ALA</a>
+      <a href="../live/legal/docs/despacho-de-cobranza.pdf" target="_blank" rel="noopener" style="text-decoration: underline; cursor: pointer; color: inherit; display: block;" class="footer-span-val" id="footerUneAla2">Despacho de cobranza</a>
+      <div style="--base-mt:48px; --base-size: 28px;" class="ala-size ala-mt img-title footer-section-title mtPhone54">Síguenos</div>
+
+      <!-- pc 社媒图标 img -->
+      <div style="--base-mt:18px;  align-items: center;" class="ala-mt img-wrap d-none d-lg-flex custom-footer-icon">
+
+        <a id="footerImgSrc1" href="https://youtube.com/@alaprestamos?si=FPzN9blgS330QpHy" target="_blank" rel="noopener" class="" style="text-decoration: none;display:inline-block;">
+          <img style="width:36px;height:36px;margin-right:20px;display:inline-block;"
+               src="../live/uploads/1/image/2026/03/20260310033236462_sv2bk8bvzq2c.png" alt="alaprestamo-youtube">
+        </a>
+
+        <a id="footerImgSrc2" href="https://www.facebook.com/share/1BQbcFUN5h/" target="_blank" rel="noopener" class="" style="text-decoration: none;display:inline-block;">
+          <img style="width:36px;height:36px;margin-right:20px;display:inline-block;"
+               src="../live/uploads/1/image/2026/03/20260310033232218_ysg633k7owib.png" alt="alaprestamo-facebook">
+        </a>
+
+        <a id="footerImgSrc3" href="https://www.tiktok.com/@ala_prestamos?_r=1&amp;_t=ZS-93Iat2GL6Cz" target="_blank" rel="noopener" class="" style="text-decoration: none;display:inline-block;">
+          <img style="width:36px;height:36px;margin-right:20px;display:inline-block;"
+               src="../live/uploads/1/image/2026/03/20260310033220973_y0zpm4fgzo41.png" alt="alaprestamo-tiktok">
+        </a>
+
+
+
+      </div>
+      <!-- mobile 社媒图标 img -->
+      <div style="--base-mt:18px; --base-size: 28px;" class="ala-mt ala-size img-wrap d-lg-none">
+
+
+        <a id="footerImgSrc1_m" href="https://youtube.com/@alaprestamos?si=FPzN9blgS330QpHy" target="_blank" rel="noopener" class="" style="text-decoration: none;display:inline-block;">
+          <img style="width: 36px;height: 36px;display:inline-block;" src="../live/uploads/1/image/2026/03/20260310033236462_sv2bk8bvzq2c.png" alt="alaprestamo-youtube">
+        </a>
+
+        <a id="footerImgSrc2_m" href="https://www.facebook.com/share/1BQbcFUN5h/" target="_blank" rel="noopener" class="" style="text-decoration: none;display:inline-block;">
+          <img style="width: 36px;height: 36px; margin-left: 15px;display:inline-block;" src="../live/uploads/1/image/2026/03/20260310033232218_ysg633k7owib.png" alt="alaprestamo-facebook">
+        </a>
+
+        <a id="footerImgSrc3_m" href="https://www.tiktok.com/@ala_prestamos?_r=1&amp;_t=ZS-93Iat2GL6Cz" target="_blank" rel="noopener" class="" style="text-decoration: none;display:inline-block;">
+          <img style="width: 36px;height: 36px; margin-left: 15px;display:inline-block;" src="../live/uploads/1/image/2026/03/20260310033220973_y0zpm4fgzo41.png" alt="alaprestamo-tiktok">
+        </a>
+
+
+
+      </div>
+<!--      <div style="&#45;&#45;base-mt:60px;-Medium'" class="ala-size ala-mt img-title">Mapa del sitio web</div>-->
+    </section>
+    <section class="footer-txt-item mtPhone54">
+      <div style="--base-size:28px;--base-mb:18px" class="ala-size ala-mb footer-section-title" id="documentos-legales">Documentos Legales </div>
+      <!-- Contrato de Préstamo：仅一个版本，无下拉，直接点击跳转 -->
+      <div class="footer-span-val">
+        <a href="../channel/ios_contract/" class="footer-span-title" id="footerContract" style="text-decoration: none;">Contrato de Préstamo</a>
+        <img style="--base-width:24px;--base-height:24px" class="ala-width ala-height"
+          src="../live/ala-www/img/footer/arrow_right.png" alt="">
+      </div>
+      <!-- Aviso de Privacidad：hover 下拉 Google Play / App Store -->
+      <details class="footer-dropdown">
+        <summary style="--base-mt:12px" class="ala-mt footer-span-val footer-dropdown-trigger">
+          <span class="footer-span-title" style="text-decoration: none;">Aviso de Privacidad</span>
+          <img style="--base-width:24px;--base-height:24px" class="ala-width ala-height"
+            src="../live/ala-www/img/footer/arrow_right.png" alt="">
+        </summary>
+        <div class="footer-dropdown-menu">
+          <span class="footer-dropdown-line"></span>
+          <div class="footer-dropdown-item">
+            <a href="../channel/privacy/" class="footer-store-title" id="footerPrivacyGp" style="text-decoration: none; font-size: 14px;font-weight:400;">Google Play</a>
+          </div>
+          <div class="footer-dropdown-item">
+            <a href="../channel/ios_privacy/" class="footer-store-title" id="footerPrivacyAs" style="text-decoration: none; font-size: 14px;font-weight:400;">App Store</a>
+          </div>
+        </div>
+      </details>
+      <!-- Términos y Condiciones de Uso：hover 下拉 Google Play / App Store -->
+      <details class="footer-dropdown">
+        <summary style="--base-mt:12px" class="ala-mt footer-span-val footer-dropdown-trigger">
+          <span class="footer-span-title" style="text-decoration: none;">Términos y Condiciones de Uso</span>
+          <img style="--base-width:24px;--base-height:24px" class="ala-width ala-height"
+            src="../live/ala-www/img/footer/arrow_right.png" alt="">
+        </summary>
+        <div class="footer-dropdown-menu">
+          <span class="footer-dropdown-line"></span>
+          <div class="footer-dropdown-item">
+            <a href="../channel/regist/" class="footer-store-title" id="footerRegistGp" style="text-decoration: none; font-size: 14px;font-weight:400;">Google Play</a>
+          </div>
+          <div class="footer-dropdown-item">
+            <a href="../channel/ios_regist/" class="footer-store-title" id="footerRegistAs" style="text-decoration: none; font-size: 14px;font-weight:400;">App Store</a>
+          </div>
+        </div>
+      </details>
+    </section>
+  </div>
+
+  <!-- 底部图文配置（后台区块 footer_custom）：图片 + 富文本摘要，九宫格布局 -->
+  <div class="footer-custom-box">
+  </div>
+
+  <div class="rate-info-row">
+    <div class="rate-info-container">
+      Los montos de los préstamos van desde $100 MXN hasta $50,000 MXN, con plazos de pago flexibles de 61 a 154 días. La tasa de interés diaria comienza en 0.1% (equivalente a una tasa de interés anual del 36%). El CAT promedio es de 548.61% sin IVA, calculado al 30 de junio de 2026, para fines informativos y de comparación. Ejemplo representativo: Si solicitas un préstamo de $5,000 MXN con un plazo de 61 días, pagarás un total de $5,353.80 MXN en 4 pagos. Este total incluye $305 MXN de intereses (calculados a una tasa diaria de 0.1%) y $48.80 MXN de IVA.
     </div>
-  </footer>
+  </div>
+</footer>
 </body>
 </html>
