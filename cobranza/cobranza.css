@@ -74,6 +74,10 @@ body {
   text-align: start;
 }
 
+.collection-verification > .ala-section-more {
+  font-weight: 400;
+}
+
 .collection-intro h1 {
   margin: 0;
   font: 700 min(var(--ala-page-title) + .5rem, 3.5rem) / 1.08 var(--ala-font);
@@ -325,8 +329,7 @@ body {
 
 .collection-content .ala-faq-item .ala-faq-toggle:is(:hover, :active),
 .collection-content .ala-faq-item[open] > .ala-faq-toggle::after,
-.collection-content .ala-faq-toggle[aria-expanded="true"]::after,
-.collection-content .collection-contact .ala-button:is(:hover, :active) {
+.collection-content .ala-faq-toggle[aria-expanded="true"]::after {
   color: var(--ala-ink);
 }
 
@@ -354,6 +357,18 @@ body {
   margin: 0;
 }
 
+.collection-content .contact-panel > .ala-button {
+  border-color: var(--ala-ink);
+  background: var(--ala-ink);
+  color: #fff;
+}
+
+.collection-content .contact-panel > .ala-button:active {
+  border-color: #10141d;
+  background: #10141d;
+  color: #fff;
+}
+
 .contact-panel dt {
   color: var(--ala-muted);
   font-size: .875rem;
@@ -366,11 +381,36 @@ body {
 
 .phone-links {
   display: grid;
-  gap: 4px;
+  justify-items: start;
+  gap: 6px;
 }
 
 .phone-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--ala-control-height);
+  padding-inline: 10px;
+  border: 1px solid var(--ala-interaction-line);
+  border-radius: var(--ala-control-radius);
+  background: var(--ala-surface);
+  text-decoration: none;
   white-space: nowrap;
+}
+
+@media (hover: hover) {
+  .phone-links a:hover {
+    background: var(--ala-hover);
+  }
+
+  .collection-content .contact-panel > .ala-button:hover:not(:active) {
+    border-color: #343c4c;
+    background: #343c4c;
+    color: #fff;
+  }
+}
+
+.phone-links a:active {
+  background: var(--ala-pressed);
 }
 
 .site-footer {
@@ -568,6 +608,10 @@ body {
 @media (max-width: 480px) {
   .contact-panel dl {
     grid-template-columns: 1fr;
+  }
+
+  .contact-panel > .ala-button {
+    width: 100%;
   }
 }
 
