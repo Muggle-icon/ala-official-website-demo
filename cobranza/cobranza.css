@@ -11,6 +11,10 @@ body {
   padding-inline: calc((100% - var(--ala-content-width)) / 2);
 }
 
+.ala-collection-page .ala-breadcrumbs a:hover {
+  color: var(--ala-ink);
+}
+
 .ala-collection-page :is(.collection-page, .ala-breadcrumbs, .site-footer) a {
   text-decoration-skip-ink: none;
   text-underline-offset: calc(.18em + 2px);
@@ -62,9 +66,12 @@ body {
   color: var(--ala-muted);
 }
 
-.collection-verification .ala-section-more {
+.collection-page .ala-section-more {
+  --ala-section-more-color: var(--ala-ink);
+  justify-content: flex-start;
   padding-inline: 0;
   border-inline-width: 0;
+  text-align: start;
 }
 
 .collection-intro h1 {
@@ -135,17 +142,18 @@ body {
 @media (hover: hover) {
   .index-content a:hover {
     background: var(--ala-panel);
-    color: var(--ala-blue);
+    color: var(--ala-ink);
   }
 }
 
 .index-content a:active {
-  background: var(--ala-pressed);
+  background: var(--ala-line);
 }
 
 .index-content a[aria-current="location"] {
-  color: var(--ala-blue);
-  border-color: var(--ala-blue);
+  border-color: var(--ala-muted);
+  background: var(--ala-panel);
+  color: var(--ala-ink);
   font-weight: 700;
 }
 
@@ -193,14 +201,14 @@ body {
   margin-top: 12px;
 }
 
-.collection-content :is(p, li, dd) a,
-.site-footer a {
-  color: var(--ala-blue);
+.collection-page .collection-content :is(p, li, dd) a {
+  color: var(--ala-ink);
+  text-decoration-color: var(--ala-muted);
+  text-decoration-thickness: 1px;
 }
 
-.collection-content :is(p, li, dd) a:hover,
-.site-footer a:hover {
-  text-decoration-thickness: .13em;
+.collection-page .collection-content :is(p, li, dd) a:hover {
+  text-decoration-color: currentColor;
 }
 
 .index-content a:focus-visible,
@@ -226,6 +234,10 @@ body {
 .payment-phase + .payment-phase {
   border-block-start: 1px solid var(--ala-line);
   padding-block-start: var(--ala-grid-gap);
+}
+
+.payment-phase .ala-section-more {
+  margin-block-start: 4px;
 }
 
 .steps {
@@ -260,7 +272,7 @@ body {
   height: var(--step-size);
   place-items: center;
   border-radius: 50%;
-  background: var(--ala-blue);
+  background: var(--ala-ink);
   color: #fff;
   font-size: 1rem;
   font-weight: 700;
@@ -273,7 +285,7 @@ body {
   inset-block: calc(var(--step-size) / 2) calc(var(--step-size) / -2);
   inset-inline-start: calc(var(--step-size) / 2 - .5px);
   width: 1px;
-  background: var(--ala-blue);
+  background: var(--ala-line);
 }
 
 .steps h3 {
@@ -303,6 +315,19 @@ body {
 
 .collection-content .ala-faq-stack {
   margin-block-start: 24px;
+}
+
+.collection-content :is(.ala-faq-stack, .collection-contact) {
+  --ala-hover: var(--ala-panel);
+  --ala-pressed: var(--ala-line);
+  --ala-interaction-line: #c0c7d1;
+}
+
+.collection-content .ala-faq-item .ala-faq-toggle:is(:hover, :active),
+.collection-content .ala-faq-item[open] > .ala-faq-toggle::after,
+.collection-content .ala-faq-toggle[aria-expanded="true"]::after,
+.collection-content .collection-contact .ala-button:is(:hover, :active) {
+  color: var(--ala-ink);
 }
 
 .collection-contact {
@@ -393,6 +418,16 @@ body {
   font-size: .875rem;
 }
 
+.footer-links a {
+  color: #d6ddeb;
+  text-decoration: none;
+}
+
+.footer-links a:is(:hover, :focus-visible) {
+  color: #fff;
+  text-decoration: underline;
+}
+
 @media (max-width: 900px) {
   .article-layout {
     grid-template-columns: minmax(0, 1fr);
@@ -442,7 +477,7 @@ body {
   }
 
   .index-disclosure > summary:hover {
-    background: var(--ala-hover);
+    background: var(--ala-panel);
   }
 
   .index-title {
