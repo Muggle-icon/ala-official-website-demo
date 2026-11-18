@@ -21,7 +21,6 @@ body {
 }
 
 .ala-news {
-  --ala-news-gutter: clamp(20px, 6vw, 80px);
   padding-block: clamp(64px, 7vw, 96px);
   background: #f4f6fc;
   color: var(--ala-ink);
@@ -30,7 +29,7 @@ body {
 }
 
 .ala-news-shell {
-  width: min(1200px, calc(100% - 2 * var(--ala-news-gutter)));
+  width: var(--ala-content-width);
   margin-inline: auto;
 }
 
@@ -161,16 +160,14 @@ body {
   text-decoration-line: underline;
 }
 
-@media (max-width: 1199px) {
+@media (max-width: 1279px) {
   .ala-news-grid {
     grid-template-columns: none;
     grid-auto-flow: column;
-    grid-auto-columns: 31%;
-    margin-inline: calc(-1 * var(--ala-news-gutter));
-    padding: 4px var(--ala-news-gutter) 8px;
+    grid-auto-columns: 29.5%;
+    padding-block: 4px 8px;
     overflow-x: auto;
     overscroll-behavior-inline: contain;
-    scroll-padding-inline: var(--ala-news-gutter);
     scroll-snap-type: x mandatory;
   }
 
