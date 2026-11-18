@@ -128,10 +128,10 @@ body {
 }
 
 .collection-outline .index-title {
-  margin: 0 0 12px;
-  color: var(--ala-ink);
-  font-size: 1.125rem;
+  margin: 0;
+  color: #1b1e28;
   font-weight: 700;
+  line-height: 1.16;
 }
 
 .collection-outline #anchorDirectory {
@@ -144,25 +144,24 @@ body {
   padding: 0;
 }
 
-.collection-outline .link-H2:not(:first-child) {
+.collection-outline .link-H2 {
   margin-block-start: 12px;
 }
 
 .collection-outline a {
-  display: flex;
+  display: block;
   min-height: 36px;
-  align-items: center;
-  padding: 5px 10px;
+  padding: 6px 10px;
   border: 1px solid transparent;
   border-radius: 8px;
-  color: var(--ala-muted);
+  color: #666;
   font-size: .8125rem;
-  line-height: 1.45;
+  line-height: 1.4;
   text-decoration: none;
 }
 
 .collection-outline .link-H2 a {
-  color: var(--ala-ink);
+  color: #1b1e28;
   font-size: .875rem;
   font-weight: 500;
 }
@@ -173,15 +172,14 @@ body {
 
 @media (hover: hover) {
   .collection-outline a:hover {
-    border-color: var(--ala-line);
-    background: var(--ala-panel);
+    border-color: #f3f4f9;
+    background: #f3f4f9;
   }
 }
 
 .collection-outline a[aria-current="location"] {
-  border-color: var(--ala-line);
-  background: var(--ala-panel);
-  color: var(--ala-ink);
+  border-color: #f3f4f9;
+  background: #f3f4f9;
 }
 
 .collection-outline a:focus-visible,
@@ -227,6 +225,10 @@ body {
     background-size: 12px 2px, 0 0;
   }
 
+  .collection-outline .link-H2:first-child {
+    margin-block-start: 0;
+  }
+
   .collection-outline a {
     min-height: var(--ala-control-height);
   }
@@ -243,10 +245,9 @@ body {
 }
 
 @media (min-width: 1101px) {
-  .collection-content:has(> .collection-outline:not([hidden])) {
+  .collection-content:has(> .collection-outline) {
     display: grid;
-    grid-template-columns: minmax(0, 3fr) minmax(0, 7fr);
-    gap: var(--ala-group-space);
+    grid-template-columns: minmax(0, 30%) minmax(0, 1fr);
     align-items: start;
   }
 
@@ -254,13 +255,64 @@ body {
     display: none;
   }
 
-  .collection-outline:not([hidden]) {
+  .collection-outline {
+    --outline-scale: .625;
     position: sticky;
     top: var(--ala-scroll-offset, calc(var(--ala-nav-height) + 16px));
-    max-block-size: calc(100dvh - var(--ala-scroll-offset, var(--ala-nav-height)) - 24px);
     margin: 0;
-    overflow: auto;
+    padding-inline-end: calc(50px * var(--outline-scale));
   }
+
+  .collection-outline .index-title {
+    margin-inline-end: calc(-50px * var(--outline-scale));
+    font-size: calc(42px * var(--outline-scale));
+  }
+
+  .collection-outline #anchorDirectory {
+    max-block-size: min(422px, calc(100dvh - var(--ala-scroll-offset, var(--ala-nav-height)) - 104px));
+    margin-block: 16px 0;
+    overflow-y: auto;
+  }
+
+  .collection-outline li.link-H2 {
+    margin-block-start: 20px;
+  }
+
+  .collection-outline a {
+    min-height: auto;
+    padding: calc(10px * var(--outline-scale)) calc(20px * var(--outline-scale));
+    border-radius: 18px;
+    font-size: calc(22px * var(--outline-scale));
+    line-height: 1.16;
+  }
+
+  .collection-outline .link-H2 a {
+    font-size: calc(26px * var(--outline-scale));
+  }
+
+  .collection-outline li:not(.link-H2) a {
+    padding-inline-start: 40px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .collection-outline { --outline-scale: calc(1 / 1.4); }
+}
+
+@media (min-width: 1366px) {
+  .collection-outline { --outline-scale: .71; }
+}
+
+@media (min-width: 1440px) {
+  .collection-outline { --outline-scale: .75; }
+}
+
+@media (min-width: 1500px) {
+  .collection-outline { --outline-scale: .78; }
+}
+
+@media (min-width: 1900px) {
+  .collection-outline { --outline-scale: 1; }
 }
 
 .collection-content #richTextContent a[href^="tel:"] {

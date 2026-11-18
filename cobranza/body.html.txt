@@ -1,44 +1,45 @@
-<h2 id="opciones-de-pago" tabindex="-1" data-outline-label="Dificultades para pagar">¿No puedes pagar a tiempo?</h2>
-<p>Una reducción de ingresos, un gasto imprevisto o un problema de salud puede afectar tu plan de pago. Contacta a ALA cuanto antes, de preferencia antes del vencimiento, para revisar tu situación.</p>
-<ol>
-  <li><strong>Comunícate con ALA.</strong> Usa los canales oficiales en cuanto sepas que podrías tener dificultades para pagar en la fecha acordada.</li>
-  <li><strong>Explica qué pasó.</strong> Indica qué situación afecta tu pago, cuánto puedes abonar y cuándo estimas que podrás hacerlo.</li>
-  <li><strong>Revisa tus opciones.</strong> ALA revisará las opciones según tu contrato, el estado de tu préstamo y las políticas vigentes. Cualquier ajuste o acuerdo requiere evaluación y aprobación.</li>
-</ol>
-
-<h2 id="vencimiento" tabindex="-1" data-outline-label="Vencimiento y atrasos">¿Qué sucede si se vence tu pago?</h2>
-<h3>Antes del vencimiento</h3>
+<h2 id="vencimiento" tabindex="-1">I. ¿Qué sucede después del vencimiento?</h2>
+<h3 id="H3-2">Antes del vencimiento</h3>
 <p>En la app oficial de ALA, abre Mi cuenta y entra en Mis préstamos para consultar tu contrato, el saldo, la fecha límite y las formas de pago autorizadas. Antes de pagar, verifica el monto, el beneficiario y la referencia.</p>
 <p>ALA puede enviarte recordatorios por llamada, SMS, WhatsApp, correo electrónico o notificaciones de la app.</p>
-<h3>Si no pagas en la fecha acordada</h3>
+<h3 id="H3-3">Si no pagas en la fecha acordada</h3>
 <p>ALA puede comunicarse contigo por el saldo pendiente. Según tu contrato, el atraso puede generar cargos y afectar tu historial crediticio. Consulta el saldo actualizado en la app oficial de ALA.</p>
 
-<h2 id="reclamaciones" tabindex="-1" data-outline-label="Dudas o reclamaciones">Cómo presentar una reclamación</h2>
+<h2 id="opciones-de-pago" tabindex="-1">II. ¿No puedes pagar a tiempo? Contáctanos</h2>
+<p>Una reducción de ingresos, un gasto imprevisto o un problema de salud puede afectar tu plan de pago. Contacta a ALA cuanto antes, de preferencia antes del vencimiento, para revisar tu situación.</p>
+<h3 id="paso-1">Paso 1: Comunícate con ALA</h3>
+<p>Usa los canales oficiales en cuanto sepas que podrías tener dificultades para pagar en la fecha acordada.</p>
+<h3 id="paso-2">Paso 2: Explica qué pasó</h3>
+<p>Indica qué situación afecta tu pago, cuánto puedes abonar y cuándo estimas que podrás hacerlo.</p>
+<h3 id="paso-3">Paso 3: Revisa tus opciones</h3>
+<p>ALA revisará las opciones según tu contrato, el estado de tu préstamo y las políticas vigentes. Cualquier ajuste o acuerdo requiere evaluación y aprobación.</p>
+
+<h2 id="reclamaciones" tabindex="-1">III. Cómo presentar una reclamación a ALA</h2>
 <p>Si tienes dudas sobre un contacto de cobranza, si ya pagaste o si no reconoces el préstamo, comunícate con ALA para que revisemos tu caso.</p>
-<h3>Datos que ayudan a revisar tu caso</h3>
+<p><strong>Datos que ayudan a revisar tu caso</strong></p>
 <ul>
   <li>Fecha y hora en que te contactaron.</li>
   <li>Número o medio por el que te contactaron y una descripción de lo ocurrido.</li>
   <li>Capturas, mensajes o grabaciones, si ya los tienes.</li>
 </ul>
-<h3 id="cuenta-personal">Si te piden pagar a una cuenta personal</h3>
+<p id="cuenta-personal"><strong>Si te piden pagar a una cuenta personal</strong></p>
 <p>ALA nunca solicita pagos a cuentas personales. Si te lo piden, no hagas la transferencia y repórtalo de inmediato a Atención al Cliente. No compartas contraseñas ni códigos de verificación.</p>
 
-<h2 id="preguntas-frecuentes" tabindex="-1">Preguntas frecuentes</h2>
-<h3>¿ALA contactará a mis familiares o compañeros de trabajo después del vencimiento?</h3>
+<h2 id="preguntas-frecuentes" tabindex="-1">Ⅳ. Preguntas frecuentes</h2>
+<h3 id="H3-8">¿ALA contactará a mis familiares o compañeros de trabajo después del vencimiento?</h3>
 <p>ALA y sus despachos autorizados deben actuar sin amenazas, intimidación ni divulgación de datos personales. Si recibes un reporte de contacto con familiares, amistades o compañeros ajenos al crédito, comunícate con Atención al Cliente para que ALA lo revise.</p>
-<h3>¿Puedo solicitar una prórroga u otro acuerdo si no puedo pagar a tiempo?</h3>
+<h3 id="H3-9">¿Puedo solicitar una prórroga u otro acuerdo si no puedo pagar a tiempo?</h3>
 <p>Contacta a Atención al Cliente cuanto antes para explicar tu situación. ALA revisará las opciones según tu contrato, el estado del préstamo y las políticas vigentes. Una prórroga o un acuerdo requiere evaluación y aprobación.</p>
-<h3>¿Cómo verifico que la persona que me contacta está autorizada por ALA?</h3>
+<h3 id="H3-10">¿Cómo verifico que la persona que me contacta está autorizada por ALA?</h3>
 <p>Confirma con Atención al Cliente de ALA el número o la cuenta desde donde recibiste la llamada o el mensaje. Mientras confirmas su identidad, no le pagues, no aceptes acuerdos verbales ni compartas contraseñas o códigos. Consulta tu saldo y las formas de pago en la app oficial.</p>
-<h3>Ya pagué. ¿Por qué sigo recibiendo mensajes de cobranza?</h3>
+<h3 id="H3-11">Ya pagué. ¿Por qué sigo recibiendo mensajes de cobranza?</h3>
 <p>Conserva tu comprobante y revisa el estado del pago en la app. El registro suele tomar unas dos horas, aunque puede tardar más. Recibirás un SMS al procesarse el pago. Si pasan más de 24 horas sin confirmación o los avisos siguen tras el registro, comparte el comprobante con Atención al Cliente. Mientras verificas el saldo, no hagas un pago duplicado.</p>
-<h3>¿Qué hago si recibo mensajes agresivos o sospechosos?</h3>
+<h3 id="H3-12">¿Qué hago si recibo mensajes agresivos o sospechosos?</h3>
 <p>Repórtalos a Atención al Cliente de inmediato. Indica cuándo y por qué medio te contactaron, describe lo ocurrido y comparte evidencia si la tienes. Si te piden una transferencia a una cuenta personal, no la hagas ni compartas contraseñas o códigos.</p>
-<h3>No reconozco este préstamo. ¿Qué debo hacer?</h3>
+<h3 id="H3-13">No reconozco este préstamo. ¿Qué debo hacer?</h3>
 <p>Contacta de inmediato a Atención al Cliente para solicitar una aclaración. ALA revisará la solicitud, la verificación de identidad y el desembolso, y te indicará los siguientes pasos. Si alguien te pide pagar por un medio no verificado, no hagas el pago ni compartas contraseñas o códigos.</p>
 
-<h2 id="contacto" tabindex="-1">Canales oficiales de ALA</h2>
+<h2 id="contacto" tabindex="-1">Ⅴ. Contacto con ALA</h2>
 <p>Si tienes dudas sobre un contacto de cobranza, un pago o una reclamación, Atención al Cliente de ALA puede verificar la información de tu préstamo, revisar tu reporte e indicarte qué sigue.</p>
 <p><strong>Atención telefónica</strong><br>
 <a href="tel:8009530794">800 953 0794</a><br>
