@@ -61,7 +61,12 @@ body {
   overscroll-behavior-inline: contain;
   scroll-padding-inline: var(--ala-news-rail-start) var(--ala-news-rail-end);
   scroll-snap-type: x mandatory;
+  scrollbar-width: none;
   list-style: none;
+}
+
+.ala-news-grid::-webkit-scrollbar {
+  display: none;
 }
 
 .ala-news-grid:focus-visible {
