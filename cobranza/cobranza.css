@@ -43,15 +43,40 @@ body {
 }
 
 .collection-illustration {
-  display: block;
+  position: relative;
   justify-self: end;
   width: min(100%, 22rem);
+  container-type: inline-size;
 }
 
-.collection-illustration img {
+.collection-illustration picture,
+.collection-illustration picture img {
   display: block;
+}
+
+.collection-illustration picture img {
   width: 100%;
   height: auto;
+}
+
+.collection-illustration-label {
+  position: absolute;
+  inset-block-start: 44.5%;
+  inset-inline-start: 10.9%;
+  display: flex;
+  align-items: center;
+  gap: .35em;
+  color: #f2f6ff;
+  font: 400 2.85cqw / 1 var(--ala-font);
+  white-space: nowrap;
+  transform: rotate(-9deg) skewX(-12.5deg);
+  transform-origin: left center;
+}
+
+.collection-illustration-label img {
+  display: block;
+  width: 1.3em;
+  height: 1.3em;
 }
 
 .collection-verification {
@@ -494,6 +519,10 @@ body {
   .collection-illustration {
     grid-area: 2 / 2;
     width: min(100%, 7rem);
+  }
+
+  .collection-illustration-label {
+    display: none;
   }
 
   .collection-verification {
