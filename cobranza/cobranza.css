@@ -392,18 +392,9 @@ body {
   border-inline-start: 1px solid var(--ala-line);
 }
 
-.collection-content .contact-panel > .ala-button {
+.contact-panel > .ala-button {
   grid-area: action;
   align-self: start;
-  border-color: var(--ala-ink);
-  background: var(--ala-ink);
-  color: #fff;
-}
-
-.collection-content .contact-panel > .ala-button:active {
-  border-color: #10141d;
-  background: #10141d;
-  color: #fff;
 }
 
 .contact-panel dt {
@@ -432,12 +423,6 @@ body {
 @media (hover: hover) {
   .collection-content .phone-links a:hover {
     color: var(--ala-muted);
-  }
-
-  .collection-content .contact-panel > .ala-button:hover:not(:active) {
-    border-color: #343c4c;
-    background: #343c4c;
-    color: #fff;
   }
 }
 
