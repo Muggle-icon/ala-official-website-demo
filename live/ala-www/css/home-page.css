@@ -12,6 +12,10 @@ body {
   --ala-news-edge-gap: clamp(32px, 3.333vw, 48px);
 }
 
+.ala-home #ala-content {
+  --ala-content-width: min(100% - 48px, 1600px, max(960px, 100% * 5 / 6));
+}
+
 .ala-home-reviews {
   margin-block-end: var(--ala-news-edge-gap);
 }
