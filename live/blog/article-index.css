@@ -51,7 +51,7 @@
 .ala-editorial-index-nav a:hover {
   color: var(--ala-blue);
   text-decoration: underline;
-  text-underline-offset: .18em;
+  text-underline-offset: calc(.18em + var(--ala-underline-shift));
 }
 
 .ala-editorial-index-nav a:focus-visible {

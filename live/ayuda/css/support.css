@@ -73,7 +73,7 @@
 .footer-txt-item a[href^="mailto:"] {
   color: inherit;
   text-decoration: underline;
-  text-underline-offset: 3px;
+  text-underline-offset: calc(3px + var(--ala-underline-shift));
 }
 
 .footer-dropdown-trigger {

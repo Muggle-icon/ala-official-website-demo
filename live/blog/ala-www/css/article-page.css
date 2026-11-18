@@ -186,7 +186,7 @@
 .ala-article-reading #richTextContent a {
   color: var(--ala-blue);
   text-decoration: underline;
-  text-underline-offset: .14em;
+  text-underline-offset: calc(.14em + var(--ala-underline-shift));
 }
 
 .ala-article-reading #richTextContent :is(img, iframe, video) {

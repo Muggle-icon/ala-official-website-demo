@@ -53,7 +53,7 @@
 .ala-breadcrumbs a {
   border-radius: 4px;
   text-decoration: none;
-  text-underline-offset: .18em;
+  text-underline-offset: calc(.18em + var(--ala-underline-shift));
 }
 .ala-breadcrumbs a:hover { color: var(--ala-blue, #173cff); text-decoration: underline; }
 .ala-breadcrumbs a:focus-visible { outline: 2px solid var(--ala-blue, #173cff); outline-offset: 2px; }

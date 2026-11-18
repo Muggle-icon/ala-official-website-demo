@@ -85,7 +85,7 @@ a.top-article-title:hover,
 a.mobile-top-article-title:hover,
 a.swiper-article-title:hover {
   text-decoration: underline;
-  text-underline-offset: .14em;
+  text-underline-offset: calc(.14em + var(--ala-underline-shift));
 }
 
 a.blog-menu-item:hover,

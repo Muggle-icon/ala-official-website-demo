@@ -8,8 +8,7 @@ body {
 }
 
 .collection-page a {
-  text-decoration-skip-ink: none;
-  text-underline-offset: calc(.18em + 2px);
+  text-underline-offset: calc(.18em + var(--ala-underline-shift));
 }
 
 .collection-page {
@@ -97,7 +96,6 @@ body {
 
 .collection-verification > .ala-section-more {
   --ala-section-more-color: var(--ala-blue);
-  font-weight: 400;
   text-decoration: underline;
 }
 

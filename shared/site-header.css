@@ -37,6 +37,7 @@
   --ala-control-radius: 8px;
   --ala-card-radius: 16px;
   --ala-control-font: 700 1rem / 1.5 var(--ala-font);
+  --ala-underline-shift: 2px;
   --ala-content-width: min(100% - 48px, 1280px, max(960px, 66.667vw));
   --ala-content-heading: clamp(1.75rem, 1.35rem + 1.4vw, 2.5rem);
   --ala-section-space: clamp(56px, 7vw, 104px);
@@ -46,6 +47,8 @@
   --ala-section-title: clamp(1.5rem, 1.15vw + 0.9rem, 2.125rem);
   --ala-body-size: 1rem;
   --ala-body-leading: 1.625;
+  text-underline-offset: 3px;
+  text-decoration-skip-ink: none;
 }
 
 @font-face {
@@ -286,7 +289,7 @@ html { scroll-padding-top: var(--ala-scroll-offset, calc(var(--ala-nav-height) +
 .ala-notice-label {
   flex: none;
   text-decoration: underline;
-  text-underline-offset: 2px;
+  text-underline-offset: calc(2px + var(--ala-underline-shift));
 }
 .ala-site-chrome .ala-site-notice:focus-visible { outline-color: #fff; outline-offset: -3px; }
 
@@ -589,7 +592,8 @@ body #richTextContent h3 { font-size: 1.1875rem; line-height: 1.35; }
   border-color: transparent;
   background: transparent;
   color: var(--ala-section-more-color, var(--ala-blue));
-  text-underline-offset: .2em;
+  font-weight: 400;
+  text-underline-offset: calc(.2em + var(--ala-underline-shift));
 }
 
 .ala-section-more:focus-visible {
@@ -723,13 +727,13 @@ body #richTextContent h3 { font-size: 1.1875rem; line-height: 1.35; }
 
 .ala-faq-answer p { margin: 0 0 12px; }
 .ala-faq-answer > :last-child { margin-bottom: 0; }
-.ala-faq-detail { font-weight: 700; }
+.ala-faq-detail { font-weight: 400; }
 
 .ala-faq-answer a,
 .ala-regulatory-page .product-con a {
   color: var(--ala-blue);
   text-decoration: underline;
-  text-underline-offset: .18em;
+  text-underline-offset: calc(.18em + var(--ala-underline-shift));
 }
 
 .ala-faq-section {
