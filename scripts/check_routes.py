@@ -5,7 +5,7 @@ import re
 from urllib.parse import unquote, urlsplit
 
 root = Path.cwd()
-paths = [root/'index.html',root/'marca/index.html',root/'cobranza/index.html'] + list((root/'channel').rglob('*.html'))+list((root/'article').rglob('*.html'))
+paths = [root/'index.html',root/'marca/index.html',root/'cobranza/index.html',root/'noticias/index.html'] + list((root/'channel').rglob('*.html'))+list((root/'article').rglob('*.html'))
 seen = defaultdict(set)
 
 class Page(HTMLParser):

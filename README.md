@@ -5,6 +5,7 @@ This repository contains a self-contained static review of ALA's Mexican website
 | Route | Page |
 | --- | --- |
 | `/` | Product homepage |
+| `/noticias/` | ALA media coverage and company press releases |
 | `/channel/loan_protection/` | Regulatory protection |
 | `/channel/loan_blog/` | Blog, categories, pagination, and article details |
 | `/channel/loan_faq/` | Ayuda |

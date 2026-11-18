@@ -65,8 +65,8 @@
   --ala-nav-height: min(72px, 3.75vw, 6.923077svh);
   --ala-notice-height: min(40px, 2.083333vw, 3.703704svh);
   --ala-nav-gutter: 320px;
-  --ala-nav-gap: min(32px, 1.666667vw);
-  --ala-nav-logo-gap: min(104px, 5.416667vw);
+  --ala-nav-gap: min(20px, 1vw);
+  --ala-nav-logo-gap: min(104px, 4.2vw);
   --ala-nav-store-gap: min(112px, 5.833333vw);
 }
 
@@ -198,11 +198,14 @@ html { scroll-padding-top: var(--ala-scroll-offset, calc(var(--ala-nav-height) +
   white-space: nowrap;
   -webkit-font-smoothing: antialiased;
 }
+.ala-site-chrome .ala-header-item--news > a[aria-current="page"] {
+  color: var(--ala-blue);
+}
+
 .ala-header-item > :is(a, button)::before {
   position: absolute;
   top: 50%;
-  left: -12px;
-  right: -12px;
+  inset-inline: calc(var(--ala-nav-gap) / -2);
   height: calc(var(--ala-nav-leading) + 20px);
   transform: translateY(-50%);
   z-index: -1;

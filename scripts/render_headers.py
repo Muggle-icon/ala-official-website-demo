@@ -72,6 +72,7 @@ def render_header(prefix, route):
       <li class="ala-header-item">{link('Introducción del producto', '')}</li>
       <li class="ala-header-item">{link('Protección regulatoria', 'channel/loan_protection/')}</li>
       {disclosure('Blog', 'blog', BLOG)}
+      <li class="ala-header-item ala-header-item--news">{link('Noticias', 'noticias/')}</li>
       {disclosure('Más información', 'more', MORE)}
       <li class="ala-header-item">{link('Preguntas frecuentes', 'channel/loan_faq/')}</li>
         </ul>
