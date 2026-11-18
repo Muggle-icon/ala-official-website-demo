@@ -9,6 +9,7 @@ from pathlib import Path
 import re
 import sys
 from textwrap import indent
+from urllib.parse import quote
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -236,6 +237,77 @@ def replace_collection_region(html, name, padding, markup):
     return before + start_tag + "\n" + indent(markup, padding) + "\n" + end_tag + after
 
 
+class CollectionHeadings(HTMLParser):
+    def __init__(self, body):
+        super().__init__()
+        self.line_starts = [0, *(line.end() for line in re.finditer("\n", body))]
+        self.ids = set()
+        self.headings = []
+        self.current = None
+        self.feed(body)
+
+    def handle_starttag(self, tag, attrs):
+        attrs = dict(attrs)
+        if anchor := attrs.get("id"):
+            self.ids.add(anchor)
+        if re.fullmatch(r"h[2-6]", tag):
+            line, column = self.getpos()
+            offset = self.line_starts[line - 1] + column + len(self.get_starttag_text()) - 1
+            self.current = (tag, attrs, offset, [])
+
+    def handle_data(self, data):
+        if self.current:
+            self.current[3].append(data)
+
+    def handle_endtag(self, tag):
+        if self.current and self.current[0] == tag:
+            self.headings.append(self.current)
+            self.current = None
+
+
+def collection_outline(body):
+    parsed = CollectionHeadings(body)
+    items = []
+    insertions = []
+
+    for tag, attrs, offset, parts in parsed.headings:
+        title = " ".join("".join(parts).split())
+        if not title:
+            continue
+        anchor = attrs.get("id")
+        if not anchor:
+            base = f"{tag.upper()}-{len(items)}"
+            anchor = base
+            suffix = 2
+            while anchor in parsed.ids:
+                anchor = f"{base}-{suffix}"
+                suffix += 1
+            parsed.ids.add(anchor)
+            insertions.append((offset, f' id="{anchor}"'))
+
+        label = (attrs.get("data-outline-label") or "").strip() or title
+        items.append(f'      <li class="link-{tag.upper()}"><a href="#{quote(anchor)}">{escape(label)}</a></li>')
+
+    for offset, attribute in reversed(insertions):
+        body = body[:offset] + attribute + body[offset:]
+
+    if not items:
+        return body, ""
+
+    outline = [
+        '<details class="ala-article-outline collection-outline index-disclosure" open>',
+        '  <summary>Índice del artículo</summary>',
+        '  <nav class="index-content" aria-label="Índice del artículo">',
+        '    <p class="index-title" aria-hidden="true">Índice del artículo</p>',
+        '    <ol id="anchorDirectory">',
+        *items,
+        '    </ol>',
+        '  </nav>',
+        '</details>',
+    ]
+    return body, "\n".join(outline) + "\n"
+
+
 def render_collection(path):
     html = path.read_text()
     body = path.with_name("body.html.txt").read_text().strip()
@@ -243,13 +315,12 @@ def render_collection(path):
         raise ValueError("Missing collection rich text")
     assets = "\n".join([
         f'<link rel="stylesheet" href="{asset(STYLE, prefix="../")}">',
-        f'<script src="{asset(SCRIPT, prefix="../")}" defer></script>',
         f'<script src="./outline.js?v={version("cobranza/outline.js")}" defer></script>',
     ])
     html = replace_collection_region(html, "rich text assets", "  ", assets)
-    markup = rich_text_markup("\n" + indent(body, "  ") + "\n")
+    body, outline = collection_outline(body)
+    markup = outline + rich_text_markup("\n" + indent(body, "  ") + "\n")
     return replace_collection_region(html, "rich text", "        ", markup)
-
 
 def main():
     check = "--check" in sys.argv
