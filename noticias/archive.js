@@ -1,13 +1,15 @@
 import { examples } from './archive-examples.js?v=33e4e03228';
 
-const topics = new Map([
-  ['all', 'Todas'],
+const originalTopics = [
   ['medios', 'En medios'],
   ['comunicados', 'Comunicados'],
+];
+const demoTopics = [
   ['empresa', 'Empresa'],
   ['producto', 'Producto'],
   ['guias', 'Guías'],
-]);
+];
+const topics = new Map([['all', 'Todas'], ...originalTopics, ...demoTopics]);
 const pageSize = 6;
 const formatDate = new Intl.DateTimeFormat('es-MX', {
   day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC',
@@ -15,23 +17,23 @@ const formatDate = new Intl.DateTimeFormat('es-MX', {
 
 const originals = [...document.querySelectorAll('[data-archive-topic]')].map(article => {
   const topic = article.dataset.archiveTopic;
-  const image = article.querySelector('img');
   return {
     topic,
     date: article.querySelector('time').dateTime,
     title: article.querySelector('h3').textContent,
     source: article.querySelector('.press-meta span').textContent,
-    summary: article.querySelector('.press-summary')?.textContent
-      ?? (topic === 'comunicados' ? 'Comunicado de ALA distribuido por GetNews.' : ''),
+    summary: topic === 'comunicados'
+      ? 'Comunicado de ALA distribuido por GetNews.'
+      : (article.querySelector('.press-summary')?.textContent ?? ''),
     href: article.querySelector('a').href,
-    image: { src: image.src, width: image.getAttribute('width'), height: image.getAttribute('height') },
   };
 });
-const publications = [...originals, ...examples].sort((a, b) => b.date.localeCompare(a.date));
+const byNewest = (a, b) => b.date.localeCompare(a.date);
+const publications = [...originals.sort(byNewest), ...[...examples].sort(byNewest)];
 const drafts = new Map(examples.map(article => [article.id, article]));
 
 const ui = document.querySelector('#press-archive-ui');
-const filters = document.querySelector('#press-archive-filters');
+const topicSelect = document.querySelector('#press-archive-topic');
 const form = document.querySelector('#press-archive-search');
 const search = document.querySelector('#press-archive-query');
 const resultList = document.querySelector('#press-archive-list');
@@ -83,12 +85,6 @@ function createCard(publication) {
   label.hidden = Boolean(publication.href);
 
   if (publication.href) {
-    const photo = fragment.querySelector('.press-archive-image');
-    const image = photo.querySelector('img');
-    image.src = publication.image.src;
-    image.width = publication.image.width;
-    image.height = publication.image.height;
-    photo.hidden = false;
     link.href = publication.href;
     link.target = '_blank';
     link.rel = 'noopener noreferrer';
@@ -114,9 +110,7 @@ function render() {
   count.textContent = matches.length ? 'Mostrando ' + visible.length + ' de ' + matches.length + ' publicaciones' : '0 publicaciones';
   empty.hidden = matches.length > 0;
   more.hidden = matches.length <= limit;
-  for (const button of filters.children) {
-    button.setAttribute('aria-pressed', String(button.dataset.topic === activeTopic));
-  }
+  topicSelect.value = activeTopic;
 }
 
 function applyFilters(topic, term) {
@@ -180,17 +174,19 @@ function syncURL() {
   }
 }
 
-for (const [slug, title] of topics) {
-  const button = document.createElement('button');
-  button.type = 'button';
-  button.dataset.topic = slug;
-  button.textContent = title;
-  filters.append(button);
+topicSelect.add(new Option(topics.get('all'), 'all'));
+for (const [label, entries] of [
+  ['Publicaciones originales', originalTopics],
+  ['Ejemplos de la demo', demoTopics],
+]) {
+  const group = document.createElement('optgroup');
+  group.label = label;
+  for (const [slug, title] of entries) {
+    group.append(new Option(title, slug));
+  }
+  topicSelect.append(group);
 }
-filters.addEventListener('click', event => {
-  const button = event.target.closest('button[data-topic]');
-  if (button) applyFilters(button.dataset.topic, query);
-});
+topicSelect.addEventListener('change', () => applyFilters(topicSelect.value, query));
 form.addEventListener('submit', event => event.preventDefault());
 search.addEventListener('input', () => applyFilters(activeTopic, search.value.trim()));
 document.querySelector('#press-archive-reset').addEventListener('click', () => {
@@ -234,5 +230,4 @@ window.addEventListener('hashchange', syncURL);
 
 render();
 ui.hidden = false;
-document.querySelector('#press-archive-fallback').hidden = true;
 syncURL();
