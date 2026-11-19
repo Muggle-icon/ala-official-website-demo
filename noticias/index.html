@@ -7,10 +7,15 @@
   <meta name="description" content="Noticias y comunicados sobre ALA Préstamos en México.">
   <title>Noticias de ALA | ALA Préstamos México</title>
   <link rel="icon" href="../public/assets/ala-app-icon.png">
-  <script type="module" src="./archive.js?v=45a05b451c"></script>
-  <link rel="stylesheet" href="./news.css?v=fa78f26db9">
+  <script type="module" src="./archive.js?v=56751024bd"></script>
+  <link rel="stylesheet" href="./news.css?v=94a5223e89">
   <link rel="stylesheet" href="../shared/site-header.css?v=395e64275c">
   <script src="../shared/site-header.js?v=fa30b9015e" defer></script>
+  <!-- ALA footer assets start -->
+  <link rel="stylesheet" href="../cobranza/home-footer.css?v=0d866fedf5">
+  <link rel="stylesheet" href="../noticias/footer.css?v=6e0ea52074">
+  <script src="../cobranza/home-footer.js?v=36b5c60bc4" defer></script>
+  <!-- ALA footer assets end -->
 </head>
 <body>
   <!-- ALA header start -->
@@ -91,15 +96,15 @@
             </article>
           </div>
           <div class="press-latest">
-            <h2 class="press-front-heading" id="press-latest-title">Últimas noticias</h2>
+            <h2 class="press-front-heading" id="press-latest-title">Cobertura reciente</h2>
             <ul class="press-latest-list" aria-labelledby="press-latest-title" role="list">
               <li>
                 <article data-archive-topic="medios" aria-labelledby="press-reportero-title">
                   <a class="press-latest-story" href="https://elreportero.mx/2026/01/25/ala-prestamos-tecnologia-para-cerrar-la-brecha-de-los-servicios-financieros-tradicionales-en-mexico/" target="_blank" rel="noopener noreferrer">
                     <div class="press-photo"><img src="../public/assets/news/el-reportero-cover.webp?v=a416080615" width="607" height="412" loading="lazy" decoding="async" alt=""></div>
                     <div class="press-story-copy">
-                      <p class="press-meta"><span>elReportero.mx</span><time datetime="2026-01-25">25 ene 2026</time></p>
-                      <h3 id="press-reportero-title">El acceso al crédito para quienes no tienen historial crediticio</h3>
+                      <p class="press-meta"><span>elReportero.mx</span><time datetime="2026-01-25">25 ene 2026</time><span class="press-language">En los medios</span></p>
+                      <h3 id="press-reportero-title" title="El acceso al crédito para quienes no tienen historial crediticio">Acceso al crédito sin historial crediticio</h3>
                       <p class="press-summary" hidden>La nota explora cómo se consideran los ingresos al evaluar una primera solicitud de crédito.</p>
                     </div>
                   </a>
@@ -111,7 +116,7 @@
                     <div class="press-photo"><img src="../public/assets/news/barchart-cover.webp?v=d179cf6ef4" width="607" height="412" loading="lazy" decoding="async" alt=""></div>
                     <div class="press-story-copy">
                       <p class="press-meta"><span>Barchart</span><time datetime="2026-01-23">23 ene 2026</time><span class="press-language">Comunicado · En inglés</span></p>
-                      <h3 id="press-barchart-title">Soluciones de crédito para trabajadores en México</h3>
+                      <h3 id="press-barchart-title" title="Soluciones de crédito para trabajadores en México">Crédito para trabajadores en México</h3>
                     </div>
                   </a>
                 </article>
@@ -122,7 +127,7 @@
                     <div class="press-photo"><img src="../public/assets/news/financialcontent-cover.webp?v=f1ece4d3e3" width="607" height="412" loading="lazy" decoding="async" alt=""></div>
                     <div class="press-story-copy">
                       <p class="press-meta"><span>FinancialContent</span><time datetime="2026-01-17">17 ene 2026</time><span class="press-language">Comunicado · En inglés</span></p>
-                      <h3 id="press-financialcontent-title">El crédito digital y la inclusión financiera en México</h3>
+                      <h3 id="press-financialcontent-title" title="El crédito digital y la inclusión financiera en México">Inclusión financiera con crédito digital</h3>
                     </div>
                   </a>
                 </article>
@@ -136,22 +141,23 @@
     <div class="press-archive-band">
       <section class="press-archive press-shell" id="archivo" tabindex="-1" aria-labelledby="press-archive-title">
         <span id="comunicados" class="press-anchor" aria-hidden="true"></span>
-        <div class="press-archive-heading">
-          <h2 class="press-section-heading" id="press-archive-title">Todas las noticias</h2>
-          <form class="press-archive-search" id="press-archive-search" role="search" aria-label="Publicaciones de ALA" hidden>
-            <label class="press-visually-hidden" for="press-archive-query">Buscar publicaciones</label>
-            <svg width="19" height="19" viewBox="0 0 32 32" aria-hidden="true"><use href="./press-icons.svg#consulta"></use></svg>
-            <input type="search" id="press-archive-query" name="q" placeholder="Buscar publicaciones" maxlength="100">
-          </form>
-        </div>
+        <h2 class="press-section-heading" id="press-archive-title">Todas las noticias</h2>
         <div id="press-archive-tools" hidden>
-          <div class="press-filters" role="group" aria-label="Filtrar por tema">
-            <button type="button" data-press-topic="all" aria-pressed="true">Todas</button>
-            <button type="button" data-press-topic="medios" aria-pressed="false">En los medios</button>
-            <button type="button" data-press-topic="comunicados" aria-pressed="false">Comunicados</button>
-            <button type="button" data-press-topic="empresa" aria-pressed="false">Empresa</button>
-            <button type="button" data-press-topic="producto" aria-pressed="false">Producto</button>
-            <button type="button" data-press-topic="guias" aria-pressed="false">Guías</button>
+          <div class="press-archive-toolbar">
+            <form class="press-archive-search" id="press-archive-search" role="search" aria-label="Buscar en todas las noticias">
+              <label class="press-visually-hidden" for="press-archive-query">Buscar por palabra clave</label>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6"/><path d="m15 15 4 4"/></svg>
+              <input type="search" id="press-archive-query" name="q" placeholder="Buscar por palabra clave" maxlength="100" autocomplete="off" aria-controls="press-archive-list">
+              <button class="press-search-clear" id="press-search-clear" type="button" aria-label="Borrar búsqueda" hidden><span aria-hidden="true">×</span></button>
+            </form>
+            <div class="press-filters" role="group" aria-label="Filtrar por tema">
+              <button type="button" data-press-topic="all" aria-pressed="true">Todas</button>
+              <button type="button" data-press-topic="medios" aria-pressed="false">En los medios</button>
+              <button type="button" data-press-topic="comunicados" aria-pressed="false">Comunicados</button>
+              <button type="button" data-press-topic="empresa" aria-pressed="false">Empresa</button>
+              <button type="button" data-press-topic="producto" aria-pressed="false">Producto</button>
+              <button type="button" data-press-topic="guias" aria-pressed="false">Guías</button>
+            </div>
           </div>
           <div class="press-archive-notes">
             <p id="press-archive-count" role="status"></p>
@@ -175,17 +181,16 @@
           <li>
             <article class="press-archive-entry">
               <a class="press-archive-card">
-                <div class="press-archive-copy">
-                  <p class="press-meta">
-                    <span data-card-topic></span>
-                    <time></time>
-                    <span class="press-demo-label" hidden>Demo</span>
-                  </p>
-                  <h3></h3>
-                  <p class="press-archive-summary"></p>
-                  <p class="press-archive-source" hidden></p>
-                </div>
-                <div class="press-photo" hidden><img width="607" height="412" loading="lazy" decoding="async" alt=""></div>
+                <p class="press-meta">
+                  <span data-card-topic></span>
+                  <time></time>
+                </p>
+                <h3></h3>
+                <p class="press-archive-summary"></p>
+                <p class="press-archive-source">
+                  <span data-card-source hidden></span>
+                  <span class="press-demo-label" hidden>Demo</span>
+                </p>
               </a>
             </article>
           </li>
@@ -193,58 +198,189 @@
       </section>
     </div>
 
-    <section class="press-verify press-shell" id="verifica-a-ala" tabindex="-1" aria-labelledby="press-verify-title">
-      <h2 class="press-section-heading" id="press-verify-title">Información oficial de ALA</h2>
-      <div class="press-verify-inner">
-        <div class="press-verify-company">
-          <dl>
-            <div><dt>Razón social</dt><dd>Quantum Wealth Solutions, S.A.P.I. de C.V., SOFOM, E.N.R.</dd></div>
-            <div><dt>Sitio oficial</dt><dd>alaprestamo.com</dd></div>
-          </dl>
-          <a class="press-official-link" href="https://webapps.condusef.gob.mx/SIPRES/jsp/home_publico.jsp?idins=16852" target="_blank" rel="noopener noreferrer">Consultar la ficha en SIPRES</a>
-          <p class="press-verify-note">Si la ficha no abre, busca <strong>Quantum Wealth Solutions</strong> en el <a href="https://webapps.condusef.gob.mx/SIPRES/jsp/pub/index.jsp" target="_blank" rel="noopener noreferrer">buscador de SIPRES</a>.</p>
-        </div>
-        <div class="press-verify-support">
-          <h3>Atención a clientes</h3>
-          <p>De lunes a domingo, de 9:00 a 18:00.</p>
-          <a href="../channel/help-center/#canales-de-atencion">Ver canales oficiales</a>
-          <p><a href="mailto:contacto-ala@alaprestamo.com">contacto-ala@alaprestamo.com</a></p>
-        </div>
+    <section class="press-guides press-shell" aria-labelledby="press-guides-title">
+      <div class="press-guides-heading">
+        <h2 class="press-section-heading" id="press-guides-title">Guías para tu préstamo</h2>
+        <a href="../channel/guia-de-prestamos/">Ver todas las guías</a>
       </div>
+      <ul class="press-guides-grid" role="list">
+        <li>
+          <a class="press-guide-card" href="../article/como-elegir-un-prestamo-personal-en-mexico-segun-tu-capacidad-de-pago/">
+            <div class="press-photo"><img src="../public/assets/editorial/budget.webp?v=bcdc103ec3" width="960" height="540" loading="lazy" decoding="async" alt=""></div>
+            <h3>Cómo elegir un préstamo según tu capacidad de pago</h3>
+          </a>
+        </li>
+        <li>
+          <a class="press-guide-card" href="../article/que-hacer-ante-la-presunta-suplantacion-de-ala-o-dudas-sobre-el-proceso-de-cobranza/">
+            <div class="press-photo"><img src="../public/assets/editorial/impersonation.webp?v=75466aac6e" width="960" height="540" loading="lazy" decoding="async" alt=""></div>
+            <h3>Qué hacer si alguien se hace pasar por ALA</h3>
+          </a>
+        </li>
+        <li>
+          <a class="press-guide-card" href="../article/que-pasa-si-tengo-un-atraso-en-mi-prestamo-ala/">
+            <div class="press-photo"><img src="../public/assets/editorial/late-payment.webp?v=0ee74599aa" width="960" height="540" loading="lazy" decoding="async" alt=""></div>
+            <h3>Qué hacer si tienes un atraso en tu préstamo ALA</h3>
+          </a>
+        </li>
+      </ul>
     </section>
+
+    <div class="press-verify-band">
+      <section class="press-verify press-shell" id="verifica-a-ala" tabindex="-1" aria-labelledby="press-verify-title">
+        <div class="press-verify-intro">
+          <h2 class="press-section-heading" id="press-verify-title">Información oficial de ALA</h2>
+          <p>Consulta nuestros datos y usa los canales oficiales si tienes dudas.</p>
+        </div>
+        <div class="press-verify-details">
+          <div class="press-verify-company">
+            <h3>Registro y sitio oficial</h3>
+            <dl>
+              <div><dt>Razón social</dt><dd>Quantum Wealth Solutions, S.A.P.I. de C.V., SOFOM, E.N.R.</dd></div>
+              <div><dt>Sitio oficial</dt><dd>alaprestamo.com</dd></div>
+            </dl>
+            <div class="press-verify-links">
+              <a class="press-official-link" href="https://webapps.condusef.gob.mx/SIPRES/jsp/home_publico.jsp?idins=16852" target="_blank" rel="noopener noreferrer">Consultar la ficha en SIPRES</a>
+              <a href="https://webapps.condusef.gob.mx/SIPRES/jsp/pub/index.jsp" target="_blank" rel="noopener noreferrer">Buscar por razón social</a>
+            </div>
+          </div>
+          <div class="press-verify-support">
+            <h3>Atención a clientes</h3>
+            <p>De lunes a domingo, de 9:00 a 18:00.</p>
+            <p><a href="mailto:contacto-ala@alaprestamo.com">contacto-ala@alaprestamo.com</a></p>
+            <a class="press-support-link" href="../channel/help-center/#canales-de-atencion">Ver canales oficiales</a>
+          </div>
+        </div>
+      </section>
+    </div>
   </main>
 
-  <footer class="press-footer" id="footer">
-    <div class="press-shell">
-      <div class="press-footer-top">
-        <a href="../" aria-label="ALA, inicio"><img src="../public/assets/nav-logo-dark.png" width="126" height="48" alt=""></a>
-        <nav aria-label="Más de ALA">
-          <a href="../">Préstamos</a>
-          <a href="../marca/">Sobre ALA</a>
-          <a href="../channel/help-center/">Centro de ayuda</a>
-          <a href="https://youtube.com/@alaprestamos?si=FPzN9blgS330QpHy" target="_blank" rel="noopener noreferrer">YouTube</a>
-          <a href="https://www.facebook.com/share/1BQbcFUN5h/" target="_blank" rel="noopener noreferrer">Facebook</a>
-          <a href="https://www.tiktok.com/@ala_prestamos?_r=1&amp;_t=ZS-93Iat2GL6Cz" target="_blank" rel="noopener noreferrer">TikTok</a>
-        </nav>
+  <!-- ALA footer start -->
+<footer class="ala-pt ala-pr ala-pb ala-pl pc-footer-container" id="footer"
+  style="--base-pt: 96px; --base-pb: 176px;">
+  <div style="--base-size:16px" class="ala-size footer-txt-item-box">
+    <section class="footer-txt-item">
+      <div style="--base-size:28px;--base-mb:18px" class="ala-size ala-mb footer-section-title">Contáctanos</div>
+      <div style="--base-mb:32px;" class="ala-mb footer-link-row-box">
+        <div class="ala-mb" style="font-size:14px;font-weight:500;--base-mb:18px;color: #fff;">Si necesitas ayuda, <br/>llama a nuestra línea de atención o envíanos un correo electrónico.</div>
+        <div class="footer-contact-link-row">
+          <img class="footer-contact-link-icon" src="../live/ala-www/img/contact.webp" alt="contacto">
+          <a href="../channel/help-center/" class="footer-contact-link" id="footerContactLink">Atención en línea</a>
+        </div>
       </div>
-      <div class="press-footer-info">
-        <address>Av. Paseo de la Reforma 295, piso 6, oficina 1503, Col. Cuauhtémoc, Ciudad de México, C.P. 06500.</address>
-        <p><a href="tel:+528009530794">800 953 0794</a> · <a href="tel:+528002883450">800 288 3450</a></p>
+      <div class="footer-span-title">Teléfono</div>
+      <div class="footer-span-val">
+
+        <span><a class="footer-contact-value" href="tel:+528009530794">8009530794</a>,<a class="footer-contact-value" href="tel:+528002883450">8002883450</a></span>
       </div>
-      <details class="press-footer-docs" id="documentos-legales">
-        <summary>Consultar documentos legales</summary>
-        <ul>
-            <li><a href="../channel/ios_contract/">Contrato de préstamo</a></li>
-            <li><a href="../channel/privacy/">Privacidad en Google Play</a></li>
-            <li><a href="../channel/ios_privacy/">Privacidad en App Store</a></li>
-            <li><a href="../channel/regist/">Términos de Google Play</a></li>
-            <li><a href="../channel/ios_regist/">Términos de App Store</a></li>
-            <li><a href="../live/legal/docs/une-ala.pdf">Unidad especializada de atención a usuarios (UNE)</a></li>
-            <li><a href="../live/legal/docs/despacho-de-cobranza.pdf">Despacho de cobranza</a></li>
-        </ul>
+      <div style="--base-mt:24px" class="ala-mt footer-span-title mtPhone25">Correo electrónico</div>
+      <div class="footer-span-val"><a class="footer-contact-value" href="mailto:contacto-ala@alaprestamo.com">contacto-ala@alaprestamo.com</a></div>
+      <div style="--base-mt:24px" class="ala-mt footer-span-title mtPhone25">Horario de atención</div>
+      <div class="footer-span-val">De lunes a domingo, de 9:00 a 18:00.</div>
+      <div style="--base-mt:24px" class="ala-mt footer-span-title mtPhone25">Por favor, envía por correo electrónico el problema que presentas e incluye tu número de teléfono para que podamos confirmarlo contigo y solucionarlo más rápido.</div>
+
+    </section>
+    <section class="footer-txt-item mtPhone54">
+      <div style="--base-size:28px;--base-mb:18px" class="ala-size ala-mb footer-section-title ">Sobre nosotros</div>
+
+      <div class="footer-span-title">Razón social</div>
+      <div class="footer-span-val">Quantum Wealth Solutions, S.A.P.I. DE C.V. SOFOM E.N.R</div>
+
+      <div style="--base-mt:24px" class="ala-mt footer-span-title mtPhone25">Dirección de la empresa</div>
+      <div class="footer-span-val">AV. PASEO DE LA REFORMA 295, PISO 6 OFICINA 1503,
+COL. CUAUHTÉMOC, CUAUHTÉMOC,
+CIUDAD DE MÉXICO, C.P. 06500, MÉXICO</div>
+
+      <div class="ala-mt footer-span-title mtPhone25" style="--base-mt:24px;">Unidad especializada de atención a usuarios (UNE)</div>
+
+      <a href="../live/legal/docs/une-ala.pdf" target="_blank" rel="noopener" style="text-decoration: underline; cursor: pointer; color: inherit; display: block;" class="footer-span-val" id="footerUneAla">UNE ALA</a>
+      <a href="../live/legal/docs/despacho-de-cobranza.pdf" target="_blank" rel="noopener" style="text-decoration: underline; cursor: pointer; color: inherit; display: block;" class="footer-span-val" id="footerUneAla2">Despacho de cobranza</a>
+      <div style="--base-mt:48px; --base-size: 28px;" class="ala-size ala-mt img-title footer-section-title mtPhone54">Síguenos</div>
+
+      <div style="--base-mt:18px;  align-items: center;" class="ala-mt img-wrap d-none d-lg-flex custom-footer-icon">
+
+        <a id="footerImgSrc1" href="https://youtube.com/@alaprestamos?si=FPzN9blgS330QpHy" target="_blank" rel="noopener" class="" style="text-decoration: none;display:inline-block;">
+          <img style="width:36px;height:36px;margin-right:20px;display:inline-block;"
+               src="../live/uploads/1/image/2026/03/20260310033236462_sv2bk8bvzq2c.png" alt="alaprestamo-youtube">
+        </a>
+
+        <a id="footerImgSrc2" href="https://www.facebook.com/share/1BQbcFUN5h/" target="_blank" rel="noopener" class="" style="text-decoration: none;display:inline-block;">
+          <img style="width:36px;height:36px;margin-right:20px;display:inline-block;"
+               src="../live/uploads/1/image/2026/03/20260310033232218_ysg633k7owib.png" alt="alaprestamo-facebook">
+        </a>
+
+        <a id="footerImgSrc3" href="https://www.tiktok.com/@ala_prestamos?_r=1&amp;_t=ZS-93Iat2GL6Cz" target="_blank" rel="noopener" class="" style="text-decoration: none;display:inline-block;">
+          <img style="width:36px;height:36px;margin-right:20px;display:inline-block;"
+               src="../live/uploads/1/image/2026/03/20260310033220973_y0zpm4fgzo41.png" alt="alaprestamo-tiktok">
+        </a>
+
+      </div>
+      <div style="--base-mt:18px; --base-size: 28px;" class="ala-mt ala-size img-wrap d-lg-none">
+
+        <a id="footerImgSrc1_m" href="https://youtube.com/@alaprestamos?si=FPzN9blgS330QpHy" target="_blank" rel="noopener" class="" style="text-decoration: none;display:inline-block;">
+          <img style="width: 36px;height: 36px;display:inline-block;" src="../live/uploads/1/image/2026/03/20260310033236462_sv2bk8bvzq2c.png" alt="alaprestamo-youtube">
+        </a>
+
+        <a id="footerImgSrc2_m" href="https://www.facebook.com/share/1BQbcFUN5h/" target="_blank" rel="noopener" class="" style="text-decoration: none;display:inline-block;">
+          <img style="width: 36px;height: 36px; margin-left: 15px;display:inline-block;" src="../live/uploads/1/image/2026/03/20260310033232218_ysg633k7owib.png" alt="alaprestamo-facebook">
+        </a>
+
+        <a id="footerImgSrc3_m" href="https://www.tiktok.com/@ala_prestamos?_r=1&amp;_t=ZS-93Iat2GL6Cz" target="_blank" rel="noopener" class="" style="text-decoration: none;display:inline-block;">
+          <img style="width: 36px;height: 36px; margin-left: 15px;display:inline-block;" src="../live/uploads/1/image/2026/03/20260310033220973_y0zpm4fgzo41.png" alt="alaprestamo-tiktok">
+        </a>
+
+      </div>
+</section>
+    <section class="footer-txt-item mtPhone54">
+      <div style="--base-size:28px;--base-mb:18px" class="ala-size ala-mb footer-section-title" id="documentos-legales">Documentos Legales </div>
+      <div class="footer-span-val">
+        <a href="../channel/ios_contract/" class="footer-span-title" id="footerContract" style="text-decoration: none;">Contrato de Préstamo</a>
+        <img style="--base-width:24px;--base-height:24px" class="ala-width ala-height"
+          src="../live/ala-www/img/footer/arrow_right.png" alt="">
+      </div>
+      <details class="footer-dropdown">
+        <summary style="--base-mt:12px" class="ala-mt footer-span-val footer-dropdown-trigger">
+          <span class="footer-span-title" style="text-decoration: none;">Aviso de Privacidad</span>
+          <img style="--base-width:24px;--base-height:24px" class="ala-width ala-height"
+            src="../live/ala-www/img/footer/arrow_right.png" alt="">
+        </summary>
+        <div class="footer-dropdown-menu">
+          <span class="footer-dropdown-line"></span>
+          <div class="footer-dropdown-item">
+            <a href="../channel/privacy/" class="footer-store-title" id="footerPrivacyGp" style="text-decoration: none; font-size: 14px;font-weight:400;">Google Play</a>
+          </div>
+          <div class="footer-dropdown-item">
+            <a href="../channel/ios_privacy/" class="footer-store-title" id="footerPrivacyAs" style="text-decoration: none; font-size: 14px;font-weight:400;">App Store</a>
+          </div>
+        </div>
       </details>
-      <p class="press-footer-rates">Los montos de los préstamos van desde $100 MXN hasta $50,000 MXN, con plazos de pago flexibles de 61 a 154 días. La tasa de interés diaria comienza en 0.1% (equivalente a una tasa de interés anual del 36%). El CAT promedio es de 548.61% sin IVA, calculado al 30 de junio de 2026, para fines informativos y de comparación. Ejemplo representativo: Si solicitas un préstamo de $5,000 MXN con un plazo de 61 días, pagarás un total de $5,353.80 MXN en 4 pagos. Este total incluye $305 MXN de intereses (calculados a una tasa diaria de 0.1%) y $48.80 MXN de IVA.</p>
+      <details class="footer-dropdown">
+        <summary style="--base-mt:12px" class="ala-mt footer-span-val footer-dropdown-trigger">
+          <span class="footer-span-title" style="text-decoration: none;">Términos y Condiciones de Uso</span>
+          <img style="--base-width:24px;--base-height:24px" class="ala-width ala-height"
+            src="../live/ala-www/img/footer/arrow_right.png" alt="">
+        </summary>
+        <div class="footer-dropdown-menu">
+          <span class="footer-dropdown-line"></span>
+          <div class="footer-dropdown-item">
+            <a href="../channel/regist/" class="footer-store-title" id="footerRegistGp" style="text-decoration: none; font-size: 14px;font-weight:400;">Google Play</a>
+          </div>
+          <div class="footer-dropdown-item">
+            <a href="../channel/ios_regist/" class="footer-store-title" id="footerRegistAs" style="text-decoration: none; font-size: 14px;font-weight:400;">App Store</a>
+          </div>
+        </div>
+      </details>
+    </section>
+  </div>
+
+  <div class="footer-custom-box">
+  </div>
+
+  <div class="rate-info-row">
+    <div class="rate-info-container">
+      Los montos de los préstamos van desde $100 MXN hasta $50,000 MXN, con plazos de pago flexibles de 61 a 154 días. La tasa de interés diaria comienza en 0.1% (equivalente a una tasa de interés anual del 36%). El CAT promedio es de 548.61% sin IVA, calculado al 30 de junio de 2026, para fines informativos y de comparación. Ejemplo representativo: Si solicitas un préstamo de $5,000 MXN con un plazo de 61 días, pagarás un total de $5,353.80 MXN en 4 pagos. Este total incluye $305 MXN de intereses (calculados a una tasa diaria de 0.1%) y $48.80 MXN de IVA.
     </div>
-  </footer>
+  </div>
+</footer>
+<!-- ALA footer end -->
 </body>
 </html>

@@ -3,6 +3,7 @@ import { examples } from './archive-examples.js?v=bf9c400307';
 const archive = document.querySelector('#archivo');
 const form = document.querySelector('#press-archive-search');
 const search = document.querySelector('#press-archive-query');
+const clearSearch = document.querySelector('#press-search-clear');
 const filters = [...document.querySelectorAll('[data-press-topic]')];
 const resultList = document.querySelector('#press-archive-list');
 const cardTemplate = document.querySelector('#press-archive-card');
@@ -18,15 +19,17 @@ const dateFormat = new Intl.DateTimeFormat('es-MX', {
   day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC',
 });
 
-const originals = [...document.querySelectorAll('[data-archive-topic]')].map(article => ({
-  topic: article.dataset.archiveTopic,
-  date: article.querySelector('time').dateTime,
-  title: article.querySelector('h3').textContent,
-  source: article.querySelector('.press-meta span').textContent,
-  summary: article.querySelector('.press-summary')?.textContent ?? 'Comunicado de ALA distribuido por GetNews.',
-  href: article.querySelector('a').href,
-  image: article.querySelector('img').getAttribute('src'),
-}));
+const originals = [...document.querySelectorAll('[data-archive-topic]')].map(article => {
+  const headline = article.querySelector('h3');
+  return {
+    topic: article.dataset.archiveTopic,
+    date: article.querySelector('time').dateTime,
+    title: headline.title || headline.textContent,
+    source: article.querySelector('.press-meta span').textContent,
+    summary: article.querySelector('.press-summary')?.textContent ?? 'Comunicado de ALA distribuido por GetNews.',
+    href: article.querySelector('a').href,
+  };
+});
 const publications = [...originals, ...examples].sort((a, b) => b.date.localeCompare(a.date));
 const slugPrefix = 'nota-';
 
@@ -79,23 +82,22 @@ function createCard(publication, state) {
   const label = fragment.querySelector('[data-card-topic]');
   const date = fragment.querySelector('time');
   const link = fragment.querySelector('a');
-  const photo = fragment.querySelector('.press-photo');
+  const source = fragment.querySelector('[data-card-source]');
 
   label.textContent = publication.source ?? topics.get(publication.topic);
   date.dateTime = publication.date;
   date.textContent = dateFormat.format(new Date(publication.date));
-  fragment.querySelector('h3').textContent = publication.title;
+  const heading = fragment.querySelector('h3');
+  heading.textContent = publication.title;
+  heading.title = publication.title;
   fragment.querySelector('.press-archive-summary').textContent = publication.summary;
 
   if (publication.href) {
     link.href = publication.href;
     link.target = '_blank';
     link.rel = 'noopener noreferrer';
-    if (publication.topic === 'comunicados') {
-      const source = fragment.querySelector('.press-archive-source');
-      source.textContent = 'Publicación original en inglés';
-      source.hidden = false;
-    }
+    source.textContent = publication.topic === 'comunicados' ? 'Comunicado · En inglés' : 'En los medios';
+    source.hidden = false;
   } else {
     fragment.querySelector('li').id = slugPrefix + publication.id;
     fragment.querySelector('.press-demo-label').hidden = false;
@@ -103,12 +105,6 @@ function createCard(publication, state) {
     link.dataset.demoArticle = publication.id;
   }
 
-  if (publication.image) {
-    photo.querySelector('img').src = publication.href
-      ? publication.image
-      : '../public/assets/news/' + publication.image;
-    photo.hidden = false;
-  }
   return fragment;
 }
 
@@ -140,6 +136,7 @@ function render(state, anchorId = '') {
     ? 'Mostrando ' + (start + 1) + '–' + (start + visible.length) + ' de ' + matches.length + ' publicaciones'
     : '0 publicaciones';
   empty.hidden = matches.length > 0;
+  clearSearch.hidden = search.value.length === 0;
   paging.hidden = totalPages <= 1;
   pageIndex.textContent = 'Página ' + page + ' de ' + totalPages;
   updatePageLink(previous, state, page - 1, page > 1);
@@ -198,13 +195,17 @@ function setupArchive() {
     if (!event.isComposing) updateSearch();
   });
   search.addEventListener('compositionend', updateSearch);
+  clearSearch.addEventListener('click', () => {
+    search.value = '';
+    search.focus();
+    applyFilters(readState().topic, '');
+  });
   document.querySelector('#press-archive-reset').addEventListener('click', () => {
     search.value = '';
     applyFilters('all', '');
     search.focus();
   });
 
-  form.hidden = false;
   document.querySelector('#press-archive-tools').hidden = false;
   restoreList();
   window.addEventListener('popstate', restoreList);

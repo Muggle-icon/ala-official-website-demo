@@ -1,0 +1,28 @@
+.pc-footer-container {
+  padding-inline: calc(320px * var(--footer-scale));
+  text-underline-offset: 4px;
+  text-decoration-skip-ink: none;
+}
+
+.pc-footer-container,
+.pc-footer-container .rate-info-container {
+  font-family: Roboto, var(--ala-font);
+}
+
+.pc-footer-container .footer-contact-value {
+  color: inherit;
+  text-decoration: none;
+}
+
+.pc-footer-container .footer-contact-value:is(:hover, :focus-visible) {
+  text-decoration: underline;
+}
+
+.pc-footer-container .rate-info-container {
+  padding-inline: 15px;
+}
+
+@media (max-width: 1024px) {
+  .pc-footer-container { padding-inline: 24px; }
+  .pc-footer-container .rate-info-container { padding-inline: 0; }
+}
