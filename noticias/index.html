@@ -8,7 +8,7 @@
   <title>Noticias de ALA | ALA Préstamos México</title>
   <link rel="icon" href="../public/assets/ala-app-icon.png">
   <script type="module" src="./archive.js?v=45a05b451c"></script>
-  <link rel="stylesheet" href="./news.css?v=03b414b882">
+  <link rel="stylesheet" href="./news.css?v=fa78f26db9">
   <link rel="stylesheet" href="../shared/site-header.css?v=395e64275c">
   <script src="../shared/site-header.js?v=fa30b9015e" defer></script>
 </head>
@@ -133,63 +133,65 @@
       </div>
     </div>
 
-    <section class="press-archive press-shell" id="archivo" tabindex="-1" aria-labelledby="press-archive-title">
-      <span id="comunicados" class="press-anchor" aria-hidden="true"></span>
-      <div class="press-archive-heading">
-        <h2 class="press-section-heading" id="press-archive-title">Todas las noticias</h2>
-        <form class="press-archive-search" id="press-archive-search" role="search" aria-label="Publicaciones de ALA" hidden>
-          <label class="press-visually-hidden" for="press-archive-query">Buscar publicaciones</label>
-          <svg width="19" height="19" viewBox="0 0 32 32" aria-hidden="true"><use href="./press-icons.svg#consulta"></use></svg>
-          <input type="search" id="press-archive-query" name="q" placeholder="Buscar publicaciones" maxlength="100">
-        </form>
-      </div>
-      <div id="press-archive-tools" hidden>
-        <div class="press-filters" role="group" aria-label="Filtrar por tema">
-          <button type="button" data-press-topic="all" aria-pressed="true">Todas</button>
-          <button type="button" data-press-topic="medios" aria-pressed="false">En los medios</button>
-          <button type="button" data-press-topic="comunicados" aria-pressed="false">Comunicados</button>
-          <button type="button" data-press-topic="empresa" aria-pressed="false">Empresa</button>
-          <button type="button" data-press-topic="producto" aria-pressed="false">Producto</button>
-          <button type="button" data-press-topic="guias" aria-pressed="false">Guías</button>
+    <div class="press-archive-band">
+      <section class="press-archive press-shell" id="archivo" tabindex="-1" aria-labelledby="press-archive-title">
+        <span id="comunicados" class="press-anchor" aria-hidden="true"></span>
+        <div class="press-archive-heading">
+          <h2 class="press-section-heading" id="press-archive-title">Todas las noticias</h2>
+          <form class="press-archive-search" id="press-archive-search" role="search" aria-label="Publicaciones de ALA" hidden>
+            <label class="press-visually-hidden" for="press-archive-query">Buscar publicaciones</label>
+            <svg width="19" height="19" viewBox="0 0 32 32" aria-hidden="true"><use href="./press-icons.svg#consulta"></use></svg>
+            <input type="search" id="press-archive-query" name="q" placeholder="Buscar publicaciones" maxlength="100">
+          </form>
         </div>
-        <div class="press-archive-notes">
-          <p id="press-archive-count" role="status"></p>
-          <p><span class="press-demo-label">Demo</span> Contenido de ejemplo</p>
+        <div id="press-archive-tools" hidden>
+          <div class="press-filters" role="group" aria-label="Filtrar por tema">
+            <button type="button" data-press-topic="all" aria-pressed="true">Todas</button>
+            <button type="button" data-press-topic="medios" aria-pressed="false">En los medios</button>
+            <button type="button" data-press-topic="comunicados" aria-pressed="false">Comunicados</button>
+            <button type="button" data-press-topic="empresa" aria-pressed="false">Empresa</button>
+            <button type="button" data-press-topic="producto" aria-pressed="false">Producto</button>
+            <button type="button" data-press-topic="guias" aria-pressed="false">Guías</button>
+          </div>
+          <div class="press-archive-notes">
+            <p id="press-archive-count" role="status"></p>
+            <p><span class="press-demo-label">Demo</span> Contenido de ejemplo</p>
+          </div>
         </div>
-      </div>
-      <ul class="press-archive-results" id="press-archive-list" role="list"></ul>
-      <noscript><p>Activa JavaScript para buscar y filtrar las publicaciones.</p></noscript>
-      <div class="press-archive-empty" id="press-archive-empty" hidden>
-        <h3>No encontramos publicaciones</h3>
-        <p>Prueba con otra palabra o cambia de tema.</p>
-        <button class="press-text-link" id="press-archive-reset" type="button">Ver todas las publicaciones</button>
-      </div>
-      <nav class="press-pagination" id="press-archive-paging" aria-label="Páginas de publicaciones" hidden>
-        <a id="press-page-prev" rel="prev">Anterior</a>
-        <span id="press-page-index"></span>
-        <a id="press-page-next" rel="next">Siguiente</a>
-      </nav>
+        <ul class="press-archive-results" id="press-archive-list" role="list"></ul>
+        <noscript><p>Activa JavaScript para buscar y filtrar las publicaciones.</p></noscript>
+        <div class="press-archive-empty" id="press-archive-empty" hidden>
+          <h3>No encontramos publicaciones</h3>
+          <p>Prueba con otra palabra o cambia de tema.</p>
+          <button class="press-text-link" id="press-archive-reset" type="button">Ver todas las publicaciones</button>
+        </div>
+        <nav class="press-pagination" id="press-archive-paging" aria-label="Páginas de publicaciones" hidden>
+          <a id="press-page-prev" rel="prev">Anterior</a>
+          <span id="press-page-index"></span>
+          <a id="press-page-next" rel="next">Siguiente</a>
+        </nav>
 
-      <template id="press-archive-card">
-        <li>
-          <article class="press-archive-entry">
-            <a class="press-archive-card">
-              <div class="press-archive-copy">
-                <p class="press-meta">
-                  <span data-card-topic></span>
-                  <time></time>
-                  <span class="press-demo-label" hidden>Demo</span>
-                </p>
-                <h3></h3>
-                <p class="press-archive-summary"></p>
-                <p class="press-archive-source" hidden></p>
-              </div>
-              <div class="press-photo" hidden><img width="607" height="412" loading="lazy" decoding="async" alt=""></div>
-            </a>
-          </article>
-        </li>
-      </template>
-    </section>
+        <template id="press-archive-card">
+          <li>
+            <article class="press-archive-entry">
+              <a class="press-archive-card">
+                <div class="press-archive-copy">
+                  <p class="press-meta">
+                    <span data-card-topic></span>
+                    <time></time>
+                    <span class="press-demo-label" hidden>Demo</span>
+                  </p>
+                  <h3></h3>
+                  <p class="press-archive-summary"></p>
+                  <p class="press-archive-source" hidden></p>
+                </div>
+                <div class="press-photo" hidden><img width="607" height="412" loading="lazy" decoding="async" alt=""></div>
+              </a>
+            </article>
+          </li>
+        </template>
+      </section>
+    </div>
 
     <section class="press-verify press-shell" id="verifica-a-ala" tabindex="-1" aria-labelledby="press-verify-title">
       <h2 class="press-section-heading" id="press-verify-title">Información oficial de ALA</h2>

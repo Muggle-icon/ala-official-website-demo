@@ -5,10 +5,6 @@
   --press-article-line: #d8deeb;
 }
 
-.press-article-page .press-shell {
-  width: min(calc(100% - 48px), 1152px);
-}
-
 .press-article-page #ala-content {
   color: var(--press-article-ink);
 }
