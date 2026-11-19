@@ -12,10 +12,6 @@ const paging = document.querySelector('#press-archive-paging');
 const previous = document.querySelector('#press-page-prev');
 const next = document.querySelector('#press-page-next');
 const pageIndex = document.querySelector('#press-page-index');
-const sections = [...document.querySelectorAll('.press-index a')].map(link => ({
-  link, target: document.querySelector(link.hash),
-}));
-const header = document.querySelector('.press-hub-header');
 const topics = new Map(filters.map(button => [button.dataset.pressTopic, button.textContent]));
 const pageSize = 6;
 const dateFormat = new Intl.DateTimeFormat('es-MX', {
@@ -153,30 +149,6 @@ function render(state, anchorId = '') {
   }
 }
 
-function syncNav() {
-  const hash = location.hash;
-  const active = hash === '#verifica-a-ala' ? hash
-    : hash === '#archivo' || hash === '#comunicados' || anchorArticle() ? '#archivo'
-    : '#publicaciones';
-  setActiveSection(active);
-}
-
-function setActiveSection(active) {
-  for (const { link } of sections) {
-    if (link.hash === active) link.setAttribute('aria-current', 'location');
-    else link.removeAttribute('aria-current');
-  }
-}
-
-function trackScroll() {
-  const offset = header.offsetHeight + 36;
-  const atEnd = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2;
-  const active = sections.reduce((current, { link, target }) => {
-    return target.getBoundingClientRect().top <= offset ? link.hash : current;
-  }, sections[0].link.hash);
-  setActiveSection(atEnd ? '#verifica-a-ala' : active);
-}
-
 function applyFilters(topic, term, replace = false) {
   const state = { topic, term, page: 1 };
   const url = archiveURL(state);
@@ -184,7 +156,6 @@ function applyFilters(topic, term, replace = false) {
     history[replace ? 'replaceState' : 'pushState'](history.state, '', url);
   }
   render(state);
-  syncNav();
 }
 
 function restoreList() {
@@ -192,7 +163,6 @@ function restoreList() {
   search.value = state.term;
   const anchorId = anchorArticle();
   render(state, anchorId);
-  syncNav();
 
   // The list row only exists after the archive renders.
   if (anchorId) {
@@ -238,15 +208,6 @@ function setupArchive() {
   document.querySelector('#press-archive-tools').hidden = false;
   restoreList();
   window.addEventListener('popstate', restoreList);
-  window.addEventListener('hashchange', syncNav);
-  let scrollFrame = 0;
-  window.addEventListener('scroll', () => {
-    if (scrollFrame) return;
-    scrollFrame = requestAnimationFrame(() => {
-      scrollFrame = 0;
-      trackScroll();
-    });
-  }, { passive: true });
 }
 
 setupArchive();

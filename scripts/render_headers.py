@@ -31,7 +31,8 @@ def render_header(prefix, route):
     assets = f'{prefix}public/assets/'
 
     def link(label, target):
-        active = ' aria-current="page"' if route == target else ''
+        current = route == target or (target == 'noticias/' and route.startswith(target))
+        active = ' aria-current="page"' if current else ''
         href = '#ala-content' if home and not target else f'{prefix}{target}'
         return f'<a class="ala-header-link" href="{href}"{active}>{escape(label)}</a>'
 
