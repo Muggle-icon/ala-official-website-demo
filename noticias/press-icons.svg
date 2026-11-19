@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+  <symbol id="documento" viewBox="0 0 32 32">
+    <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M7 3.5h12l6 6V28H7z M19 3.5v7h6 M11.5 15h9 M11.5 19h9 M11.5 23h5"/>
+    </g>
+  </symbol>
+  <symbol id="consulta" viewBox="0 0 32 32">
+    <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M14 26.5H5V4h13l5 5v5 M17.5 4.5V10h5 M9.5 14h5 M9.5 18h3"/>
+      <circle cx="21" cy="21" r="5.5"/>
+      <path d="m25 25 4 4"/>
+    </g>
+  </symbol>
+  <symbol id="contacto" viewBox="0 0 32 32">
+    <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M5 23V10.5A4.5 4.5 0 0 1 9.5 6h13a4.5 4.5 0 0 1 4.5 4.5v8a4.5 4.5 0 0 1-4.5 4.5H12l-7 4z M10 12h12 M10 17h8"/>
+    </g>
+  </symbol>
+</svg>
