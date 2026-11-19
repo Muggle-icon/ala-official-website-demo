@@ -5,7 +5,8 @@ This repository contains a self-contained static review of ALA's Mexican website
 | Route | Page |
 | --- | --- |
 | `/` | Product homepage |
-| `/noticias/` | ALA media coverage and company press releases |
+| `/noticias/` | Featured media coverage and a searchable publication catalog |
+| `/noticias/nota/?id=seguimiento-solicitud` | Example newsroom article with related publications |
 | `/channel/loan_protection/` | Regulatory protection |
 | `/channel/loan_blog/` | Blog, categories, pagination, and article details |
 | `/channel/loan_faq/` | Ayuda |
@@ -16,6 +17,8 @@ This repository contains a self-contained static review of ALA's Mexican website
 Public legal pages and the two linked disclosures are included. Blog and city listings use a local snapshot. Files in the old design at `/diseno-anterior.html` and `/help.html` document prior iterations.
 
 The review site's internal pages, articles, and disclosures stay within the demo. App stores, social channels, regulator sites, and standard call and email links open their original destinations. Customer support actions use the demo contact page where the live chat would require a production service.
+
+The newsroom keeps links to real coverage and published press releases in [its main page](noticias/index.html). The twelve entries in [the sample catalog](noticias/archive-examples.js) are marked Demo in the list and article views. Add or edit a sample there using a stable slug, category, date, title, summary, and body paragraphs. The article view and the catalog read the same records.
 
 The brand design contains historical product disclosures. The standalone collection article uses draft Spanish and can be opened directly at `/cobranza/`. Confirm the approved content before any production CMS release. To update the review copy, edit [the collection rich-text source](cobranza/body.html.txt), then run `python3 scripts/render_article_pages.py --collection` to regenerate the static page. Use `--collection --check` to verify it is up to date.
 
