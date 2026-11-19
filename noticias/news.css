@@ -362,6 +362,12 @@ body {
   }
 }
 
+@media (min-width: 621px) {
+  .press-lead .press-story-title {
+    padding-block: 0 16px;
+  }
+}
+
 @media (max-width: 620px) {
   .press-intro {
     gap: 8px;
