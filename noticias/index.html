@@ -7,8 +7,8 @@
   <meta name="description" content="Noticias y comunicados sobre ALA Préstamos en México.">
   <title>Noticias de ALA | ALA Préstamos México</title>
   <link rel="icon" href="../public/assets/ala-app-icon.png">
-  <script type="module" src="./archive.js?v=56751024bd"></script>
-  <link rel="stylesheet" href="./news.css?v=94a5223e89">
+  <script type="module" src="./archive.js?v=8b3ab5d778"></script>
+  <link rel="stylesheet" href="./news.css?v=5889db21c5">
   <link rel="stylesheet" href="../shared/site-header.css?v=395e64275c">
   <script src="../shared/site-header.js?v=fa30b9015e" defer></script>
   <!-- ALA footer assets start -->
@@ -72,16 +72,21 @@
 </div>
 <!-- ALA header end -->
   <main id="ala-content" tabindex="-1">
-    <div class="press-editorial" id="sala-de-prensa">
-      <div class="press-shell">
-        <header class="press-intro">
-          <div>
-            <h1>Noticias de ALA</h1>
-            <p>Cobertura, novedades y guías de ALA Préstamos en México.</p>
-          </div>
+    <header class="press-masthead" id="sala-de-prensa">
+      <div class="press-intro press-shell">
+        <div>
+          <h1>Noticias de ALA</h1>
+          <p>Comunicados, cobertura en medios y guías de ALA Préstamos.</p>
+        </div>
+        <div class="press-intro-links">
           <a class="press-archive-jump" href="#archivo">Ver todas las noticias</a>
-        </header>
+          <a href="#verifica-a-ala">Verificar ALA</a>
+        </div>
+      </div>
+    </header>
 
+    <div class="press-editorial">
+      <div class="press-shell">
         <section class="press-coverage press-front" id="publicaciones" tabindex="-1" aria-label="Noticias destacadas y recientes">
           <div class="press-feature">
             <h2 class="press-front-heading">Destacada</h2>
@@ -145,18 +150,23 @@
         <div id="press-archive-tools" hidden>
           <div class="press-archive-toolbar">
             <form class="press-archive-search" id="press-archive-search" role="search" aria-label="Buscar en todas las noticias">
-              <label class="press-visually-hidden" for="press-archive-query">Buscar por palabra clave</label>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6"/><path d="m15 15 4 4"/></svg>
-              <input type="search" id="press-archive-query" name="q" placeholder="Buscar por palabra clave" maxlength="100" autocomplete="off" aria-controls="press-archive-list">
-              <button class="press-search-clear" id="press-search-clear" type="button" aria-label="Borrar búsqueda" hidden><span aria-hidden="true">×</span></button>
+              <label for="press-archive-query">Buscar noticias</label>
+              <div class="press-search-field">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6"/><path d="m15 15 4 4"/></svg>
+                <input type="search" id="press-archive-query" name="q" placeholder="Tema, palabra clave o medio" maxlength="100" autocomplete="off" aria-controls="press-archive-list">
+                <button class="press-search-clear" id="press-search-clear" type="button" aria-label="Borrar búsqueda" hidden><span aria-hidden="true">×</span></button>
+              </div>
             </form>
-            <div class="press-filters" role="group" aria-label="Filtrar por tema">
-              <button type="button" data-press-topic="all" aria-pressed="true">Todas</button>
-              <button type="button" data-press-topic="medios" aria-pressed="false">En los medios</button>
-              <button type="button" data-press-topic="comunicados" aria-pressed="false">Comunicados</button>
-              <button type="button" data-press-topic="empresa" aria-pressed="false">Empresa</button>
-              <button type="button" data-press-topic="producto" aria-pressed="false">Producto</button>
-              <button type="button" data-press-topic="guias" aria-pressed="false">Guías</button>
+            <div class="press-topic-field">
+              <label for="press-archive-topic">Filtrar por tema</label>
+              <select id="press-archive-topic" name="tema" aria-controls="press-archive-list">
+                <option value="all">Todos los temas</option>
+                <option value="medios">En los medios</option>
+                <option value="comunicados">Comunicados</option>
+                <option value="empresa">Empresa</option>
+                <option value="producto">Producto</option>
+                <option value="guias">Guías</option>
+              </select>
             </div>
           </div>
           <div class="press-archive-notes">
@@ -181,16 +191,16 @@
           <li>
             <article class="press-archive-entry">
               <a class="press-archive-card">
-                <p class="press-meta">
-                  <span data-card-topic></span>
-                  <time></time>
-                </p>
-                <h3></h3>
-                <p class="press-archive-summary"></p>
-                <p class="press-archive-source">
-                  <span data-card-source hidden></span>
-                  <span class="press-demo-label" hidden>Demo</span>
-                </p>
+                <time></time>
+                <div class="press-archive-copy">
+                  <p class="press-archive-source">
+                    <span data-card-topic></span>
+                    <span data-card-source hidden></span>
+                    <span class="press-demo-label" hidden>Demo</span>
+                  </p>
+                  <h3></h3>
+                  <p class="press-archive-summary"></p>
+                </div>
               </a>
             </article>
           </li>

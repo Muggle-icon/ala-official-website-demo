@@ -4,7 +4,7 @@ const archive = document.querySelector('#archivo');
 const form = document.querySelector('#press-archive-search');
 const search = document.querySelector('#press-archive-query');
 const clearSearch = document.querySelector('#press-search-clear');
-const filters = [...document.querySelectorAll('[data-press-topic]')];
+const topicField = document.querySelector('#press-archive-topic');
 const resultList = document.querySelector('#press-archive-list');
 const cardTemplate = document.querySelector('#press-archive-card');
 const count = document.querySelector('#press-archive-count');
@@ -13,7 +13,7 @@ const paging = document.querySelector('#press-archive-paging');
 const previous = document.querySelector('#press-page-prev');
 const next = document.querySelector('#press-page-next');
 const pageIndex = document.querySelector('#press-page-index');
-const topics = new Map(filters.map(button => [button.dataset.pressTopic, button.textContent]));
+const topics = new Map([...topicField.options].map(option => [option.value, option.textContent]));
 const pageSize = 6;
 const dateFormat = new Intl.DateTimeFormat('es-MX', {
   day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC',
@@ -84,7 +84,7 @@ function createCard(publication, state) {
   const link = fragment.querySelector('a');
   const source = fragment.querySelector('[data-card-source]');
 
-  label.textContent = publication.source ?? topics.get(publication.topic);
+  label.textContent = topics.get(publication.topic);
   date.dateTime = publication.date;
   date.textContent = dateFormat.format(new Date(publication.date));
   const heading = fragment.querySelector('h3');
@@ -96,7 +96,9 @@ function createCard(publication, state) {
     link.href = publication.href;
     link.target = '_blank';
     link.rel = 'noopener noreferrer';
-    source.textContent = publication.topic === 'comunicados' ? 'Comunicado · En inglés' : 'En los medios';
+    source.textContent = publication.topic === 'comunicados'
+      ? publication.source + ' · En inglés'
+      : publication.source;
     source.hidden = false;
   } else {
     fragment.querySelector('li').id = slugPrefix + publication.id;
@@ -141,9 +143,7 @@ function render(state, anchorId = '') {
   pageIndex.textContent = 'Página ' + page + ' de ' + totalPages;
   updatePageLink(previous, state, page - 1, page > 1);
   updatePageLink(next, state, page + 1, page < totalPages);
-  for (const button of filters) {
-    button.setAttribute('aria-pressed', String(button.dataset.pressTopic === state.topic));
-  }
+  topicField.value = state.topic;
 }
 
 function applyFilters(topic, term, replace = false) {
@@ -183,9 +183,7 @@ function setupArchive() {
     return;
   }
 
-  for (const button of filters) {
-    button.addEventListener('click', () => applyFilters(button.dataset.pressTopic, search.value.trim()));
-  }
+  topicField.addEventListener('change', () => applyFilters(topicField.value, search.value.trim()));
   form.addEventListener('submit', event => {
     event.preventDefault();
     applyFilters(readState().topic, search.value.trim());
