@@ -29,14 +29,17 @@ body {
 }
 
 .ala-news-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 16px 24px;
   width: var(--ala-content-width);
-  max-width: 44rem;
   margin: 0 auto clamp(28px, 4vw, 48px);
-  text-align: center;
 }
 
 .ala-news-intro h2 {
-  margin-bottom: 12px;
+  margin: 0 0 12px;
+  text-align: start;
 }
 
 .ala-news-intro p {
@@ -44,6 +47,74 @@ body {
   font-size: clamp(1rem, .94rem + .3vw, 1.1875rem);
   line-height: 1.55;
   text-wrap: pretty;
+}
+
+.ala-news-more {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  justify-self: start;
+  gap: 10px;
+  min-height: 48px;
+  box-sizing: border-box;
+  padding: 10px 16px;
+  border: 1px solid #d7dff5;
+  border-radius: 12px;
+  background: #fff;
+  color: var(--ala-blue);
+  font: 400 1rem / 1.5 var(--ala-font);
+  text-decoration: none;
+  transition: background-color 150ms ease, border-color 150ms ease, transform 150ms ease;
+}
+
+.ala-news-more::after {
+  content: "";
+  flex: none;
+  width: 6px;
+  height: 6px;
+  margin-inline-end: 2px;
+  border-block-start: 1.5px solid currentColor;
+  border-inline-end: 1.5px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform 200ms ease;
+}
+
+.ala-news-more:focus-visible {
+  outline: var(--ala-focus-ring);
+  outline-offset: var(--ala-focus-offset);
+}
+
+.ala-news-more:active {
+  background: #eaf0ff;
+  transform: scale(.97);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .ala-news-more:hover {
+    border-color: #bfccfc;
+    background: #eaf0ff;
+    color: var(--ala-blue);
+    text-decoration: none;
+  }
+
+  .ala-news-more:hover::after {
+    transform: translateX(3px) rotate(45deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ala-news-more,
+  .ala-news-more::after {
+    transition: none;
+  }
+
+  .ala-news-more:active {
+    transform: none;
+  }
+
+  .ala-news-more:hover::after {
+    transform: rotate(45deg);
+  }
 }
 
 .ala-news-grid {
@@ -196,6 +267,10 @@ body {
 }
 
 @media (max-width: 600px) {
+  .ala-news-intro {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
   .ala-news-grid {
     grid-auto-columns: 85%;
   }
