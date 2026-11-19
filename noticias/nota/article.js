@@ -51,6 +51,15 @@ if (article) {
   document.querySelector('#press-article-title').textContent = article.title;
   document.querySelector('#press-article-deck').textContent = article.summary;
   const copy = document.querySelector('#press-article-copy');
+  if (!article.image) {
+    const placeholder = document.createElement('div');
+    placeholder.className = 'press-article-placeholder';
+    const logo = new Image();
+    logo.src = '../../public/assets/ala-logo.png';
+    logo.alt = '';
+    placeholder.append(logo);
+    copy.before(placeholder);
+  }
   if (article.image) {
     const photo = new Image(720, 360);
     photo.className = 'press-article-image';

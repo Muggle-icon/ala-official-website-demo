@@ -15,10 +15,10 @@ const next = document.querySelector('#press-page-next');
 const pageIndex = document.querySelector('#press-page-index');
 const topics = new Map([...topicField.options].map(option => [option.value, option.textContent]));
 const topicGroups = {
-  published: ['all', 'medios', 'comunicados'],
+  published: ['all', 'medios', 'comunicados', 'empresa', 'producto', 'guias'],
   demo: ['all', 'empresa', 'producto', 'guias'],
 };
-const pageSize = 6;
+const pageSize = 8;
 const dateFormat = new Intl.DateTimeFormat('es-MX', {
   day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC',
 });
@@ -37,7 +37,7 @@ const originals = [...document.querySelectorAll('[data-archive-topic]')].map(art
 });
 const newestFirst = (a, b) => b.date.localeCompare(a.date);
 const lists = {
-  published: originals.sort(newestFirst),
+  published: [...originals.sort(newestFirst), ...[...examples].sort(newestFirst).slice(0, 4)],
   demo: [...examples].sort(newestFirst),
 };
 const exampleIds = new Set(examples.map(item => item.id));
@@ -49,7 +49,6 @@ function readState() {
   const rawPage = url.searchParams.get('pagina') ?? '';
   const view = url.searchParams.get('vista') === 'demo' ||
     (!url.searchParams.has('vista') && (
-      (topic !== 'all' && topicGroups.demo.includes(topic)) ||
       exampleIds.has(anchorArticle()) ||
       exampleIds.has(url.searchParams.get('articulo'))
     )) ? 'demo' : 'published';
@@ -108,7 +107,11 @@ function createCard(publication, state) {
   } else {
     link.id = slugPrefix + publication.id;
     fragment.querySelector('.press-demo-label').hidden = false;
-    link.href = articleURL(publication.id, state);
+    const photo = fragment.querySelector('.press-archive-photo');
+    photo.hidden = false;
+    photo.classList.add('press-placeholder');
+    photo.querySelector('img').src = '../public/assets/ala-logo.png';
+    link.href = articleURL(publication.id, { ...state, view: 'demo' });
     link.dataset.demoArticle = publication.id;
   }
 
@@ -140,8 +143,8 @@ function render(state, anchorId = '') {
 
   const demo = state.view === 'demo';
   archiveTitle.textContent = demo ? 'Ejemplos del demo' : 'Archivo de noticias';
-  viewButton.textContent = demo ? 'Volver a publicaciones' : 'Ver ejemplos del demo';
-  demoNote.hidden = !demo;
+  viewButton.textContent = demo ? 'Volver a publicaciones' : 'Ver más ejemplos';
+  demoNote.hidden = false;
   archive.dataset.view = state.view;
   if (topicField.dataset.view !== state.view) {
     topicField.replaceChildren(...topicGroups[state.view].map(topic => new Option(topics.get(topic), topic)));

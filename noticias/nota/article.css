@@ -101,6 +101,22 @@
   object-fit: cover;
 }
 
+.press-article-placeholder {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  aspect-ratio: 2;
+  margin-bottom: clamp(24px, 4vw, 36px);
+  border-radius: 10px;
+  background: #173cff;
+}
+
+.press-article-placeholder img {
+  width: 40%;
+  max-width: 200px;
+  height: auto;
+}
+
 .press-article-copy {
   display: grid;
   gap: 18px;
