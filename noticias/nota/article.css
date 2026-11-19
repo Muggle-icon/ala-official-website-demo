@@ -1,5 +1,4 @@
 .press-article-page {
-  --press-article-blue: #173cff;
   --press-article-ink: #171d2c;
   --press-article-muted: #4f596d;
   --press-article-tint: #edf1ff;
@@ -28,13 +27,14 @@
   align-items: center;
   gap: 8px;
   min-height: 52px;
-  color: var(--press-article-blue);
+  color: var(--press-article-ink);
   font-size: .9375rem;
   font-weight: 400;
   text-decoration: none;
 }
 
-.press-article-return:hover span:last-child {
+.press-article-return:hover span:last-child,
+.press-article-related-link:hover {
   text-decoration: underline;
   text-decoration-skip-ink: none;
   text-underline-offset: 4px;
@@ -56,7 +56,6 @@
 }
 
 .press-article-topic {
-  color: var(--press-article-blue);
   font-weight: 600;
 }
 
@@ -64,8 +63,8 @@
   display: inline-block;
   border-radius: 4px;
   padding: 2px 7px;
-  background: #dce5ff;
-  color: #1835be;
+  background: #e2e6ef;
+  color: var(--press-article-muted);
   font-size: .75rem;
   font-weight: 600;
 }
@@ -93,6 +92,17 @@
 
 .press-article-reading {
   padding-block: clamp(36px, 6vw, 76px);
+}
+
+.press-article-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2;
+  margin-bottom: clamp(24px, 4vw, 36px);
+  border-radius: 10px;
+  background: #f0f2f7;
+  object-fit: cover;
 }
 
 .press-article-copy {
@@ -144,49 +154,21 @@
 }
 
 .press-article-related-link {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  box-sizing: border-box;
-  min-height: 100%;
+  display: block;
+  height: 100%;
   padding: 16px;
   border: 1px solid var(--press-article-line);
   border-radius: 10px;
   background: white;
   color: inherit;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  line-height: 1.35;
   text-decoration: none;
 }
 
 .press-article-related-link:hover {
-  border-color: #9eaefe;
-}
-
-.press-article-related-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  color: var(--press-article-muted);
-  font-size: .8125rem;
-}
-
-.press-article-related-name {
-  font-size: 1.0625rem;
-  font-weight: 600;
-  line-height: 1.35;
-}
-
-.press-article-related-action {
-  margin-top: auto;
-  color: var(--press-article-blue);
-  font-size: .875rem;
-  font-weight: 400;
-  line-height: 1.4;
-}
-
-.press-article-related-link:hover .press-article-related-action {
-  text-decoration: underline;
-  text-decoration-skip-ink: none;
-  text-underline-offset: 4px;
+  border-color: #aab3c5;
 }
 
 @media (max-width: 670px) {

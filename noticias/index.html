@@ -7,8 +7,8 @@
   <meta name="description" content="Noticias y comunicados sobre ALA Préstamos en México.">
   <title>Noticias de ALA | ALA Préstamos México</title>
   <link rel="icon" href="../public/assets/ala-app-icon.png">
-  <script type="module" src="./archive.js?v=e5c2f83f24"></script>
-  <link rel="stylesheet" href="./news.css?v=c9e8d5bc98">
+  <script type="module" src="./archive.js?v=5e6c438cbe"></script>
+  <link rel="stylesheet" href="./news.css?v=4882506e3e">
   <link rel="stylesheet" href="../shared/site-header.css?v=395e64275c">
 </head>
 <body>
@@ -24,7 +24,7 @@
         <a href="#archivo">Publicaciones</a>
         <a href="#verifica-a-ala">Verifica a ALA</a>
       </nav>
-      <a class="press-hub-home" href="../">Ir a ALA <span aria-hidden="true">→</span></a>
+      <a class="press-hub-home" href="../">Ir a ALA</a>
     </div>
   </header>
   <main id="ala-content" tabindex="-1">
@@ -35,40 +35,59 @@
           <p>Cobertura, novedades y guías de ALA Préstamos en México.</p>
         </header>
 
-        <section class="press-coverage" id="publicaciones" tabindex="-1" aria-labelledby="press-media-title">
-          <h2 class="press-kicker" id="press-media-title">En los medios</h2>
-          <div class="press-spread">
-            <article data-archive-topic="medios" class="press-lead" aria-labelledby="press-cnt-title">
+        <section class="press-coverage press-front" id="publicaciones" tabindex="-1" aria-label="Noticias destacadas y recientes">
+          <div class="press-feature">
+            <h2 class="press-front-heading">Destacada</h2>
+            <article class="press-lead" data-archive-topic="medios" aria-labelledby="press-cnt-title">
               <a class="press-story" href="https://cntamaulipas.mx/2026/01/15/la-fintech-mexicana-ala-prestamos-redefine-la-experiencia-del-microcredito-mediante-la-autonomia-tecnologica/" target="_blank" rel="noopener noreferrer">
-                <div class="press-story-heading">
+                <div class="press-photo"><img src="../public/assets/news/cnt-cover.webp?v=77e8d4431a" width="606" height="412" fetchpriority="high" decoding="async" alt=""></div>
+                <div class="press-story-copy">
                   <p class="press-meta"><span>Centro Noticias Tamaulipas</span><time datetime="2026-01-15">15 ene 2026</time></p>
                   <h3 id="press-cnt-title">Cómo revisa ALA una solicitud de préstamo</h3>
-                </div>
-                <div class="press-story-body">
-                  <div class="press-photo"><img src="../public/assets/news/cnt-cover.webp?v=77e8d4431a" width="606" height="412" fetchpriority="high" decoding="async" alt=""></div>
-                  <div class="press-story-end">
-                    <p class="press-summary">CNT describe cómo ALA verifica la identidad y analiza la información que se envía desde el celular.</p>
-                    <p class="press-action"><span>Leer en CNT</span><span class="press-arrow" aria-hidden="true">↗</span></p>
-                  </div>
+                  <p class="press-summary">CNT explica cómo ALA verifica tu identidad y revisa la solicitud desde el celular.</p>
+                  <span class="press-lead-link">Leer en CNT</span>
                 </div>
               </a>
             </article>
-
-            <article data-archive-topic="medios" class="press-secondary" aria-labelledby="press-reportero-title">
-              <a class="press-story" href="https://elreportero.mx/2026/01/25/ala-prestamos-tecnologia-para-cerrar-la-brecha-de-los-servicios-financieros-tradicionales-en-mexico/" target="_blank" rel="noopener noreferrer">
-                <div class="press-story-heading">
-                  <p class="press-meta"><span>elReportero.mx</span><time datetime="2026-01-25">25 ene 2026</time></p>
-                  <h3 id="press-reportero-title">El acceso al crédito para quienes no tienen historial crediticio</h3>
-                </div>
-                <div class="press-story-body">
-                  <div class="press-photo"><img src="../public/assets/news/el-reportero-cover.webp?v=a416080615" width="607" height="412" decoding="async" alt=""></div>
-                  <div class="press-story-end">
-                    <p class="press-summary">La nota explora cómo se consideran los ingresos al evaluar una primera solicitud de crédito.</p>
-                    <p class="press-action"><span>Leer en elReportero.mx</span><span class="press-arrow" aria-hidden="true">↗</span></p>
-                  </div>
-                </div>
-              </a>
-            </article>
+          </div>
+          <div class="press-latest">
+            <h2 class="press-front-heading" id="press-latest-title">Últimas noticias</h2>
+            <ul class="press-latest-list" aria-labelledby="press-latest-title" role="list">
+              <li>
+                <article data-archive-topic="medios" aria-labelledby="press-reportero-title">
+                  <a class="press-latest-story" href="https://elreportero.mx/2026/01/25/ala-prestamos-tecnologia-para-cerrar-la-brecha-de-los-servicios-financieros-tradicionales-en-mexico/" target="_blank" rel="noopener noreferrer">
+                    <div class="press-photo"><img src="../public/assets/news/el-reportero-cover.webp?v=a416080615" width="607" height="412" loading="lazy" decoding="async" alt=""></div>
+                    <div class="press-story-copy">
+                      <p class="press-meta"><span>elReportero.mx</span><time datetime="2026-01-25">25 ene 2026</time></p>
+                      <h3 id="press-reportero-title">El acceso al crédito para quienes no tienen historial crediticio</h3>
+                      <p class="press-summary" hidden>La nota explora cómo se consideran los ingresos al evaluar una primera solicitud de crédito.</p>
+                    </div>
+                  </a>
+                </article>
+              </li>
+              <li>
+                <article data-archive-topic="comunicados" aria-labelledby="press-barchart-title">
+                  <a class="press-latest-story" href="https://www.barchart.com/story/news/37208965/quantum-subsidiary-ala-prestamos-precision-engineers-liquidity-solutions-for-mexicos-workforce" target="_blank" rel="noopener noreferrer">
+                    <div class="press-photo"><img src="../public/assets/news/barchart-cover.webp?v=d179cf6ef4" width="607" height="412" loading="lazy" decoding="async" alt=""></div>
+                    <div class="press-story-copy">
+                      <p class="press-meta"><span>Barchart</span><time datetime="2026-01-23">23 ene 2026</time><span class="press-language">Comunicado · En inglés</span></p>
+                      <h3 id="press-barchart-title">Soluciones de crédito para trabajadores en México</h3>
+                    </div>
+                  </a>
+                </article>
+              </li>
+              <li>
+                <article data-archive-topic="comunicados" aria-labelledby="press-financialcontent-title">
+                  <a class="press-latest-story" href="https://markets.financialcontent.com/stocks/article/getnews-2026-1-17-quantum-subsidiary-ala-prstamos-drives-financial-inclusion-in-mexico-through-digital-first-credit-solutions" target="_blank" rel="noopener noreferrer">
+                    <div class="press-photo"><img src="../public/assets/news/financialcontent-cover.webp?v=f1ece4d3e3" width="607" height="412" loading="lazy" decoding="async" alt=""></div>
+                    <div class="press-story-copy">
+                      <p class="press-meta"><span>FinancialContent</span><time datetime="2026-01-17">17 ene 2026</time><span class="press-language">Comunicado · En inglés</span></p>
+                      <h3 id="press-financialcontent-title">El crédito digital y la inclusión financiera en México</h3>
+                    </div>
+                  </a>
+                </article>
+              </li>
+            </ul>
           </div>
         </section>
       </div>
@@ -77,7 +96,7 @@
     <section class="press-archive press-shell" id="archivo" tabindex="-1" aria-labelledby="press-archive-title">
       <span id="comunicados" class="press-anchor" aria-hidden="true"></span>
       <div class="press-archive-heading">
-        <h2 class="press-section-heading" id="press-archive-title">Publicaciones</h2>
+        <h2 class="press-section-heading" id="press-archive-title">Todas las noticias</h2>
         <form class="press-archive-search" id="press-archive-search" role="search" aria-label="Publicaciones de ALA" hidden>
           <label class="press-visually-hidden" for="press-archive-query">Buscar publicaciones</label>
           <svg width="19" height="19" viewBox="0 0 32 32" aria-hidden="true"><use href="./press-icons.svg#consulta"></use></svg>
@@ -98,41 +117,17 @@
           <p><span class="press-demo-label">Demo</span> Contenido de ejemplo</p>
         </div>
       </div>
-      <ul class="press-archive-results" id="press-archive-list" role="list">
-        <li>
-          <article data-archive-topic="comunicados">
-            <a class="press-archive-card" href="https://www.barchart.com/story/news/37208965/quantum-subsidiary-ala-prestamos-precision-engineers-liquidity-solutions-for-mexicos-workforce" target="_blank" rel="noopener noreferrer">
-              <div class="press-photo"><img src="../public/assets/news/barchart-cover.webp?v=d179cf6ef4" width="607" height="412" loading="lazy" decoding="async" alt=""></div>
-              <div class="press-archive-copy">
-                <p class="press-meta"><span>Barchart</span><time datetime="2026-01-23">23 ene 2026</time></p>
-                <h3>Soluciones de crédito para trabajadores en México</h3>
-                <p class="press-action"><span>Leer original</span> <span class="press-language">(en inglés)</span><span class="press-arrow" aria-hidden="true">↗</span></p>
-              </div>
-            </a>
-          </article>
-        </li>
-        <li>
-          <article data-archive-topic="comunicados">
-            <a class="press-archive-card" href="https://markets.financialcontent.com/stocks/article/getnews-2026-1-17-quantum-subsidiary-ala-prstamos-drives-financial-inclusion-in-mexico-through-digital-first-credit-solutions" target="_blank" rel="noopener noreferrer">
-              <div class="press-photo"><img src="../public/assets/news/financialcontent-cover.webp?v=f1ece4d3e3" width="607" height="412" loading="lazy" decoding="async" alt=""></div>
-              <div class="press-archive-copy">
-                <p class="press-meta"><span>FinancialContent</span><time datetime="2026-01-17">17 ene 2026</time></p>
-                <h3>El crédito digital y la inclusión financiera en México</h3>
-                <p class="press-action"><span>Leer original</span> <span class="press-language">(en inglés)</span><span class="press-arrow" aria-hidden="true">↗</span></p>
-              </div>
-            </a>
-          </article>
-        </li>
-      </ul>
+      <ul class="press-archive-results" id="press-archive-list" role="list"></ul>
+      <noscript><p>Activa JavaScript para buscar y filtrar las publicaciones.</p></noscript>
       <div class="press-archive-empty" id="press-archive-empty" hidden>
         <h3>No encontramos publicaciones</h3>
         <p>Prueba con otra palabra o cambia de tema.</p>
         <button class="press-text-link" id="press-archive-reset" type="button">Ver todas las publicaciones</button>
       </div>
       <nav class="press-pagination" id="press-archive-paging" aria-label="Páginas de publicaciones" hidden>
-        <a id="press-page-prev" rel="prev"><span aria-hidden="true">←</span> Anterior</a>
+        <a id="press-page-prev" rel="prev">Anterior</a>
         <span id="press-page-index"></span>
-        <a id="press-page-next" rel="next">Siguiente <span aria-hidden="true">→</span></a>
+        <a id="press-page-next" rel="next">Siguiente</a>
       </nav>
 
       <template id="press-archive-card">
@@ -147,7 +142,7 @@
                 </p>
                 <h3></h3>
                 <p class="press-archive-summary"></p>
-                <p class="press-action"><span></span><span data-card-arrow aria-hidden="true"></span></p>
+                <p class="press-archive-source" hidden></p>
               </div>
               <div class="press-photo" hidden><img width="607" height="412" loading="lazy" decoding="async" alt=""></div>
             </a>
@@ -164,7 +159,7 @@
             <div><dt>Razón social</dt><dd>Quantum Wealth Solutions, S.A.P.I. de C.V., SOFOM, E.N.R.</dd></div>
             <div><dt>Sitio oficial</dt><dd>alaprestamo.com</dd></div>
           </dl>
-          <a class="press-official-link" href="https://webapps.condusef.gob.mx/SIPRES/jsp/home_publico.jsp?idins=16852" target="_blank" rel="noopener noreferrer">Consultar la ficha en SIPRES <span aria-hidden="true">↗</span></a>
+          <a class="press-official-link" href="https://webapps.condusef.gob.mx/SIPRES/jsp/home_publico.jsp?idins=16852" target="_blank" rel="noopener noreferrer">Consultar la ficha en SIPRES</a>
           <p class="press-verify-note">Si la ficha no abre, busca <strong>Quantum Wealth Solutions</strong> en el <a href="https://webapps.condusef.gob.mx/SIPRES/jsp/pub/index.jsp" target="_blank" rel="noopener noreferrer">buscador de SIPRES</a>.</p>
         </div>
         <div class="press-verify-support">

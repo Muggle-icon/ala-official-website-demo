@@ -1,4 +1,4 @@
-import { examples } from '../archive-examples.js?v=449e454563';
+import { examples } from '../archive-examples.js?v=bf9c400307';
 
 const categories = new Map([
   ['medios', 'En medios'],
@@ -35,8 +35,7 @@ function renderRelated(example) {
     const url = new URL('./', location.href);
     url.searchParams.set('id', item.id);
     link.href = url.href;
-    fragment.querySelector('[data-related-topic]').textContent = categories.get(item.topic);
-    fragment.querySelector('.press-article-related-name').textContent = item.title;
+    link.textContent = item.title;
     list.append(fragment);
   }
 
@@ -53,6 +52,15 @@ if (article) {
   document.querySelector('#press-article-title').textContent = article.title;
   document.querySelector('#press-article-deck').textContent = article.summary;
   const copy = document.querySelector('#press-article-copy');
+  if (article.image) {
+    const photo = new Image(720, 360);
+    photo.className = 'press-article-image';
+    photo.alt = '';
+    photo.decoding = 'async';
+    photo.addEventListener('error', () => photo.remove(), { once: true });
+    photo.src = '../../public/assets/news/' + article.image;
+    copy.before(photo);
+  }
   for (const text of article.body) {
     const paragraph = document.createElement('p');
     paragraph.textContent = text;

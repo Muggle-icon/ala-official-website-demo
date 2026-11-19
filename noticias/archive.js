@@ -1,4 +1,4 @@
-import { examples } from './archive-examples.js?v=449e454563';
+import { examples } from './archive-examples.js?v=bf9c400307';
 
 const archive = document.querySelector('#archivo');
 const form = document.querySelector('#press-archive-search');
@@ -31,12 +31,7 @@ const originals = [...document.querySelectorAll('[data-archive-topic]')].map(art
   href: article.querySelector('a').href,
   image: article.querySelector('img').getAttribute('src'),
 }));
-const byNewest = (a, b) => b.date.localeCompare(a.date);
-const publications = [
-  ...originals.filter(item => item.topic === 'comunicados').sort(byNewest),
-  ...[...examples].sort(byNewest),
-  ...originals.filter(item => item.topic === 'medios').sort(byNewest),
-];
+const publications = [...originals, ...examples].sort((a, b) => b.date.localeCompare(a.date));
 const slugPrefix = 'nota-';
 
 function normalize(text) {
@@ -89,8 +84,6 @@ function createCard(publication, state) {
   const date = fragment.querySelector('time');
   const link = fragment.querySelector('a');
   const photo = fragment.querySelector('.press-photo');
-  const action = fragment.querySelector('.press-action > span');
-  const arrow = fragment.querySelector('[data-card-arrow]');
 
   label.textContent = publication.source ?? topics.get(publication.topic);
   date.dateTime = publication.date;
@@ -102,17 +95,23 @@ function createCard(publication, state) {
     link.href = publication.href;
     link.target = '_blank';
     link.rel = 'noopener noreferrer';
-    action.textContent = publication.topic === 'comunicados' ? 'Leer original (en inglés)' : 'Leer en ' + publication.source;
-    arrow.textContent = '↗';
-    photo.hidden = false;
-    photo.querySelector('img').src = publication.image;
+    if (publication.topic === 'comunicados') {
+      const source = fragment.querySelector('.press-archive-source');
+      source.textContent = 'Publicación original en inglés';
+      source.hidden = false;
+    }
   } else {
     fragment.querySelector('li').id = slugPrefix + publication.id;
     fragment.querySelector('.press-demo-label').hidden = false;
     link.href = articleURL(publication.id, state);
     link.dataset.demoArticle = publication.id;
-    action.textContent = 'Leer más';
-    arrow.textContent = '→';
+  }
+
+  if (publication.image) {
+    photo.querySelector('img').src = publication.href
+      ? publication.image
+      : '../public/assets/news/' + publication.image;
+    photo.hidden = false;
   }
   return fragment;
 }

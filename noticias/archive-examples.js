@@ -1,6 +1,7 @@
 export const examples = [
   {
     id: 'seguimiento-solicitud',
+    image: 'demo-seguimiento.webp?v=3575a8f476',
     date: '2026-11-12',
     topic: 'producto',
     title: 'Dónde consultar el estado de tu solicitud',
@@ -12,6 +13,7 @@ export const examples = [
   },
   {
     id: 'canales-oficiales',
+    image: 'demo-canales.webp?v=f538c5de4a',
     date: '2026-10-29',
     topic: 'guias',
     title: 'Cómo identificar los canales oficiales de ALA',
@@ -23,6 +25,7 @@ export const examples = [
   },
   {
     id: 'lenguaje-app',
+    image: 'demo-lenguaje.webp?v=cf2c6b1bfd',
     date: '2026-10-15',
     topic: 'empresa',
     title: 'Hablar de préstamos con palabras más claras',
