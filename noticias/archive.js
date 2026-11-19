@@ -125,7 +125,7 @@ function createCard(publication, state) {
     photo.querySelector('img').src = publication.photo;
     photo.hidden = false;
   } else {
-    fragment.querySelector('li').id = slugPrefix + publication.id;
+    link.id = slugPrefix + publication.id;
     fragment.querySelector('.press-demo-label').hidden = false;
     link.href = articleURL(publication.id, state);
     link.dataset.demoArticle = publication.id;
@@ -204,8 +204,9 @@ function restoreList() {
       history.replaceState(history.state, '', url);
     }
     requestAnimationFrame(() => {
-      (item ?? archive).scrollIntoView({ block: 'start' });
-      (item?.querySelector('a') ?? archive).focus({ preventScroll: true });
+      const destination = item ?? archive;
+      destination.scrollIntoView({ block: 'start' });
+      destination.focus({ preventScroll: true });
     });
   }
 }
