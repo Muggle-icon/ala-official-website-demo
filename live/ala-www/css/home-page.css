@@ -179,50 +179,6 @@ body {
   object-fit: cover;
 }
 
-.ala-news-cover--release {
-  display: grid;
-  container-type: inline-size;
-  box-sizing: border-box;
-  flex: none;
-}
-
-.ala-news-cover--digital {
-  color: white;
-  background: #173cff;
-}
-
-.ala-news-cover--work {
-  color: #242b3c;
-  background: #f6edde;
-}
-
-.ala-news-cover-layout {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  grid-template-rows: auto 1fr;
-  align-items: start;
-  padding: 7cqi;
-}
-
-.ala-news-cover-mark {
-  display: block;
-  width: clamp(56px, 23cqi, 88px);
-  height: auto;
-}
-
-.ala-news-cover-icon {
-  width: clamp(26px, 11cqi, 48px);
-  height: auto;
-}
-
-.ala-news-cover-title {
-  grid-column: 1 / -1;
-  align-self: end;
-  max-width: 8ch;
-  font: 500 clamp(1.5rem, 11.8cqi, 3.625rem) / 1.04 var(--ala-font);
-  letter-spacing: -.035em;
-}
-
 .ala-news-content {
   display: grid;
   flex: 1;
