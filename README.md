@@ -5,7 +5,7 @@ This repository contains a self-contained static review of ALA's Mexican website
 | Route | Page |
 | --- | --- |
 | `/` | Product homepage |
-| `/noticias/` | Featured media coverage and a searchable publication catalog |
+| `/noticias/` | Featured media coverage and a categorized publication archive |
 | `/noticias/nota/?id=seguimiento-solicitud` | Example newsroom article with related publications |
 | `/channel/loan_protection/` | Regulatory protection |
 | `/channel/loan_blog/` | Blog, categories, pagination, and article details |

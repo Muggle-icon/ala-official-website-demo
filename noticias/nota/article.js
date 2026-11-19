@@ -12,12 +12,10 @@ const params = new URLSearchParams(location.search);
 const article = examples.find(example => example.id === params.get('id'));
 const archive = new URL('../', location.href);
 const category = params.get('tema');
-const query = params.get('q')?.trim().slice(0, 100);
 const page = params.get('pagina');
 
 if (article || params.get('vista') === 'demo') archive.searchParams.set('vista', 'demo');
 if (categories.has(category)) archive.searchParams.set('tema', category);
-if (query) archive.searchParams.set('q', query);
 if (/^[1-9]\d{0,5}$/.test(page)) archive.searchParams.set('pagina', page);
 archive.hash = article ? 'nota-' + article.id : 'archivo';
 document.querySelector('#press-article-return').href = archive.href;

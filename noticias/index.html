@@ -7,8 +7,8 @@
   <meta name="description" content="Noticias y comunicados sobre ALA Préstamos en México.">
   <title>Noticias de ALA | ALA Préstamos México</title>
   <link rel="icon" href="../public/assets/ala-app-icon.png">
-  <script type="module" src="./archive.js?v=7c8aa4fdd6"></script>
-  <link rel="stylesheet" href="./news.css?v=6a2a42f7b2">
+  <script type="module" src="./archive.js?v=75fce8ffee"></script>
+  <link rel="stylesheet" href="./news.css?v=ff447a7690">
   <link rel="stylesheet" href="../shared/site-header.css?v=395e64275c">
   <script src="../shared/site-header.js?v=fa30b9015e" defer></script>
   <!-- ALA footer assets start -->
@@ -76,11 +76,10 @@
       <div class="press-intro press-shell">
         <div>
           <h1>Noticias de ALA</h1>
-          <p>Comunicados, cobertura y datos oficiales de ALA Préstamos.</p>
+          <p>Noticias y comunicados sobre ALA Préstamos.</p>
         </div>
         <div class="press-intro-links">
           <a class="press-archive-jump" href="#archivo">Explorar el archivo</a>
-          <a href="#verifica-a-ala">Datos oficiales</a>
         </div>
       </div>
     </header>
@@ -108,9 +107,9 @@
                   <a class="press-latest-story" href="https://elreportero.mx/2026/01/25/ala-prestamos-tecnologia-para-cerrar-la-brecha-de-los-servicios-financieros-tradicionales-en-mexico/" target="_blank" rel="noopener noreferrer">
                     <div class="press-photo"><img src="../public/assets/news/el-reportero-cover.webp?v=a416080615" width="607" height="412" loading="lazy" decoding="async" alt=""></div>
                     <div class="press-story-copy">
-                      <p class="press-meta"><span>elReportero.mx</span><time datetime="2026-01-25">25 ene 2026</time><span class="press-language">En los medios</span></p>
                       <h3 id="press-reportero-title" title="ALA Préstamos: Tecnología que cierra la brecha de los servicios financieros">Tecnología para ampliar el acceso al crédito</h3>
-                      <p class="press-summary" hidden>La publicación aborda el uso de tecnología en la evaluación de crédito en México.</p>
+                      <p class="press-meta"><span>elReportero.mx</span><time datetime="2026-01-25">25 ene 2026</time></p>
+                      <span class="press-card-read">Leer más</span>
                     </div>
                   </a>
                 </article>
@@ -120,8 +119,9 @@
                   <a class="press-latest-story" href="https://www.barchart.com/story/news/37208965/quantum-subsidiary-ala-prestamos-precision-engineers-liquidity-solutions-for-mexicos-workforce" target="_blank" rel="noopener noreferrer">
                     <div class="press-photo"><img src="../public/assets/news/barchart-cover.webp?v=d179cf6ef4" width="607" height="412" loading="lazy" decoding="async" alt=""></div>
                     <div class="press-story-copy">
-                      <p class="press-meta"><span>Barchart</span><time datetime="2026-01-23">23 ene 2026</time><span class="press-language">Comunicado · En inglés</span></p>
                       <h3 id="press-barchart-title" title="Soluciones de crédito para trabajadores en México">Crédito para trabajadores en México</h3>
+                      <p class="press-meta"><span>Barchart</span><time datetime="2026-01-23">23 ene 2026</time></p>
+                      <span class="press-card-read">Leer más <span class="press-language">· En inglés</span></span>
                     </div>
                   </a>
                 </article>
@@ -131,8 +131,9 @@
                   <a class="press-latest-story" href="https://markets.financialcontent.com/stocks/article/getnews-2026-1-17-quantum-subsidiary-ala-prstamos-drives-financial-inclusion-in-mexico-through-digital-first-credit-solutions" target="_blank" rel="noopener noreferrer">
                     <div class="press-photo"><img src="../public/assets/news/financialcontent-cover.webp?v=f1ece4d3e3" width="607" height="412" loading="lazy" decoding="async" alt=""></div>
                     <div class="press-story-copy">
-                      <p class="press-meta"><span>FinancialContent</span><time datetime="2026-01-17">17 ene 2026</time><span class="press-language">Comunicado · En inglés</span></p>
                       <h3 id="press-financialcontent-title" title="El crédito digital y la inclusión financiera en México">Inclusión financiera con crédito digital</h3>
+                      <p class="press-meta"><span>FinancialContent</span><time datetime="2026-01-17">17 ene 2026</time></p>
+                      <span class="press-card-read">Leer más <span class="press-language">· En inglés</span></span>
                     </div>
                   </a>
                 </article>
@@ -152,14 +153,6 @@
         </div>
         <div id="press-archive-tools" hidden>
           <div class="press-archive-toolbar">
-            <form class="press-archive-search" id="press-archive-search" role="search" aria-label="Buscar en el archivo">
-              <label for="press-archive-query">Buscar noticias</label>
-              <div class="press-search-field">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6"/><path d="m15 15 4 4"/></svg>
-                <input type="search" id="press-archive-query" name="q" placeholder="Tema, palabra clave o medio" maxlength="100" autocomplete="off" aria-controls="press-archive-list">
-                <button class="press-search-clear" id="press-search-clear" type="button" aria-label="Borrar búsqueda" hidden><span aria-hidden="true">×</span></button>
-              </div>
-            </form>
             <div class="press-topic-field">
               <label for="press-archive-topic">Filtrar por tema</label>
               <select id="press-archive-topic" name="tema" aria-controls="press-archive-list">
@@ -178,10 +171,10 @@
           </div>
         </div>
         <ul class="press-archive-results" id="press-archive-list" role="list"></ul>
-        <noscript><p>Activa JavaScript para buscar y filtrar las publicaciones.</p></noscript>
+        <noscript><p>Activa JavaScript para filtrar las publicaciones.</p></noscript>
         <div class="press-archive-empty" id="press-archive-empty" hidden>
           <h3>No encontramos publicaciones</h3>
-          <p>Prueba con otra palabra o cambia de tema.</p>
+          <p>Elige otro tema para ver más publicaciones.</p>
           <button class="press-text-link" id="press-archive-reset" type="button">Restablecer filtros</button>
         </div>
         <nav class="press-pagination" id="press-archive-paging" aria-label="Páginas de publicaciones" hidden>
@@ -194,17 +187,19 @@
           <li>
             <article class="press-archive-entry">
               <a class="press-archive-card">
-                <time></time>
+                <div class="press-archive-photo press-photo" hidden><img width="607" height="412" loading="lazy" decoding="async" alt=""></div>
                 <div class="press-archive-copy">
-                  <p class="press-archive-source">
+                  <h3></h3>
+                  <p class="press-archive-meta">
                     <span data-card-topic></span>
+                    <time></time>
+                  </p>
+                  <p class="press-archive-source">
                     <span data-card-source hidden></span>
                     <span class="press-demo-label" hidden>Demo</span>
                   </p>
-                  <h3></h3>
-                  <p class="press-archive-summary"></p>
+                  <span class="press-card-read">Leer más</span>
                 </div>
-                <div class="press-archive-photo press-photo" hidden><img width="607" height="412" loading="lazy" decoding="async" alt=""></div>
               </a>
             </article>
           </li>
@@ -212,60 +207,6 @@
       </section>
     </div>
 
-    <section class="press-guides press-shell" aria-labelledby="press-guides-title">
-      <div class="press-guides-heading">
-        <h2 class="press-section-heading" id="press-guides-title">Guías para tu préstamo</h2>
-        <a href="../channel/guia-de-prestamos/">Ver todas las guías</a>
-      </div>
-      <ul class="press-guides-grid" role="list">
-        <li>
-          <a class="press-guide-card" href="../article/como-elegir-un-prestamo-personal-en-mexico-segun-tu-capacidad-de-pago/">
-            <div class="press-photo"><img src="../public/assets/editorial/budget.webp?v=bcdc103ec3" width="960" height="540" loading="lazy" decoding="async" alt=""></div>
-            <h3>Cómo elegir un préstamo según tu capacidad de pago</h3>
-          </a>
-        </li>
-        <li>
-          <a class="press-guide-card" href="../article/que-hacer-ante-la-presunta-suplantacion-de-ala-o-dudas-sobre-el-proceso-de-cobranza/">
-            <div class="press-photo"><img src="../public/assets/editorial/impersonation.webp?v=75466aac6e" width="960" height="540" loading="lazy" decoding="async" alt=""></div>
-            <h3>Qué hacer si alguien se hace pasar por ALA</h3>
-          </a>
-        </li>
-        <li>
-          <a class="press-guide-card" href="../article/que-pasa-si-tengo-un-atraso-en-mi-prestamo-ala/">
-            <div class="press-photo"><img src="../public/assets/editorial/late-payment.webp?v=0ee74599aa" width="960" height="540" loading="lazy" decoding="async" alt=""></div>
-            <h3>Qué hacer si tienes un atraso en tu préstamo ALA</h3>
-          </a>
-        </li>
-      </ul>
-    </section>
-
-    <div class="press-verify-band">
-      <section class="press-verify press-shell" id="verifica-a-ala" tabindex="-1" aria-labelledby="press-verify-title">
-        <div class="press-verify-intro">
-          <h2 class="press-section-heading" id="press-verify-title">Información oficial de ALA</h2>
-          <p>Consulta nuestros datos y usa los canales oficiales si tienes dudas.</p>
-        </div>
-        <div class="press-verify-details">
-          <div class="press-verify-company">
-            <h3>Registro y sitio oficial</h3>
-            <dl>
-              <div><dt>Razón social</dt><dd>Quantum Wealth Solutions, S.A.P.I. de C.V., SOFOM, E.N.R.</dd></div>
-              <div><dt>Sitio oficial</dt><dd>alaprestamo.com</dd></div>
-            </dl>
-            <div class="press-verify-links">
-              <a class="press-official-link" href="https://webapps.condusef.gob.mx/SIPRES/jsp/home_publico.jsp?idins=16852" target="_blank" rel="noopener noreferrer">Consultar la ficha en SIPRES</a>
-              <a href="https://webapps.condusef.gob.mx/SIPRES/jsp/pub/index.jsp" target="_blank" rel="noopener noreferrer">Buscar por razón social</a>
-            </div>
-          </div>
-          <div class="press-verify-support">
-            <h3>Atención a clientes</h3>
-            <p>De lunes a domingo, de 9:00 a 18:00.</p>
-            <p><a href="mailto:contacto-ala@alaprestamo.com">contacto-ala@alaprestamo.com</a></p>
-            <a class="press-support-link" href="../channel/help-center/#canales-de-atencion">Ver canales oficiales</a>
-          </div>
-        </div>
-      </section>
-    </div>
   </main>
 
   <!-- ALA footer start -->

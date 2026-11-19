@@ -1,9 +1,6 @@
 import { examples } from './archive-examples.js?v=bf9c400307';
 
 const archive = document.querySelector('#archivo');
-const form = document.querySelector('#press-archive-search');
-const search = document.querySelector('#press-archive-query');
-const clearSearch = document.querySelector('#press-search-clear');
 const topicField = document.querySelector('#press-archive-topic');
 const resultList = document.querySelector('#press-archive-list');
 const cardTemplate = document.querySelector('#press-archive-card');
@@ -31,9 +28,9 @@ const originals = [...document.querySelectorAll('[data-archive-topic]')].map(art
   return {
     topic: article.dataset.archiveTopic,
     date: article.querySelector('time').dateTime,
-    title: headline.title || headline.textContent,
+    title: headline.textContent,
+    fullTitle: headline.title,
     source: article.querySelector('.press-meta span').textContent,
-    summary: article.querySelector('.press-summary')?.textContent ?? 'Comunicado de ALA distribuido por GetNews.',
     href: article.querySelector('a').href,
     photo: article.querySelector('.press-photo img').getAttribute('src'),
   };
@@ -45,10 +42,6 @@ const lists = {
 };
 const exampleIds = new Set(examples.map(item => item.id));
 const slugPrefix = 'nota-';
-
-function normalize(text) {
-  return text.toLocaleLowerCase('es-MX').normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-}
 
 function readState() {
   const url = new URL(location.href);
@@ -63,15 +56,13 @@ function readState() {
   return {
     view,
     topic: topicGroups[view].includes(topic) ? topic : 'all',
-    term: (url.searchParams.get('q') ?? '').trim().slice(0, 100),
     page: /^\d+$/.test(rawPage) ? Math.max(1, Number(rawPage)) : 1,
   };
 }
 
-function keepListContext(url, { view, topic, term, page }) {
+function keepListContext(url, { view, topic, page }) {
   if (view === 'demo') url.searchParams.set('vista', 'demo');
   if (topic !== 'all') url.searchParams.set('tema', topic);
-  if (term) url.searchParams.set('q', term);
   if (page > 1) url.searchParams.set('pagina', String(page));
   return url;
 }
@@ -89,15 +80,6 @@ function articleURL(id, state) {
   return keepListContext(url, state);
 }
 
-function matchesFor({ view, topic, term }) {
-  const words = normalize(term).split(/\s+/).filter(Boolean);
-  return lists[view].filter(publication => {
-    if (topic !== 'all' && topic !== publication.topic) return false;
-    const text = normalize([publication.title, publication.summary, publication.source, topics.get(publication.topic)].join(' '));
-    return words.every(word => text.includes(word));
-  });
-}
-
 function createCard(publication, state) {
   const fragment = cardTemplate.content.cloneNode(true);
   const label = fragment.querySelector('[data-card-topic]');
@@ -110,8 +92,7 @@ function createCard(publication, state) {
   date.textContent = dateFormat.format(new Date(publication.date));
   const heading = fragment.querySelector('h3');
   heading.textContent = publication.title;
-  heading.title = publication.title;
-  fragment.querySelector('.press-archive-summary').textContent = publication.summary;
+  heading.title = publication.fullTitle || publication.title;
 
   if (publication.href) {
     link.href = publication.href;
@@ -150,7 +131,7 @@ function anchorArticle() {
 }
 
 function render(state, anchorId = '') {
-  const matches = matchesFor(state);
+  const matches = lists[state.view].filter(publication => state.topic === 'all' || state.topic === publication.topic);
   const anchorIndex = anchorId ? matches.findIndex(item => item.id === anchorId) : -1;
   const totalPages = Math.max(1, Math.ceil(matches.length / pageSize));
   const page = anchorIndex < 0 ? Math.min(state.page, totalPages) : Math.floor(anchorIndex / pageSize) + 1;
@@ -172,7 +153,6 @@ function render(state, anchorId = '') {
     ? 'Mostrando ' + (start + 1) + '–' + (start + visible.length) + ' de ' + matches.length + ' publicaciones'
     : matches.length + (matches.length === 1 ? ' publicación' : ' publicaciones');
   empty.hidden = matches.length > 0;
-  clearSearch.hidden = search.value.length === 0;
   paging.hidden = totalPages <= 1;
   pageIndex.textContent = 'Página ' + page + ' de ' + totalPages;
   updatePageLink(previous, state, page - 1, page > 1);
@@ -180,18 +160,23 @@ function render(state, anchorId = '') {
   topicField.value = state.topic;
 }
 
-function applyFilters(topic, term, replace = false, view = readState().view) {
-  const state = { view, topic, term, page: 1 };
+function applyFilters(topic, view = readState().view) {
+  const state = { view, topic, page: 1 };
   const url = archiveURL(state);
   if (url.href !== location.href) {
-    history[replace ? 'replaceState' : 'pushState'](history.state, '', url);
+    history.pushState(history.state, '', url);
   }
   render(state);
 }
 
 function restoreList() {
+  const url = new URL(location.href);
+  if (url.searchParams.has('q')) {
+    url.searchParams.delete('q');
+    history.replaceState(history.state, '', url);
+  }
+
   const state = readState();
-  search.value = state.term;
   const anchorId = anchorArticle();
   render(state, anchorId);
 
@@ -199,7 +184,6 @@ function restoreList() {
   if (anchorId) {
     const item = document.getElementById(slugPrefix + anchorId);
     if (!item) {
-      const url = new URL(location.href);
       url.hash = 'archivo';
       history.replaceState(history.state, '', url);
     }
@@ -220,27 +204,12 @@ function setupArchive() {
 
   viewButton.addEventListener('click', () => {
     const view = readState().view === 'demo' ? 'published' : 'demo';
-    applyFilters('all', search.value.trim(), false, view);
+    applyFilters('all', view);
   });
-  topicField.addEventListener('change', () => applyFilters(topicField.value, search.value.trim()));
-  form.addEventListener('submit', event => {
-    event.preventDefault();
-    applyFilters(readState().topic, search.value.trim());
-  });
-  const updateSearch = () => applyFilters(readState().topic, search.value.trim(), true);
-  search.addEventListener('input', event => {
-    if (!event.isComposing) updateSearch();
-  });
-  search.addEventListener('compositionend', updateSearch);
-  clearSearch.addEventListener('click', () => {
-    search.value = '';
-    search.focus();
-    applyFilters(readState().topic, '');
-  });
+  topicField.addEventListener('change', () => applyFilters(topicField.value));
   document.querySelector('#press-archive-reset').addEventListener('click', () => {
-    search.value = '';
-    applyFilters('all', '');
-    search.focus();
+    applyFilters('all');
+    topicField.focus();
   });
 
   viewButton.hidden = false;
