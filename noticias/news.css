@@ -30,31 +30,27 @@ body {
 }
 
 .press-masthead {
-  padding-block: clamp(28px, 3vw, 52px) clamp(24px, 2.2vw, 40px);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px 28px;
+  padding-block: clamp(20px, 1.8vw, 30px);
   border-bottom: 1px solid var(--ala-line);
 }
 
 .press-masthead h1 {
-  font-size: clamp(2.5rem, 1.7rem + 2.55vw, 4.25rem);
+  font-size: clamp(2rem, 1.6rem + 1vw, 2.5rem);
   font-weight: 500;
-  letter-spacing: -.047em;
-  line-height: 1.05;
+  letter-spacing: -.036em;
+  line-height: 1.12;
 }
 
-.press-intro {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px 24px;
-  margin-top: 14px;
-}
-
-.press-intro p {
+#ala-content .press-intro p {
   max-width: 54ch;
+  margin-top: 8px;
   color: var(--ala-muted);
-  font-size: clamp(1rem, .91rem + .33vw, 1.1875rem);
-  line-height: 1.55;
+  font-size: 1rem;
+  line-height: 1.5;
   text-wrap: pretty;
 }
 
@@ -82,7 +78,7 @@ body {
 
 .press-coverage {
   display: flow-root;
-  padding-block: clamp(28px, 2.55vw, 44px) clamp(64px, 7.4vw, 108px);
+  padding-block: clamp(22px, 2.1vw, 34px) clamp(64px, 7.4vw, 108px);
 }
 
 #ala-content :is(.press-coverage, .press-releases, .press-verify) h2 {
@@ -92,6 +88,10 @@ body {
   line-height: 1.12;
   letter-spacing: -.035em;
   text-wrap: balance;
+}
+
+#ala-content .press-coverage h2 {
+  font-size: clamp(1.375rem, 1.15rem + .75vw, 1.875rem);
 }
 
 /* Identify the focused heading after a keyboard jump inside the page. */
@@ -109,7 +109,7 @@ body {
   display: grid;
   grid-template-columns: minmax(0, 1.42fr) minmax(0, 1fr);
   align-items: start;
-  gap: clamp(28px, 3.35vw, 56px);
+  column-gap: clamp(28px, 3.35vw, 56px);
   margin-top: clamp(20px, 1.8vw, 32px);
 }
 
@@ -133,10 +133,6 @@ body {
   aspect-ratio: 607 / 412;
   object-fit: cover;
   transition: transform 220ms ease-out;
-}
-
-.press-story-title {
-  padding-top: 16px;
 }
 
 .press-meta {
@@ -163,8 +159,10 @@ body {
   text-wrap: pretty;
 }
 
-#ala-content .press-lead h3 {
-  font-size: clamp(1.75rem, 1.26rem + 1.2vw, 2.5rem);
+#ala-content .press-story h3 {
+  align-self: start;
+  padding-bottom: 16px;
+  font-size: clamp(1.5rem, 1.08rem + 1vw, 2.125rem);
   text-wrap: balance;
 }
 
@@ -363,38 +361,37 @@ body {
 }
 
 @media (min-width: 621px) {
-  .press-lead .press-story-title {
-    padding-block: 0 16px;
+  @supports (grid-template-rows: subgrid) {
+    .press-spread > article,
+    .press-spread .press-story {
+      display: grid;
+      align-self: stretch;
+      grid-row: span 3;
+      grid-template-rows: subgrid;
+    }
+
+    .press-spread :is(.press-meta, .press-story-body) {
+      align-self: start;
+    }
+  }
+}
+
+@media (max-width: 700px) {
+  .press-masthead {
+    grid-template-columns: 1fr;
+    gap: 4px;
+    padding-bottom: 10px;
   }
 }
 
 @media (max-width: 620px) {
-  .press-intro {
-    gap: 8px;
-    margin-top: 10px;
-  }
-
-  .press-masthead {
-    padding-bottom: 12px;
-  }
-
   .press-spread {
     grid-template-columns: 1fr;
-    gap: 42px;
+    row-gap: 42px;
   }
 
-  .press-story {
-    display: grid;
-    gap: 14px;
-  }
-
-  .press-story-title {
-    grid-row: 1;
-    padding-top: 0;
-  }
-
-  #ala-content .press-summary {
-    margin-top: 0;
+  #ala-content .press-story h3 {
+    padding-bottom: 14px;
   }
 
   .press-secondary {
