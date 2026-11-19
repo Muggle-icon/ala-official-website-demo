@@ -8,12 +8,19 @@ const topicField = document.querySelector('#press-archive-topic');
 const resultList = document.querySelector('#press-archive-list');
 const cardTemplate = document.querySelector('#press-archive-card');
 const count = document.querySelector('#press-archive-count');
+const viewButton = document.querySelector('#press-archive-view');
+const archiveTitle = document.querySelector('#press-archive-title');
+const demoNote = document.querySelector('#press-archive-demo-note');
 const empty = document.querySelector('#press-archive-empty');
 const paging = document.querySelector('#press-archive-paging');
 const previous = document.querySelector('#press-page-prev');
 const next = document.querySelector('#press-page-next');
 const pageIndex = document.querySelector('#press-page-index');
 const topics = new Map([...topicField.options].map(option => [option.value, option.textContent]));
+const topicGroups = {
+  published: ['all', 'medios', 'comunicados'],
+  demo: ['all', 'empresa', 'producto', 'guias'],
+};
 const pageSize = 6;
 const dateFormat = new Intl.DateTimeFormat('es-MX', {
   day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC',
@@ -28,9 +35,15 @@ const originals = [...document.querySelectorAll('[data-archive-topic]')].map(art
     source: article.querySelector('.press-meta span').textContent,
     summary: article.querySelector('.press-summary')?.textContent ?? 'Comunicado de ALA distribuido por GetNews.',
     href: article.querySelector('a').href,
+    photo: article.querySelector('.press-photo img').getAttribute('src'),
   };
 });
-const publications = [...originals, ...examples].sort((a, b) => b.date.localeCompare(a.date));
+const newestFirst = (a, b) => b.date.localeCompare(a.date);
+const lists = {
+  published: originals.sort(newestFirst),
+  demo: [...examples].sort(newestFirst),
+};
+const exampleIds = new Set(examples.map(item => item.id));
 const slugPrefix = 'nota-';
 
 function normalize(text) {
@@ -41,14 +54,22 @@ function readState() {
   const url = new URL(location.href);
   const topic = url.searchParams.get('tema');
   const rawPage = url.searchParams.get('pagina') ?? '';
+  const view = url.searchParams.get('vista') === 'demo' ||
+    (!url.searchParams.has('vista') && (
+      (topic !== 'all' && topicGroups.demo.includes(topic)) ||
+      exampleIds.has(anchorArticle()) ||
+      exampleIds.has(url.searchParams.get('articulo'))
+    )) ? 'demo' : 'published';
   return {
-    topic: topics.has(topic) ? topic : 'all',
+    view,
+    topic: topicGroups[view].includes(topic) ? topic : 'all',
     term: (url.searchParams.get('q') ?? '').trim().slice(0, 100),
     page: /^\d+$/.test(rawPage) ? Math.max(1, Number(rawPage)) : 1,
   };
 }
 
-function keepListContext(url, { topic, term, page }) {
+function keepListContext(url, { view, topic, term, page }) {
+  if (view === 'demo') url.searchParams.set('vista', 'demo');
   if (topic !== 'all') url.searchParams.set('tema', topic);
   if (term) url.searchParams.set('q', term);
   if (page > 1) url.searchParams.set('pagina', String(page));
@@ -57,7 +78,7 @@ function keepListContext(url, { topic, term, page }) {
 
 function archiveURL(state) {
   const url = new URL(location.href);
-  for (const param of ['tema', 'q', 'pagina', 'articulo']) url.searchParams.delete(param);
+  for (const param of ['vista', 'tema', 'q', 'pagina', 'articulo']) url.searchParams.delete(param);
   url.hash = 'archivo';
   return keepListContext(url, state);
 }
@@ -68,9 +89,9 @@ function articleURL(id, state) {
   return keepListContext(url, state);
 }
 
-function matchesFor({ topic, term }) {
+function matchesFor({ view, topic, term }) {
   const words = normalize(term).split(/\s+/).filter(Boolean);
-  return publications.filter(publication => {
+  return lists[view].filter(publication => {
     if (topic !== 'all' && topic !== publication.topic) return false;
     const text = normalize([publication.title, publication.summary, publication.source, topics.get(publication.topic)].join(' '));
     return words.every(word => text.includes(word));
@@ -100,6 +121,9 @@ function createCard(publication, state) {
       ? publication.source + ' · En inglés'
       : publication.source;
     source.hidden = false;
+    const photo = fragment.querySelector('.press-archive-photo');
+    photo.querySelector('img').src = publication.photo;
+    photo.hidden = false;
   } else {
     fragment.querySelector('li').id = slugPrefix + publication.id;
     fragment.querySelector('.press-demo-label').hidden = false;
@@ -133,10 +157,20 @@ function render(state, anchorId = '') {
   const start = (page - 1) * pageSize;
   const visible = matches.slice(start, start + pageSize);
 
+  const demo = state.view === 'demo';
+  archiveTitle.textContent = demo ? 'Ejemplos del demo' : 'Archivo de noticias';
+  viewButton.textContent = demo ? 'Volver a publicaciones' : 'Ver ejemplos del demo';
+  demoNote.hidden = !demo;
+  archive.dataset.view = state.view;
+  if (topicField.dataset.view !== state.view) {
+    topicField.replaceChildren(...topicGroups[state.view].map(topic => new Option(topics.get(topic), topic)));
+    topicField.dataset.view = state.view;
+  }
+
   resultList.replaceChildren(...visible.map(publication => createCard(publication, { ...state, page })));
-  count.textContent = matches.length
+  count.textContent = totalPages > 1
     ? 'Mostrando ' + (start + 1) + '–' + (start + visible.length) + ' de ' + matches.length + ' publicaciones'
-    : '0 publicaciones';
+    : matches.length + (matches.length === 1 ? ' publicación' : ' publicaciones');
   empty.hidden = matches.length > 0;
   clearSearch.hidden = search.value.length === 0;
   paging.hidden = totalPages <= 1;
@@ -146,8 +180,8 @@ function render(state, anchorId = '') {
   topicField.value = state.topic;
 }
 
-function applyFilters(topic, term, replace = false) {
-  const state = { topic, term, page: 1 };
+function applyFilters(topic, term, replace = false, view = readState().view) {
+  const state = { view, topic, term, page: 1 };
   const url = archiveURL(state);
   if (url.href !== location.href) {
     history[replace ? 'replaceState' : 'pushState'](history.state, '', url);
@@ -178,11 +212,15 @@ function restoreList() {
 
 function setupArchive() {
   const legacyId = new URL(location.href).searchParams.get('articulo');
-  if (examples.some(item => item.id === legacyId)) {
+  if (exampleIds.has(legacyId)) {
     location.replace(articleURL(legacyId, readState()));
     return;
   }
 
+  viewButton.addEventListener('click', () => {
+    const view = readState().view === 'demo' ? 'published' : 'demo';
+    applyFilters('all', search.value.trim(), false, view);
+  });
   topicField.addEventListener('change', () => applyFilters(topicField.value, search.value.trim()));
   form.addEventListener('submit', event => {
     event.preventDefault();
@@ -204,6 +242,7 @@ function setupArchive() {
     search.focus();
   });
 
+  viewButton.hidden = false;
   document.querySelector('#press-archive-tools').hidden = false;
   restoreList();
   window.addEventListener('popstate', restoreList);

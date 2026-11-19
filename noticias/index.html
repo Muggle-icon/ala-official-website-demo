@@ -7,8 +7,8 @@
   <meta name="description" content="Noticias y comunicados sobre ALA Préstamos en México.">
   <title>Noticias de ALA | ALA Préstamos México</title>
   <link rel="icon" href="../public/assets/ala-app-icon.png">
-  <script type="module" src="./archive.js?v=8b3ab5d778"></script>
-  <link rel="stylesheet" href="./news.css?v=5889db21c5">
+  <script type="module" src="./archive.js?v=8e272638e7"></script>
+  <link rel="stylesheet" href="./news.css?v=c7d4fca4aa">
   <link rel="stylesheet" href="../shared/site-header.css?v=395e64275c">
   <script src="../shared/site-header.js?v=fa30b9015e" defer></script>
   <!-- ALA footer assets start -->
@@ -76,11 +76,11 @@
       <div class="press-intro press-shell">
         <div>
           <h1>Noticias de ALA</h1>
-          <p>Comunicados, cobertura en medios y guías de ALA Préstamos.</p>
+          <p>Comunicados, cobertura y datos oficiales de ALA Préstamos.</p>
         </div>
         <div class="press-intro-links">
-          <a class="press-archive-jump" href="#archivo">Ver todas las noticias</a>
-          <a href="#verifica-a-ala">Verificar ALA</a>
+          <a class="press-archive-jump" href="#archivo">Explorar el archivo</a>
+          <a href="#verifica-a-ala">Consultar datos oficiales</a>
         </div>
       </div>
     </header>
@@ -101,7 +101,7 @@
             </article>
           </div>
           <div class="press-latest">
-            <h2 class="press-front-heading" id="press-latest-title">Cobertura reciente</h2>
+            <h2 class="press-front-heading" id="press-latest-title">Más publicaciones</h2>
             <ul class="press-latest-list" aria-labelledby="press-latest-title" role="list">
               <li>
                 <article data-archive-topic="medios" aria-labelledby="press-reportero-title">
@@ -109,8 +109,8 @@
                     <div class="press-photo"><img src="../public/assets/news/el-reportero-cover.webp?v=a416080615" width="607" height="412" loading="lazy" decoding="async" alt=""></div>
                     <div class="press-story-copy">
                       <p class="press-meta"><span>elReportero.mx</span><time datetime="2026-01-25">25 ene 2026</time><span class="press-language">En los medios</span></p>
-                      <h3 id="press-reportero-title" title="El acceso al crédito para quienes no tienen historial crediticio">Acceso al crédito sin historial crediticio</h3>
-                      <p class="press-summary" hidden>La nota explora cómo se consideran los ingresos al evaluar una primera solicitud de crédito.</p>
+                      <h3 id="press-reportero-title" title="ALA Préstamos: Tecnología que cierra la brecha de los servicios financieros">Tecnología para ampliar el acceso al crédito</h3>
+                      <p class="press-summary" hidden>La publicación aborda el uso de tecnología en la evaluación de crédito en México.</p>
                     </div>
                   </a>
                 </article>
@@ -146,10 +146,13 @@
     <div class="press-archive-band">
       <section class="press-archive press-shell" id="archivo" tabindex="-1" aria-labelledby="press-archive-title">
         <span id="comunicados" class="press-anchor" aria-hidden="true"></span>
-        <h2 class="press-section-heading" id="press-archive-title">Todas las noticias</h2>
+        <div class="press-archive-heading">
+          <h2 class="press-section-heading" id="press-archive-title">Archivo de noticias</h2>
+          <button class="press-text-link" id="press-archive-view" type="button" aria-controls="press-archive-tools press-archive-list" hidden>Ver ejemplos del demo</button>
+        </div>
         <div id="press-archive-tools" hidden>
           <div class="press-archive-toolbar">
-            <form class="press-archive-search" id="press-archive-search" role="search" aria-label="Buscar en todas las noticias">
+            <form class="press-archive-search" id="press-archive-search" role="search" aria-label="Buscar en el archivo">
               <label for="press-archive-query">Buscar noticias</label>
               <div class="press-search-field">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6"/><path d="m15 15 4 4"/></svg>
@@ -171,7 +174,7 @@
           </div>
           <div class="press-archive-notes">
             <p id="press-archive-count" role="status"></p>
-            <p><span class="press-demo-label">Demo</span> Contenido de ejemplo</p>
+            <p id="press-archive-demo-note" hidden>Contenido de ejemplo para el demo.</p>
           </div>
         </div>
         <ul class="press-archive-results" id="press-archive-list" role="list"></ul>
@@ -179,7 +182,7 @@
         <div class="press-archive-empty" id="press-archive-empty" hidden>
           <h3>No encontramos publicaciones</h3>
           <p>Prueba con otra palabra o cambia de tema.</p>
-          <button class="press-text-link" id="press-archive-reset" type="button">Ver todas las publicaciones</button>
+          <button class="press-text-link" id="press-archive-reset" type="button">Restablecer filtros</button>
         </div>
         <nav class="press-pagination" id="press-archive-paging" aria-label="Páginas de publicaciones" hidden>
           <a id="press-page-prev" rel="prev">Anterior</a>
@@ -201,6 +204,7 @@
                   <h3></h3>
                   <p class="press-archive-summary"></p>
                 </div>
+                <div class="press-archive-photo press-photo" hidden><img width="607" height="412" loading="lazy" decoding="async" alt=""></div>
               </a>
             </article>
           </li>

@@ -15,6 +15,7 @@ const category = params.get('tema');
 const query = params.get('q')?.trim().slice(0, 100);
 const page = params.get('pagina');
 
+if (article || params.get('vista') === 'demo') archive.searchParams.set('vista', 'demo');
 if (categories.has(category)) archive.searchParams.set('tema', category);
 if (query) archive.searchParams.set('q', query);
 if (/^[1-9]\d{0,5}$/.test(page)) archive.searchParams.set('pagina', page);
