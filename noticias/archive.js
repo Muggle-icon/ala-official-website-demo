@@ -165,7 +165,7 @@ function syncURL() {
   }
 
   const draft = drafts.get(url.searchParams.get('articulo'));
-  if (draft && draft.id !== displayedDraft) showDetail(draft);
+  if (draft && (!detail.open || draft.id !== displayedDraft)) showDetail(draft);
   else if (!draft && detail.open) detail.close();
 
   if (pendingFocus && !detail.open) {
@@ -213,6 +213,8 @@ resultList.addEventListener('click', event => {
 });
 closeDetail.addEventListener('click', () => detail.close());
 detail.addEventListener('close', () => {
+  // A queued close can arrive after the browser has already reopened the same draft.
+  if (detail.open) return;
   const url = new URL(location.href);
   const shouldRemoveDraft = url.searchParams.get('articulo') === displayedDraft;
   if (shouldRemoveDraft && history.state?.alaPressDetail) {
