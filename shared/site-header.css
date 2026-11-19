@@ -60,14 +60,12 @@
 
 :root {
   --ala-nav-font: "ALA Navigation", Roboto, Arial, sans-serif;
-  --ala-nav-type: min(16px, .833333vw, 1.538462svh);
-  --ala-nav-leading: min(24px, 1.25vw, 2.307692svh);
-  --ala-nav-height: min(72px, 3.75vw, 6.923077svh);
+  --ala-nav-type: 16px;
+  --ala-nav-leading: 24px;
+  --ala-nav-height: 72px;
   --ala-notice-height: min(40px, 2.083333vw, 3.703704svh);
   --ala-nav-gutter: 320px;
-  --ala-nav-gap: min(20px, 1vw);
-  --ala-nav-logo-gap: min(104px, 4.2vw);
-  --ala-nav-store-gap: min(112px, 5.833333vw);
+  --ala-nav-gap: clamp(20px, 2.5vw, 48px);
 }
 
 @media (max-width: 1899px) { :root { --ala-nav-gutter: 266.667px; } }
@@ -133,7 +131,7 @@ html { scroll-padding-top: var(--ala-scroll-offset, calc(var(--ala-nav-height) +
 }
 
 .ala-site-chrome[data-home]:not([data-solid], [data-mobile-open])
-  :is(.ala-header-logo, .ala-header-about, .ala-header-menu, .ala-header-item > :is(a, button)):focus-visible {
+  :is(.ala-header-logo, .ala-header-menu, .ala-header-item > :is(a, button)):focus-visible {
   outline-color: #fff;
 }
 
@@ -152,18 +150,20 @@ html { scroll-padding-top: var(--ala-scroll-offset, calc(var(--ala-nav-height) +
 }
 .ala-header-wordmark {
   display: block;
-  width: min(126px, 6.5625vw);
-  height: min(48px, 2.5vw);
+  width: clamp(98px, 7vw, 126px);
+  height: auto;
   object-fit: contain;
 }
-.ala-header-wordmark--white, .ala-header-icon,
-.ala-site-chrome .ala-header-about, .ala-site-chrome .ala-header-menu,
+.ala-header-wordmark--white, .ala-header-downloads span,
+.ala-site-chrome .ala-header-menu,
 .ala-site-chrome .ala-header-help { display: none; }
 
 .ala-header-nav {
+  display: flex;
+  flex: 1;
+  align-items: center;
   height: 100%;
   min-width: 0;
-  margin-left: var(--ala-nav-logo-gap);
 }
 
 .ala-header-list {
@@ -173,7 +173,7 @@ html { scroll-padding-top: var(--ala-scroll-offset, calc(var(--ala-nav-height) +
   height: 100%;
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 0 auto;
 }
 
 .ala-header-item {
@@ -187,7 +187,7 @@ html { scroll-padding-top: var(--ala-scroll-offset, calc(var(--ala-nav-height) +
   isolation: isolate;
   display: inline-flex;
   align-items: center;
-  gap: min(10px, .520833vw);
+  gap: 8px;
   flex: none;
   width: max-content;
   min-height: min(44px, var(--ala-nav-height));
@@ -198,15 +198,21 @@ html { scroll-padding-top: var(--ala-scroll-offset, calc(var(--ala-nav-height) +
   white-space: nowrap;
   -webkit-font-smoothing: antialiased;
 }
-.ala-site-chrome .ala-header-item--news > a[aria-current="page"] {
-  color: var(--ala-blue);
+.ala-site-chrome .ala-header-item > a[aria-current="page"],
+.ala-site-chrome [data-current-section] > .ala-header-trigger,
+.ala-site-chrome .ala-header-drop a[aria-current="page"] {
+  color: var(--ala-blue-hover);
+}
+.ala-header-item > a[aria-current="page"]::before,
+.ala-header-item[data-current-section] > .ala-header-trigger::before {
+  background: var(--ala-hover);
 }
 
 .ala-header-item > :is(a, button)::before {
   position: absolute;
   top: 50%;
-  inset-inline: calc(var(--ala-nav-gap) / -2);
-  height: calc(var(--ala-nav-leading) + 20px);
+  inset-inline: -10px;
+  height: 40px;
   transform: translateY(-50%);
   z-index: -1;
   border-radius: 10px;
@@ -267,13 +273,20 @@ html { scroll-padding-top: var(--ala-scroll-offset, calc(var(--ala-nav-height) +
   display: flex;
   flex: none;
   align-items: center;
-  gap: min(16px, .833333vw);
-  margin-left: var(--ala-nav-store-gap);
+  gap: 8px;
 }
-.ala-header-downloads a, .ala-header-downloads img {
+.ala-header-downloads a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  border-radius: 50%;
+}
+.ala-header-downloads img {
   display: block;
-  width: min(48px, 2.5vw);
-  height: min(48px, 2.5vw);
+  width: 38px;
+  height: 38px;
 }
 
 .ala-site-chrome .ala-site-notice {
@@ -340,10 +353,13 @@ html { scroll-padding-top: var(--ala-scroll-offset, calc(var(--ala-nav-height) +
 .ala-dialog-close { font-size: 1.5rem; }
 .ala-dialog-confirm { padding: 0 18px; background: var(--ala-blue); color: #fff; }
 
+.ala-site-chrome[data-home]:not([data-solid], [data-mobile-open]) .ala-header-wordmark--white { display: block; }
+.ala-site-chrome[data-home]:not([data-solid], [data-mobile-open]) .ala-header-wordmark--dark { display: none; }
+
 @media (min-width: 1101px) {
-  .ala-site-chrome[data-home]:not([data-solid]) .ala-header-wordmark--white { display: block; }
-  .ala-site-chrome[data-home]:not([data-solid]) :is(.ala-header-wordmark--dark, .ala-header-downloads) { display: none; }
-  .ala-site-chrome[data-home]:not([data-solid]) .ala-header-item > button[aria-expanded="true"]::before {
+  .ala-site-chrome[data-home]:not([data-solid]) .ala-header-downloads { visibility: hidden; }
+  .ala-site-chrome[data-home]:not([data-solid]) .ala-header-item > a[aria-current="page"] { color: inherit; }
+  .ala-site-chrome[data-home]:not([data-solid]) .ala-header-item > :is(button[aria-expanded="true"], a[aria-current="page"])::before {
     background: #ffffff26;
   }
 }
@@ -356,30 +372,17 @@ html { scroll-padding-top: var(--ala-scroll-offset, calc(var(--ala-nav-height) +
 
 @media (max-width: 1100px) {
   :root {
-    --ala-nav-height: clamp(52px, 6.25vw, 64px);
+    --ala-nav-height: 64px;
     --ala-notice-height: clamp(36px, 4.166667vw, 40px);
     --ala-nav-gutter: 24px;
   }
-  .ala-header-frame { position: relative; justify-content: space-between; }
-  .ala-header-wordmark, .ala-header-downloads { display: none; }
-  .ala-header-icon { display: block; width: clamp(34px, 4.5vw, 42px); height: auto; }
-  .ala-header-logo { min-width: 44px; min-height: 44px; }
-  .ala-site-chrome .ala-header-about {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 9px;
-    min-width: clamp(132px, 18vw, 168px);
-    height: clamp(38px, 5vw, 46px);
-    border-radius: 999px;
-    background: #173cff;
-    color: #fff;
-    font-size: clamp(16px, 2vw, 19px);
+  .ala-header-frame {
+    position: relative;
+    justify-content: space-between;
+    padding-inline: 24px;
   }
-  .ala-header-about span { font-size: 25px; line-height: 1; }
+  .ala-header-wordmark { width: 92px; }
+  .ala-header-logo { min-height: 44px; }
   .ala-site-chrome .ala-header-menu {
     position: relative;
     display: flex;
@@ -420,7 +423,7 @@ html { scroll-padding-top: var(--ala-scroll-offset, calc(var(--ala-nav-height) +
     animation: ala-dropdown-in 220ms cubic-bezier(.2, .7, .2, 1) both;
   }
   body:has(> .ala-site-chrome[data-mobile-open]) { overflow: visible; }
-  .ala-site-chrome[data-mobile-open] .ala-header-nav { display: flex; flex-direction: column; }
+  .ala-site-chrome[data-mobile-open] .ala-header-nav { display: flex; flex-direction: column; align-items: stretch; }
   .ala-header-list { display: block; width: min(100%, 680px); height: auto; margin-inline: auto; }
   .ala-header-item { display: block; height: auto; border-bottom: 1px solid #ececef; }
   .ala-site-chrome .ala-header-item > :is(a, button) {
@@ -433,6 +436,13 @@ html { scroll-padding-top: var(--ala-scroll-offset, calc(var(--ala-nav-height) +
     white-space: normal;
   }
   .ala-header-item > :is(a, button)::before { content: none; }
+  .ala-site-chrome .ala-header-item > a[aria-current="page"],
+  .ala-site-chrome [data-current-section] > .ala-header-trigger {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 5px;
+    text-decoration-skip-ink: none;
+  }
   .ala-header-chevron { width: 9px; height: 9px; margin-right: 4px; }
   .ala-header-drop {
     position: static;
@@ -448,35 +458,38 @@ html { scroll-padding-top: var(--ala-scroll-offset, calc(var(--ala-nav-height) +
     backdrop-filter: none;
   }
   .ala-site-chrome .ala-header-drop .ala-header-link { padding: 10px 6px; font: 400 18px / 1.35 var(--ala-nav-font); }
+  .ala-header-drop .ala-header-desktop-help { display: none; }
   .ala-site-chrome .ala-header-help {
     display: flex;
-    justify-content: space-between;
+    align-items: center;
     flex: none;
     width: min(100%, 680px);
     min-height: 44px;
-    margin: auto auto 0;
-    padding-top: 24px;
-    color: #686a71;
-    font-size: 16px;
+    margin: 24px auto 0;
+    color: var(--ala-ink);
+    text-decoration: underline;
+    text-underline-offset: 4px;
   }
+  .ala-header-nav .ala-header-downloads {
+    width: min(100%, 680px);
+    margin: 8px auto 0;
+    flex-wrap: wrap;
+    gap: 8px 20px;
+  }
+  .ala-header-downloads a { gap: 6px; border-radius: 6px; }
+  .ala-header-downloads img { width: 30px; height: 30px; }
+  .ala-header-downloads span { display: inline; font-size: 14px; }
   .ala-site-chrome .ala-site-notice { gap: 12px; padding: 6px 24px; font-size: 13px; }
 }
 
 @media (max-width: 600px) {
   :root {
-    --ala-nav-height: min(48px, 12.8vw, 5.91133svh);
+    --ala-nav-height: 60px;
     --ala-notice-height: min(64px, 17.066667vw, 7.881773svh);
     --ala-nav-gutter: 16px;
   }
-  .ala-header-icon { width: min(29px, 7.73333vw, 3.57143svh); }
-  .ala-site-chrome .ala-header-about {
-    min-width: min(112px, 29.866667vw);
-    height: min(32px, 8.533333vw, 3.94089svh);
-    gap: 8px;
-    font-size: 15px;
-  }
-  .ala-header-about span { font-size: 23px; }
-  .ala-header-menu span { width: 18px; }
+  .ala-header-wordmark { width: 80px; }
+  .ala-header-menu span { width: 22px; }
   .ala-site-chrome .ala-site-notice {
     justify-content: space-between;
     text-align: left;
