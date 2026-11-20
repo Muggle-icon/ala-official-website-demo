@@ -235,3 +235,94 @@ body {
 @container (min-width: 841px) {
   .press-latest-list > li:last-child .press-photo { align-self: end; }
 }
+
+/* One featured report leads into a consistent, low-chrome archive. */
+.press-front { display: block; }
+.press-front-heading::after { display: none; }
+.press-feature { max-width: none; }
+.press-lead { margin-top: 20px; }
+.press-story {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(28px, 3.5vw, 48px);
+  align-items: center;
+  overflow: visible;
+  background: transparent;
+}
+.press-story > .press-photo {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1.65;
+  border-radius: 10px;
+}
+.press-lead-copy { order: initial; width: auto; padding: 0; }
+.press-lead-copy .press-meta { order: initial; margin-top: 0 !important; }
+#ala-content .press-lead h3 {
+  order: initial;
+  max-width: 24ch;
+  margin-top: 14px;
+  font-size: clamp(1.5rem, 1.1rem + 1vw, 2rem);
+  line-height: 1.22;
+}
+#ala-content .press-summary { margin-top: 14px; }
+.press-lead-link { order: initial; margin-top: 20px; }
+.press-archive-band { border: 0; background: #f5f7fc; }
+.press-archive-results { display: grid; gap: 12px; }
+.press-timeline-item .press-archive-card,
+.press-timeline-item:first-child .press-archive-card {
+  display: grid;
+  grid-template-columns: 92px 168px minmax(0, 1fr);
+  grid-template-areas: 'date photo copy';
+  align-items: start;
+  gap: 20px;
+  min-height: 0;
+  padding: 16px 20px;
+  border: 0;
+  border-radius: 9px;
+  background: white;
+}
+.press-timeline-item .press-timeline-date { grid-area: date; padding-top: 2px; }
+.press-timeline-item .press-archive-photo {
+  grid-area: photo;
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  aspect-ratio: 1.65;
+  border-radius: 7px;
+}
+.press-timeline-item .press-archive-copy { grid-area: copy; padding: 0; }
+.press-timeline-item .press-archive-card .press-card-read { display: inline-block; margin-top: 10px; padding: 0; }
+@media (max-width: 740px) {
+  .press-story { grid-template-columns: 1fr; gap: 20px; }
+  .press-lead-copy { order: initial; padding: 0; }
+  #ala-content .press-lead h3 { font-size: clamp(1.375rem, 5vw, 1.75rem); }
+  .press-timeline-item .press-archive-card,
+  .press-timeline-item:first-child .press-archive-card {
+    grid-template-columns: 104px minmax(0, 1fr);
+    grid-template-areas: 'photo copy' 'photo date';
+    gap: 8px 14px;
+    padding: 14px;
+  }
+  .press-timeline-item .press-timeline-date { padding: 0; }
+  .press-timeline-item .press-archive-photo { height: auto; min-height: 0; }
+  #ala-content .press-timeline-item .press-archive-card h3 { font-size: 1rem; line-height: 1.35; }
+}
+@media (max-width: 380px) {
+  .press-timeline-item .press-archive-card,
+  .press-timeline-item:first-child .press-archive-card { grid-template-columns: 88px minmax(0, 1fr); gap: 8px 12px; padding: 12px; }
+}
+/* Override the legacy multi-column archive at every container width. */
+.press-archive-results { grid-template-columns: minmax(0, 1fr); }
+.press-timeline-item .press-archive-meta [data-card-topic]::before { content: none; }
+/* Keep the publication date with its metadata in reading order. */
+.press-timeline-item .press-archive-card { position: relative; }
+.press-timeline-item .press-timeline-date { position: absolute; top: 18px; left: 20px; }
+@media (max-width: 740px) {
+  .press-timeline-item .press-archive-card,
+  .press-timeline-item:first-child .press-archive-card { grid-template-areas: 'photo copy'; }
+  .press-timeline-item .press-timeline-date { position: static; }
+  .press-timeline-item .press-archive-meta [data-card-topic]::before { content: '·'; margin-inline-end: 7px; }
+}
+@media (max-width: 380px) {
+  .press-timeline-item .press-archive-meta [data-card-topic]::before { content: none; }
+}
