@@ -537,3 +537,11 @@ body {
 @media (max-width: 740px) {
   .press-page-head { padding-top: 24px; }
 }
+
+/* Reduce the space between the featured story and the archive by 30%. */
+.press-editorial { padding-bottom: calc(clamp(64px, 6.5vw, 88px) * .7); }
+.press-archive { padding-top: calc(clamp(40px, 4.2vw, 60px) * .7); }
+#ala-content .press-archive-summary { align-self: stretch; max-width: none; -webkit-line-clamp: 3; }
+@media (max-width: 740px) {
+  .press-editorial { padding-bottom: 44.8px; }
+}

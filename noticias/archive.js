@@ -1,4 +1,4 @@
-import { examples } from './archive-examples.js?v=bf9c400307';
+import { examples } from './archive-examples.js?v=3fbd185846';
 
 const archive = document.querySelector('#archivo');
 const resultList = document.querySelector('#press-archive-list');
