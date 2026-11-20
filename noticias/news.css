@@ -16,7 +16,7 @@ body:not(.press-article-page) .press-shell { width: min(1200px, calc(100% - 48px
 
 /* A compact page title sits directly in the same grid as the news. */
 .press-page-head { padding-top: clamp(32px, 3.5vw, 48px); padding-bottom: 24px; }
-#ala-content .press-page-head h1 { color: var(--ala-ink); font-size: clamp(2rem, 1.55rem + 1.35vw, 2.625rem); font-weight: 700; line-height: 1.15; letter-spacing: -.035em; }
+#ala-content .press-page-head h1 { color: var(--ala-ink); font-size: clamp(2rem, 1.55rem + 1.3vw, 2.5rem); font-weight: 700; line-height: 1.15; letter-spacing: -.035em; }
 .press-editorial { padding-bottom: clamp(64px, 6.5vw, 88px); }
 .press-feature { min-width: 0; }
 .press-front-heading {
@@ -25,8 +25,8 @@ body:not(.press-article-page) .press-shell { width: min(1200px, calc(100% - 48px
   gap: 14px;
   color: var(--ala-ink);
   font-size: 1.125rem;
-  font-weight: 700;
-  line-height: 1.3;
+  font-weight: 500;
+  line-height: 1.35;
 }
 .press-front-heading::after { content: ""; flex: 1; height: 1px; background: #d7dfed; }
 .press-lead { margin-top: 20px; }
@@ -47,14 +47,15 @@ body:not(.press-article-page) .press-shell { width: min(1200px, calc(100% - 48px
 .press-lead-link, .press-card-read { color: var(--ala-blue-hover); font-size: .875rem; font-weight: 400; line-height: 1.4; }
 .press-lead-link { order: 3; display: inline-block; margin-top: 16px; text-decoration: underline; }
 .press-story:is(:hover, :focus-visible) .press-lead-link { text-decoration-thickness: 2px; }
+.press-story:is(:hover, :focus-visible) h3 { color: var(--ala-blue-hover); text-decoration: none; }
 
 #ala-content .press-archive-card h3 { display: -webkit-box; overflow: hidden; overflow-wrap: anywhere; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
-.press-archive-card:is(:hover, :focus-visible) h3 { text-decoration: underline; text-decoration-skip-ink: none; text-underline-offset: 3px; }
+.press-archive-card:is(:hover, :focus-visible) h3 { color: var(--ala-blue-hover); text-decoration: none; }
 
 .press-archive-band { border-block: 1px solid #e4eaf4; background: #f7f9fe; }
 .press-archive { position: relative; container-type: inline-size; padding-block: clamp(48px, 5vw, 72px) clamp(64px, 6vw, 88px); }
-.press-section-heading { color: var(--ala-ink); font-size: clamp(1.75rem, 1.45rem + .8vw, 2.125rem); font-weight: 700; letter-spacing: -.03em; line-height: 1.2; }
-.press-archive-note { margin-top: 8px !important; margin-bottom: 28px !important; color: var(--ala-muted); font-size: .875rem; line-height: 1.5; }
+.press-section-heading { color: var(--ala-ink); font-size: clamp(1.75rem, 1.45rem + .8vw, 2rem); font-weight: 700; letter-spacing: -.03em; line-height: 1.2; }
+.press-archive-note { margin-top: 8px !important; margin-bottom: 32px !important; color: var(--ala-muted); font-size: .875rem; line-height: 1.5; }
 .press-archive-results { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; margin: 0; padding: 0; list-style: none; }
 .press-archive-entry { height: 100%; }
 .press-archive-card { display: flex; flex-direction: column; min-height: 100%; border: 1px solid #e2e8f1; border-radius: 10px; background: white; color: inherit; text-decoration: none; overflow: hidden; }
@@ -106,16 +107,16 @@ body:not(.press-article-page) .press-shell { width: min(1200px, calc(100% - 48px
 .press-lead-copy .press-meta { order: initial; margin-top: 9px !important; }
 .press-lead-link { order: initial; margin-top: 12px; }
 .press-lead .press-photo { width: 100%; aspect-ratio: 1.65; border-radius: 9px; }
-.press-latest-list { display: grid; gap: 10px; margin-bottom: 0; padding: 0; list-style: none; }
+.press-latest-list { display: grid; gap: 14px; margin-bottom: 0; padding: 0; list-style: none; }
 .press-latest-story { display: grid; grid-template-columns: minmax(0, 31%) minmax(0, 1fr); gap: 10px; color: inherit; text-decoration: none; }
 .press-latest-story .press-photo { width: 100%; aspect-ratio: 1.6; border-radius: 8px; }
 .press-story-copy { display: flex; flex-direction: column; min-width: 0; align-items: flex-start; }
-#ala-content .press-latest-story h3 { display: -webkit-box; overflow: hidden; overflow-wrap: anywhere; -webkit-box-orient: vertical; -webkit-line-clamp: 2; font-size: clamp(1.0625rem, .98rem + .35vw, 1.2rem); font-weight: 600; line-height: 1.25; letter-spacing: -.012em; text-wrap: pretty; }
-.press-latest-story .press-meta { display: flex; width: 100%; gap: 2px 8px; margin-top: 6px !important; font-size: .8125rem; }
+#ala-content .press-latest-story h3 { display: -webkit-box; overflow: hidden; overflow-wrap: anywhere; -webkit-box-orient: vertical; -webkit-line-clamp: 2; font-size: clamp(1.0625rem, .98rem + .35vw, 1.2rem); font-weight: 500; line-height: 1.3; letter-spacing: -.012em; text-wrap: pretty; }
+.press-latest-story .press-meta { display: flex; width: 100%; gap: 2px 8px; margin-top: 8px !important; font-size: .875rem; }
 .press-latest-story .press-meta time { white-space: nowrap; }
 .press-latest-story .press-card-read { margin-top: 6px; }
 .press-language { color: var(--ala-muted); font-size: .75rem; }
-.press-latest-story:is(:hover, :focus-visible) h3 { text-decoration: underline; text-decoration-skip-ink: none; text-underline-offset: 3px; }
+.press-latest-story:is(:hover, :focus-visible) h3 { color: var(--ala-blue-hover); text-decoration: none; }
 @media (max-width: 740px) {
   .press-front { grid-template-columns: 1fr; gap: 36px; }
   .press-story { display: flex; }
@@ -169,8 +170,9 @@ body:not(.press-article-page) .press-shell { width: min(1200px, calc(100% - 48px
   display: -webkit-box;
   min-height: 0;
   max-width: 45ch;
-  margin: 6px 0 0;
+  margin: 8px 0 0;
   font-size: 1.125rem;
+  font-weight: 500;
   line-height: 1.4;
   -webkit-line-clamp: 3;
 }
@@ -181,7 +183,7 @@ body:not(.press-article-page) .press-shell { width: min(1200px, calc(100% - 48px
   font-size: .875rem;
   font-weight: 500;
 }
-#ala-content .press-timeline-item .press-archive-source { margin-top: 8px; }
+#ala-content .press-timeline-item .press-archive-source { margin-top: 8px; font-size: .875rem; }
 .press-timeline-item .press-archive-card .press-card-read { display: none; }
 .press-timeline-item .press-archive-photo {
   grid-column: 3;
