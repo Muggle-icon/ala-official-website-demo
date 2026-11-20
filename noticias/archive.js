@@ -54,7 +54,7 @@ function createCard(publication) {
   date.dateTime = publication.date;
   date.textContent = dateFormat.format(new Date(publication.date));
   date.classList.add('press-timeline-date');
-  link.prepend(date);
+  label.before(date);
   const heading = fragment.querySelector('h3');
   heading.textContent = publication.title;
   heading.title = publication.fullTitle || publication.title;
