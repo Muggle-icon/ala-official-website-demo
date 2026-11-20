@@ -63,8 +63,12 @@ function createCard(publication) {
   } else {
     link.id = 'nota-' + publication.id;
     fragment.querySelector('.press-demo-label').hidden = false;
-    photo.classList.add('press-placeholder');
-    photo.querySelector('img').src = '../public/assets/ala-logo.png';
+    if (publication.image) {
+      photo.querySelector('img').src = '../public/assets/news/' + publication.image;
+    } else {
+      photo.classList.add('press-placeholder');
+      photo.querySelector('img').src = '../public/assets/ala-logo.png';
+    }
     link.href = articleURL(publication.id);
     link.dataset.demoArticle = publication.id;
   }
