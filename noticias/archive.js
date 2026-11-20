@@ -25,6 +25,7 @@ const originals = [
     date: article.querySelector('time').dateTime,
     title: headline.textContent,
     fullTitle: headline.title,
+    summary: article.dataset.summary || '',
     source: article.querySelector('.press-meta span').textContent,
     href: article.querySelector('a').href,
     photo: article.querySelector('.press-photo img').getAttribute('src'),
@@ -51,6 +52,7 @@ function createCard(publication) {
   const photo = fragment.querySelector('.press-archive-photo');
 
   label.textContent = topics.get(publication.topic);
+  label.hidden = true;
   date.dateTime = publication.date;
   date.textContent = dateFormat.format(new Date(publication.date));
   date.classList.add('press-timeline-date');
@@ -58,6 +60,11 @@ function createCard(publication) {
   const heading = fragment.querySelector('h3');
   heading.textContent = publication.title;
   heading.title = publication.fullTitle || publication.title;
+  const summary = fragment.querySelector('.press-archive-summary');
+  if (publication.summary) {
+    summary.textContent = publication.summary;
+    summary.hidden = false;
+  }
   photo.hidden = false;
 
   if (publication.href) {
