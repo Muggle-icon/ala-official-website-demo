@@ -17,7 +17,7 @@ const dateFormat = new Intl.DateTimeFormat('es-MX', {
 const archiveOriginals = document.querySelector('#press-archive-originals');
 const originals = [
   ...document.querySelectorAll('[data-archive-topic]'),
-  ...archiveOriginals.content.querySelectorAll('[data-archive-topic]'),
+  ...(archiveOriginals ? archiveOriginals.content.querySelectorAll('[data-archive-topic]') : []),
 ].map(article => {
   const headline = article.querySelector('h3');
   return {
@@ -31,7 +31,8 @@ const originals = [
   };
 });
 const newestFirst = (a, b) => b.date.localeCompare(a.date);
-const publications = [...originals.sort(newestFirst), ...[...examples].sort(newestFirst)];
+// A timeline reads in chronological order across all content types.
+const publications = [...originals, ...examples].sort(newestFirst);
 
 function articleURL(id) {
   const url = new URL('./nota/', location.href);
@@ -41,6 +42,8 @@ function articleURL(id) {
 
 function createCard(publication) {
   const fragment = cardTemplate.content.cloneNode(true);
+  const row = fragment.querySelector('li');
+  row.classList.add('press-timeline-item');
   const label = fragment.querySelector('[data-card-topic]');
   const date = fragment.querySelector('time');
   const link = fragment.querySelector('a');
@@ -50,6 +53,8 @@ function createCard(publication) {
   label.textContent = topics.get(publication.topic);
   date.dateTime = publication.date;
   date.textContent = dateFormat.format(new Date(publication.date));
+  date.classList.add('press-timeline-date');
+  row.prepend(date);
   const heading = fragment.querySelector('h3');
   heading.textContent = publication.title;
   heading.title = publication.fullTitle || publication.title;

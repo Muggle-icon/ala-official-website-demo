@@ -7,8 +7,8 @@
   <meta name="description" content="Noticias y comunicados sobre ALA Préstamos en México.">
   <title>Noticias de ALA | ALA Préstamos México</title>
   <link rel="icon" href="../public/assets/ala-app-icon.png">
-  <script type="module" src="./archive.js?v=0c5e0db071"></script>
-  <link rel="stylesheet" href="./news.css?v=18ac599c86">
+  <script type="module" src="./archive.js?v=7cffe6ce52"></script>
+  <link rel="stylesheet" href="./news.css?v=e286a9b4c6">
   <link rel="stylesheet" href="../shared/site-header.css?v=395e64275c">
   <script src="../shared/site-header.js?v=fa30b9015e" defer></script>
   <!-- ALA footer assets start -->
@@ -76,7 +76,7 @@
 
     <div class="press-editorial">
       <div class="press-shell">
-        <section class="press-coverage press-front" id="publicaciones" tabindex="-1" aria-label="Noticia destacada">
+        <section class="press-coverage press-front" id="publicaciones" tabindex="-1" aria-label="Noticias destacadas y recientes">
           <div class="press-feature">
             <h2 class="press-front-heading">Destacada</h2>
             <article class="press-lead" data-archive-topic="medios" aria-labelledby="press-cnt-title">
@@ -90,8 +90,10 @@
               </a>
             </article>
           </div>
-          <template id="press-archive-originals">
-            <article data-archive-topic="medios" aria-labelledby="press-reportero-title">
+          <div class="press-latest">
+            <h2 class="press-front-heading" id="press-latest-title">Últimas noticias</h2>
+            <ul class="press-latest-list" aria-labelledby="press-latest-title" role="list">
+              <li><article data-archive-topic="medios" aria-labelledby="press-reportero-title">
                   <a class="press-latest-story" href="https://elreportero.mx/2026/01/25/ala-prestamos-tecnologia-para-cerrar-la-brecha-de-los-servicios-financieros-tradicionales-en-mexico/" target="_blank" rel="noopener noreferrer">
                     <div class="press-photo"><img src="../public/assets/news/el-reportero-cover.webp?v=a416080615" width="607" height="412" loading="lazy" decoding="async" alt=""></div>
                     <div class="press-story-copy">
@@ -100,8 +102,8 @@
                       <span class="press-card-read">Leer más</span>
                     </div>
                   </a>
-                </article>
-            <article data-archive-topic="comunicados" aria-labelledby="press-barchart-title">
+                </article></li>
+              <li><article data-archive-topic="comunicados" aria-labelledby="press-barchart-title">
                   <a class="press-latest-story" href="https://www.barchart.com/story/news/37208965/quantum-subsidiary-ala-prestamos-precision-engineers-liquidity-solutions-for-mexicos-workforce" target="_blank" rel="noopener noreferrer">
                     <div class="press-photo"><img src="../public/assets/news/barchart-cover.webp?v=d179cf6ef4" width="607" height="412" loading="lazy" decoding="async" alt=""></div>
                     <div class="press-story-copy">
@@ -110,8 +112,8 @@
                       <span class="press-card-read">Leer más <span class="press-language">· En inglés</span></span>
                     </div>
                   </a>
-                </article>
-            <article data-archive-topic="comunicados" aria-labelledby="press-financialcontent-title">
+                </article></li>
+              <li><article data-archive-topic="comunicados" aria-labelledby="press-financialcontent-title">
                   <a class="press-latest-story" href="https://markets.financialcontent.com/stocks/article/getnews-2026-1-17-quantum-subsidiary-ala-prstamos-drives-financial-inclusion-in-mexico-through-digital-first-credit-solutions" target="_blank" rel="noopener noreferrer">
                     <div class="press-photo"><img src="../public/assets/news/financialcontent-cover.webp?v=f1ece4d3e3" width="607" height="412" loading="lazy" decoding="async" alt=""></div>
                     <div class="press-story-copy">
@@ -120,8 +122,10 @@
                       <span class="press-card-read">Leer más <span class="press-language">· En inglés</span></span>
                     </div>
                   </a>
-                </article>
-          </template>
+                </article></li>
+            </ul>
+          </div>
+          <template id="press-archive-originals"></template>
         </section>
       </div>
     </div>
