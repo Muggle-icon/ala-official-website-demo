@@ -15,10 +15,8 @@ const dateFormat = new Intl.DateTimeFormat('es-MX', {
 });
 
 const archiveOriginals = document.querySelector('#press-archive-originals');
-const originals = [
-  ...document.querySelectorAll('[data-archive-topic]'),
-  ...(archiveOriginals ? archiveOriginals.content.querySelectorAll('[data-archive-topic]') : []),
-].map(article => {
+// The featured story already appears above the archive; do not repeat it here.
+const originals = [...(archiveOriginals ? archiveOriginals.content.querySelectorAll('[data-archive-topic]') : [])].map(article => {
   const headline = article.querySelector('h3');
   return {
     topic: article.dataset.archiveTopic,
@@ -32,8 +30,8 @@ const originals = [
   };
 });
 const newestFirst = (a, b) => b.date.localeCompare(a.date);
-// A timeline reads in chronological order across all content types.
-const publications = [...originals, ...examples].sort(newestFirst);
+// Show the three real reports first, followed by dated demo examples.
+const publications = [...originals.sort(newestFirst), ...examples.slice().sort(newestFirst)];
 
 function articleURL(id) {
   const url = new URL('./nota/', location.href);
