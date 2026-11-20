@@ -67,6 +67,7 @@ body {
 .press-archive-card .press-card-read { display: block; margin-top: auto; padding-top: 16px; }
 .press-archive-card:target { outline: 2px solid var(--ala-interaction-line); outline-offset: 4px; }
 :is(.press-coverage, .press-archive):focus:not(:focus-visible) { outline: none; }
+.press-archive:focus { outline: none; }
 @container (max-width: 950px) { .press-archive-results { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 @container (max-width: 770px) { .press-archive-results { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @container (max-width: 500px) { .press-archive-results { grid-template-columns: 1fr; } #ala-content .press-archive-card h3 { min-height: 0; } }
