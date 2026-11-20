@@ -545,3 +545,13 @@ body {
 @media (max-width: 740px) {
   .press-editorial { padding-bottom: 44.8px; }
 }
+
+/* Balance the white space above and below the featured story. */
+.press-page-head { padding-top: clamp(48px, 4.5vw, 64px); }
+.press-editorial { padding-bottom: calc(clamp(48px, 4.5vw, 64px) / 2); }
+.press-archive { padding-top: calc(clamp(48px, 4.5vw, 64px) / 2); }
+@media (max-width: 740px) {
+  .press-page-head { padding-top: 32px; }
+  .press-editorial { padding-bottom: 16px; }
+  .press-archive { padding-top: 16px; }
+}
