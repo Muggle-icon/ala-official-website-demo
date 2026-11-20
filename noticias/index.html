@@ -8,7 +8,7 @@
   <title>Noticias de ALA | ALA Préstamos México</title>
   <link rel="icon" href="../public/assets/ala-app-icon.png">
   <script type="module" src="./archive.js?v=954c545399"></script>
-  <link rel="stylesheet" href="./news.css?v=46bb4d1eb3">
+  <link rel="stylesheet" href="./news.css?v=ff0f62cd3d">
   <link rel="stylesheet" href="../shared/site-header.css?v=395e64275c">
   <script src="../shared/site-header.js?v=fa30b9015e" defer></script>
   <!-- ALA footer assets start -->
@@ -76,24 +76,21 @@
 
     <div class="press-editorial">
       <div class="press-shell">
-        <section class="press-coverage press-front" id="publicaciones" tabindex="-1" aria-label="Noticias destacadas y recientes">
-          <div class="press-feature">
-            <h2 class="press-front-heading">Destacada</h2>
+        <section class="press-coverage press-front" id="publicaciones" tabindex="-1" aria-labelledby="press-highlights-title">
+          <h2 class="press-front-heading" id="press-highlights-title">Noticias destacadas</h2>
+          <div class="press-highlights">
             <article class="press-lead" data-archive-topic="medios" aria-labelledby="press-cnt-title">
               <a class="press-story" href="https://cntamaulipas.mx/2026/01/15/la-fintech-mexicana-ala-prestamos-redefine-la-experiencia-del-microcredito-mediante-la-autonomia-tecnologica/" target="_blank" rel="noopener noreferrer">
                 <div class="press-photo"><img src="../public/assets/news/cnt-cover.webp?v=77e8d4431a" width="606" height="412" fetchpriority="high" decoding="async" alt=""></div>
                 <div class="press-lead-copy">
+                  <span class="press-feature-kicker">Destacada</span>
                   <h3 id="press-cnt-title">ALA Préstamos y la autonomía tecnológica en el microcrédito</h3>
                   <p class="press-meta"><span>Centro Noticias Tamaulipas</span><time datetime="2026-01-15">15 ene 2026</time></p>
                   <span class="press-lead-link">Leer en CNT</span>
                 </div>
               </a>
             </article>
-          </div>
-          <div class="press-latest">
-            <h2 class="press-front-heading" id="press-latest-title">Últimas noticias</h2>
-            <ul class="press-latest-list" aria-labelledby="press-latest-title" role="list">
-              <li><article data-archive-topic="medios" aria-labelledby="press-reportero-title">
+            <article class="press-news-item" data-archive-topic="medios" aria-labelledby="press-reportero-title">
                   <a class="press-latest-story" href="https://elreportero.mx/2026/01/25/ala-prestamos-tecnologia-para-cerrar-la-brecha-de-los-servicios-financieros-tradicionales-en-mexico/" target="_blank" rel="noopener noreferrer">
                     <div class="press-photo"><img src="../public/assets/news/el-reportero-cover.webp?v=a416080615" width="607" height="412" loading="lazy" decoding="async" alt=""></div>
                     <div class="press-story-copy">
@@ -102,8 +99,8 @@
                       <span class="press-card-read">Leer más</span>
                     </div>
                   </a>
-                </article></li>
-              <li><article data-archive-topic="comunicados" aria-labelledby="press-barchart-title">
+                </article>
+            <article class="press-news-item" data-archive-topic="comunicados" aria-labelledby="press-barchart-title">
                   <a class="press-latest-story" href="https://www.barchart.com/story/news/37208965/quantum-subsidiary-ala-prestamos-precision-engineers-liquidity-solutions-for-mexicos-workforce" target="_blank" rel="noopener noreferrer">
                     <div class="press-photo"><img src="../public/assets/news/barchart-cover.webp?v=d179cf6ef4" width="607" height="412" loading="lazy" decoding="async" alt=""></div>
                     <div class="press-story-copy">
@@ -112,8 +109,8 @@
                       <span class="press-card-read">Leer más <span class="press-language">· En inglés</span></span>
                     </div>
                   </a>
-                </article></li>
-              <li><article data-archive-topic="comunicados" aria-labelledby="press-financialcontent-title">
+                </article>
+            <article class="press-news-item" data-archive-topic="comunicados" aria-labelledby="press-financialcontent-title">
                   <a class="press-latest-story" href="https://markets.financialcontent.com/stocks/article/getnews-2026-1-17-quantum-subsidiary-ala-prstamos-drives-financial-inclusion-in-mexico-through-digital-first-credit-solutions" target="_blank" rel="noopener noreferrer">
                     <div class="press-photo"><img src="../public/assets/news/financialcontent-cover.webp?v=f1ece4d3e3" width="607" height="412" loading="lazy" decoding="async" alt=""></div>
                     <div class="press-story-copy">
@@ -122,8 +119,7 @@
                       <span class="press-card-read">Leer más <span class="press-language">· En inglés</span></span>
                     </div>
                   </a>
-                </article></li>
-            </ul>
+                </article>
           </div>
           <template id="press-archive-originals"></template>
         </section>
