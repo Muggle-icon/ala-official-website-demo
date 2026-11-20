@@ -71,7 +71,7 @@ body {
 
 .press-story {
   display: grid;
-  grid-template-columns: minmax(0, 48fr) minmax(0, 52fr);
+  grid-template-columns: minmax(0, min(42vw, 560px)) minmax(0, 1fr);
   min-height: clamp(300px, 24vw, 348px);
   background: #173cda;
   color: white;
@@ -117,11 +117,21 @@ body {
   border-radius: 0;
 }
 
+.press-lead .press-photo::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url('../public/assets/news/cnt-cover.webp?v=77e8d4431a') left top / cover no-repeat;
+  transform: scale(1.12);
+  transform-origin: center top;
+}
+
 .press-lead .press-photo img {
   position: absolute;
   inset: 0;
-  object-position: center 47%;
-  transform: scale(1.12);
+  object-position: left top;
+  transform: scale(1.015);
+  transform-origin: center top;
 }
 
 .press-meta {
@@ -249,7 +259,7 @@ body {
 :is(.press-latest-story, .press-archive-card):is(:hover, :focus-visible) h3 { text-decoration: underline; }
 
 @media (hover: hover) {
-  .press-story:hover img { transform: scale(1.14); }
+  .press-story:hover img { transform: scale(1.03); }
 }
 
 .press-archive {
@@ -418,7 +428,7 @@ body {
 @media (max-width: 740px) {
   .press-story { grid-template-columns: 1fr; }
   .press-lead-copy { order: -1; }
-  .press-lead .press-photo { aspect-ratio: 2.1; min-height: 0; }
+  .press-lead .press-photo { aspect-ratio: 1.65; min-height: 0; }
   .press-lead-copy { padding: 24px 24px 20px; }
   .press-lead .press-meta { font-size: .875rem; }
   #ala-content .press-lead-kicker { margin-bottom: 10px; }
