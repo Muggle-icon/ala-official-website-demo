@@ -14,7 +14,11 @@ const dateFormat = new Intl.DateTimeFormat('es-MX', {
   day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC',
 });
 
-const originals = [...document.querySelectorAll('[data-archive-topic]')].map(article => {
+const archiveOriginals = document.querySelector('#press-archive-originals');
+const originals = [
+  ...document.querySelectorAll('[data-archive-topic]'),
+  ...archiveOriginals.content.querySelectorAll('[data-archive-topic]'),
+].map(article => {
   const headline = article.querySelector('h3');
   return {
     topic: article.dataset.archiveTopic,
