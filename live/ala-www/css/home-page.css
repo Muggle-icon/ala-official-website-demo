@@ -206,3 +206,80 @@ body {
     min-height: 44px;
   }
 }
+
+/* Homepage section links follow the same quiet, pill-shaped treatment. */
+body.ala-home .ala-section-more {
+  min-height: 48px;
+  max-width: 100%;
+  gap: 12px;
+  padding: 10px 20px;
+  border: 1px solid #efefef;
+  border-radius: 999px;
+  background: #fff;
+  color: #171717;
+  font: 400 1rem / 1.4 var(--ala-font);
+  text-decoration: none;
+}
+
+body.ala-home .ala-section-more span { min-width: 0; }
+body.ala-home .ala-section-more::after {
+  content: "";
+  flex: 0 0 8px;
+  width: 8px;
+  height: 8px;
+  border-top: 1.5px solid currentColor;
+  border-right: 1.5px solid currentColor;
+  transform: rotate(45deg);
+}
+
+body.ala-home .ala-news .ala-section-actions { padding-inline: 24px; }
+body.ala-home .ala-section-more:focus-visible {
+  color: #171717;
+  text-decoration: none;
+  outline: 2px solid #171717;
+  outline-offset: 3px;
+}
+body.ala-home .ala-section-more:active:not(:disabled, [aria-disabled="true"]) {
+  color: #171717;
+  background: #eee;
+  text-decoration: none;
+}
+
+@media (hover: hover) {
+  body.ala-home .ala-section-more:hover:not(:active, :disabled, [aria-disabled="true"]) {
+    color: #171717;
+    border-color: #efefef;
+    background: #f8f8f8;
+    text-decoration: none;
+  }
+  body.ala-home .ala-button:not(.ala-button--primary):hover:not(:active, :disabled, [aria-disabled="true"]),
+  body.ala-home .ala-category-tab:hover:not(:active, [aria-selected="true"], [aria-pressed="true"]) {
+    color: var(--ala-ink);
+    border-color: #d8d8d8;
+    background: #f5f5f5;
+  }
+  body.ala-home .ala-button--primary:hover:not(:active, :disabled, [aria-disabled="true"]) {
+    color: #fff;
+    border-color: var(--ala-blue);
+    background: var(--ala-blue);
+  }
+  body.ala-home .ala-faq-toggle:hover:not(:active) {
+    color: var(--ala-ink);
+    background: #f5f5f5;
+  }
+  body.ala-home .ala-news-link:hover { color: #5f6368; }
+  body.ala-home .ala-faq-answer a:hover { color: var(--ala-blue); }
+  body.ala-home .ala-editorial-link:hover { border-color: #d8d8d8; }
+  body.ala-home .ala-editorial-link:hover .ala-editorial-title { color: var(--ala-ink); }
+  body.ala-home .ala-assistance-help:hover,
+  body.ala-home .ala-assistance-contact:hover { color: #fff; background: var(--assistance-blue); }
+  body.ala-home .ala-assistance-stores a:hover { background: #eee; }
+}
+
+@media (max-width: 600px) {
+  body.ala-home .ala-section-more {
+    gap: 8px;
+    padding-inline: 16px;
+    font-size: .875rem;
+  }
+}
