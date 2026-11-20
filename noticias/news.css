@@ -435,7 +435,13 @@ body {
   .press-lead-copy { order: -1; padding-bottom: 20px; }
 }
 
-#ala-content .press-archive .press-section-heading { margin-bottom: 28px; }
+#ala-content .press-archive .press-section-heading {
+  margin-bottom: 28px;
+  font-size: clamp(1.25rem, 1.17rem + .28vw, 1.375rem);
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: -.01em;
+}
 
 /* Editorial timeline: date, image and story share consistent columns. */
 .press-archive-results { display: block; }
