@@ -213,9 +213,9 @@ body.ala-home .ala-section-more {
   max-width: 100%;
   gap: 12px;
   padding: 10px 20px;
-  border: 1px solid #efefef;
+  border: 1px solid #cfd3db;
   border-radius: 999px;
-  background: #fff;
+  background: transparent;
   color: #171717;
   font: 400 1rem / 1.4 var(--ala-font);
   text-decoration: none;
@@ -241,15 +241,15 @@ body.ala-home .ala-section-more:focus-visible {
 }
 body.ala-home .ala-section-more:active:not(:disabled, [aria-disabled="true"]) {
   color: #171717;
-  background: #eee;
+  background: transparent;
   text-decoration: none;
 }
 
 @media (hover: hover) {
   body.ala-home .ala-section-more:hover:not(:active, :disabled, [aria-disabled="true"]) {
     color: #171717;
-    border-color: #efefef;
-    background: #f8f8f8;
+    border-color: #aeb4bf;
+    background: transparent;
     text-decoration: none;
   }
   body.ala-home .ala-button:not(.ala-button--primary):hover:not(:active, :disabled, [aria-disabled="true"]),
