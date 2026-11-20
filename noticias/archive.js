@@ -52,7 +52,14 @@ function createCard(publication) {
   label.textContent = topics.get(publication.topic);
   label.hidden = true;
   date.dateTime = publication.date;
-  date.textContent = dateFormat.format(new Date(publication.date));
+  const dateParts = dateFormat.formatToParts(new Date(publication.date));
+  const day = document.createElement('span');
+  const monthYear = document.createElement('span');
+  day.className = 'press-date-day';
+  monthYear.className = 'press-date-month-year';
+  day.textContent = dateParts.find(part => part.type === 'day').value;
+  monthYear.textContent = dateParts.filter(part => part.type === 'month' || part.type === 'year').map(part => part.value).join(' ');
+  date.replaceChildren(day, ' ', monthYear);
   date.classList.add('press-timeline-date');
   label.before(date);
   const heading = fragment.querySelector('h3');

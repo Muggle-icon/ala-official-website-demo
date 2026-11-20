@@ -435,3 +435,84 @@ body {
 }
 
 #ala-content .press-archive .press-section-heading { margin-bottom: 28px; }
+
+/* Editorial timeline: date, image and story share consistent columns. */
+.press-archive-results { display: block; }
+.press-timeline-item { height: auto; }
+.press-timeline-item .press-archive-entry { height: auto; }
+.press-timeline-item .press-archive-card,
+.press-timeline-item:first-child .press-archive-card {
+  display: grid;
+  grid-template-columns: 82px minmax(160px, 25%) minmax(0, 1fr);
+  grid-template-areas: '. photo copy';
+  align-items: start;
+  gap: 0 24px;
+  height: auto;
+  padding: 24px 0;
+  border: 0;
+  border-bottom: 1px solid #e4e4e4;
+  border-radius: 0;
+  background: transparent;
+  overflow: visible;
+}
+.press-timeline-item:first-child .press-archive-card { border-top: 1px solid #e4e4e4; }
+.press-timeline-item .press-archive-photo {
+  grid-area: photo;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1.65;
+  border-radius: 8px;
+}
+.press-timeline-item .press-archive-copy {
+  grid-area: copy;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-height: 0;
+  padding: 0;
+}
+#ala-content .press-timeline-item .press-archive-card h3 {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+#ala-content .press-archive-summary { margin-top: 8px; }
+#ala-content .press-timeline-item .press-archive-source { order: initial; margin-top: 8px; }
+#ala-content .press-timeline-item .press-archive-meta { order: initial; margin: 0; padding: 0; }
+.press-timeline-item .press-timeline-date {
+  position: absolute;
+  top: 26px;
+  left: 0;
+  color: #666;
+  font-size: .875rem;
+  white-space: nowrap;
+}
+.press-date-day { display: block; color: #161616; font-size: 1.25rem; font-weight: 600; line-height: 1.1; }
+.press-date-month-year { display: block; margin-top: 4px; font-size: .8125rem; line-height: 1.3; }
+.press-timeline-item .press-archive-card .press-card-read {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 0;
+  font-weight: 400;
+  text-decoration: underline;
+}
+@media (max-width: 740px) {
+  .press-timeline-item .press-archive-card,
+  .press-timeline-item:first-child .press-archive-card {
+    grid-template-columns: minmax(96px, 34%) minmax(0, 1fr);
+    grid-template-areas: 'photo copy';
+    gap: 0 16px;
+    padding: 20px 0;
+  }
+  #ala-content .press-timeline-item .press-archive-card h3 {
+    display: block;
+    overflow: visible;
+    font-size: 1rem;
+    -webkit-line-clamp: unset;
+  }
+  #ala-content .press-archive-summary { font-size: .875rem; }
+  #ala-content .press-timeline-item .press-archive-meta { margin-top: 8px; }
+  .press-timeline-item .press-timeline-date { position: static; font-size: .875rem; }
+  .press-date-day, .press-date-month-year { display: inline; margin: 0; color: inherit; font-size: inherit; font-weight: 400; line-height: inherit; }
+}
