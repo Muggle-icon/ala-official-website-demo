@@ -5,7 +5,7 @@
 }
 
 .press-article-page #ala-content { color: var(--press-article-ink); }
-.press-article-measure { max-width: 720px; margin-inline: 0; }
+.press-article-measure { max-width: 720px; margin-inline: auto; }
 
 /* A modest return link and a quiet, text-led article header. */
 .press-article-trail { border: 0; }
@@ -20,8 +20,7 @@
   text-decoration: none;
 }
 .press-article-return:hover { color: var(--press-article-ink); }
-.press-article-return:hover span:last-child,
-.press-article-related-link:hover {
+.press-article-return:hover span:last-child {
   text-decoration: underline;
   text-decoration-skip-ink: none;
   text-underline-offset: 4px;
@@ -104,38 +103,8 @@
 .press-article-empty { padding-block: clamp(48px, 8vw, 100px); }
 #ala-content .press-article-empty p { margin-top: 12px; color: var(--press-article-muted); line-height: 1.6; }
 
-/* Related reading stays understated and uses a consistent editorial grid. */
-.press-article-related { padding-block: clamp(40px, 5vw, 64px); background: #f7f8fa; }
-.press-article-related h2 {
-  font-size: clamp(1.375rem, 1.2rem + .45vw, 1.625rem);
-  font-weight: 700;
-  letter-spacing: -.02em;
-  line-height: 1.25;
-}
-.press-article-related-list {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 24px;
-  padding: 0;
-  margin: 24px 0 0;
-  list-style: none;
-}
-.press-article-related-link {
-  display: block;
-  height: 100%;
-  padding: 18px 0 8px;
-  border: 0;
-  border-top: 1px solid #d7dce5;
-  background: transparent;
-  color: var(--press-article-ink);
-  font-size: 1.0625rem;
-  font-weight: 500;
-  line-height: 1.4;
-  text-decoration: none;
-}
 @media (max-width: 670px) {
   .press-article-return { min-height: 48px; }
   .press-article-heading { padding-top: 20px; }
   .press-article-meta { gap: 6px 12px; margin-top: 20px !important; }
-  .press-article-related-list { grid-template-columns: 1fr; gap: 14px; }
 }

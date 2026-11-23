@@ -14,27 +14,6 @@ const archive = new URL('../', location.href);
 archive.hash = article ? 'nota-' + article.id : 'archivo';
 document.querySelector('#press-article-return').href = archive.href;
 
-function renderRelated(example) {
-  const others = examples.filter(candidate => candidate.id !== example.id);
-  const sameTopic = others.filter(candidate => candidate.topic === example.topic);
-  const otherTopics = others.filter(candidate => candidate.topic !== example.topic);
-  const related = [...sameTopic, ...otherTopics].slice(0, 3);
-  const template = document.querySelector('#press-article-related-card');
-  const list = document.querySelector('#press-article-related-list');
-
-  for (const item of related) {
-    const fragment = template.content.cloneNode(true);
-    const link = fragment.querySelector('a');
-    const url = new URL('./', location.href);
-    url.searchParams.set('id', item.id);
-    link.href = url.href;
-    link.textContent = item.title;
-    list.append(fragment);
-  }
-
-  document.querySelector('#press-article-related').hidden = related.length === 0;
-}
-
 if (article) {
   document.title = article.title + ' | ALA Préstamos México';
   document.querySelector('meta[name="description"]').content = article.summary;
@@ -69,7 +48,6 @@ if (article) {
     copy.append(paragraph);
   }
   document.querySelector('#press-article').hidden = false;
-  renderRelated(article);
 } else {
   document.title = 'Publicación no encontrada | ALA Préstamos México';
   document.querySelector('#press-article-empty').hidden = false;
