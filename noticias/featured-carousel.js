@@ -4,10 +4,10 @@
   const controls = carousel?.querySelector('.press-carousel-controls');
   const slides = stage ? Array.from(stage.querySelectorAll('.press-lead')) : [];
   const dots = controls ? Array.from(controls.querySelectorAll('.press-carousel-dot')) : [];
-  const progress = controls?.querySelector('.press-carousel-progress');
+  const progress = controls ? Array.from(controls.querySelectorAll('.press-carousel-progress')) : [];
   const feature = carousel?.querySelector('.press-feature');
   const status = carousel?.querySelector('.press-carousel-status');
-  if (!stage || !controls || !feature || !progress || slides.length !== 3 || dots.length !== slides.length || !status) return;
+  if (!stage || !controls || !feature || slides.length !== 3 || dots.length !== slides.length || progress.length !== slides.length || !status) return;
 
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const INTERVAL = 7000;
@@ -39,8 +39,15 @@
       elapsed = 0;
       show((current + 1) % slides.length, false);
     }
-    progress.style.transform = `scaleX(${Math.min(1, elapsed / INTERVAL)})`;
+    updateProgress();
     frame = window.requestAnimationFrame(tick);
+  }
+
+  function updateProgress() {
+    progress.forEach((bar, index) => {
+      const amount = index === current ? Math.min(1, elapsed / INTERVAL) : 0;
+      bar.style.transform = `scaleX(${amount})`;
+    });
   }
 
   function positionControls() {
@@ -67,6 +74,7 @@
       dots[i].setAttribute('aria-pressed', String(selected));
     });
     if (previous !== index) stage.classList.add('has-cycled');
+    updateProgress();
     positionControls();
     if (announce) {
       const title = slides[index].querySelector('h3')?.textContent.trim() || '';
@@ -81,7 +89,6 @@
   dots.forEach((dot, index) => dot.addEventListener('click', () => {
     stopTimer();
     elapsed = 0;
-    progress.style.transform = 'scaleX(0)';
     show(index, true);
     schedule();
   }));

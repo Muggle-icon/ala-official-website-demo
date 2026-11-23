@@ -42,7 +42,7 @@
   max-width: 65ch;
   margin-top: 16px;
   color: var(--press-article-muted);
-  font-size: clamp(1.0625rem, 1rem + .35vw, 1.25rem);
+  font-size: clamp(1.125rem, 1rem + .35vw, 1.25rem);
   font-weight: 400;
   line-height: 1.55;
   text-wrap: pretty;
@@ -75,7 +75,7 @@
   display: block;
   width: 100%;
   height: auto;
-  aspect-ratio: 2;
+  aspect-ratio: 16 / 9;
   margin-bottom: clamp(28px, 3.4vw, 44px);
   border-radius: 8px;
   object-fit: cover;
@@ -88,9 +88,9 @@
   gap: 22px;
   max-width: 65ch;
   color: var(--press-article-ink);
-  font-size: clamp(1rem, .95rem + .22vw, 1.125rem);
+  font-size: clamp(1.0625rem, 1rem + .15vw, 1.125rem);
   font-weight: 400;
-  line-height: 1.75;
+  line-height: 1.7;
   overflow-wrap: anywhere;
 }
 #ala-content .press-article-note {
@@ -136,6 +136,6 @@
 @media (max-width: 670px) {
   .press-article-return { min-height: 48px; }
   .press-article-heading { padding-top: 20px; }
-  .press-article-meta { margin-top: 20px !important; }
+  .press-article-meta { gap: 6px 12px; margin-top: 20px !important; }
   .press-article-related-list { grid-template-columns: 1fr; gap: 14px; }
 }
