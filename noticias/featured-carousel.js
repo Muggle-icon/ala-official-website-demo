@@ -44,7 +44,10 @@
   }
 
   function positionControls() {
-    const photo = slides[current].querySelector('.press-photo');
+    // Every slide shares the same image box. Measure an inactive slide so the
+    // control stays anchored while the active slide is moving into position.
+    const reference = slides.find((slide, index) => index !== current) || slides[current];
+    const photo = reference.querySelector('.press-photo');
     if (!photo) return;
     const imageBox = photo.getBoundingClientRect();
     const featureBox = feature.getBoundingClientRect();
@@ -55,6 +58,7 @@
   }
 
   function show(index, announce) {
+    const previous = current;
     current = index;
     slides.forEach((slide, i) => {
       const selected = i === index;
@@ -62,6 +66,7 @@
       slide.setAttribute('aria-hidden', String(!selected));
       dots[i].setAttribute('aria-pressed', String(selected));
     });
+    if (previous !== index) stage.classList.add('has-cycled');
     positionControls();
     if (announce) {
       const title = slides[index].querySelector('h3')?.textContent.trim() || '';
