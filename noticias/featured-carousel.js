@@ -4,17 +4,14 @@
   const controls = carousel?.querySelector('.press-carousel-controls');
   const slides = stage ? Array.from(stage.querySelectorAll('.press-lead')) : [];
   const dots = controls ? Array.from(controls.querySelectorAll('.press-carousel-dot')) : [];
-  const pause = controls?.querySelector('.press-carousel-pause');
-  const pauseIcon = pause?.querySelector('.press-carousel-pause-icon');
-  const playIcon = pause?.querySelector('.press-carousel-play-icon');
   const status = carousel?.querySelector('.press-carousel-status');
-  if (!stage || !controls || slides.length !== 3 || dots.length !== slides.length || !pause || !status) return;
+  if (!stage || !controls || slides.length !== 3 || dots.length !== slides.length || !status) return;
 
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const INTERVAL = 7000;
   let current = 0;
   let timer = null;
-  let pausedByUser = false;
+  let userSelected = false;
   let pointerInside = false;
   let focusInside = false;
 
@@ -25,7 +22,7 @@
 
   function schedule() {
     stopTimer();
-    if (pausedByUser || reducedMotion.matches || pointerInside || focusInside || document.hidden) return;
+    if (userSelected || reducedMotion.matches || pointerInside || focusInside || document.hidden) return;
     timer = window.setTimeout(() => {
       show((current + 1) % slides.length, false);
       schedule();
@@ -42,33 +39,19 @@
     });
     if (announce) {
       const title = slides[index].querySelector('h3')?.textContent.trim() || '';
-      status.textContent = `Noticia ${index + 1} de ${slides.length}: ${title}`;
+      status.textContent = `Noticia ${index + 1} de ${slides.length}: ${title}. Rotación automática detenida.`;
     }
-  }
-
-  function updatePauseButton() {
-    pause.hidden = reducedMotion.matches;
-    pause.setAttribute('aria-pressed', String(pausedByUser));
-    pause.setAttribute('aria-label', pausedByUser ? 'Reanudar rotación automática' : 'Pausar rotación automática');
-    if (pauseIcon) pauseIcon.hidden = pausedByUser;
-    if (playIcon) playIcon.hidden = !pausedByUser;
   }
 
   stage.classList.add('is-ready');
   slides.forEach(slide => { slide.hidden = false; });
   show(0, false);
   controls.hidden = false;
-  updatePauseButton();
-
   dots.forEach((dot, index) => dot.addEventListener('click', () => {
+    userSelected = true;
     show(index, true);
-    schedule();
+    stopTimer();
   }));
-  pause.addEventListener('click', () => {
-    pausedByUser = !pausedByUser;
-    updatePauseButton();
-    schedule();
-  });
   carousel.addEventListener('pointerenter', event => {
     if (event.pointerType === 'mouse' || event.pointerType === 'pen') {
       pointerInside = true;
@@ -86,7 +69,7 @@
     if (!carousel.contains(event.relatedTarget)) { focusInside = false; schedule(); }
   });
   document.addEventListener('visibilitychange', schedule);
-  const onMotionChange = () => { updatePauseButton(); schedule(); };
+  const onMotionChange = () => { schedule(); };
   if (reducedMotion.addEventListener) reducedMotion.addEventListener('change', onMotionChange);
   else if (reducedMotion.addListener) reducedMotion.addListener(onMotionChange);
   schedule();

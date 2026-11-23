@@ -578,19 +578,37 @@ body {
   pointer-events: auto;
   transition: opacity 240ms ease;
 }
-.press-lead .press-photo::before { content: none; }
-.press-lead .press-photo img { transform: none; }
+.press-carousel-stage.is-ready .press-lead .press-story { height: 100%; }
+.press-lead .press-photo {
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: 10px;
+}
+/* The source images contain transparent rounded corners. Fill them with the
+   same image behind the unscaled foreground, without cropping the subject. */
+.press-lead .press-photo::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: center / cover no-repeat;
+  transform: scale(1.12);
+  transform-origin: center;
+  pointer-events: none;
+}
+.press-carousel-stage .press-lead:nth-child(1) .press-photo::before { background-image: url('../public/assets/news/cnt-cover.webp?v=77e8d4431a'); }
+.press-carousel-stage .press-lead:nth-child(2) .press-photo::before { background-image: url('../public/assets/news/el-reportero-cover.webp?v=a416080615'); }
+.press-carousel-stage .press-lead:nth-child(3) .press-photo::before { background-image: url('../public/assets/news/barchart-cover.webp?v=d179cf6ef4'); }
+.press-lead .press-photo img { z-index: 1; transform: none; border-radius: 0; }
 .press-carousel-controls {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   width: calc((100% - clamp(28px, 3.5vw, 48px)) * .574468);
   min-height: 44px;
   margin-top: 4px;
 }
-.press-carousel-dots { display: flex; align-items: center; }
-.press-carousel-dot,
-.press-carousel-pause {
+.press-carousel-dots { display: flex; align-items: center; margin-inline-start: -8px; }
+.press-carousel-dot {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -598,19 +616,18 @@ body {
   height: 44px;
   padding: 0;
   border: 0;
-  border-radius: 50%;
+  border-radius: 3px;
   background: transparent;
   color: #536078;
   cursor: pointer;
 }
 .press-carousel-dot span {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #b9c1ce;
+  width: 28px;
+  height: 3px;
+  border-radius: 3px;
+  background: #c8cdd5;
 }
 .press-carousel-dot[aria-pressed="true"] span { background: #1b1e28; }
-.press-carousel-pause { margin-left: 4px; }
 .press-carousel-status {
   position: absolute;
   width: 1px;
@@ -623,11 +640,13 @@ body {
   border: 0;
 }
 @media (hover: hover) {
-  .press-carousel-dot:hover,
-  .press-carousel-pause:hover { background: #f1f2f4; }
+  .press-carousel-dot:hover span { background: #7c8594; }
+  .press-carousel-dot[aria-pressed="true"]:hover span { background: #1b1e28; }
 }
 @media (max-width: 740px) {
   .press-carousel-controls { width: 100%; }
+  .press-carousel-stage.is-ready .press-lead .press-story { grid-template-rows: minmax(0, 1fr) auto; }
+  .press-carousel-stage.is-ready .press-lead-copy { align-self: start; }
 }
 @media (prefers-reduced-motion: reduce) {
   .press-carousel-stage.is-ready .press-lead,
