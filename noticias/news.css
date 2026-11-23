@@ -630,5 +630,6 @@ body {
   .press-carousel-controls { width: 100%; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .press-carousel-stage.is-ready .press-lead { transition: none; }
+  .press-carousel-stage.is-ready .press-lead,
+  .press-carousel-stage.is-ready .press-lead.is-active { transition: none; }
 }
