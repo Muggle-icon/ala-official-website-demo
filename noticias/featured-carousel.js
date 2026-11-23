@@ -4,29 +4,54 @@
   const controls = carousel?.querySelector('.press-carousel-controls');
   const slides = stage ? Array.from(stage.querySelectorAll('.press-lead')) : [];
   const dots = controls ? Array.from(controls.querySelectorAll('.press-carousel-dot')) : [];
+  const progress = controls?.querySelector('.press-carousel-progress');
+  const feature = carousel?.querySelector('.press-feature');
   const status = carousel?.querySelector('.press-carousel-status');
-  if (!stage || !controls || slides.length !== 3 || dots.length !== slides.length || !status) return;
+  if (!stage || !controls || !feature || !progress || slides.length !== 3 || dots.length !== slides.length || !status) return;
 
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const INTERVAL = 7000;
   let current = 0;
-  let timer = null;
-  let userSelected = false;
+  let frame = null;
+  let lastFrame = null;
+  let elapsed = 0;
   let pointerInside = false;
   let focusInside = false;
 
   function stopTimer() {
-    if (timer !== null) window.clearTimeout(timer);
-    timer = null;
+    if (frame !== null) window.cancelAnimationFrame(frame);
+    frame = null;
+    if (lastFrame !== null) elapsed = Math.min(INTERVAL, elapsed + Math.max(0, performance.now() - lastFrame));
+    lastFrame = null;
   }
 
   function schedule() {
     stopTimer();
-    if (userSelected || reducedMotion.matches || pointerInside || focusInside || document.hidden) return;
-    timer = window.setTimeout(() => {
+    if (reducedMotion.matches || pointerInside || focusInside || document.hidden) return;
+    lastFrame = performance.now();
+    frame = window.requestAnimationFrame(tick);
+  }
+
+  function tick(now) {
+    elapsed += Math.max(0, now - lastFrame);
+    lastFrame = now;
+    if (elapsed >= INTERVAL) {
+      elapsed = 0;
       show((current + 1) % slides.length, false);
-      schedule();
-    }, INTERVAL);
+    }
+    progress.style.transform = `scaleX(${Math.min(1, elapsed / INTERVAL)})`;
+    frame = window.requestAnimationFrame(tick);
+  }
+
+  function positionControls() {
+    const photo = slides[current].querySelector('.press-photo');
+    if (!photo) return;
+    const imageBox = photo.getBoundingClientRect();
+    const featureBox = feature.getBoundingClientRect();
+    if (!imageBox.width || !imageBox.height) return;
+    controls.style.left = `${imageBox.left - featureBox.left + 16}px`;
+    controls.style.top = `${imageBox.bottom - featureBox.top - 44}px`;
+    controls.classList.add('is-positioned');
   }
 
   function show(index, announce) {
@@ -37,9 +62,10 @@
       slide.setAttribute('aria-hidden', String(!selected));
       dots[i].setAttribute('aria-pressed', String(selected));
     });
+    positionControls();
     if (announce) {
       const title = slides[index].querySelector('h3')?.textContent.trim() || '';
-      status.textContent = `Noticia ${index + 1} de ${slides.length}: ${title}. Rotación automática detenida.`;
+      status.textContent = `Noticia ${index + 1} de ${slides.length}: ${title}`;
     }
   }
 
@@ -48,9 +74,11 @@
   show(0, false);
   controls.hidden = false;
   dots.forEach((dot, index) => dot.addEventListener('click', () => {
-    userSelected = true;
-    show(index, true);
     stopTimer();
+    elapsed = 0;
+    progress.style.transform = 'scaleX(0)';
+    show(index, true);
+    schedule();
   }));
   carousel.addEventListener('pointerenter', event => {
     if (event.pointerType === 'mouse' || event.pointerType === 'pen') {
@@ -64,11 +92,21 @@
       schedule();
     }
   });
-  carousel.addEventListener('focusin', () => { focusInside = true; schedule(); });
+  carousel.addEventListener('focusin', event => {
+    focusInside = event.target.matches(':focus-visible');
+    schedule();
+  });
   carousel.addEventListener('focusout', event => {
     if (!carousel.contains(event.relatedTarget)) { focusInside = false; schedule(); }
   });
   document.addEventListener('visibilitychange', schedule);
+  window.addEventListener('resize', positionControls);
+  if ('ResizeObserver' in window) {
+    const observer = new ResizeObserver(positionControls);
+    observer.observe(stage);
+    slides.forEach(slide => observer.observe(slide.querySelector('.press-photo')));
+  }
+  if (document.fonts?.ready) document.fonts.ready.then(positionControls);
   const onMotionChange = () => { schedule(); };
   if (reducedMotion.addEventListener) reducedMotion.addEventListener('change', onMotionChange);
   else if (reducedMotion.addListener) reducedMotion.addListener(onMotionChange);
