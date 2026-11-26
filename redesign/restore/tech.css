@@ -94,7 +94,7 @@ html { scroll-behavior: smooth; scroll-padding-top: 24px; }
   z-index: -1;
   inset: 0 0 0 50%;
   background: linear-gradient(165deg,#ffa13b,#ff7746);
-  clip-path: polygon(69% 0,90% 0,36% 100%,15% 100%);
+  clip-path: polygon(67% 0,94% 0,49% 100%,12% 100%);
 }
 .tech-header {
   position: absolute;
@@ -175,16 +175,17 @@ html { scroll-behavior: smooth; scroll-padding-top: 24px; }
 .tech-mobile-toggle { display: none; }
 .tech-hero {
   display: grid;
-  grid-template-columns: minmax(0,1.22fr) minmax(0,.78fr);
+  grid-template-columns: repeat(2,minmax(0,1fr));
   align-items: center;
-  gap: clamp(24px,5vw,74px);
-  padding-block: 111px 66px;
+  gap: clamp(24px,4.5vw,65px);
+  padding-block: 111px 56px;
 }
-#tech .tech-hero h1 { font-size: clamp(32px,3.6vw,56px); font-weight: 740; }
+.tech-hero-copy { container-type: inline-size; }
+#tech .tech-hero h1 { font-size: clamp(32px,3.8vw,56px); font-weight: 740; }
 #tech .tech-hero h1 strong {
   display: block;
   margin-top: .32em;
-  font-size: clamp(37px,4.15vw,64px);
+  font-size: clamp(23px,9cqi,56px);
   line-height: 1.08;
   font-weight: 800;
 }
@@ -208,68 +209,14 @@ html { scroll-behavior: smooth; scroll-padding-top: 24px; }
 }
 .tech-hero-secondary:hover { background: #ffffff20; }
 .tech-hero-client { display: inline-flex; align-items: center; gap: 8px; margin-top: 11px; min-height: 44px; color: #fff; font-size: 15px; font-weight: 650; }
-.tech-hero-example {
-  justify-self: end;
-  width: min(100%,472px);
-  padding: clamp(20px,3.1vw,40px);
-  border: 1px solid #dbe6ff;
-  border-radius: 23px;
-  background: #fff;
-  box-shadow: 0 20px 48px #081c653d;
-  color: var(--restore-ink);
+.tech-hero-photo {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1.14;
+  border-radius: 22px;
+  object-fit: cover;
+  object-position: center 15%;
 }
-#tech .tech-hero-example h2 {
-  margin-bottom: 21px;
-  color: #415477;
-  font-size: 15px;
-  font-weight: 700;
-  letter-spacing: 0;
-}
-.tech-hero-example dl { margin: 0; }
-.tech-hero-example dl > div {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 2px 12px;
-  padding-block: 8px;
-}
-.tech-hero-example dt { color: #485671; font-size: 14px; }
-.tech-hero-example dd {
-  margin: 0;
-  font-weight: 690;
-  font-variant-numeric: tabular-nums;
-}
-.tech-hero-example dl > .tech-example-total {
-  display: grid;
-  gap: 4px;
-  padding-block: 0 5px;
-}
-.tech-hero-example .tech-example-total dd {
-  color: #153db7;
-  font-size: clamp(32px,3.6vw,53px);
-  font-weight: 800;
-  line-height: 1.1;
-  letter-spacing: -.035em;
-}
-.tech-example-total small {
-  font-size: 14px;
-  font-weight: 730;
-  letter-spacing: .02em;
-}
-.tech-hero-example dl > .tech-example-duration {
-  padding-block: 11px 15px;
-  margin-bottom: 7px;
-  border-bottom: 1px solid #dbe4f5;
-}
-#tech .tech-hero-example p {
-  margin-top: 12px;
-  padding-top: 13px;
-  border-top: 1px solid #dbe4f5;
-  color: #485671;
-  font-size: 13px;
-}
-.tech-hero-example a { color: #0c43c5; font-weight: 700; }
 .tech-verification {
   display: grid;
   grid-template-columns: minmax(0,.86fr) minmax(0,1.14fr);
@@ -308,7 +255,10 @@ html { scroll-behavior: smooth; scroll-padding-top: 24px; }
 .tech-benefit-panel dt { color: #52617b; font-size: 14px; }
 .tech-benefit-panel dd { margin: 0; font-weight: 700; }
 #tech .tech-benefit .tech-benefit-panel p { margin: 13px 0 0; font-size: 13px; }
-.tech-benefit-terms dl > div { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 12px; padding-block: 9px; }
+.tech-benefit-plan dl > div { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 12px; padding-block: 9px; }
+.tech-benefit-plan dl > .tech-plan-total { margin-top: 5px; padding: 12px 14px; border-radius: 10px; background: #e2ebff; }
+.tech-plan-total dt, .tech-plan-total dd { color: #123dba; }
+.tech-plan-total dd { font-size: 18px; }
 .tech-contact-brand { display: flex; align-items: center; gap: 12px; }
 .tech-contact-brand img { flex: none; border-radius: 9px; }
 .tech-benefit-contact dl > div + div { margin-top: 12px; }
@@ -430,10 +380,9 @@ html { scroll-behavior: smooth; scroll-padding-top: 24px; }
   .tech-masthead::before { display: none; }
 
   .tech-hero { grid-template-columns: 1fr; gap: 24px; padding-block: 24px 33px; }
-  .tech-hero-example { width: 100%; }
+  .tech-hero-photo { aspect-ratio: 1.18; border-radius: 16px; }
   .tech-verification, .tech-press-grid { grid-template-columns: 1fr; }
 
-  #tech .tech-hero h1 strong { font-size: clamp(31px,8.5vw,49px); }
   #tech .tech-hero-copy > p { margin-top: 14px; }
 
 
