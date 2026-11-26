@@ -3,6 +3,9 @@ import { examples } from './archive-examples.js?v=3fbd185846';
 const archive = document.querySelector('#archivo');
 const resultList = document.querySelector('#press-archive-list');
 const cardTemplate = document.querySelector('#press-archive-card');
+const moreButton = document.querySelector('#press-archive-more');
+const status = document.querySelector('#press-archive-status');
+const PAGE_SIZE = 10;
 const topics = new Map([
   ['medios', 'En los medios'],
   ['comunicados', 'Comunicados'],
@@ -32,6 +35,7 @@ const originals = [...(archiveOriginals ? archiveOriginals.content.querySelector
 const newestFirst = (a, b) => b.date.localeCompare(a.date);
 // Show the three real reports first, followed by dated demo examples.
 const publications = [...originals.sort(newestFirst), ...examples.slice().sort(newestFirst)];
+let visibleCount = 0;
 
 function articleURL(id) {
   const url = new URL('./nota/', location.href);
@@ -108,8 +112,12 @@ function restoreList() {
   for (const param of ['vista', 'tema', 'q', 'pagina']) url.searchParams.delete(param);
   if (url.href !== location.href) history.replaceState(history.state, '', url);
 
-  resultList.replaceChildren(...publications.map(createCard));
   const anchorId = location.hash.slice(1);
+  const anchorIndex = publications.findIndex(item => item.id && `nota-${item.id}` === anchorId);
+  visibleCount = Math.min(publications.length, Math.max(PAGE_SIZE, Math.ceil((anchorIndex + 1) / PAGE_SIZE) * PAGE_SIZE));
+  resultList.replaceChildren(...publications.slice(0, visibleCount).map(createCard));
+  moreButton.hidden = visibleCount >= publications.length;
+  status.textContent = '';
   if (anchorId.startsWith('nota-')) {
     const destination = document.getElementById(anchorId) ?? archive;
     requestAnimationFrame(() => {
@@ -118,6 +126,15 @@ function restoreList() {
     });
   }
 }
+
+moreButton.addEventListener('click', () => {
+  const firstNewIndex = visibleCount;
+  visibleCount = Math.min(publications.length, visibleCount + PAGE_SIZE);
+  resultList.append(...publications.slice(firstNewIndex, visibleCount).map(createCard));
+  moreButton.hidden = visibleCount >= publications.length;
+  status.textContent = `Se muestran ${visibleCount} de ${publications.length} publicaciones.`;
+  if (moreButton.hidden) resultList.children[firstNewIndex]?.querySelector('a')?.focus({ preventScroll: true });
+});
 
 restoreList();
 window.addEventListener('popstate', restoreList);
