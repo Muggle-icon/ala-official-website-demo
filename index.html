@@ -8,7 +8,7 @@
   <title>ALA México | Préstamos personales</title>
   <meta name="description" content="Conoce los préstamos personales de ALA, sus requisitos, los costos y los medios de atención oficiales.">
   <link rel="icon" href="redesign/assets/app-icon.png">
-  <link rel="stylesheet" href="redesign/restore/tech.css?v=contenido1">
+  <link rel="stylesheet" href="redesign/restore/tech.css?v=evidencia2">
   <script src="redesign/restore/interactions.js?v=contenido1" defer></script>
 </head>
 <body>
@@ -51,16 +51,24 @@
         </div>
         <a class="tech-hero-client" href="#tech-pagos">Ya tengo un préstamo <span aria-hidden="true">→</span></a>
       </div>
-      <figure class="tech-hero-app">
-        <img src="redesign/restore/assets/ala-google-play-plan.png" alt="Imagen publicada por ALA en Google Play, con una vista del plan de pago y sus parcialidades." width="480" height="1039" fetchpriority="high">
-        <figcaption><a href="https://play.google.com/store/apps/details?id=prestamo.dinero.ala&amp;hl=es_MX">Ficha oficial de ALA en Google Play <span aria-hidden="true">↗</span></a><span>Importes ilustrativos de la imagen.</span></figcaption>
-      </figure>
+      <aside id="tech-ejemplo" class="tech-hero-example" aria-labelledby="tech-example-title">
+        <h2 id="tech-example-title">Ejemplo representativo</h2>
+        <dl>
+          <div class="tech-example-total"><dt>Total a pagar</dt><dd>$5,353.80 <small>MXN</small></dd></div>
+          <div class="tech-example-duration"><dt>Plazo y parcialidades</dt><dd>61 días · 4 pagos</dd></div>
+          <div><dt>Monto del préstamo</dt><dd>$5,000.00</dd></div>
+          <div><dt>Intereses</dt><dd>$305.00</dd></div>
+          <div><dt>IVA</dt><dd>$48.80</dd></div>
+        </dl>
+        <p>Tu oferta puede variar. <a href="channel/ios_contract/">Consulta el contrato <span aria-hidden="true">→</span></a></p>
+      </aside>
     </section>
   </div>
   <section id="tech-seguridad" class="tech-verification restore-shell" aria-labelledby="tech-verify-title">
     <div class="tech-verification-intro">
       <h2 id="tech-verify-title">Verifica quién te presta</h2>
       <p>Si encontraste ALA en un anuncio o recibiste un mensaje, compara estos datos con los registros públicos antes de compartir información o hacer un pago.</p>
+      <a class="tech-verification-more" href="#tech-responsables">Quién atiende tus aclaraciones <span aria-hidden="true">→</span></a>
     </div>
     <div class="tech-registry-card">
       <dl>
@@ -86,14 +94,14 @@
       </ul>
     </div>
     <div class="tech-benefit">
-      <div class="tech-benefit-panel tech-benefit-plan">
-        <span class="tech-panel-label" id="tech-ejemplo">Ejemplo representativo del sitio oficial</span>
+      <div class="tech-benefit-panel tech-benefit-terms">
+        <span class="tech-panel-label">Condiciones publicadas por ALA</span>
         <dl>
-          <div><dt>Monto solicitado</dt><dd>$5,000 MXN</dd></div>
-          <div><dt>Plazo</dt><dd>61 días · 4 pagos</dd></div>
-          <div class="tech-plan-total"><dt>Total a pagar</dt><dd>$5,353.80 MXN</dd></div>
+          <div><dt>Monto disponible</dt><dd>$100–$50,000 MXN</dd></div>
+          <div><dt>Plazo</dt><dd>61–154 días</dd></div>
+          <div><dt>Tasa diaria desde</dt><dd>0.1% (36% anual)</dd></div>
         </dl>
-        <p>Incluye $305 de intereses y $48.80 de IVA. Tu oferta puede variar. <a href="channel/ios_contract/">Consulta el contrato</a>.</p>
+        <p>Usa los montos y las fechas de tu oferta para comparar el costo.</p>
       </div>
       <div><h3>Cuánto te cuesta el préstamo</h3><p>Al comparar opciones, revisa el total a pagar además del monto de cada parcialidad. Comprueba las fechas y considera cuánto puedes apartar de tus ingresos.</p><a href="#tech-costos">Consultar los costos ›</a></div>
     </div>
@@ -154,6 +162,27 @@
         <button type="button" data-slide-to="1" aria-controls="tech-guide-track" aria-label="Artículo 2"></button>
         <button type="button" data-slide-to="2" aria-controls="tech-guide-track" aria-label="Artículo 3"></button>
       </div>
+    </div>
+  </section>
+  <section id="tech-responsables" class="tech-accountability tech-press restore-shell" aria-labelledby="tech-accountability-title">
+    <div class="tech-press-heading"><h2 id="tech-accountability-title">Quién responde y qué revisa ALA</h2></div>
+    <div class="tech-press-grid">
+      <article>
+        <a href="live/legal/docs/une-ala.pdf">
+          <p>Aviso de la UNE · <time datetime="2026-10-20">20 oct 2026</time></p>
+          <h3>Unidad Especializada de Atención a Usuarios</h3>
+          <p class="tech-source-detail">El aviso identifica a <strong>Luis Daniel Diaz Aguilera</strong> como titular de la UNE e indica cómo presentar una consulta o reclamación.</p>
+          <span>Consultar el aviso oficial (PDF) <span aria-hidden="true">→</span></span>
+        </a>
+      </article>
+      <article>
+        <a href="article/que-hacer-ante-la-presunta-suplantacion-de-ala-o-dudas-sobre-el-proceso-de-cobranza/">
+          <p>Guía publicada por ALA · <time datetime="2026-10-19">19 oct 2026</time></p>
+          <h3>Cómo se revisa un reporte de suplantación</h3>
+          <p class="tech-source-detail">Atención a Clientes puede revisar el origen del número, su relación con ALA, el saldo y el registro de pagos.</p>
+          <span>Leer el procedimiento <span aria-hidden="true">→</span></span>
+        </a>
+      </article>
     </div>
   </section>
   <section id="ala-en-los-medios" class="tech-press restore-shell" aria-labelledby="tech-press-title">
