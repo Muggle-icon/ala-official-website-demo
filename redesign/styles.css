@@ -343,7 +343,9 @@ h1>span {
   width:100%;
   height:100%;
   object-fit:cover;
-  object-position:35% 50%
+  object-position:100% 50%;
+  transform:scale(1.35);
+  transform-origin:100% 40%
 }
 .section-heading {
   display:flex;
@@ -1603,7 +1605,7 @@ details[open]>summary .plus:after {
     border-radius:20px
   }
   .hero-photo {
-    object-position:35% 48%
+    object-position:90% 50%
   }
   .section {
     padding-block:54px
@@ -2102,4 +2104,13 @@ details[open]>summary .plus:after {
     animation:none!important;
     transition:none!important
   }
+}
+
+/* Preserve the everyday action when editorial photos are cropped. */
+.guide-card>.guide-photo-groceries {
+  object-position:50% 57%
+}
+
+.guide-card>.guide-photo-phone {
+  object-position:50% 88%
 }
