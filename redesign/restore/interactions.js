@@ -1,76 +1,270 @@
 (() => {
-  const versions = {
-    finance: document.getElementById('finance'),
-    tech: document.getElementById('tech'),
-  };
-  const query = new URLSearchParams(window.location.search);
-  const activeVersion = query.get('design') === 'tecnologia' ? 'tech' : 'finance';
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const scrollBehavior = () => reducedMotion.matches ? 'instant' : 'smooth';
 
-  for (const [name, panel] of Object.entries(versions)) {
-    if (!panel) continue;
-    const isCurrent = name === activeVersion;
-    panel.hidden = !isCurrent;
-    const link = document.querySelector(`[data-version-link="${name}"]`);
-    if (isCurrent) link?.setAttribute('aria-current', 'page');
-    else link?.removeAttribute('aria-current');
+  const legacySections = new Map(Object.entries({
+    'ala-content': 'tech-content',
+    contenido: 'tech-content',
+    credito: 'tech-content',
+    requisitos: 'tech-producto',
+    'como-solicitar': 'tech-producto',
+    'como-funciona': 'tech-producto',
+    costos: 'tech-costos',
+    pagos: 'tech-costos',
+    ayuda: 'tech-ayuda',
+    seguridad: 'tech-seguridad',
+    educacion: 'tech-educacion',
+    'more-articles': 'tech-educacion',
+    'ala-en-los-medios': 'tech-educacion',
+    descargar: 'tech-descargar',
+    'documentos-legales': 'tech-legal',
+    'informacion-legal': 'tech-legal',
+    'finance-main': 'tech-content',
+    'finance-beneficios': 'tech-producto',
+    'finance-requisitos': 'tech-producto',
+    'finance-costos': 'tech-costos',
+    'finance-articulos': 'tech-educacion',
+    'finance-seguridad': 'tech-seguridad',
+    'finance-pagos': 'tech-costos',
+    'finance-ayuda': 'tech-ayuda',
+    'finance-descarga': 'tech-descargar',
+    'finance-legal': 'tech-legal',
+  }));
+  const scrollToLegacySection = behavior => {
+    const target = legacySections.get(window.location.hash.slice(1));
+    if (target) document.getElementById(target)?.scrollIntoView({ behavior });
+  };
+  window.addEventListener('load', () => scrollToLegacySection('instant'), { once: true });
+  window.addEventListener('hashchange', () => scrollToLegacySection(scrollBehavior()));
+
+  const header = document.querySelector('[data-restore-header]');
+  const nav = header?.querySelector('[data-restore-nav]');
+  const menuToggle = header?.querySelector('[data-mobile-menu]');
+  if (nav && menuToggle) {
+    const disclosures = [...nav.querySelectorAll('.tech-nav-disclosure')];
+    let mobile = false;
+
+    const closeDisclosures = except => {
+      for (const disclosure of disclosures) {
+        if (disclosure !== except) disclosure.open = false;
+      }
+    };
+
+    const setMobileMenu = open => {
+      header.toggleAttribute('data-mobile-open', open);
+      nav.inert = mobile && !open;
+      menuToggle.setAttribute('aria-expanded', String(open));
+      menuToggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+      if (!open) closeDisclosures();
+    };
+
+    const syncBreakpoint = () => {
+      const nextMobile = getComputedStyle(menuToggle).display !== 'none';
+      if (mobile === nextMobile) return;
+      mobile = nextMobile;
+      setMobileMenu(false);
+    };
+
+    menuToggle.addEventListener('click', () => {
+      setMobileMenu(!header.hasAttribute('data-mobile-open'));
+    });
+
+    for (const disclosure of disclosures) {
+      disclosure.addEventListener('toggle', () => {
+        if (disclosure.open) closeDisclosures(disclosure);
+      });
+    }
+
+    nav.addEventListener('click', event => {
+      if (event.target.closest('a')) setMobileMenu(false);
+    });
+
+    document.addEventListener('pointerdown', event => {
+      for (const disclosure of disclosures) {
+        if (!disclosure.contains(event.target)) disclosure.open = false;
+      }
+      if (!header.contains(event.target) && header.hasAttribute('data-mobile-open')) {
+        setMobileMenu(false);
+      }
+    });
+
+    nav.addEventListener('focusout', event => {
+      const disclosure = event.target.closest('details');
+      if (disclosure && event.relatedTarget && !disclosure.contains(event.relatedTarget)) {
+        disclosure.open = false;
+      }
+    });
+
+    document.addEventListener('keydown', event => {
+      if (event.key !== 'Escape' || document.querySelector('dialog[open]')) return;
+      const openDisclosure = disclosures.find(disclosure => disclosure.open);
+      if (openDisclosure) {
+        event.preventDefault();
+        openDisclosure.open = false;
+        openDisclosure.querySelector('summary')?.focus();
+      } else if (header.hasAttribute('data-mobile-open')) {
+        event.preventDefault();
+        setMobileMenu(false);
+        menuToggle.focus();
+      }
+    });
+
+    header.setAttribute('data-nav-ready', '');
+    window.addEventListener('resize', syncBreakpoint, { passive: true });
+    syncBreakpoint();
   }
 
-  // Keep bookmarks to sections from the previous homepage working.
-  const legacySections = {
-    'ala-content': ['finance-main', 'tech-content'],
-    contenido: ['finance-main', 'tech-content'],
-    credito: ['finance-main', 'tech-content'],
-    requisitos: ['finance-requisitos', 'tech-producto'],
-    'como-solicitar': ['finance-beneficios', 'tech-producto'],
-    'como-funciona': ['finance-beneficios', 'tech-producto'],
-    costos: ['finance-costos', 'tech-costos'],
-    pagos: ['finance-pagos', 'tech-costos'],
-    ayuda: ['finance-ayuda', 'tech-ayuda'],
-    seguridad: ['finance-seguridad', 'tech-seguridad'],
-    educacion: ['finance-articulos', 'tech-educacion'],
-    'more-articles': ['finance-articulos', 'tech-educacion'],
-    'ala-en-los-medios': ['finance-pagos', 'tech-educacion'],
-    descargar: ['finance-descarga', 'tech-descargar'],
-    'documentos-legales': ['finance-legal', 'tech-legal'],
-    'informacion-legal': ['finance-legal', 'tech-legal'],
-  };
-  const legacyTarget = legacySections[window.location.hash.slice(1)]?.[activeVersion === 'tech' ? 1 : 0];
-  if (legacyTarget) {
-    window.addEventListener('load', () => document.getElementById(legacyTarget)?.scrollIntoView(), { once: true });
-  }
-
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-
-  for (const carousel of document.querySelectorAll('[data-carousel]')) {
+  const initializeCarousel = carousel => {
     const track = carousel.querySelector('[data-track]');
+    if (!track?.children.length) return;
+
     const previous = carousel.querySelector('[data-carousel-prev]');
     const next = carousel.querySelector('[data-carousel-next]');
-    if (!track || !previous || !next) continue;
+    const indicators = [...carousel.querySelectorAll('[data-slide-to]')];
+    const slides = [...track.children];
+    let positions = [];
+    let settledTarget = null;
+    let drag = null;
+    let settleTimer;
+    let updateFrame;
 
-    const slides = Array.from(track.children);
-    const updateButtons = () => {
-      previous.disabled = track.scrollLeft <= 1;
-      next.disabled = track.scrollWidth - track.clientWidth - track.scrollLeft <= 1;
+    const measure = () => {
+      const snapshot = track.scrollLeft;
+      // The first card starts at the shared page inset. Treat it as scroll zero.
+      const origin = slides[0].getBoundingClientRect().left + snapshot;
+      const max = Math.max(0, track.scrollWidth - track.clientWidth);
+      positions = slides.map(slide => Math.max(0, Math.min(max, slide.getBoundingClientRect().left - origin + snapshot)));
     };
 
-    const move = direction => {
-      const position = track.scrollLeft;
-      const origin = track.getBoundingClientRect().left + track.clientLeft;
-      const starts = slides.map(slide => slide.getBoundingClientRect().left - origin + position);
+    const nearestSlide = scroll => positions.reduce((nearest, position, index) => {
+      return Math.abs(position - scroll) < Math.abs(positions[nearest] - scroll) ? index : nearest;
+    }, 0);
+
+    const paintControls = () => {
+      const current = settledTarget ?? track.scrollLeft;
+      previous?.setAttribute('aria-disabled', String(current <= 2));
+      next?.setAttribute('aria-disabled', String(current >= positions.at(-1) - 2));
+
+      const activeSlide = nearestSlide(current);
+      for (const indicator of indicators) {
+        indicator.setAttribute('aria-current', String(Number(indicator.dataset.slideTo) === activeSlide));
+      }
+    };
+
+    const updateControls = () => {
+      if (updateFrame !== undefined) return;
+      updateFrame = requestAnimationFrame(() => {
+        updateFrame = undefined;
+        paintControls();
+      });
+    };
+
+    const clearTarget = () => {
+      settledTarget = null;
+      window.clearTimeout(settleTimer);
+      updateControls();
+    };
+
+    const scrollTo = position => {
+      settledTarget = position;
+      track.scrollTo({ left: position, behavior: scrollBehavior() });
+      window.clearTimeout(settleTimer);
+      settleTimer = window.setTimeout(clearTarget, 480);
+      updateControls();
+    };
+
+    const step = direction => {
+      const current = settledTarget ?? track.scrollLeft;
       const destination = direction > 0
-        ? starts.find(start => start > position + 2) ?? track.scrollWidth
-        : starts.findLast(start => start < position - 2) ?? 0;
-
-      track.scrollTo({ left: destination, behavior: reduceMotion.matches ? 'instant' : 'smooth' });
-      updateButtons();
+        ? positions.find(position => position > current + 2)
+        : positions.findLast(position => position < current - 2);
+      if (destination !== undefined) scrollTo(destination);
     };
 
-    previous.addEventListener('click', () => move(-1));
-    next.addEventListener('click', () => move(1));
-    track.addEventListener('scroll', updateButtons, { passive: true });
-    new ResizeObserver(updateButtons).observe(track);
-    updateButtons();
-  }
+    previous?.addEventListener('click', () => step(-1));
+    next?.addEventListener('click', () => step(1));
+    for (const indicator of indicators) {
+      indicator.addEventListener('click', () => {
+        const destination = positions[Number(indicator.dataset.slideTo)];
+        if (destination !== undefined) scrollTo(destination);
+      });
+    }
+
+    track.addEventListener('keydown', event => {
+      if (event.target !== track) return;
+      if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+        event.preventDefault();
+        step(event.key === 'ArrowRight' ? 1 : -1);
+      }
+      if (event.key === 'Home' || event.key === 'End') {
+        event.preventDefault();
+        scrollTo(event.key === 'Home' ? positions[0] : positions.at(-1));
+      }
+    });
+
+    track.addEventListener('scroll', updateControls, { passive: true });
+    track.addEventListener('scrollend', () => {
+      if (settledTarget === null || Math.abs(settledTarget - track.scrollLeft) < 4) clearTarget();
+    }, { passive: true });
+    track.addEventListener('wheel', clearTarget, { passive: true });
+
+    track.addEventListener('pointerdown', event => {
+      clearTarget();
+      if (event.pointerType !== 'mouse' || event.button !== 0) return;
+      const control = event.target.closest('a, button, input, select, textarea');
+      if (control && !control.closest('.tech-story')) return;
+      drag = { id: event.pointerId, start: event.clientX, left: track.scrollLeft };
+    });
+
+    track.addEventListener('pointermove', event => {
+      if (drag?.id !== event.pointerId) return;
+      if (!(event.buttons & 1)) {
+        finishDrag(event);
+        return;
+      }
+      const offset = event.clientX - drag.start;
+      if (!track.hasAttribute('data-dragging')) {
+        if (Math.abs(offset) < 8) return;
+        track.setAttribute('data-dragging', '');
+        track.setPointerCapture(event.pointerId);
+        window.getSelection()?.removeAllRanges();
+      }
+      event.preventDefault();
+      track.scrollLeft = drag.left - offset;
+    });
+
+    function finishDrag(event) {
+      if (drag?.id !== event.pointerId) return;
+      drag = null;
+      if (!track.hasAttribute('data-dragging')) return;
+      const target = positions[nearestSlide(track.scrollLeft)];
+      track.removeAttribute('data-dragging');
+      if (track.hasPointerCapture(event.pointerId)) track.releasePointerCapture(event.pointerId);
+      scrollTo(target);
+    }
+
+    track.addEventListener('pointerup', finishDrag);
+    track.addEventListener('pointercancel', finishDrag);
+    track.addEventListener('lostpointercapture', finishDrag);
+    track.addEventListener('pointerleave', event => {
+      if (!track.hasAttribute('data-dragging')) finishDrag(event);
+    });
+    track.addEventListener('dragstart', event => {
+      if (drag) event.preventDefault();
+    });
+
+    const resize = () => {
+      measure();
+      clearTarget();
+    };
+    if ('ResizeObserver' in window) new ResizeObserver(resize).observe(track);
+    else window.addEventListener('resize', resize, { passive: true });
+
+    measure();
+    paintControls();
+  };
+
+  document.querySelectorAll('[data-carousel]').forEach(initializeCarousel);
 
   document.querySelectorAll('[data-faq-tabs]').forEach((group, groupIndex) => {
     const pairs = Array.from(group.querySelectorAll('[data-faq-tab]'))
@@ -79,17 +273,20 @@
     if (!pairs.length) return;
 
     group.setAttribute('role', 'tablist');
+    for (const [index, { button, panel }] of pairs.entries()) {
+      button.id ||= `restore-faq-tab-${groupIndex + 1}-${index + 1}`;
+      button.setAttribute('role', 'tab');
+      panel.setAttribute('role', 'tabpanel');
+      panel.setAttribute('aria-labelledby', button.id);
+    }
+
     const select = current => {
-      pairs.forEach(({ button, panel }, index) => {
+      for (const { button, panel } of pairs) {
         const isSelected = button === current;
-        button.id ||= `restore-faq-tab-${groupIndex + 1}-${index + 1}`;
-        button.setAttribute('role', 'tab');
         button.setAttribute('aria-selected', String(isSelected));
         button.tabIndex = isSelected ? 0 : -1;
-        panel.setAttribute('role', 'tabpanel');
-        panel.setAttribute('aria-labelledby', button.id);
         panel.hidden = !isSelected;
-      });
+      }
     };
 
     pairs.forEach(({ button }, index) => {
@@ -115,6 +312,7 @@
   const downloadDialog = document.getElementById('download-dialog');
   if (typeof downloadDialog?.showModal !== 'function') return;
   let downloadTrigger;
+  let backdropPointerDown = false;
 
   for (const trigger of document.querySelectorAll('[data-download]')) {
     trigger.addEventListener('click', event => {
@@ -130,13 +328,23 @@
     closeButton.addEventListener('click', () => downloadDialog.close());
   }
 
-  downloadDialog.addEventListener('click', event => {
-    if (event.target !== downloadDialog) return;
+  const onBackdrop = event => {
+    if (event.target !== downloadDialog) return false;
     const { left, top, right, bottom } = downloadDialog.getBoundingClientRect();
-    if (event.clientX < left || event.clientX > right || event.clientY < top || event.clientY > bottom) {
-      downloadDialog.close();
-    }
+    return event.clientX < left || event.clientX > right || event.clientY < top || event.clientY > bottom;
+  };
+
+  downloadDialog.addEventListener('pointerdown', event => {
+    backdropPointerDown = onBackdrop(event);
   });
 
-  downloadDialog.addEventListener('close', () => downloadTrigger?.focus());
+  downloadDialog.addEventListener('click', event => {
+    if (backdropPointerDown && onBackdrop(event)) downloadDialog.close();
+    backdropPointerDown = false;
+  });
+
+  downloadDialog.addEventListener('close', () => {
+    backdropPointerDown = false;
+    downloadTrigger?.focus({ preventScroll: true });
+  });
 })();
