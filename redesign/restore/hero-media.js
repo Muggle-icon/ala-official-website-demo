@@ -1,11 +1,14 @@
-function createHeroMedia(url, onFrameAvailable, onPlaybackError) {
+function createHeroMedia(url, onFrameAvailable, onPlaybackError, manifest) {
   const rate = 24;
   const network = new AbortController();
   const frames = new Map();
   const cachedGroups = new Set();
-  const downloadedWindows = new Set();
-  const pendingWindows = new Set();
-  const groupsPerWindow = 4;
+  const groups = [];
+  const transfers = { forward: null, seek: null };
+  let presented = 0;
+  let settled = true;
+  let settleTimer;
+  let jumped = false;
   let target = 0;
   let direction = 1;
   let decoder;
@@ -14,7 +17,6 @@ function createHeroMedia(url, onFrameAvailable, onPlaybackError) {
   let activeGroup;
   let samples;
   let bytes;
-  let downloadedBytes = 0;
   let acceptsRanges;
   let largeFrames = false;
   let disposed = false;
@@ -23,7 +25,9 @@ function createHeroMedia(url, onFrameAvailable, onPlaybackError) {
     for (const frame of frames.values()) frame.close();
     frames.clear();
     cachedGroups.clear();
-    downloadedWindows.clear();
+    clearTimeout(settleTimer);
+    for (const key of Object.keys(transfers)) cancelTransfer(key);
+    groups.length = 0;
     if (decoder && decoder.state !== 'closed') decoder.close();
     decoder = undefined;
     bytes = undefined;
@@ -58,34 +62,33 @@ function createHeroMedia(url, onFrameAvailable, onPlaybackError) {
     video.src = url;
   };
 
-  const keepGroup = (index, group) => largeFrames
-    ? index === group || index === group + direction
-    : Math.abs(index - group) <= 2;
+  const ready = group => groups[group] && groups[group].loaded === groups[group].limit;
 
   const decodeAround = () => {
     if (!decoder || !bytes) return;
     const group = samples[target][2];
-    const window = Math.floor(group / groupsPerWindow);
-    fetchWindow(window);
-    if (downloadedWindows.has(window)) fetchWindow(window + direction);
+    scheduleTransfer(group);
     if (activeGroup !== undefined) return;
-    // Drop frames far from the playhead before asking the decoder for more work.
+    const nearby = [group];
+    if (!ready(group) && Math.sign(target - presented) === direction) {
+      // During a continuous sweep the network may trail the finger. Decode the
+      // nearest complete group that actually advances the frame on screen.
+      const limit = samples[presented][2];
+      for (let g = group - direction; (g - limit) * direction >= 0; g -= direction) {
+        if (ready(g)) { nearby.push(g); break; }
+      }
+    }
+    nearby.push(group + direction, group - direction, group + 2 * direction);
+    const wanted = [...new Set(nearby.filter(ready))].slice(0, largeFrames ? 2 : 4);
     for (const [index, frame] of frames) {
-      if (keepGroup(samples[index][2], group)) continue;
+      if (wanted.includes(samples[index][2])) continue;
       frame.close();
       frames.delete(index);
       cachedGroups.delete(samples[index][2]);
     }
-
-    // At the native 4K size two four-frame groups already occupy about 100 MB.
-    const nearby = largeFrames ? [group, group + direction] : [group, group + direction, group - direction, group + 2 * direction];
-    const nextGroup = nearby.find(index =>
-      index >= 0 && index <= samples.at(-1)[2] && !cachedGroups.has(index));
+    const nextGroup = wanted.find(index => !cachedGroups.has(index));
     if (nextGroup === undefined) return;
-    const start = samples.findIndex(sample => sample[2] === nextGroup);
-    const end = samples.findLastIndex(sample => sample[2] === nextGroup);
-    if (downloadedBytes < samples[end][0] + samples[end][1]
-      && !downloadedWindows.has(Math.floor(nextGroup / groupsPerWindow))) return;
+    const { start, end } = groups[nextGroup];
     const currentDecoder = decoder;
     activeGroup = nextGroup;
     // A group starts on a keyframe and has no references to earlier groups.
@@ -105,10 +108,7 @@ function createHeroMedia(url, onFrameAvailable, onPlaybackError) {
     }
     currentDecoder.flush().then(() => {
       if (decoder !== currentDecoder) return;
-      if (keepGroup(nextGroup, samples[target][2])
-        && samples.slice(start, end + 1).every((_, offset) => frames.has(start + offset))) {
-        cachedGroups.add(nextGroup);
-      }
+      cachedGroups.add(nextGroup);
       activeGroup = undefined;
       onFrameAvailable();
     }).catch(() => useNativeVideo());
@@ -120,55 +120,96 @@ function createHeroMedia(url, onFrameAvailable, onPlaybackError) {
     return response;
   };
 
-  // Read a window around the playhead and one in its direction of travel.
-  // Pausing or leaving the hero does not require downloading the remaining 4K film.
-  const fetchWindow = async window => {
-    if (acceptsRanges === false || window < 0 || window * groupsPerWindow > samples.at(-1)[2]
-      || pendingWindows.size >= (acceptsRanges ? 2 : 1)
-      || downloadedWindows.has(window) || pendingWindows.has(window)) return;
-    pendingWindows.add(window);
-    const start = samples.findIndex(sample => sample[2] === window * groupsPerWindow);
-    const end = samples.findLastIndex(sample => Math.floor(sample[2] / groupsPerWindow) === window);
-    const first = samples[start][0];
-    const last = samples[end][0] + samples[end][1] - 1;
-    try {
-      const response = await fetchMedia(url, {
-        headers: { Range: `bytes=${first}-${last}` },
-        priority: Math.floor(samples[target][2] / groupsPerWindow) === window ? 'high' : 'low',
-      });
-      if (response.status !== 206) {
-        acceptsRanges = false;
-        await loadMovie(response);
-        return;
-      }
-      const block = new Uint8Array(await response.arrayBuffer());
-      if (disposed || video || !bytes) return;
-      if (block.length !== last - first + 1) throw new Error('Rango de video incompleto');
-      acceptsRanges = true;
-      bytes.set(block, first);
-      downloadedWindows.add(window);
-    } catch {
-      useNativeVideo();
-    } finally {
-      pendingWindows.delete(window);
-      if (!disposed && !video) decodeAround();
-    }
+  const cancelTransfer = key => {
+    transfers[key]?.controller.abort();
+    transfers[key] = null;
   };
 
-  const loadMovie = async response => {
-    const reader = response.body.getReader();
+  const scheduleTransfer = group => {
+    if (acceptsRanges === false) return;
+    const current = groups[group];
+    const next = group === groups.length - 1 ? -1 : group === 0 ? 1 : direction;
+    const background = transfers.forward;
+    const seek = transfers.seek;
+    const covered = background && group >= background.first && group <= background.last;
+    // A deliberate jump may replace old work. Ordinary adjacent scroll updates
+    // leave an in-flight request alive long enough to deliver real frames.
+    if (jumped && background && !covered) cancelTransfer('forward');
+    if (seek && seek.first !== group && (jumped || settled)) cancelTransfer('seek');
+    const farFromStream = !covered || current.loaded - background.cursor > (settled ? 96 : 1024) * 1024;
+    if (!ready(group) && !transfers.seek && farFromStream && (group || transfers.forward)) {
+      startTransfer('seek', group, group);
+    }
+    jumped = false;
+    if (transfers.forward || (!acceptsRanges && transfers.seek)) return;
+    // Start from the opening before the scrub begins. For a cold jump, give the
+    // exact short seek first use of the connection, then read adjacent groups.
+    if (!ready(group) && transfers.seek) return;
+    let first = ready(group) ? group + next : group;
+    while (ready(first)) first += next;
+    if (!groups[first] || Math.abs(first - group) > 5) return;
+    let last = first;
+    while (Math.abs(last - first) < (next > 0 ? 15 : 5) && groups[last + next]
+      && groups[last + next].loaded === groups[last + next].offset) last += next;
+    startTransfer('forward', Math.min(first, last), Math.max(first, last));
+  };
+
+  const startTransfer = async (key, first, last) => {
+    const controller = new AbortController();
+    const job = { first, last, cursor: groups[first].loaded, controller };
+    transfers[key] = job;
     try {
-      while (downloadedBytes < bytes.length) {
-        const { value, done } = await reader.read();
-        if (disposed || video) return;
-        if (done) throw new Error('El video de portada está incompleto');
-        const part = value.subarray(0, bytes.length - downloadedBytes);
-        bytes.set(part, downloadedBytes);
-        downloadedBytes += part.length;
+      const response = await fetch(url, {
+        headers: { Range: `bytes=${job.cursor}-${groups[last].limit - 1}` },
+        priority: key === 'seek' ? 'high' : 'low',
+        signal: controller.signal,
+      });
+      if (transfers[key] !== job) return;
+      if (!response.ok) throw new Error('No se pudo cargar el video de portada');
+      acceptsRanges = response.status === 206;
+      if (acceptsRanges) {
+        const range = response.headers.get('Content-Range');
+        if (range?.split('/')[0] !== `bytes ${job.cursor}-${groups[last].limit - 1}`) {
+          throw new Error('Rango de video incorrecto');
+        }
+      }
+      // A static server can ignore Range. Use its existing full response once.
+      if (!acceptsRanges) {
+        cancelTransfer(key === 'seek' ? 'forward' : 'seek');
+        job.cursor = 0;
+        first = 0;
+        last = groups.length - 1;
+      }
+      const limit = groups[last].limit;
+      const reader = response.body.getReader();
+      try {
+        let group = first;
+        while (job.cursor < limit) {
+          const { value, done } = await reader.read();
+          if (transfers[key] !== job) return;
+          if (done) throw new Error('Rango de video incompleto');
+          const length = Math.min(value.length, limit - job.cursor);
+          bytes.set(value.subarray(0, length), job.cursor);
+          job.cursor += length;
+          const previous = group;
+          while (group <= last && job.cursor > groups[group].offset) {
+            const chunk = groups[group];
+            chunk.loaded = Math.max(chunk.loaded, Math.min(chunk.limit, job.cursor));
+            if (chunk.loaded < chunk.limit) break;
+            group++;
+          }
+          if (group !== previous && group <= last) decodeAround();
+        }
+      } finally {
+        reader.releaseLock();
+      }
+    } catch {
+      if (transfers[key] === job && !controller.signal.aborted) useNativeVideo();
+    } finally {
+      if (transfers[key] === job) {
+        transfers[key] = null;
         decodeAround();
       }
-    } finally {
-      reader.releaseLock();
     }
   };
 
@@ -179,7 +220,7 @@ function createHeroMedia(url, onFrameAvailable, onPlaybackError) {
     }
 
     try {
-      const index = await fetchMedia(url.replace(/\.mp4$/, '.json')).then(response => response.json());
+      const index = (await manifest) || await fetchMedia(url.replace(/\.mp4$/, '.json')).then(response => response.json());
       const config = {
         codec: index.codec,
         codedWidth: index.width,
@@ -194,6 +235,11 @@ function createHeroMedia(url, onFrameAvailable, onPlaybackError) {
         return;
       }
       samples = index.samples;
+      samples.forEach(([offset, length, group], frame) => {
+        if (!groups[group]) groups[group] = { start: frame, offset, loaded: offset };
+        groups[group].end = frame;
+        groups[group].limit = offset + length;
+      });
       const [lastOffset, lastLength] = samples.at(-1);
       bytes = new Uint8Array(lastOffset + lastLength);
       largeFrames = index.width * index.height > 4e6;
@@ -201,7 +247,7 @@ function createHeroMedia(url, onFrameAvailable, onPlaybackError) {
         output: frame => {
           const index = Math.round(frame.timestamp * rate / 1e6);
           const group = samples?.[index]?.[2];
-          if (!samples || !keepGroup(group, samples[target][2])) {
+          if (!samples || group !== activeGroup) {
             frame.close();
             return;
           }
@@ -220,16 +266,37 @@ function createHeroMedia(url, onFrameAvailable, onPlaybackError) {
 
   prepare();
   return {
-    frameAt(position) {
-      if (position !== target) direction = position < target ? -1 : 1;
-      target = position;
+    frameAt(position, drawnAt) {
+      presented = Math.max(0, drawnAt ?? 0);
+      if (position !== target) {
+        const next = Math.sign(position - target);
+        jumped = Math.abs(position - target) >= 12 || next !== direction;
+        settled = false;
+        clearTimeout(settleTimer);
+        settleTimer = setTimeout(() => {
+          settled = true;
+          decodeAround();
+        }, 100);
+        direction = next;
+        target = position;
+      }
+      const advances = index => (index - presented) * direction > 0 && (target - index) * direction >= 0;
       if (video) {
-        if (nativeFrame === target) return video;
+        if (nativeFrame === target) return { image: video, index: target };
+        if (!video.seeking && advances(nativeFrame)) {
+          queueMicrotask(() => { if (!disposed) seekVideo(); });
+          return { image: video, index: nativeFrame };
+        }
         seekVideo();
         return null;
       }
       decodeAround();
-      return frames.get(target);
+      if (frames.has(target)) return { image: frames.get(target), index: target };
+      let closest = presented;
+      for (const index of frames.keys()) {
+        if (advances(index) && (index - closest) * direction > 0) closest = index;
+      }
+      return closest === presented ? null : { image: frames.get(closest), index: closest };
     },
     dispose() {
       disposed = true;

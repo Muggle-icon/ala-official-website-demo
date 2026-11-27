@@ -50,6 +50,18 @@
       name: element.dataset.cut,
       media: element.media ? window.matchMedia(element.media) : null,
     }));
+    // This small index can arrive with the poster, before any video bytes are needed.
+    const manifests = new Map();
+    const prepareManifest = cut => {
+      if (typeof VideoDecoder !== 'function') return;
+      if (!manifests.has(cut)) {
+        const request = fetch(film.dataset.mediaRoot + '/' + cut + '.json', { priority: 'low' })
+          .then(response => response.ok ? response.json() : null)
+          .catch(() => null);
+        manifests.set(cut, request);
+      }
+      return manifests.get(cut);
+    };
     const timelineLastFrame = Number(film?.dataset.frames) - 1;
     const finalFrame = Number(film?.dataset.holdFrame ?? timelineLastFrame);
     const clamp = value => Math.min(1, Math.max(0, value));
@@ -81,7 +93,7 @@
         if (cut !== 'wide-native') return;
         movie.dispose();
         startMovie('wide');
-      });
+      }, prepareManifest(cut));
     };
 
     const paintMovie = offset => {
@@ -98,8 +110,9 @@
         film.removeAttribute('data-frame-ready');
         drawnAt = -1;
       }
-      const image = movie?.frameAt(position);
-      if (!position || position === drawnAt || !image) return;
+      const ready = movie?.frameAt(position, drawnAt);
+      if (!position || !ready || ready.index === drawnAt) return;
+      const { image, index } = ready;
       const width = image.displayWidth || image.videoWidth;
       const height = image.displayHeight || image.videoHeight;
       if (film.width !== width || film.height !== height) {
@@ -107,8 +120,8 @@
         film.height = height;
       }
       filmContext.drawImage(image, 0, 0, film.width, film.height);
-      film.setAttribute('data-frame-ready', String(position));
-      drawnAt = position;
+      film.setAttribute('data-frame-ready', String(index));
+      drawnAt = index;
     };
 
     const paint = () => {
@@ -160,7 +173,10 @@
         ? Math.round(viewport * (mobile ? 1.65 : 2.05))
         : 0;
       home.toggleAttribute('data-hero-scrub', storyLength > 0);
-      if (storyLength && geometry?.cut !== cut) resetMovie();
+      if (storyLength && geometry?.cut !== cut) {
+        resetMovie();
+        if (masthead.getBoundingClientRect().bottom > 0) prepareManifest(cut);
+      }
       const slot = visual.getBoundingClientRect();
       const lead = mobile && !storyLength ? 0 : Math.max(0, bounds.height - viewport);
 
