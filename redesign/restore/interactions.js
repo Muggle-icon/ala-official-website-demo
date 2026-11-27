@@ -186,6 +186,24 @@
   const nav = header?.querySelector('[data-restore-nav]');
   const menuToggle = header?.querySelector('[data-mobile-menu]');
   if (nav && menuToggle) {
+    let previousScroll = window.scrollY;
+    let accumulatedScroll = 0;
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.scrollY;
+      const delta = currentScroll - previousScroll;
+      previousScroll = currentScroll;
+      if (currentScroll < 20) {
+        header.removeAttribute('data-scroll-hidden');
+        accumulatedScroll = 0;
+        return;
+      }
+      if (header.hasAttribute('data-mobile-open')) return;
+      if (Math.sign(delta) !== Math.sign(accumulatedScroll)) accumulatedScroll = 0;
+      accumulatedScroll += delta;
+      if (Math.abs(accumulatedScroll) < 12) return;
+      header.toggleAttribute('data-scroll-hidden', accumulatedScroll > 0);
+      accumulatedScroll = 0;
+    }, { passive: true });
     const disclosures = [...nav.querySelectorAll('.tech-nav-disclosure')];
     let mobile = false;
 

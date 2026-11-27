@@ -3,6 +3,8 @@ function createHeroMedia(url, onFrameAvailable) {
   const network = new AbortController();
   const frames = new Map();
   const cachedGroups = new Set();
+  const availableGroups = new Set();
+  const pendingGroups = new Set();
   let target = 0;
   let direction = 1;
   let decoder;
@@ -12,12 +14,14 @@ function createHeroMedia(url, onFrameAvailable) {
   let samples;
   let bytes;
   let downloadedBytes = 0;
+  let acceptsRanges = true;
   let disposed = false;
 
   const releaseDecodedFrames = () => {
     for (const frame of frames.values()) frame.close();
     frames.clear();
     cachedGroups.clear();
+    availableGroups.clear();
     if (decoder && decoder.state !== 'closed') decoder.close();
     decoder = undefined;
     bytes = undefined;
@@ -50,7 +54,7 @@ function createHeroMedia(url, onFrameAvailable) {
   };
 
   const decodeAround = () => {
-    if (!decoder || activeGroup !== undefined) return;
+    if (!decoder || !bytes || activeGroup !== undefined) return;
     const group = samples[target][2];
     // Drop frames far from the playhead before asking the decoder for more work.
     for (const [index, frame] of frames) {
@@ -65,7 +69,10 @@ function createHeroMedia(url, onFrameAvailable) {
     if (nextGroup === undefined) return;
     const start = samples.findIndex(sample => sample[2] === nextGroup);
     const end = samples.findLastIndex(sample => sample[2] === nextGroup);
-    if (downloadedBytes < samples[end][0] + samples[end][1]) return;
+    if (downloadedBytes < samples[end][0] + samples[end][1] && !availableGroups.has(nextGroup)) {
+      if (nextGroup === group) fetchGroup(nextGroup, start, end);
+      return;
+    }
     const currentDecoder = decoder;
     activeGroup = nextGroup;
     // A group starts on a keyframe and has no references to earlier groups.
@@ -94,10 +101,39 @@ function createHeroMedia(url, onFrameAvailable) {
     }).catch(() => useNativeVideo());
   };
 
-  const fetchMedia = async url => {
-    const response = await fetch(url, { signal: network.signal });
+  const fetchMedia = async (url, options = {}) => {
+    const response = await fetch(url, { ...options, signal: network.signal });
     if (!response.ok) throw new Error('No se pudo cargar el video de portada');
     return response;
+  };
+
+  // Prioritize the user's current position when the full video is still
+  // downloading. A six-frame keyframe group is independently decodable.
+  const fetchGroup = async (group, start, end) => {
+    if (!acceptsRanges || pendingGroups.has(group)) return;
+    pendingGroups.add(group);
+    const first = samples[start][0];
+    const last = samples[end][0] + samples[end][1] - 1;
+    try {
+      const response = await fetchMedia(url, {
+        headers: { Range: `bytes=${first}-${last}` },
+        priority: 'high',
+      });
+      if (response.status !== 206) {
+        acceptsRanges = false;
+        response.body?.cancel();
+        return;
+      }
+      const block = new Uint8Array(await response.arrayBuffer());
+      if (disposed || video || !bytes || block.length !== last - first + 1) return;
+      bytes.set(block, first);
+      availableGroups.add(group);
+      decodeAround();
+    } catch {
+      // Sequential download remains available when a range request fails.
+    } finally {
+      pendingGroups.delete(group);
+    }
   };
 
   const loadMovie = async response => {
@@ -128,7 +164,7 @@ function createHeroMedia(url, onFrameAvailable) {
     try {
       const [index, response] = await Promise.all([
         fetchMedia(url.replace(/\.mp4$/, '.json')).then(response => response.json()),
-        fetchMedia(url),
+        fetchMedia(url, { priority: 'low' }),
       ]);
       const config = {
         codec: index.codec,

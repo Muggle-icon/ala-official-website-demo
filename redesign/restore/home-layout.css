@@ -1,12 +1,12 @@
 #tech {
-  --home-content-max: 82.5rem;
-  --home-inset: max(clamp(1rem, 5vw, 5rem), calc((100% - var(--home-content-max)) / 2));
+  --home-content-max: 103.75rem;
+  --home-inset: max(clamp(1rem, 6.77vw, 8.125rem), calc((100% - var(--home-content-max)) / 2));
   --home-body: clamp(1rem, .955rem + .185vw, 1.125rem);
   --home-small: .9375rem;
   --home-copy-leading: 1.55;
   --home-display: clamp(1.875rem, 1.35rem + 2.2vw, 3.625rem);
-  --home-heading: clamp(1.75rem, 1.4rem + 1.45vw, 2.75rem);
-  --home-subheading: clamp(1.25rem, 1.08rem + .8vw, 2rem);
+  --home-heading: clamp(1.75rem, 1.32rem + 1.42vw, 2.625rem);
+  --home-subheading: clamp(1.25rem, 1.08rem + .72vw, 1.875rem);
   --home-section-space: clamp(4rem, 1.55rem + 5.6vw, 9rem);
   --home-block-gap: clamp(1.75rem, .9rem + 2vw, 3.5rem);
   --home-card-blue: #0949f5;
@@ -19,7 +19,8 @@
 #tech :is(.home-benefits, .home-info, .home-safety, .home-stories, .home-social, .home-guides, .home-faq, .home-download) h2 {
   font-size: var(--home-heading);
   line-height: 1.16;
-  font-weight: 760;
+  font-weight: 700;
+  letter-spacing: 0;
   text-wrap: balance;
 }
 
@@ -43,7 +44,8 @@
 #tech .home-trust h2 {
   font-size: var(--home-display);
   line-height: 1.14;
-  font-weight: 780;
+  font-weight: 700;
+  letter-spacing: 0;
 }
 
 .home-trust h2 em { color: var(--home-card-blue); font-style: normal; }
@@ -94,7 +96,7 @@
   display: grid;
   grid-template-columns: repeat(2,minmax(0,1fr));
   align-items: center;
-  width: min(100%, 65rem);
+  width: min(100%, 78rem);
   min-height: clamp(13rem, 24vw, 25rem);
   column-gap: clamp(1rem, 7vw, 9rem);
   margin-inline: auto;
@@ -111,7 +113,7 @@
 }
 .home-benefit:nth-of-type(even) > .home-benefit-image { grid-column: 1; grid-row: 1; }
 .home-benefits > h2 + .home-benefit { margin-top: var(--home-block-gap); }
-#tech .home-benefit h3 { font-size: var(--home-subheading); }
+#tech .home-benefit h3 { font-size: var(--home-subheading); font-weight: 700; letter-spacing: 0; }
 #tech .home-benefit p {
   margin-top: clamp(10px, .9vw, 17px);
   color: #626a79;
@@ -156,6 +158,8 @@
 #tech .home-info-card h3 {
   color: #101418;
   font-size: var(--home-subheading);
+  font-weight: 700;
+  letter-spacing: 0;
   line-height: 1.15;
   text-wrap: balance;
 }
@@ -263,7 +267,7 @@
   background: transparent;
 }
 
-#tech .home-safety-panel h3 { font-size: var(--home-subheading); }
+#tech .home-safety-panel h3 { font-size: var(--home-subheading); font-weight: 700; letter-spacing: 0; }
 #tech .home-safety-panel .home-safety-registry h3 {
   max-inline-size: 12ch;
   font-size: var(--home-heading);
@@ -290,6 +294,10 @@
 }
 
 .home-stories { padding-top: var(--home-section-space); }
+
+@media (min-width: 941px) {
+  #tech .home-review-card { flex-basis: min(30%, 31rem); }
+}
 
 .home-social {
   padding-top: var(--home-section-space);
@@ -370,6 +378,8 @@
 }
 #tech .home-guide h3 {
   font-size: var(--home-subheading);
+  font-weight: 700;
+  letter-spacing: 0;
   line-height: 1.16;
   text-wrap: balance;
 }

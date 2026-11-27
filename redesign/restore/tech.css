@@ -74,9 +74,9 @@ html { scroll-behavior: smooth; scroll-padding-top: 24px; }
   cursor: pointer;
   background: #eef2fa;
 }
-#tech { position: relative; font-family: 'ALA Sans', Arial, sans-serif; overflow: clip; }
+#tech { position: relative; font-family: Arial, sans-serif; overflow: clip; }
 #tech :is(h1,h2,h3,p,figure) { margin: 0; }
-#tech :is(h1,h2,h3) { line-height: 1.14; letter-spacing: -.026em; }
+#tech :is(h1,h2,h3) { line-height: 1.14; letter-spacing: 0; }
 #tech h2 { font-size: clamp(27px, 3vw, 41px); font-weight: 730; }
 #tech h3 { font-size: clamp(23px, 2.5vw, 35px); font-weight: 730; }
 #tech a { text-underline-offset: .23em; }
@@ -89,7 +89,7 @@ html { scroll-behavior: smooth; scroll-padding-top: 24px; }
   isolation: isolate;
   overflow: clip;
   color: #fff;
-  background: linear-gradient(180deg,#003fff,#437bff 22%,#82adff 44%,#c1daff 69%,#fff);
+  background: linear-gradient(180deg,#003fff 0 88px,#437bff 28%,#82adff 48%,#c1daff 70%,#fff);
 }
 .tech-header {
   position: fixed;
@@ -102,13 +102,19 @@ html { scroll-behavior: smooth; scroll-padding-top: 24px; }
   margin-inline: var(--home-inset, var(--page-inset));
   min-height: clamp(3.75rem,4.167vw,5.5rem);
   color: #fff;
+  transition: transform 280ms cubic-bezier(.2,.7,.2,1);
+}
+.tech-header[data-scroll-hidden] { transform: translateY(-110%); }
+.tech-header:focus-within { transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .tech-header { transition: none; }
 }
 .tech-header::before {
   content: '';
   position: absolute;
   z-index: -1;
   inset: 0 calc(50% - 50vw);
-  background: #0640f6;
+  background: #003fff;
 }
 #tech :is(section, footer)[id] { scroll-margin-top: 90px; }
 .tech-brand { display: flex; align-items: center; min-height: 44px; width: fit-content; }
@@ -123,7 +129,7 @@ html { scroll-behavior: smooth; scroll-padding-top: 24px; }
   border-radius: 9px;
   color: inherit;
   font-size: clamp(.875rem,.8rem + .2vw,1rem);
-  font-weight: 600;
+  font-weight: 400;
   text-decoration: none;
   white-space: nowrap;
 }
@@ -194,7 +200,7 @@ html { scroll-behavior: smooth; scroll-padding-top: 24px; }
   text-align: center;
 }
 #tech .tech-hero h1 {
-  font-size: clamp(2.25rem,1.25rem + 2.9vw,4.25rem);
+  font-size: clamp(2.25rem,4.55vw,5.5rem);
   font-weight: 700;
   letter-spacing: 0;
   line-height: 1.12;
