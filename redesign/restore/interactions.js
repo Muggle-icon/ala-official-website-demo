@@ -45,6 +45,9 @@
     const motion = window.matchMedia('(prefers-reduced-motion: no-preference) and (min-height: 520px)');
     const narrow = window.matchMedia('(max-width: 670px)');
     const photo = visual.querySelector('img');
+    const video = visual.querySelector('[data-hero-video]');
+    const supportsStory = Boolean(video?.canPlayType('video/mp4'));
+    const storyFrameDuration = 1 / 24;
     const clamp = (value, upper = 1) => Math.min(upper, Math.max(0, value));
     const ease = (value, start, end) => {
       const t = clamp((value - start) / (end - start));
@@ -54,17 +57,68 @@
     let geometry;
     let lastOffset;
     let frame;
+    let storyProgress = 0;
+    let storyLoading = false;
+    let storyFailed = false;
+    let storyFrameReady = false;
+
+    const failStory = () => {
+      storyFailed = true;
+      measure();
+    };
+
+    const loadStory = async () => {
+      if (!geometry?.storyLength || storyLoading || !photo.complete) return;
+      const bounds = masthead.getBoundingClientRect();
+      if (bounds.bottom <= 0 || bounds.top >= geometry.viewport) return;
+      storyLoading = true;
+
+      try {
+        // A local buffer makes reverse seeks independent of HTTP range support.
+        const response = await fetch(video.dataset.src);
+        if (!response.ok) throw new Error('Unable to load the cover video');
+        video.src = URL.createObjectURL(await response.blob());
+      } catch {
+        failStory();
+      }
+    };
+
+    const syncStory = () => {
+      if (!geometry?.storyLength || !Number.isFinite(video.duration)) return;
+      const lastFrame = Math.max(0, video.duration - storyFrameDuration);
+      const target = lastFrame * storyProgress;
+      const needsSeek = Math.abs(video.currentTime - target) > storyFrameDuration / 2;
+
+      if (video.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA && !video.seeking) {
+        storyFrameReady ||= !needsSeek || video.currentTime > 0;
+      }
+      stage.style.setProperty('--hero-video-opacity', storyFrameReady ? ease(storyProgress, 0, .06) : 0);
+
+      // Keep the element paused and feed it only the latest scroll target.
+      if (needsSeek && !video.seeking) video.currentTime = target;
+    };
 
     const paint = () => {
       if (!geometry) return;
-      const { runway, lead, top, viewport, mobile } = geometry;
-      const offset = clamp(window.scrollY - top, lead + runway);
+      loadStory();
+      const { runway, lead, top, viewport, mobile, storyLength } = geometry;
+      const offset = clamp(window.scrollY - top, lead + runway + storyLength);
       if (lastOffset === offset) return;
 
       const progress = clamp((offset - lead) / runway);
       // A quick initial opening eases into a full-bleed hold on desktop.
       const expand = 1 - (1 - clamp(progress / (mobile ? 1 : .92))) ** 3;
-      const copyExit = mobile ? 0 : ease(progress, .76, .885);
+      const copyExit = mobile ? (storyLength ? ease(progress, .52, .95) : 0) : ease(progress, .76, .885);
+
+      if (storyLength) {
+        storyProgress = clamp((offset - lead - runway) / storyLength);
+        // Keep the phone inside the cover crop throughout the camera move.
+        const focus = mobile
+          ? 78.5 + 16.5 * ease(storyProgress, .22, .46) - 27 * ease(storyProgress, .53, .91)
+          : 50 + 36 * ease(storyProgress, 0, .23) - 14 * ease(storyProgress, .5, .86);
+        stage.style.setProperty('--hero-video-x', `${focus}%`);
+        syncStory();
+      }
 
       stage.style.setProperty('--hero-expand', expand);
       stage.style.setProperty('--hero-copy-exit', copyExit);
@@ -86,15 +140,18 @@
       if (!motion.matches) {
         geometry = undefined;
         home.removeAttribute('data-hero-enter');
+        home.removeAttribute('data-hero-scrub');
         return;
       }
 
       const viewport = document.documentElement.clientHeight;
       const mobile = narrow.matches;
       const runway = Math.round(viewport * (mobile ? .24 : 2));
+      const storyLength = supportsStory && !storyFailed ? Math.round(viewport * (mobile ? 1.4 : 1.8)) : 0;
+      home.toggleAttribute('data-hero-scrub', storyLength > 0);
       const bounds = stage.getBoundingClientRect();
       const slot = visual.getBoundingClientRect();
-      const lead = mobile ? 0 : Math.max(0, bounds.height - viewport);
+      const lead = mobile && !storyLength ? 0 : Math.max(0, bounds.height - viewport);
 
       // Keep the photo's grid slot as the stable origin while the frame expands.
       stage.style.setProperty('--hero-photo-top', `${slot.top - bounds.top}px`);
@@ -102,8 +159,9 @@
       stage.style.setProperty('--hero-photo-bottom', `${bounds.bottom - slot.bottom}px`);
       stage.style.setProperty('--hero-photo-left', `${slot.left - bounds.left}px`);
       stage.style.setProperty('--hero-pin-top', `${-lead}px`);
-      masthead.style.setProperty('--hero-runway', `${mobile ? 0 : runway}px`);
-      geometry = { runway, lead, viewport, mobile, top: masthead.getBoundingClientRect().top + window.scrollY };
+      const spacer = (mobile && !storyLength ? 0 : runway) + storyLength;
+      masthead.style.setProperty('--hero-runway', `${spacer}px`);
+      geometry = { runway, lead, viewport, mobile, storyLength, top: masthead.getBoundingClientRect().top + window.scrollY };
       lastOffset = undefined;
       paint();
     };
@@ -123,6 +181,10 @@
       observer.observe(stage);
       observer.observe(visual);
     }
+    photo?.addEventListener('load', loadStory, { once: true });
+    video?.addEventListener('loadeddata', syncStory);
+    video?.addEventListener('seeked', syncStory);
+    video?.addEventListener('error', failStory, { once: true });
     photo?.addEventListener('animationend', () => home.removeAttribute('data-hero-enter'), { once: true });
     if (motion.matches && window.scrollY < 2 && !window.location.hash) {
       home.setAttribute('data-hero-enter', '');

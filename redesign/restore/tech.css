@@ -225,11 +225,18 @@ html { scroll-behavior: smooth; scroll-padding-top: 24px; }
   overflow: clip;
   background: #102a69;
 }
-.tech-hero-photo {
+.tech-hero-photo,
+.tech-hero-video {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: var(--hero-photo-x, 50%) 10%;
+}
+.tech-hero-video {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
 }
 .tech-hero-frame::after {
   position: absolute;
@@ -270,6 +277,10 @@ html { scroll-behavior: smooth; scroll-padding-top: 24px; }
   }
   [data-hero-motion] .tech-hero-photo {
     scale: calc(1.045 - .045 * var(--hero-expand, 0));
+  }
+  [data-hero-scrub] .tech-hero-video {
+    opacity: var(--hero-video-opacity, 0);
+    object-position: var(--hero-video-x, 50%) 10%;
   }
   [data-hero-motion] .tech-hero-frame::after {
     opacity: calc(1 - .94 * var(--hero-copy-exit, 0));
@@ -599,6 +610,7 @@ html { scroll-behavior: smooth; scroll-padding-top: 24px; }
 
 @media (max-width: 670px) and (prefers-reduced-motion: no-preference) and (min-height: 520px) {
   [data-hero-motion] .tech-hero-stage { position: relative; }
+  [data-hero-scrub] .tech-hero-stage { position: sticky; }
   [data-hero-motion] .tech-header { position: absolute; }
   [data-hero-motion] .tech-hero {
     min-height: max(562px, 100svh);
