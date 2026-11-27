@@ -79,7 +79,6 @@ function createHeroMedia(url, onFrameAvailable, onPlaybackError, manifest, { ini
 
   const useNativeVideo = () => {
     if (disposed || video) return;
-    network.abort();
     releaseDecodedFrames();
     video = document.createElement('video');
     video.muted = true;
@@ -102,7 +101,16 @@ function createHeroMedia(url, onFrameAvailable, onPlaybackError, manifest, { ini
         onFrameAvailable();
       }
     });
-    if (interacting || detailOnly) attachNativeSource();
+    if (interacting || detailOnly) {
+      attachNativeSource();
+    } else {
+      // Learn whether normal video seeking works while the poster is visible,
+      // without asking the server for movie bytes before the first gesture.
+      fetch(url, { method: 'HEAD', priority: 'low', signal: network.signal })
+        .then(response => {
+          if (acceptsRanges === undefined && response.headers.get('Accept-Ranges') === 'bytes') acceptsRanges = true;
+        }).catch(() => {});
+    }
   };
 
   const ready = group => groups[group] && groups[group].loaded === groups[group].limit;
