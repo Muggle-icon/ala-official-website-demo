@@ -89,15 +89,7 @@ html { scroll-behavior: smooth; scroll-padding-top: 24px; }
   isolation: isolate;
   overflow: clip;
   color: #fff;
-  background: linear-gradient(145deg,#123ff0 0%,#1654ef 56%,#266ce5 100%);
-}
-.tech-hero-stage::before {
-  content: '';
-  position: absolute;
-  z-index: -1;
-  inset: 0 0 0 50%;
-  background: linear-gradient(165deg,#ffa13b,#ff7746);
-  clip-path: polygon(67% 0,94% 0,49% 100%,12% 100%);
+  background: #143fc5;
 }
 .tech-header {
   position: absolute;
@@ -178,24 +170,33 @@ html { scroll-behavior: smooth; scroll-padding-top: 24px; }
 .tech-mobile-toggle { display: none; }
 .tech-hero {
   display: grid;
-  grid-template-columns: repeat(2,minmax(0,1fr));
-  align-items: center;
-  gap: clamp(24px,4.5vw,65px);
-  padding-block: 111px 56px;
+  grid-template-columns: minmax(0,1fr);
+  min-height: max(520px, 100svh);
+  margin-inline: clamp(18px,2.85vw,48px);
+  padding-block: 86px clamp(18px,2.25vw,31px);
 }
-.tech-hero-copy { container-type: inline-size; }
-#tech .tech-hero h1 { font-size: clamp(32px,3.8vw,56px); font-weight: 740; }
+.tech-hero > * { grid-area: 1 / 1; }
+.tech-hero-copy {
+  position: relative;
+  z-index: 1;
+  align-self: end;
+  justify-self: center;
+  width: min(100%, 1110px);
+  padding: clamp(30px,5vh,56px) clamp(16px,3vw,42px) clamp(20px,4.1vh,41px);
+  text-align: center;
+}
+#tech .tech-hero h1 { font-size: clamp(31px,4.4vw,68px); font-weight: 750; line-height: 1.08; }
 #tech .tech-hero h1 > span { display: inline-block; }
 #tech .tech-hero h1 strong {
   display: block;
-  margin-top: .32em;
-  font-size: clamp(23px,9cqi,56px);
-  line-height: 1.08;
-  font-weight: 800;
+  margin-top: .28em;
+  font-size: clamp(24px,3vw,44px);
+  line-height: 1.13;
+  font-weight: 740;
 }
-#tech .tech-hero-copy > p { margin-top: 20px; max-width: 49ch; font-size: clamp(16px,1.45vw,21px); }
-.tech-hero-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; margin-top: 27px; }
-.tech-hero-actions .restore-button { padding-inline: 21px; color: #093eb7; background: #fff; }
+#tech .tech-hero-copy > p { max-width: 72ch; margin: 12px auto 0; font-size: clamp(14px,1.19vw,17px); }
+.tech-hero-actions { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 9px; margin-top: 18px; }
+.tech-hero-actions .restore-button { padding-inline: 16px; color: #093eb7; background: #fff; }
 .tech-hero-actions .restore-button:hover { background: #edf2ff; }
 .tech-hero-actions .restore-button span { transition: transform var(--ui-panel); }
 .tech-hero-actions .restore-button:hover span { transform: translateX(2px); }
@@ -212,30 +213,33 @@ html { scroll-behavior: smooth; scroll-padding-top: 24px; }
   text-decoration: none;
 }
 .tech-hero-secondary:hover { background: #ffffff20; }
-.tech-hero-client { display: inline-flex; align-items: center; gap: 8px; margin-top: 11px; min-height: 44px; color: #fff; font-size: 15px; font-weight: 650; }
+.tech-hero-client { display: inline-flex; align-items: center; gap: 8px; margin-top: 3px; min-height: 44px; color: #fff; font-size: 14px; font-weight: 650; }
 .tech-hero-visual {
-  aspect-ratio: 1.14;
-  --hero-radius: 22px;
+  position: relative;
+  --hero-radius: 32px;
 }
 .tech-hero-frame {
-  height: 100%;
+  position: absolute;
+  inset: 0;
   border-radius: var(--hero-radius);
   overflow: clip;
-  background: #193a91;
+  background: #102a69;
 }
 .tech-hero-photo {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 15%;
+  object-position: var(--hero-photo-x, 50%) 24%;
+}
+.tech-hero-frame::after {
+  position: absolute;
+  inset: 0;
+  content: '';
+  pointer-events: none;
+  background: linear-gradient(180deg, transparent 24%, #07163319 42%, #071633a8 61%, #071633ed 85%, #071633fa 100%);
 }
 
 @media (prefers-reduced-motion: no-preference) and (min-height: 520px) {
-  .tech-hero-stage {
-    display: grid;
-    align-content: center;
-    min-height: 100svh;
-  }
   [data-hero-motion] .tech-masthead::after {
     display: block;
     height: var(--hero-runway, 0px);
@@ -246,8 +250,6 @@ html { scroll-behavior: smooth; scroll-padding-top: 24px; }
     top: var(--hero-pin-top, 0px);
   }
   [data-hero-motion] .tech-hero-copy {
-    position: relative;
-    z-index: 1;
     opacity: calc(1 - var(--hero-copy-exit, 0));
     transform: translateY(calc(-28px * var(--hero-copy-exit, 0)));
   }
@@ -257,32 +259,23 @@ html { scroll-behavior: smooth; scroll-padding-top: 24px; }
   }
   [data-hero-quiet] .tech-hero-copy:not(:has(:focus-visible)) { pointer-events: none; }
 
+  [data-hero-motion] .tech-hero-visual { position: static; }
   [data-hero-motion] .tech-hero-frame {
     --hero-inset: calc(1 - var(--hero-expand, 0));
-    position: absolute;
     inset: calc(var(--hero-photo-top) * var(--hero-inset) - var(--hero-pin-top) * var(--hero-expand, 0))
       calc(var(--hero-photo-right) * var(--hero-inset))
       calc(var(--hero-photo-bottom) * var(--hero-inset))
       calc(var(--hero-photo-left) * var(--hero-inset));
-    height: auto;
     border-radius: calc(var(--hero-radius) * var(--hero-inset));
   }
   [data-hero-motion] .tech-hero-photo {
-    object-position: center calc(15% + 4% * var(--hero-expand, 0));
     scale: calc(1.045 - .045 * var(--hero-expand, 0));
   }
   [data-hero-motion] .tech-hero-frame::after {
-    position: absolute;
-    inset: 0;
-    content: '';
-    pointer-events: none;
-    opacity: var(--hero-shade, 0);
-    background:
-      linear-gradient(90deg, #071539fa, #10388db3 38%, transparent 76%),
-      linear-gradient(180deg, #071539b0, transparent 21%);
+    opacity: calc(1 - .94 * var(--hero-copy-exit, 0));
   }
   [data-hero-motion] .tech-hero-stage:has(.tech-hero-copy :focus-visible) .tech-hero-frame::after {
-    opacity: max(var(--hero-shade, 0), var(--hero-expand, 0));
+    opacity: 1;
   }
   [data-hero-motion] .tech-header {
     transform: translateY(var(--hero-nav-offset, 0px));
@@ -316,9 +309,6 @@ html { scroll-behavior: smooth; scroll-padding-top: 24px; }
     --hero-enter-opacity: .72;
     --hero-enter-delay: 340ms;
   }
-}
-@media (prefers-reduced-motion: no-preference) and (min-width: 851px) and (min-height: 800px) {
-  .tech-hero { padding-bottom: 110px; }
 }
 @keyframes hero-photo-enter {
   from { opacity: .22; transform: scale(1.09); }
@@ -489,13 +479,21 @@ html { scroll-behavior: smooth; scroll-padding-top: 24px; }
 }
 @media (max-width: 670px) {
   :root { --page-gutter: 24px; }
-  .tech-hero-stage::before { display: none; }
-
-  .tech-hero { grid-template-columns: 1fr; gap: 24px; padding-block: 24px 33px; }
-  .tech-hero-visual { aspect-ratio: 1.18; --hero-radius: 16px; }
+  .tech-hero {
+    min-height: max(500px, calc(100svh - 62px));
+    margin-inline: clamp(12px,3.75vw,22px);
+    padding-block: 8px 15px;
+  }
+  .tech-hero-visual { --hero-radius: 23px; --hero-photo-x: 59%; }
+  .tech-hero-copy { padding: 18px 12px 17px; }
+  #tech .tech-hero h1 { max-width: 18ch; margin-inline: auto; font-size: clamp(28px,8.3vw,47px); }
+  #tech .tech-hero h1 strong { font-size: clamp(20px,6.4vw,32px); }
+  #tech .tech-hero-copy > p { max-width: 39ch; margin-top: 9px; font-size: 14px; }
+  .tech-hero-actions { margin-top: 14px; }
+  .tech-hero-frame::after {
+    background: linear-gradient(180deg, transparent 20%, #07163328 39%, #071633ab 61%, #071633f6 91%);
+  }
   .tech-verification, .tech-press-grid { grid-template-columns: 1fr; }
-
-  #tech .tech-hero-copy > p { margin-top: 14px; }
 
 
   .tech-benefits { padding-block: 45px 61px; }
@@ -522,6 +520,12 @@ html { scroll-behavior: smooth; scroll-padding-top: 24px; }
   .tech-download { grid-template-columns: 1fr; min-height: 0; margin-bottom: 55px; }
   .tech-download-qr { justify-self: start; }
   .tech-footer-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 375px) and (max-height: 670px) {
+  .tech-hero-copy { padding: 12px 10px; }
+  #tech .tech-hero-copy > p { font-size: 13px; }
+  .tech-hero-actions { gap: 7px; margin-top: 11px; }
 }
 
 @media (max-width: 850px) {
@@ -594,12 +598,11 @@ html { scroll-behavior: smooth; scroll-padding-top: 24px; }
 }
 
 @media (max-width: 670px) and (prefers-reduced-motion: no-preference) and (min-height: 520px) {
-  .tech-hero-stage { min-height: calc(100svh - 62px); }
-  [data-hero-motion] .tech-hero-stage { position: relative; min-height: 100svh; }
+  [data-hero-motion] .tech-hero-stage { position: relative; }
   [data-hero-motion] .tech-header { position: absolute; }
-  [data-hero-motion] .tech-hero { padding-top: 86px; }
-  [data-hero-motion] .tech-hero-frame::after {
-    background: linear-gradient(180deg, #071539fa, #10388db3 46%, transparent 86%);
+  [data-hero-motion] .tech-hero {
+    min-height: max(562px, 100svh);
+    padding-top: 70px;
   }
 }
 

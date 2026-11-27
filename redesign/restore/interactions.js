@@ -65,11 +65,9 @@
       // A quick initial opening eases into a full-bleed hold on desktop.
       const expand = 1 - (1 - clamp(progress / (mobile ? 1 : .92))) ** 3;
       const copyExit = mobile ? 0 : ease(progress, .76, .885);
-      const shade = ease(expand, .14, .55) * (1 - .94 * copyExit);
 
       stage.style.setProperty('--hero-expand', expand);
       stage.style.setProperty('--hero-copy-exit', copyExit);
-      stage.style.setProperty('--hero-shade', shade);
       stage.toggleAttribute('data-hero-quiet', copyExit >= .96);
       if (mobile || offset <= 8 || offset < lastOffset) {
         header.removeAttribute('data-hero-nav-hidden');
