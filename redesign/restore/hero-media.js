@@ -1,7 +1,7 @@
 function createHeroMedia(url, onFrameAvailable) {
   const rate = 24;
   const network = new AbortController();
-  const images = new Map();
+  const frames = new Map();
   const cachedGroups = new Set();
   let target = 0;
   let direction = 1;
@@ -15,8 +15,8 @@ function createHeroMedia(url, onFrameAvailable) {
   let disposed = false;
 
   const releaseDecodedFrames = () => {
-    for (const image of images.values()) image.close();
-    images.clear();
+    for (const frame of frames.values()) frame.close();
+    frames.clear();
     cachedGroups.clear();
     if (decoder && decoder.state !== 'closed') decoder.close();
     decoder = undefined;
@@ -53,14 +53,14 @@ function createHeroMedia(url, onFrameAvailable) {
     if (!decoder || activeGroup !== undefined) return;
     const group = samples[target][2];
     // Drop frames far from the playhead before asking the decoder for more work.
-    for (const [index, image] of images) {
-      if (Math.abs(samples[index][2] - group) <= 1) continue;
-      image.close();
-      images.delete(index);
+    for (const [index, frame] of frames) {
+      if (Math.abs(samples[index][2] - group) <= 2) continue;
+      frame.close();
+      frames.delete(index);
       cachedGroups.delete(samples[index][2]);
     }
 
-    const nextGroup = [group, group + direction].find(index =>
+    const nextGroup = [group, group + direction, group - direction, group + 2 * direction].find(index =>
       index >= 0 && index <= samples.at(-1)[2] && !cachedGroups.has(index));
     if (nextGroup === undefined) return;
     const start = samples.findIndex(sample => sample[2] === nextGroup);
@@ -85,7 +85,10 @@ function createHeroMedia(url, onFrameAvailable) {
     }
     currentDecoder.flush().then(() => {
       if (decoder !== currentDecoder) return;
-      cachedGroups.add(nextGroup);
+      if (Math.abs(samples[target][2] - nextGroup) <= 2
+        && samples.slice(start, end + 1).every((_, offset) => frames.has(start + offset))) {
+        cachedGroups.add(nextGroup);
+      }
       activeGroup = undefined;
       onFrameAvailable();
     }).catch(() => useNativeVideo());
@@ -117,7 +120,7 @@ function createHeroMedia(url, onFrameAvailable) {
   };
 
   const prepare = async () => {
-    if (typeof VideoDecoder !== 'function' || typeof createImageBitmap !== 'function') {
+    if (typeof VideoDecoder !== 'function') {
       useNativeVideo();
       return;
     }
@@ -145,16 +148,13 @@ function createHeroMedia(url, onFrameAvailable) {
         output: frame => {
           const index = Math.round(frame.timestamp * rate / 1e6);
           const group = samples?.[index]?.[2];
-          createImageBitmap(frame).then(image => {
-            if (!samples || Math.abs(samples[target][2] - group) > 1) {
-              cachedGroups.delete(group);
-              image.close();
-              return;
-            }
-            images.get(index)?.close();
-            images.set(index, image);
-            onFrameAvailable();
-          }).catch(() => useNativeVideo()).finally(() => frame.close());
+          if (!samples || Math.abs(samples[target][2] - group) > 2) {
+            frame.close();
+            return;
+          }
+          frames.get(index)?.close();
+          frames.set(index, frame);
+          if (index === target) onFrameAvailable();
         },
         error: () => useNativeVideo(),
       });
@@ -176,7 +176,7 @@ function createHeroMedia(url, onFrameAvailable) {
         return null;
       }
       decodeAround();
-      return images.get(target);
+      return frames.get(target);
     },
     dispose() {
       disposed = true;

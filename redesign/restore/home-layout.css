@@ -53,8 +53,8 @@
   bottom: clamp(3rem, 6.2vw, 6.5rem);
   left: 50%;
   transform: translateX(-50%);
-  inline-size: min(50vw, 47rem);
-  block-size: clamp(13rem, 23vw, 24rem);
+  inline-size: min(52vw, 48rem);
+  block-size: auto;
 }
 
 .home-map-person {
@@ -102,6 +102,14 @@
 
 .home-benefit:nth-of-type(even) > div { grid-column: 2; }
 .home-benefit > div { max-width: 50ch; }
+.home-benefit-image {
+  display: block;
+  justify-self: center;
+  width: clamp(10rem, 17vw, 15rem);
+  height: auto;
+  mix-blend-mode: multiply;
+}
+.home-benefit:nth-of-type(even) > .home-benefit-image { grid-column: 1; grid-row: 1; }
 .home-benefits > h2 + .home-benefit { margin-top: var(--home-block-gap); }
 #tech .home-benefit h3 { font-size: var(--home-subheading); }
 #tech .home-benefit p {
@@ -111,7 +119,12 @@
   line-height: var(--home-copy-leading);
 }
 
-.home-info { padding-top: var(--home-section-space); }
+.home-info {
+  margin-top: var(--home-section-space);
+  padding-block: var(--home-section-space);
+  background: #0a195b;
+  color: #fff;
+}
 .home-info > h2,
 .home-stories > h2 {
   padding-inline: var(--home-inset);
@@ -200,6 +213,8 @@
   background: transparent;
   font-size: clamp(25px, 1.85vw, 36px);
 }
+.home-info .home-arrows button { border-radius: 50%; color: #0a195b; background: #fff; }
+.home-info .home-arrows button[aria-disabled="true"] { opacity: .4; }
 .home-arrows button:not([aria-disabled="true"]):hover {
   border-color: transparent;
   background: #eff4ff;
@@ -578,11 +593,13 @@
   .home-map-person { top: auto; bottom: 6rem; left: 10%; }
   #tech .home-store-links a { min-width: 7.75rem; }
   .home-benefit {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(5rem, 33%);
     min-height: 0;
     padding-block: 1.375rem;
   }
-  .home-benefit:nth-of-type(even) > div { grid-column: 1; }
+  .home-benefit:nth-of-type(even) { grid-template-columns: minmax(5rem, 33%) minmax(0, 1fr); }
+  .home-benefit:nth-of-type(even) > div { grid-column: 2; }
+  .home-benefit-image { width: 100%; max-width: 10rem; }
   .home-benefits > h2 + .home-benefit { margin-top: .75rem; }
   .home-info-card {
     flex-basis: min(100% - 2.5rem, 29rem);
