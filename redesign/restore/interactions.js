@@ -75,7 +75,14 @@
     let frame;
     let filmNeedsPaint = false;
     let movie;
+    let detail;
+    let detailFailed = false;
+    let detailTimer;
+    let requestedFrame = -1;
+    let settledFrame = -1;
     let drawnAt = -1;
+    let sharp = false;
+    const poster = visual.querySelector('.tech-hero-photo');
 
     const queuePaint = () => {
       if (!geometry || frame !== undefined) return;
@@ -85,31 +92,66 @@
       });
     };
 
-    const startMovie = cut => {
-      movie = createHeroMedia(mediaURL(cut, 'mp4'), () => {
-        filmNeedsPaint = true;
-        queuePaint();
-      }, () => {
-        if (cut !== 'wide-native') return;
-        movie.dispose();
-        startMovie('wide');
-      }, prepareManifest(cut));
+    const available = () => {
+      filmNeedsPaint = true;
+      queuePaint();
+    };
+
+    const startMovie = ({cut, motionCut}) => {
+      movie = createHeroMedia(mediaURL(motionCut, 'mp4'), available, () => {
+        // A missing motion rendition still has the full-size cut as a fallback.
+        movie?.dispose();
+        movie = createHeroMedia(mediaURL(cut, 'mp4'), available, () => {}, prepareManifest(cut));
+        available();
+      }, prepareManifest(motionCut));
+    };
+
+    const warmMovie = () => {
+      if (movie || !geometry?.storyLength || navigator.connection?.saveData
+        || document.hidden || window.location.hash || window.scrollY > geometry.top + geometry.viewport) return;
+      startMovie(geometry);
+    };
+
+    const startDetail = (cut, position) => {
+      detail = createHeroMedia(mediaURL(cut, 'mp4'), available, () => {
+        detail?.dispose();
+        detail = undefined;
+        if (cut === 'wide-native') startDetail('wide', requestedFrame);
+        else detailFailed = true;
+      }, prepareManifest(cut), { initialFrame: position, detailOnly: true });
     };
 
     const paintMovie = (offset, position) => {
       if (!geometry.storyLength) return;
-      // The matched poster draws immediately. Start fetching film during expansion.
-      if (!movie && offset > 0 && masthead.getBoundingClientRect().bottom > 0) {
-        startMovie(geometry.cut);
+      const inView = offset < geometry.runway + geometry.storyLength + geometry.viewport;
+      if (position !== requestedFrame || !inView) {
+        clearTimeout(detailTimer);
+        requestedFrame = inView ? position : -1;
+        settledFrame = -1;
+        if (inView && position > 0 && geometry.motionCut !== geometry.cut && !detailFailed) {
+          // Large textures are useful when the viewer stops to read the phone.
+          // A fling only needs the small same-frame motion rendition.
+          detailTimer = setTimeout(() => {
+            settledFrame = position;
+            if (!detail) startDetail(geometry.cut, position);
+            available();
+          }, 280);
+        }
       }
-      // The opening image is the first frame of this same film. Swap it in and
-      // out at frame zero without blending two different source images.
+      if (!inView) return;
+      if (!movie && offset > 0) startMovie(geometry);
+      const motionFrame = movie?.frameAt(position, drawnAt, offset > 0);
       if (!position) {
-        film.removeAttribute('data-frame-ready');
+        if (drawnAt !== -1) film.removeAttribute('data-frame-ready');
         drawnAt = -1;
+        sharp = false;
+        return;
       }
-      const ready = movie?.frameAt(position, drawnAt);
-      if (!position || !ready || ready.index === drawnAt) return;
+      const exactFrame = detail?.cachedFrame(position)
+        || (settledFrame === position ? detail?.frameAt(position, drawnAt) : null);
+      const native = exactFrame?.index === position;
+      const ready = native ? exactFrame : motionFrame;
+      if (!ready || (ready.index === drawnAt && (!native || sharp))) return;
       const { image, index } = ready;
       const width = image.displayWidth || image.videoWidth;
       const height = image.displayHeight || image.videoHeight;
@@ -120,6 +162,7 @@
       filmContext.drawImage(image, 0, 0, film.width, film.height);
       film.setAttribute('data-frame-ready', String(index));
       drawnAt = index;
+      sharp = native;
     };
 
     const paint = () => {
@@ -151,10 +194,13 @@
     };
 
     const resetMovie = () => {
+      clearTimeout(detailTimer);
       movie?.dispose();
-      movie = undefined;
+      detail?.dispose();
+      movie = detail = undefined;
+      requestedFrame = settledFrame = drawnAt = -1;
+      detailFailed = sharp = false;
       film?.removeAttribute('data-frame-ready');
-      drawnAt = -1;
     };
 
     const measure = () => {
@@ -169,6 +215,10 @@
 
       const mobile = narrow.matches;
       const cut = cuts.find(option => !option.media || option.media.matches)?.name || 'wide';
+      // Wider screens can show more source pixels even while the user is moving.
+      const motionCut = cut === 'portrait'
+        ? (window.innerWidth >= 768 ? 'portrait' : 'portrait-motion')
+        : (window.innerWidth >= 2200 || (window.innerWidth >= 1750 && devicePixelRatio >= 1.5) ? 'wide' : 'wide-motion');
       // A stable small viewport keeps Safari's moving toolbar out of the timeline.
       const viewport = stage.clientHeight;
       const runway = Math.round(viewport * (mobile ? .28 : .54));
@@ -176,9 +226,8 @@
         ? Math.round(viewport * (mobile ? 1.5 : 1.72))
         : 0;
       home.toggleAttribute('data-hero-scrub', storyLength > 0);
-      if (storyLength && geometry?.cut !== cut) {
+      if (storyLength && (geometry?.cut !== cut || geometry?.motionCut !== motionCut)) {
         resetMovie();
-        if (masthead.getBoundingClientRect().bottom > 0) prepareManifest(cut);
       }
       // Read the original grid slot; the animated mask is a different element.
       const initial = visual.getBoundingClientRect();
@@ -188,11 +237,13 @@
       stage.style.setProperty('--hero-photo-bottom', `${bounds.bottom - initial.bottom}px`);
       stage.style.setProperty('--hero-photo-left', `${initial.left - bounds.left}px`);
       masthead.style.setProperty('--hero-runway', `${runway + storyLength}px`);
-      geometry = { runway, viewport, cut, storyLength, top: masthead.getBoundingClientRect().top + window.scrollY };
+      geometry = { runway, viewport, cut, motionCut, storyLength, top: masthead.getBoundingClientRect().top + window.scrollY };
       lastOffset = undefined;
       paint();
+      if (poster?.complete && poster.naturalWidth) warmMovie();
     };
 
+    poster?.addEventListener('load', warmMovie);
     window.addEventListener('scroll', queuePaint, { passive: true });
     window.addEventListener('resize', measure, { passive: true });
     window.addEventListener('pageshow', measure);

@@ -1,4 +1,4 @@
-function createHeroMedia(url, onFrameAvailable, onPlaybackError, manifest) {
+function createHeroMedia(url, onFrameAvailable, onPlaybackError, manifest, { initialFrame = 0, detailOnly = false } = {}) {
   const rate = 24;
   const network = new AbortController();
   const frames = new Map();
@@ -9,15 +9,20 @@ function createHeroMedia(url, onFrameAvailable, onPlaybackError, manifest) {
   let settled = true;
   let settleTimer;
   let jumped = false;
-  let target = 0;
+  let target = initialFrame;
+  let interacting = false;
   let direction = 1;
   let decoder;
   let video;
   let nativeFrame = -1;
+  let soughtNativeFrame = -1;
+  let nativeRequest;
+  let localURL;
   let activeGroup;
   let samples;
   let bytes;
   let acceptsRanges;
+  let deferredFullResponse = false;
   let largeFrames = false;
   let disposed = false;
 
@@ -35,9 +40,41 @@ function createHeroMedia(url, onFrameAvailable, onPlaybackError, manifest) {
   };
 
   const seekVideo = () => {
-    if (video.readyState < 1 || video.seeking || nativeFrame === target) return;
+    if (nativeRequest || video.readyState < 1 || video.seeking || nativeFrame === target) return;
+    soughtNativeFrame = target;
     // Seek into the middle of the source frame to stay clear of timestamp rounding.
     video.currentTime = (target + .25) / rate;
+  };
+
+  // Native seeking needs byte ranges. If a static host ignores the one-byte
+  // probe, use that same response as a seekable Blob, without a second download.
+  const attachNativeSource = async () => {
+    if (acceptsRanges === true) {
+      video.src = url;
+      return;
+    }
+    const controller = new AbortController();
+    nativeRequest = controller;
+    try {
+      const headers = acceptsRanges === false ? {} : { Range: 'bytes=0-0' };
+      const response = await fetch(url, { headers, signal: controller.signal });
+      if (!response.ok) throw new Error('No se pudo cargar el video de portada');
+      acceptsRanges = response.status === 206;
+      if (acceptsRanges) {
+        await response.arrayBuffer();
+        if (!disposed) video.src = url;
+      } else {
+        const blob = await response.blob();
+        if (disposed) return;
+        localURL = URL.createObjectURL(blob);
+        nativeFrame = -1;
+        video.src = localURL;
+      }
+    } catch {
+      if (!disposed) onPlaybackError();
+    } finally {
+      nativeRequest = undefined;
+    }
   };
 
   const useNativeVideo = () => {
@@ -47,19 +84,25 @@ function createHeroMedia(url, onFrameAvailable, onPlaybackError, manifest) {
     video = document.createElement('video');
     video.muted = true;
     video.playsInline = true;
-    video.preload = 'auto';
+    video.preload = interacting ? 'auto' : 'metadata';
     video.addEventListener('loadedmetadata', onFrameAvailable);
     video.addEventListener('loadeddata', onFrameAvailable);
     video.addEventListener('error', () => {
       if (!disposed) onPlaybackError();
     });
     video.addEventListener('seeked', () => {
-      if (!disposed) {
+      if (!disposed && !nativeRequest) {
         nativeFrame = Math.floor(video.currentTime * rate);
+        const rangeEnd = video.seekable.length ? video.seekable.end(video.seekable.length - 1) : 0;
+        if (!localURL && nativeFrame !== soughtNativeFrame && soughtNativeFrame / rate > rangeEnd) {
+          acceptsRanges = false;
+          attachNativeSource();
+          return;
+        }
         onFrameAvailable();
       }
     });
-    video.src = url;
+    if (interacting || detailOnly) attachNativeSource();
   };
 
   const ready = group => groups[group] && groups[group].loaded === groups[group].limit;
@@ -70,7 +113,7 @@ function createHeroMedia(url, onFrameAvailable, onPlaybackError, manifest) {
     scheduleTransfer(group);
     if (activeGroup !== undefined) return;
     const nearby = [group];
-    if (!ready(group) && Math.sign(target - presented) === direction) {
+    if (!detailOnly && !ready(group) && Math.sign(target - presented) === direction) {
       // During a continuous sweep the network may trail the finger. Decode the
       // nearest complete group that actually advances the frame on screen.
       const limit = samples[presented][2];
@@ -78,7 +121,7 @@ function createHeroMedia(url, onFrameAvailable, onPlaybackError, manifest) {
         if (ready(g)) { nearby.push(g); break; }
       }
     }
-    nearby.push(group + direction, group - direction, group + 2 * direction);
+    if (!detailOnly) nearby.push(group + direction, group - direction, group + 2 * direction);
     const wanted = [...new Set(nearby.filter(ready))].slice(0, largeFrames ? 2 : 4);
     for (const [index, frame] of frames) {
       if (wanted.includes(samples[index][2])) continue;
@@ -126,32 +169,38 @@ function createHeroMedia(url, onFrameAvailable, onPlaybackError, manifest) {
   };
 
   const scheduleTransfer = group => {
-    if (acceptsRanges === false) return;
+    if (acceptsRanges === false) {
+      if (deferredFullResponse && interacting && !transfers.forward) {
+        deferredFullResponse = false;
+        startTransfer('forward', 0, groups.length - 1);
+      }
+      return;
+    }
     const current = groups[group];
-    const next = group === groups.length - 1 ? -1 : group === 0 ? 1 : direction;
+    if (detailOnly) {
+      if (transfers.seek && transfers.seek.first !== group) cancelTransfer('seek');
+      if (!ready(group) && !transfers.seek) startTransfer('seek', group, group);
+      return;
+    }
+    // Warm only the first few frames behind the poster. Once scrolling starts,
+    // read a contiguous motion stream; reverse passes reuse the downloaded bytes.
     const background = transfers.forward;
     const seek = transfers.seek;
-    const covered = background && group >= background.first && group <= background.last;
-    // A deliberate jump may replace old work. Ordinary adjacent scroll updates
-    // leave an in-flight request alive long enough to deliver real frames.
-    if (jumped && background && !covered) cancelTransfer('forward');
     if (seek && seek.first !== group && (jumped || settled)) cancelTransfer('seek');
-    const farFromStream = !covered || current.loaded - background.cursor > (settled ? 96 : 1024) * 1024;
-    if (!ready(group) && !transfers.seek && farFromStream && (group || transfers.forward)) {
+    const behind = background && (group < background.first || group > background.last
+      || current.loaded - background.cursor > (settled ? 96 : 384) * 1024);
+    if (interacting && behind && !ready(group) && !transfers.seek && (settled || jumped)) {
       startTransfer('seek', group, group);
     }
     jumped = false;
-    if (transfers.forward || (!acceptsRanges && transfers.seek)) return;
-    // Start from the opening before the scrub begins. For a cold jump, give the
-    // exact short seek first use of the connection, then read adjacent groups.
-    if (!ready(group) && transfers.seek) return;
-    let first = ready(group) ? group + next : group;
-    while (ready(first)) first += next;
-    if (!groups[first] || Math.abs(first - group) > 5) return;
+    if (background) return;
+    let first = group;
+    while (ready(first)) first++;
+    if (!groups[first] || (!interacting && first > 0)) return;
+    const limit = interacting ? groups.length - 1 : Math.min(groups.length - 1, 2);
     let last = first;
-    while (Math.abs(last - first) < (next > 0 ? 15 : 5) && groups[last + next]
-      && groups[last + next].loaded === groups[last + next].offset) last += next;
-    startTransfer('forward', Math.min(first, last), Math.max(first, last));
+    while (last < limit && !ready(last + 1)) last++;
+    startTransfer('forward', first, last);
   };
 
   const startTransfer = async (key, first, last) => {
@@ -161,7 +210,7 @@ function createHeroMedia(url, onFrameAvailable, onPlaybackError, manifest) {
     try {
       const response = await fetch(url, {
         headers: { Range: `bytes=${job.cursor}-${groups[last].limit - 1}` },
-        priority: key === 'seek' ? 'high' : 'low',
+        priority: detailOnly || !interacting ? 'low' : 'high',
         signal: controller.signal,
       });
       if (transfers[key] !== job) return;
@@ -175,6 +224,13 @@ function createHeroMedia(url, onFrameAvailable, onPlaybackError, manifest) {
       }
       // A static server can ignore Range. Use its existing full response once.
       if (!acceptsRanges) {
+        if (!interacting && !detailOnly) {
+          // A host without byte ranges would turn idle preparation into an
+          // entire movie download. Wait for the user's first scroll instead.
+          deferredFullResponse = true;
+          controller.abort();
+          return;
+        }
         cancelTransfer(key === 'seek' ? 'forward' : 'seek');
         job.cursor = 0;
         first = 0;
@@ -266,7 +322,8 @@ function createHeroMedia(url, onFrameAvailable, onPlaybackError, manifest) {
 
   prepare();
   return {
-    frameAt(position, drawnAt) {
+    frameAt(position, drawnAt, active = true) {
+      interacting ||= active;
       presented = Math.max(0, drawnAt ?? 0);
       if (position !== target) {
         const next = Math.sign(position - target);
@@ -282,6 +339,9 @@ function createHeroMedia(url, onFrameAvailable, onPlaybackError, manifest) {
       }
       const advances = index => (index - presented) * direction > 0 && (target - index) * direction >= 0;
       if (video) {
+        if (!interacting || nativeRequest) return null;
+        if (!video.hasAttribute('src')) attachNativeSource();
+        if (video.preload !== 'auto') video.preload = 'auto';
         if (nativeFrame === target) return { image: video, index: target };
         if (!video.seeking && advances(nativeFrame)) {
           queueMicrotask(() => { if (!disposed) seekVideo(); });
@@ -298,14 +358,20 @@ function createHeroMedia(url, onFrameAvailable, onPlaybackError, manifest) {
       }
       return closest === presented ? null : { image: frames.get(closest), index: closest };
     },
+    cachedFrame(position) {
+      const image = frames.get(position);
+      return image ? { image, index: position } : null;
+    },
     dispose() {
       disposed = true;
       network.abort();
+      nativeRequest?.abort();
       releaseDecodedFrames();
       if (video) {
         video.removeAttribute('src');
         video.load();
       }
+      if (localURL) URL.revokeObjectURL(localURL);
     },
   };
 }

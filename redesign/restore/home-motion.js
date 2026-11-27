@@ -5,15 +5,20 @@
     const links = marquee.querySelector('.home-social-links');
     const viewport = marquee.querySelector('.home-marquee-window');
     const toggle = marquee.querySelector('button');
-    const copy = links.cloneNode(true);
-    copy.setAttribute('aria-hidden', 'true');
-    copy.querySelectorAll('a').forEach(link => { link.tabIndex = -1; });
-    links.after(copy);
+    let copy;
+    let visible = !('IntersectionObserver' in window);
 
     const updateMotion = () => {
-      marquee.toggleAttribute('data-running', !motion.matches);
-      toggle.hidden = motion.matches;
-      copy.hidden = motion.matches;
+      if (visible && !motion.matches && !copy) {
+        copy = links.cloneNode(true);
+        copy.setAttribute('aria-hidden', 'true');
+        copy.querySelectorAll('a').forEach(link => { link.tabIndex = -1; });
+        links.after(copy);
+      }
+      const running = Boolean(copy) && !motion.matches;
+      marquee.toggleAttribute('data-running', running);
+      toggle.hidden = !running;
+      if (copy) copy.hidden = !running;
     };
     updateMotion();
     motion.addEventListener('change', updateMotion);
@@ -26,7 +31,9 @@
     });
     if ('IntersectionObserver' in window) {
       new IntersectionObserver(([entry]) => {
-        marquee.toggleAttribute('data-offscreen', !entry.isIntersecting);
+        visible = entry.isIntersecting;
+        marquee.toggleAttribute('data-offscreen', !visible);
+        updateMotion();
       }).observe(marquee);
     }
   }
