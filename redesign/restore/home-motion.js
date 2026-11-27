@@ -65,9 +65,10 @@
   observe('main > section > h2, .home-benefit h3, .home-faq h2, .home-download h2', 0);
   observe('.home-trust h2 > span', index => index);
   observe('.home-trust .home-store-links', 3);
-  observe('.home-benefit p, .home-safety-intro, .home-more, .home-download h2 + p', 1);
+  observe('.home-benefit p, .home-safety-intro, .home-news-intro, .home-more, .home-download h2 + p', 1);
   observe('.home-benefit-image, .home-download .home-store-links, .home-download-code, .home-marquee-window', 2);
   observe('.home-info-card, .home-review-card, .home-safety-panel > article', index => 1 + index % 3);
+  observe('.home-news-card', index => 2 + index);
   observe('.home-guides .tech-guide-frame, .tech-questions .tech-tabs', 1);
   observe('.home-faq details', index => 1 + index % 3);
   observe('.home-download-facts > div, .home-footer-directory > *, .home-footer-disclosures > *', index => index % 3);
