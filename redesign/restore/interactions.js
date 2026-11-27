@@ -37,6 +37,96 @@
   window.addEventListener('hashchange', () => scrollToLegacySection(scrollBehavior()));
 
   const header = document.querySelector('[data-restore-header]');
+  const masthead = document.querySelector('[data-hero-masthead]');
+  const stage = masthead?.querySelector('[data-hero-stage]');
+  const visual = stage?.querySelector('[data-hero-visual]');
+  if (header && stage && visual) {
+    const home = masthead.closest('#tech');
+    const motion = window.matchMedia('(prefers-reduced-motion: no-preference) and (min-height: 520px)');
+    const narrow = window.matchMedia('(max-width: 670px)');
+    const photo = visual.querySelector('img');
+    const clamp = (value, upper = 1) => Math.min(upper, Math.max(0, value));
+    const ease = (value, start, end) => {
+      const t = clamp((value - start) / (end - start));
+      return t * t * (3 - 2 * t);
+    };
+
+    let geometry;
+    let lastOffset;
+    let frame;
+
+    const paint = () => {
+      if (!geometry) return;
+      const { runway, lead, top } = geometry;
+      const offset = clamp(window.scrollY - top, lead + runway);
+      if (lastOffset === offset) return;
+      lastOffset = offset;
+
+      const progress = clamp((offset - lead) / runway);
+      const expand = ease(progress, 0, .79);
+      const copyExit = ease(progress, .48, .95);
+      const navExit = ease(progress, .39, .79);
+      const shade = ease(expand, .14, .55) * (1 - .94 * copyExit);
+
+      stage.style.setProperty('--hero-expand', expand);
+      stage.style.setProperty('--hero-copy-exit', copyExit);
+      stage.style.setProperty('--hero-shade', shade);
+      stage.toggleAttribute('data-hero-quiet', copyExit >= .96);
+      header.style.setProperty('--hero-nav-offset', `${offset}px`);
+      header.style.setProperty('--hero-nav-exit', navExit);
+      header.toggleAttribute('data-hero-quiet', navExit >= .96);
+
+      if (offset > 8) home.removeAttribute('data-hero-enter');
+    };
+
+    const measure = () => {
+      home.toggleAttribute('data-hero-motion', motion.matches);
+      if (!motion.matches) {
+        geometry = undefined;
+        home.removeAttribute('data-hero-enter');
+        return;
+      }
+
+      const viewport = document.documentElement.clientHeight;
+      const runway = Math.round(clamp(viewport * (narrow.matches ? .36 : .56), 560));
+      const bounds = stage.getBoundingClientRect();
+      const slot = visual.getBoundingClientRect();
+      const lead = Math.max(0, bounds.height - viewport);
+
+      // Keep the photo's grid slot as the stable origin while the frame expands.
+      stage.style.setProperty('--hero-photo-top', `${slot.top - bounds.top}px`);
+      stage.style.setProperty('--hero-photo-right', `${bounds.right - slot.right}px`);
+      stage.style.setProperty('--hero-photo-bottom', `${bounds.bottom - slot.bottom}px`);
+      stage.style.setProperty('--hero-photo-left', `${slot.left - bounds.left}px`);
+      stage.style.setProperty('--hero-pin-top', `${-lead}px`);
+      masthead.style.setProperty('--hero-runway', `${runway}px`);
+      geometry = { runway, lead, top: masthead.getBoundingClientRect().top + window.scrollY };
+      lastOffset = undefined;
+      paint();
+    };
+
+    window.addEventListener('scroll', () => {
+      if (!geometry || frame !== undefined) return;
+      frame = requestAnimationFrame(() => {
+        frame = undefined;
+        paint();
+      });
+    }, { passive: true });
+    window.addEventListener('resize', measure, { passive: true });
+    window.addEventListener('pageshow', measure);
+    motion.addEventListener('change', measure);
+    if ('ResizeObserver' in window) {
+      const observer = new ResizeObserver(measure);
+      observer.observe(stage);
+      observer.observe(visual);
+    }
+    photo?.addEventListener('animationend', () => home.removeAttribute('data-hero-enter'), { once: true });
+    if (motion.matches && window.scrollY < 2 && !window.location.hash) {
+      home.setAttribute('data-hero-enter', '');
+    }
+    measure();
+  }
+
   const nav = header?.querySelector('[data-restore-nav]');
   const menuToggle = header?.querySelector('[data-mobile-menu]');
   if (nav && menuToggle) {
