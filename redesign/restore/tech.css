@@ -222,7 +222,6 @@ html { scroll-behavior: smooth; scroll-padding-top: 24px; }
 }
 .tech-hero-frame {
   --hero-media-x: 50%;
-  --hero-media-scale: 1;
   position: absolute;
   inset: 0;
   border-radius: var(--hero-radius);
@@ -237,13 +236,10 @@ html { scroll-behavior: smooth; scroll-padding-top: 24px; }
   display: block;
   object-fit: cover;
   object-position: var(--hero-media-x) 10%;
-  transform: scale(var(--hero-media-scale));
-  transform-origin: right 22%;
 }
 @media (min-width: 671px) {
   .tech-hero-frame {
     --hero-media-x: calc(84% - 7% * var(--hero-expand, 0));
-    --hero-media-scale: calc(1.075 - .075 * var(--hero-expand, 0));
   }
 }
 .tech-hero-film {
@@ -294,8 +290,8 @@ html { scroll-behavior: smooth; scroll-padding-top: 24px; }
   [data-hero-enter] .tech-hero h1 > strong { --hero-enter-delay: 225ms; }
 }
 @keyframes hero-photo-enter {
-  from { opacity: .22; scale: 1.09; }
-  to { opacity: 1; scale: 1; }
+  from { opacity: .72; }
+  to { opacity: 1; }
 }
 @keyframes hero-copy-enter {
   from { opacity: .12; translate: 0 17px; }
@@ -463,9 +459,9 @@ html { scroll-behavior: smooth; scroll-padding-top: 24px; }
 @media (max-width: 670px) {
   :root { --page-gutter: 24px; }
   .tech-hero {
-    min-height: max(500px, calc(100svh - 62px));
+    min-height: max(562px, 100svh);
     margin-inline: clamp(12px,3.75vw,22px);
-    padding-block: 8px 15px;
+    padding-block: 70px 15px;
   }
   .tech-hero-visual { --hero-radius: 23px; }
   .tech-hero-copy { padding: 18px 14px clamp(34px,9svh,76px); }
@@ -579,10 +575,6 @@ html { scroll-behavior: smooth; scroll-padding-top: 24px; }
 @media (max-width: 670px) and (prefers-reduced-motion: no-preference) and (min-height: 520px) {
   [data-hero-motion] .tech-hero-stage { position: relative; }
   [data-hero-scrub] .tech-hero-stage { position: sticky; }
-  [data-hero-motion] .tech-hero {
-    min-height: max(562px, 100svh);
-    padding-top: 70px;
-  }
 }
 
 /* Shared timing for pointer, keyboard and touch feedback. */

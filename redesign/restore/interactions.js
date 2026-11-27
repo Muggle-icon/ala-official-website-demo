@@ -46,6 +46,10 @@
     const narrow = window.matchMedia('(max-width: 670px)');
     const film = visual.querySelector('[data-hero-film]');
     const filmContext = film?.getContext('2d', { alpha: false });
+    const cuts = [...visual.querySelectorAll('picture [data-cut]')].map(element => ({
+      name: element.dataset.cut,
+      media: element.media ? window.matchMedia(element.media) : null,
+    }));
     const timelineLastFrame = Number(film?.dataset.frames) - 1;
     const finalFrame = Number(film?.dataset.holdFrame ?? timelineLastFrame);
     const clamp = value => Math.min(1, Math.max(0, value));
@@ -69,20 +73,23 @@
       });
     };
 
-    const prepareMovie = () => {
-      if (movie || !geometry?.storyLength) return;
-      const { bottom, top } = masthead.getBoundingClientRect();
-      if (bottom <= 0 || top >= geometry.viewport) return;
-      const clipName = geometry.mobile ? 'portrait' : 'wide';
-      movie = createHeroMedia(film.dataset.mediaRoot + '/' + clipName + '.mp4', () => {
+    const startMovie = cut => {
+      movie = createHeroMedia(film.dataset.mediaRoot + '/' + cut + '.mp4', () => {
         filmNeedsPaint = true;
         queuePaint();
+      }, () => {
+        if (cut !== 'wide-native') return;
+        movie.dispose();
+        startMovie('wide');
       });
     };
 
     const paintMovie = offset => {
       if (!geometry.storyLength) return;
-      prepareMovie();
+      // The matched poster draws immediately. Start fetching film during expansion.
+      if (!movie && offset > 0 && masthead.getBoundingClientRect().bottom > 0) {
+        startMovie(geometry.cut);
+      }
       const progress = clamp((offset - geometry.lead - geometry.runway) / geometry.storyLength);
       const position = Math.min(finalFrame, Math.round(progress * timelineLastFrame));
       // The opening image is the first frame of this same film. Swap it in and
@@ -93,6 +100,12 @@
       }
       const image = movie?.frameAt(position);
       if (!position || position === drawnAt || !image) return;
+      const width = image.displayWidth || image.videoWidth;
+      const height = image.displayHeight || image.videoHeight;
+      if (film.width !== width || film.height !== height) {
+        film.width = width;
+        film.height = height;
+      }
       filmContext.drawImage(image, 0, 0, film.width, film.height);
       film.setAttribute('data-frame-ready', String(position));
       drawnAt = position;
@@ -138,6 +151,7 @@
       }
 
       const mobile = narrow.matches;
+      const cut = cuts.find(option => !option.media || option.media.matches)?.name || 'wide';
       const bounds = stage.getBoundingClientRect();
       // svh remains stable when the browser's address bar changes during a swipe.
       const viewport = mobile ? bounds.height : document.documentElement.clientHeight;
@@ -146,11 +160,7 @@
         ? Math.round(viewport * (mobile ? 1.65 : 2.05))
         : 0;
       home.toggleAttribute('data-hero-scrub', storyLength > 0);
-      if (storyLength && geometry?.mobile !== mobile) {
-        resetMovie();
-        film.width = Number(mobile ? film.dataset.portraitWidth : film.getAttribute('data-wide-width'));
-        film.height = Number(mobile ? film.dataset.portraitHeight : film.getAttribute('data-wide-height'));
-      }
+      if (storyLength && geometry?.cut !== cut) resetMovie();
       const slot = visual.getBoundingClientRect();
       const lead = mobile && !storyLength ? 0 : Math.max(0, bounds.height - viewport);
 
@@ -161,7 +171,7 @@
       stage.style.setProperty('--hero-pin-top', `${-lead}px`);
       const spacer = (mobile && !storyLength ? 0 : runway) + storyLength;
       masthead.style.setProperty('--hero-runway', `${spacer}px`);
-      geometry = { runway, lead, viewport, mobile, storyLength, top: masthead.getBoundingClientRect().top + window.scrollY };
+      geometry = { runway, lead, viewport, mobile, cut, storyLength, top: masthead.getBoundingClientRect().top + window.scrollY };
       lastOffset = undefined;
       paint();
     };
@@ -170,6 +180,7 @@
     window.addEventListener('resize', measure, { passive: true });
     window.addEventListener('pageshow', measure);
     motion.addEventListener('change', measure);
+    cuts.forEach(cut => cut.media?.addEventListener('change', measure));
     if ('ResizeObserver' in window) {
       const observer = new ResizeObserver(measure);
       observer.observe(stage);

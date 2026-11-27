@@ -8,11 +8,11 @@
   <title>ALA México | Préstamos personales</title>
   <meta name="description" content="Conoce los préstamos personales de ALA, sus requisitos, los costos y los medios de atención oficiales.">
   <link rel="icon" href="redesign/assets/app-icon.png">
-  <link rel="stylesheet" href="redesign/restore/tech.css?v=portada13">
-  <link rel="stylesheet" href="redesign/restore/home-layout.css?v=referencia4">
-  <link rel="stylesheet" href="redesign/restore/home-reviews.css?v=resenas1">
-  <script src="redesign/restore/hero-media.js?v=portada12" defer></script>
-  <script src="redesign/restore/interactions.js?v=portada12" defer></script>
+  <link rel="stylesheet" href="redesign/restore/tech.css?v=portada14">
+  <link rel="stylesheet" href="redesign/restore/home-layout.css?v=ritmo1">
+  <link rel="stylesheet" href="redesign/restore/home-reviews.css?v=resenas2">
+  <script src="redesign/restore/hero-media.js?v=portada-native1" defer></script>
+  <script src="redesign/restore/interactions.js?v=portada-native1" defer></script>
 </head>
 <body>
 <div id="tech">
@@ -59,11 +59,12 @@
         <div class="tech-hero-visual" data-hero-visual>
           <div class="tech-hero-frame">
             <picture>
-              <source media="(max-width: 670px)" srcset="redesign/restore/assets/ala-hero-v5/portrait.webp" width="640" height="1400">
-              <img class="tech-hero-photo" src="redesign/restore/assets/ala-hero-v5/wide.webp" alt="Una mujer con camisa azul revisa su celular al aire libre." width="1920" height="822" fetchpriority="high">
+              <source media="(max-width: 670px)" srcset="redesign/restore/assets/ala-hero-native/portrait.webp" data-cut="portrait" width="960" height="2100">
+              <source media="(min-resolution: 1.5dppx), (min-width: 1750px), (min-height: 920px)" srcset="redesign/restore/assets/ala-hero-native/wide-native.webp" data-cut="wide-native" width="4402" height="1884">
+              <img class="tech-hero-photo" src="redesign/restore/assets/ala-hero-native/wide.webp" data-cut="wide" alt="Una mujer con camisa azul revisa su celular al aire libre." width="2560" height="1096" fetchpriority="high">
             </picture>
-            <!-- La pantalla muestra Inicio, tal como aparece en la ficha oficial de ALA en Google Play. -->
-            <canvas class="tech-hero-film" width="1920" height="822" data-hero-film data-wide-width="1920" data-wide-height="822" data-portrait-width="640" data-portrait-height="1400" data-frames="241" data-hold-frame="204" data-media-root="redesign/restore/assets/ala-hero-v5" aria-hidden="true"></canvas>
+            <!-- Inicio de ALA, compuesto a partir de las capturas oficiales de Google Play y App Store. -->
+            <canvas class="tech-hero-film" width="2560" height="1096" data-hero-film data-frames="241" data-hold-frame="204" data-media-root="redesign/restore/assets/ala-hero-native" aria-hidden="true"></canvas>
           </div>
         </div>
       </section>
@@ -279,7 +280,6 @@
 
   <section id="tech-ayuda" class="tech-faq home-faq home-shell" aria-labelledby="tech-faq-title">
     <div>
-      <img src="public/assets/download-card-icon.png" alt="" width="64" height="64" loading="lazy" decoding="async">
       <h2 id="tech-faq-title">¿Aún tienes dudas<br>sobre ALA?</h2>
       <a class="home-more" href="channel/loan_faq/">Ver más <span aria-hidden="true">›</span></a>
     </div>
@@ -343,7 +343,7 @@
   </section>
   <section id="tech-descargar" class="home-download home-shell" aria-labelledby="home-download-title">
     <div>
-      <h2 id="home-download-title">¿Listo para comenzar tu viaje financiero?</h2>
+      <h2 id="home-download-title">ALA — Tu apoyo financiero confiable</h2>
       <p>Descarga ALA y consulta las condiciones de tu oferta desde la app.</p>
       <dl class="home-download-facts" aria-label="Datos de Google Play">
         <div><dt>Descargas</dt><dd><a href="https://play.google.com/store/apps/details?id=prestamo.dinero.ala&amp;hl=es_MX">1,000,000+</a></dd></div>
@@ -355,57 +355,66 @@
         <a href="https://sofom-ala.onelink.me/ndX5/mbzy0s0s"><img src="public/assets/nav-ios.png" width="21" height="21" alt="">App Store</a>
       </div>
     </div>
-    <img class="home-download-art" src="redesign/restore/assets/home-download-art-exact.webp" alt="" width="381" height="379" loading="lazy" decoding="async">
+    <a class="home-download-code" href="https://play.google.com/store/apps/details?id=prestamo.dinero.ala" aria-label="Descargar ALA en Google Play">
+      <img src="public/assets/qr-code.png" alt="" width="264" height="264" loading="lazy" decoding="async">
+      <span>Google Play</span>
+    </a>
   </section>
   </main>
   <footer class="tech-footer home-footer" id="tech-legal">
     <div class="home-shell">
-      <div class="tech-footer-grid">
+      <div class="home-footer-directory">
+        <div class="home-footer-brand">
+          <a class="home-footer-wordmark" href="./" aria-label="ALA, inicio"><img src="redesign/restore/assets/header-logo-v3.png" alt="ALA" width="343" height="120" loading="lazy"></a>
+          <p class="home-footer-name">Quantum Wealth Solutions, S.A.P.I. de C.V., SOFOM E.N.R.</p>
+          <div class="home-footer-social" role="group" aria-label="Redes sociales de ALA">
+            <a href="https://youtube.com/@alaprestamos?si=FPzN9blgS330QpHy"><img src="public/assets/youtube.png" alt="YouTube" width="28" height="28" loading="lazy"></a>
+            <a href="https://www.facebook.com/share/1BQbcFUN5h/"><img src="public/assets/facebook.png" alt="Facebook" width="28" height="28" loading="lazy"></a>
+            <a href="https://www.tiktok.com/@ala_prestamos?_r=1&amp;_t=ZS-93Iat2GL6Cz"><img src="public/assets/tiktok.png" alt="TikTok" width="28" height="28" loading="lazy"></a>
+          </div>
+        </div>
+        <nav aria-labelledby="home-footer-about">
+          <h3 id="home-footer-about">Más sobre ALA</h3>
+          <a href="marca/">Sobre nosotros</a>
+          <a href="noticias/">Noticias</a>
+          <a href="channel/loan_blog/">Guía de préstamos</a>
+          <a href="#tech-seguridad">Registro de la institución</a>
+        </nav>
+        <nav aria-labelledby="home-footer-help">
+          <h3 id="home-footer-help">Ayuda</h3>
+          <a href="#tech-ayuda">Preguntas frecuentes</a>
+          <a href="channel/help-center/">Centro de ayuda</a>
+          <a href="cobranza/">Pagos y cobranza</a>
+          <a href="live/legal/docs/une-ala.pdf">Atención a usuarios (UNE)</a>
+          <a href="live/legal/docs/despacho-de-cobranza.pdf">Despacho de cobranza</a>
+        </nav>
+        <nav aria-labelledby="home-footer-agreements">
+          <h3 id="home-footer-agreements">Acuerdos</h3>
+          <h4>Google Play</h4>
+          <a href="channel/privacy/">Aviso de privacidad</a>
+          <a href="channel/regist/">Acuerdo de registro</a>
+          <h4>App Store</h4>
+          <a href="channel/ios_privacy/">Aviso de privacidad</a>
+          <a href="channel/ios_regist/">Acuerdo de registro</a>
+          <a href="channel/ios_contract/">Contrato de préstamo</a>
+        </nav>
+      </div>
+      <div class="home-footer-disclosures">
         <div>
           <h3>Contáctanos</h3>
-          <p class="home-footer-name">Quantum Wealth Solutions, S.A.P.I. de C.V., SOFOM E.N.R.</p>
           <address>Av. Paseo de la Reforma 295, piso 6, oficina 1503, Col. Cuauhtémoc, Alcaldía Cuauhtémoc, C.P. 06500, Ciudad de México, México.</address>
           <p>De lunes a domingo, de 9:00 a 18:00.</p>
           <div class="home-footer-phones">
-            <a href="tel:8009530794"><img src="marca/assets/footer-phone-icon.png" width="18" height="18" alt="">800 953 0794</a>
+            <a href="tel:8009530794">800 953 0794</a>
             <a href="tel:8002883450">800 288 3450</a>
           </div>
-          <a class="home-footer-email" href="mailto:contacto-ala@alaprestamo.com"><img src="marca/assets/footer-email-icon.png" width="18" height="18" alt="">contacto-ala@alaprestamo.com</a>
+          <a href="mailto:contacto-ala@alaprestamo.com">contacto-ala@alaprestamo.com</a>
         </div>
         <div>
-          <h3>Secciones populares</h3>
-          <div class="home-footer-links">
-            <a href="channel/loan_blog/">Guía de préstamos <span aria-hidden="true">›</span></a>
-            <a href="noticias/">Noticias <span aria-hidden="true">›</span></a>
-            <a href="marca/">Sobre nosotros <span aria-hidden="true">›</span></a>
-            <a href="channel/help-center/">Centro de ayuda <span aria-hidden="true">›</span></a>
-            <a href="cobranza/">Pagos y cobranza <span aria-hidden="true">›</span></a>
-          </div>
-          <h3 class="home-footer-social-title">Síguenos</h3>
-          <div class="home-footer-social">
-            <a href="https://www.facebook.com/share/1BQbcFUN5h/"><img src="public/assets/facebook.png" alt="Facebook" width="34" height="34" loading="lazy" decoding="async"></a>
-            <a href="https://youtube.com/@alaprestamos?si=FPzN9blgS330QpHy"><img src="public/assets/youtube.png" alt="YouTube" width="34" height="34" loading="lazy" decoding="async"></a>
-            <a href="https://www.tiktok.com/@ala_prestamos?_r=1&amp;_t=ZS-93Iat2GL6Cz"><img src="public/assets/tiktok.png" alt="TikTok" width="34" height="34" loading="lazy" decoding="async"></a>
-          </div>
+          <h3>Condiciones del préstamo</h3>
+          <p>Montos de $100 a $50,000 MXN, con plazos de 61 a 154 días. Tasa de interés diaria desde 0.1% (equivalente a 36% anual). CAT promedio de 548.61% sin IVA, calculado al 30 de junio de 2026, para fines informativos y de comparación. Ejemplo: para un préstamo de $5,000 MXN a 61 días, el total a pagar es de $5,353.80 MXN en 4 pagos, incluidos $305 MXN de intereses y $48.80 MXN de IVA. El monto autorizado depende de la evaluación crediticia.</p>
+          <p>Considera tu capacidad de pago. Las fotografías de las guías son ilustrativas. Vista de demostración del sitio de ALA.</p>
         </div>
-        <div>
-          <h3>Acuerdo</h3>
-          <div class="home-footer-links">
-            <h4>Google Play</h4>
-            <a href="channel/privacy/">Aviso de privacidad <span aria-hidden="true">›</span></a>
-            <a href="channel/regist/">Acuerdo de registro <span aria-hidden="true">›</span></a>
-            <h4>App Store</h4>
-            <a href="channel/ios_privacy/">Aviso de privacidad <span aria-hidden="true">›</span></a>
-            <a href="channel/ios_regist/">Acuerdo de registro <span aria-hidden="true">›</span></a>
-            <a href="channel/ios_contract/">Contrato de préstamo <span aria-hidden="true">›</span></a>
-            <a href="live/legal/docs/une-ala.pdf">Atención a usuarios (UNE) <span aria-hidden="true">›</span></a>
-            <a href="live/legal/docs/despacho-de-cobranza.pdf">Despacho de cobranza <span aria-hidden="true">›</span></a>
-          </div>
-        </div>
-      </div>
-      <div class="tech-legal">
-        <p>Montos de $100 a $50,000 MXN, con plazos de 61 a 154 días. Tasa de interés diaria desde 0.1% (equivalente a 36% anual). CAT promedio de 548.61% sin IVA, calculado al 30 de junio de 2026, para fines informativos y de comparación. Ejemplo: para un préstamo de $5,000 MXN a 61 días, el total a pagar es de $5,353.80 MXN en 4 pagos, incluidos $305 MXN de intereses y $48.80 MXN de IVA. El monto autorizado depende de la evaluación crediticia.</p>
-        <p>Considera tu capacidad de pago. Las fotografías de las guías son ilustrativas. Vista de demostración del sitio de ALA.</p>
       </div>
     </div>
   </footer>

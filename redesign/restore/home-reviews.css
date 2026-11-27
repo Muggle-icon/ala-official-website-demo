@@ -4,7 +4,7 @@
 }
 
 .home-review-card {
-  flex: 0 0 max(16rem, calc((100% - 3 * var(--review-gap)) / 4));
+  flex: 0 0 calc((100% - 2 * var(--review-gap)) / 3);
   display: grid;
   grid-template-rows: auto 1fr;
   min-width: 0;
@@ -35,8 +35,9 @@
 }
 
 #tech .home-review-head h3 {
-  font-size: clamp(1.1875rem, 1.48vw, 1.5rem);
-  font-weight: 740;
+  font-size: clamp(1.1875rem, 1rem + .42vw, 1.5rem);
+  font-weight: 600;
+  letter-spacing: -.012em;
 }
 
 .home-review-stars {
@@ -64,13 +65,17 @@
 .home-review-copy blockquote {
   margin: .75rem 0 0;
   color: #4d5665;
-  font-size: var(--home-body, 1rem);
+  font-size: clamp(1rem, .96rem + .18vw, 1.125rem);
   font-style: italic;
   line-height: var(--home-copy-leading, 1.55);
 }
 
 .home-review-arrows:has(> [data-carousel-prev][aria-disabled="true"]):has(> [data-carousel-next][aria-disabled="true"]) {
   display: none;
+}
+
+@media (max-width: 940px) {
+  .home-review-card { flex-basis: calc((100% - var(--review-gap)) / 2); }
 }
 
 @media (max-width: 670px) {
