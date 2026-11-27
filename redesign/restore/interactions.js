@@ -50,19 +50,7 @@
       name: element.dataset.cut,
       media: element.media ? window.matchMedia(element.media) : null,
     }));
-    // This small index can arrive with the poster, before any video bytes are needed.
-    const mediaURL = (cut, type) => `${film.dataset.mediaRoot}/${cut}.${type}?v=${film.dataset.mediaVersion}`;
-    const manifests = new Map();
-    const prepareManifest = cut => {
-      if (typeof VideoDecoder !== 'function') return;
-      if (!manifests.has(cut)) {
-        const request = fetch(mediaURL(cut, 'json'), { priority: 'low' })
-          .then(response => response.ok ? response.json() : null)
-          .catch(() => null);
-        manifests.set(cut, request);
-      }
-      return manifests.get(cut);
-    };
+    const mediaURL = cut => `${film.dataset.mediaRoot}/${cut}.mp4?v=${film.dataset.mediaVersion}`;
     const finalFrame = Number(film?.dataset.frames) - 1;
     const clamp = value => Math.min(1, Math.max(0, value));
     const ease = (value, start, end) => {
@@ -98,12 +86,12 @@
     };
 
     const startMovie = ({cut, motionCut}) => {
-      movie = createHeroMedia(mediaURL(motionCut, 'mp4'), available, () => {
+      movie = createHeroMedia(mediaURL(motionCut), available, () => {
         // A missing motion rendition still has the full-size cut as a fallback.
         movie?.dispose();
-        movie = createHeroMedia(mediaURL(cut, 'mp4'), available, () => {}, prepareManifest(cut));
+        movie = createHeroMedia(mediaURL(cut), available, () => {});
         available();
-      }, prepareManifest(motionCut));
+      });
     };
 
     const warmMovie = () => {
@@ -113,12 +101,12 @@
     };
 
     const startDetail = (cut, position) => {
-      detail = createHeroMedia(mediaURL(cut, 'mp4'), available, () => {
+      detail = createHeroMedia(mediaURL(cut), available, () => {
         detail?.dispose();
         detail = undefined;
         if (cut === 'wide-native') startDetail('wide', requestedFrame);
         else detailFailed = true;
-      }, prepareManifest(cut), { initialFrame: position, detailOnly: true });
+      }, { initialFrame: position, detailOnly: true });
     };
 
     const paintMovie = (offset, position) => {

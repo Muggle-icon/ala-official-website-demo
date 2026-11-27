@@ -1,6 +1,7 @@
-function createHeroMedia(url, onFrameAvailable, onPlaybackError, manifest, { initialFrame = 0, detailOnly = false } = {}) {
+function createHeroMedia(url, onFrameAvailable, onPlaybackError, { initialFrame = 0, detailOnly = false } = {}) {
   const rate = 24;
   const network = new AbortController();
+  const indexRequest = new AbortController();
   const frames = new Map();
   const cachedGroups = new Set();
   const groups = [];
@@ -8,6 +9,9 @@ function createHeroMedia(url, onFrameAvailable, onPlaybackError, manifest, { ini
   let presented = 0;
   let settled = true;
   let settleTimer;
+  let stallTimer;
+  let stalled = false;
+  let lastProgress = 0;
   let jumped = false;
   let target = initialFrame;
   let interacting = false;
@@ -26,7 +30,30 @@ function createHeroMedia(url, onFrameAvailable, onPlaybackError, manifest, { ini
   let largeFrames = false;
   let disposed = false;
 
+  // Start the clock only for a requested, stationary frame. Ignore slow but
+  // advancing downloads. The page checks visibility before acting on a stall.
+  const watchForStall = () => {
+    if (stallTimer !== undefined || stalled || !settled || !interacting || !target
+      || video || disposed || frames.has(target) || (!detailOnly && target === presented)) return;
+    const timeout = 3500;
+    lastProgress = performance.now();
+    const check = () => {
+      stallTimer = undefined;
+      if (video || disposed || frames.has(target) || (!detailOnly && target === presented)) return;
+      const remaining = timeout - (performance.now() - lastProgress);
+      if (remaining > 0) {
+        stallTimer = setTimeout(check, remaining);
+      } else {
+        stalled = true;
+        onFrameAvailable();
+      }
+    };
+    stallTimer = setTimeout(check, timeout);
+  };
+
   const releaseDecodedFrames = () => {
+    indexRequest.abort();
+    clearTimeout(stallTimer);
     for (const frame of frames.values()) frame.close();
     frames.clear();
     cachedGroups.clear();
@@ -77,7 +104,7 @@ function createHeroMedia(url, onFrameAvailable, onPlaybackError, manifest, { ini
     }
   };
 
-  const useNativeVideo = () => {
+  const useNativeVideo = (direct = false) => {
     if (disposed || video) return;
     releaseDecodedFrames();
     video = document.createElement('video');
@@ -101,7 +128,9 @@ function createHeroMedia(url, onFrameAvailable, onPlaybackError, manifest, { ini
         onFrameAvailable();
       }
     });
-    if (interacting || detailOnly) {
+    if (direct) {
+      video.src = url;
+    } else if (interacting || detailOnly) {
       attachNativeSource();
     } else {
       // Learn whether normal video seeking works while the poster is visible,
@@ -163,12 +192,6 @@ function createHeroMedia(url, onFrameAvailable, onPlaybackError, manifest, { ini
       activeGroup = undefined;
       onFrameAvailable();
     }).catch(() => useNativeVideo());
-  };
-
-  const fetchMedia = async (url, options = {}) => {
-    const response = await fetch(url, { ...options, signal: network.signal });
-    if (!response.ok) throw new Error('No se pudo cargar el video de portada');
-    return response;
   };
 
   const cancelTransfer = key => {
@@ -255,6 +278,7 @@ function createHeroMedia(url, onFrameAvailable, onPlaybackError, manifest, { ini
           const length = Math.min(value.length, limit - job.cursor);
           bytes.set(value.subarray(0, length), job.cursor);
           job.cursor += length;
+          if (length) lastProgress = performance.now();
           const previous = group;
           while (group <= last && job.cursor > groups[group].offset) {
             const chunk = groups[group];
@@ -284,7 +308,11 @@ function createHeroMedia(url, onFrameAvailable, onPlaybackError, manifest, { ini
     }
 
     try {
-      const index = (await manifest) || await fetchMedia(url.replace(/\.mp4(?=\?|$)/, '.json')).then(response => response.json());
+      const response = await fetch(url.replace(/\.mp4(?=\?|$)/, '.json'), { priority: 'low', signal: indexRequest.signal });
+      if (!response.ok) throw new Error('No se pudo cargar el índice de video');
+      const index = await response.json();
+      if (disposed || video) return;
+      lastProgress = performance.now();
       const config = {
         codec: index.codec,
         codedWidth: index.width,
@@ -293,7 +321,7 @@ function createHeroMedia(url, onFrameAvailable, onPlaybackError, manifest, { ini
         optimizeForLatency: true,
       };
       const support = await VideoDecoder.isConfigSupported(config);
-      if (disposed) return;
+      if (disposed || video) return;
       if (!support.supported) {
         useNativeVideo();
         return;
@@ -336,15 +364,19 @@ function createHeroMedia(url, onFrameAvailable, onPlaybackError, manifest, { ini
       if (position !== target) {
         const next = Math.sign(position - target);
         jumped = Math.abs(position - target) >= 12 || next !== direction;
-        settled = false;
+        settled = stalled = false;
+        clearTimeout(stallTimer);
+        stallTimer = undefined;
         clearTimeout(settleTimer);
         settleTimer = setTimeout(() => {
           settled = true;
           decodeAround();
+          watchForStall();
         }, 100);
         direction = next;
         target = position;
       }
+      if (stalled && !video && !frames.has(target) && (detailOnly || position !== presented)) useNativeVideo(true);
       const advances = index => (index - presented) * direction > 0 && (target - index) * direction >= 0;
       if (video) {
         if (!interacting || nativeRequest) return null;
@@ -359,6 +391,7 @@ function createHeroMedia(url, onFrameAvailable, onPlaybackError, manifest, { ini
         return null;
       }
       decodeAround();
+      watchForStall();
       if (frames.has(target)) return { image: frames.get(target), index: target };
       let closest = presented;
       for (const index of frames.keys()) {
