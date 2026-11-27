@@ -40,14 +40,20 @@
   const masthead = document.querySelector('[data-hero-masthead]');
   const stage = masthead?.querySelector('[data-hero-stage]');
   const visual = stage?.querySelector('[data-hero-visual]');
-  if (header && stage && visual) {
+  if (stage && visual) {
     const home = masthead.closest('#tech');
     const motion = window.matchMedia('(prefers-reduced-motion: no-preference) and (min-height: 520px)');
     const narrow = window.matchMedia('(max-width: 670px)');
     const photo = visual.querySelector('img');
-    const video = visual.querySelector('[data-hero-video]');
-    const supportsStory = Boolean(video?.canPlayType('video/mp4'));
-    const storyFrameDuration = 1 / 24;
+    const film = visual.querySelector('[data-hero-film]');
+    const filmContext = film?.getContext('2d', { alpha: false });
+    const frameCount = Number(film?.dataset.frames);
+    const sheetColumns = 3;
+    const framesPerSheet = sheetColumns * 3;
+    const sheetCount = Math.ceil(frameCount / framesPerSheet);
+    const sheets = new Map();
+    const pendingSheets = new Set();
+    const failedSheets = new Set();
     const clamp = (value, upper = 1) => Math.min(upper, Math.max(0, value));
     const ease = (value, start, end) => {
       const t = clamp((value - start) / (end - start));
@@ -58,50 +64,80 @@
     let lastOffset;
     let frame;
     let storyProgress = 0;
-    let storyLoading = false;
+    let storyStarted = false;
     let storyFailed = false;
-    let storyFrameReady = false;
+    let drawnFrame = -1;
 
-    const failStory = () => {
-      storyFailed = true;
-      measure();
-    };
+    const frameForScroll = () => Math.round(storyProgress * (frameCount - 1));
+    const sheetForFrame = index => Math.floor(index / framesPerSheet);
 
-    const loadStory = async () => {
-      if (!geometry?.storyLength || storyLoading || !photo.complete) return;
-      const bounds = masthead.getBoundingClientRect();
-      if (bounds.bottom <= 0 || bounds.top >= geometry.viewport) return;
-      storyLoading = true;
+    const loadSheet = async index => {
+      pendingSheets.add(index);
+      const image = new Image();
+      image.src = `${film.dataset.sheetRoot}/${String(index).padStart(2, '0')}.webp`;
 
       try {
-        // A local buffer makes reverse seeks independent of HTTP range support.
-        const response = await fetch(video.dataset.src);
-        if (!response.ok) throw new Error('Unable to load the cover video');
-        video.src = URL.createObjectURL(await response.blob());
+        await image.decode();
+        if (Math.abs(index - sheetForFrame(frameForScroll())) <= 1) sheets.set(index, image);
       } catch {
-        failStory();
+        failedSheets.add(index);
+      } finally {
+        pendingSheets.delete(index);
+        paintStory();
       }
     };
 
-    const syncStory = () => {
-      if (!geometry?.storyLength || !Number.isFinite(video.duration)) return;
-      const lastFrame = Math.max(0, video.duration - storyFrameDuration);
-      const target = lastFrame * storyProgress;
-      const needsSeek = Math.abs(video.currentTime - target) > storyFrameDuration / 2;
-
-      if (video.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA && !video.seeking) {
-        storyFrameReady ||= !needsSeek || video.currentTime > 0;
+    const paintStory = () => {
+      if (!storyStarted || !geometry?.storyLength) return;
+      const nextFrame = frameForScroll();
+      const nextSheet = sheetForFrame(nextFrame);
+      if (failedSheets.has(nextSheet)) {
+        storyFailed = true;
+        measure();
+        return;
       }
-      stage.style.setProperty('--hero-video-opacity', storyFrameReady ? ease(storyProgress, 0, .06) : 0);
 
-      // Keep the element paused and feed it only the latest scroll target.
-      if (needsSeek && !video.seeking) video.currentTime = target;
+      // Keep nearby sheets decoded in both directions, without holding the whole clip in memory.
+      for (const index of sheets.keys()) {
+        if (Math.abs(index - nextSheet) > 1) sheets.delete(index);
+      }
+      for (const index of [nextSheet, nextSheet + 1, nextSheet - 1]) {
+        if (pendingSheets.size >= 2) break;
+        if (index >= 0 && index < sheetCount && !sheets.has(index) && !pendingSheets.has(index) && !failedSheets.has(index)) {
+          loadSheet(index);
+        }
+      }
+
+      const sheet = sheets.get(nextSheet);
+      if (sheet && drawnFrame !== nextFrame) {
+        const { width, height } = film;
+        const tile = nextFrame % framesPerSheet;
+        const x = (tile % sheetColumns) * width;
+        const y = Math.floor(tile / sheetColumns) * height;
+        filmContext.drawImage(sheet, x, y, width, height, 0, 0, width, height);
+        drawnFrame = nextFrame;
+      }
+
+      // Reframe the actual displayed image so the crop cannot move ahead of a loading sheet.
+      const displayed = Math.max(0, drawnFrame) / (frameCount - 1);
+      const focus = geometry.mobile
+        ? 78.5 + 16.5 * ease(displayed, .22, .46) - 19.6 * ease(displayed, .53, .91)
+        : 50 + 36 * ease(displayed, 0, .23) - 14 * ease(displayed, .5, .86);
+      stage.style.setProperty('--hero-film-x', `${focus}%`);
+      stage.style.setProperty('--hero-film-opacity', drawnFrame >= 0 ? ease(storyProgress, 0, .06) : 0);
+    };
+
+    const startStory = () => {
+      if (!geometry?.storyLength || storyStarted || !photo.complete) return;
+      const bounds = masthead.getBoundingClientRect();
+      if (bounds.bottom <= 0 || bounds.top >= geometry.viewport) return;
+      storyStarted = true;
+      paintStory();
     };
 
     const paint = () => {
       if (!geometry) return;
-      loadStory();
-      const { runway, lead, top, viewport, mobile, storyLength } = geometry;
+      const { runway, lead, top, mobile, storyLength } = geometry;
       const offset = clamp(window.scrollY - top, lead + runway + storyLength);
       if (lastOffset === offset) return;
 
@@ -112,24 +148,12 @@
 
       if (storyLength) {
         storyProgress = clamp((offset - lead - runway) / storyLength);
-        // Keep the phone inside the cover crop throughout the camera move.
-        const focus = mobile
-          ? 78.5 + 16.5 * ease(storyProgress, .22, .46) - 27 * ease(storyProgress, .53, .91)
-          : 50 + 36 * ease(storyProgress, 0, .23) - 14 * ease(storyProgress, .5, .86);
-        stage.style.setProperty('--hero-video-x', `${focus}%`);
-        syncStory();
+        if (storyStarted) paintStory();
+        else startStory();
       }
 
       stage.style.setProperty('--hero-expand', expand);
       stage.style.setProperty('--hero-copy-exit', copyExit);
-      stage.toggleAttribute('data-hero-quiet', copyExit >= .96);
-      if (mobile || offset <= 8 || offset < lastOffset) {
-        header.removeAttribute('data-hero-nav-hidden');
-      } else if (offset > viewport * .12 && (lastOffset === undefined || offset > lastOffset)) {
-        header.setAttribute('data-hero-nav-hidden', '');
-      }
-      header.style.setProperty('--hero-nav-offset', `${mobile ? 0 : offset}px`);
-      header.style.setProperty('--hero-nav-surface', mobile ? 0 : ease(expand, .6, .92));
       lastOffset = offset;
 
       if (offset > 8) home.removeAttribute('data-hero-enter');
@@ -147,7 +171,9 @@
       const viewport = document.documentElement.clientHeight;
       const mobile = narrow.matches;
       const runway = Math.round(viewport * (mobile ? .24 : 2));
-      const storyLength = supportsStory && !storyFailed ? Math.round(viewport * (mobile ? 1.4 : 1.8)) : 0;
+      const storyLength = filmContext && frameCount > 1 && !storyFailed
+        ? Math.round(viewport * (mobile ? 1.4 : 1.8))
+        : 0;
       home.toggleAttribute('data-hero-scrub', storyLength > 0);
       const bounds = stage.getBoundingClientRect();
       const slot = visual.getBoundingClientRect();
@@ -181,10 +207,7 @@
       observer.observe(stage);
       observer.observe(visual);
     }
-    photo?.addEventListener('load', loadStory, { once: true });
-    video?.addEventListener('loadeddata', syncStory);
-    video?.addEventListener('seeked', syncStory);
-    video?.addEventListener('error', failStory, { once: true });
+    photo?.addEventListener('load', startStory, { once: true });
     photo?.addEventListener('animationend', () => home.removeAttribute('data-hero-enter'), { once: true });
     if (motion.matches && window.scrollY < 2 && !window.location.hash) {
       home.setAttribute('data-hero-enter', '');
