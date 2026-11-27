@@ -42,7 +42,7 @@
   const visual = stage?.querySelector('[data-hero-visual]');
   if (stage && visual) {
     const home = masthead.closest('#tech');
-    const motion = window.matchMedia('(prefers-reduced-motion: no-preference) and (min-height: 520px)');
+    const motion = window.matchMedia('(prefers-reduced-motion: no-preference) and (min-height: 360px)');
     const narrow = window.matchMedia('(max-width: 670px)');
     const film = visual.querySelector('[data-hero-film]');
     const filmContext = film?.getContext('2d', { alpha: false });
@@ -51,19 +51,19 @@
       media: element.media ? window.matchMedia(element.media) : null,
     }));
     // This small index can arrive with the poster, before any video bytes are needed.
+    const mediaURL = (cut, type) => `${film.dataset.mediaRoot}/${cut}.${type}?v=${film.dataset.mediaVersion}`;
     const manifests = new Map();
     const prepareManifest = cut => {
       if (typeof VideoDecoder !== 'function') return;
       if (!manifests.has(cut)) {
-        const request = fetch(film.dataset.mediaRoot + '/' + cut + '.json', { priority: 'low' })
+        const request = fetch(mediaURL(cut, 'json'), { priority: 'low' })
           .then(response => response.ok ? response.json() : null)
           .catch(() => null);
         manifests.set(cut, request);
       }
       return manifests.get(cut);
     };
-    const timelineLastFrame = Number(film?.dataset.frames) - 1;
-    const finalFrame = Number(film?.dataset.holdFrame ?? timelineLastFrame);
+    const finalFrame = Number(film?.dataset.frames) - 1;
     const clamp = value => Math.min(1, Math.max(0, value));
     const ease = (value, start, end) => {
       const t = clamp((value - start) / (end - start));
@@ -86,7 +86,7 @@
     };
 
     const startMovie = cut => {
-      movie = createHeroMedia(film.dataset.mediaRoot + '/' + cut + '.mp4', () => {
+      movie = createHeroMedia(mediaURL(cut, 'mp4'), () => {
         filmNeedsPaint = true;
         queuePaint();
       }, () => {
@@ -96,14 +96,12 @@
       }, prepareManifest(cut));
     };
 
-    const paintMovie = offset => {
+    const paintMovie = (offset, position) => {
       if (!geometry.storyLength) return;
       // The matched poster draws immediately. Start fetching film during expansion.
       if (!movie && offset > 0 && masthead.getBoundingClientRect().bottom > 0) {
         startMovie(geometry.cut);
       }
-      const progress = clamp((offset - geometry.lead - geometry.runway) / geometry.storyLength);
-      const position = Math.min(finalFrame, Math.round(progress * timelineLastFrame));
       // The opening image is the first frame of this same film. Swap it in and
       // out at frame zero without blending two different source images.
       if (!position) {
@@ -126,21 +124,27 @@
 
     const paint = () => {
       if (!geometry) return;
-      const { runway, lead, top, mobile, storyLength } = geometry;
-      const offset = Math.min(lead + runway + storyLength, Math.max(0, window.scrollY - top));
+      const { runway, top, storyLength, viewport } = geometry;
+      const offset = Math.min(runway + storyLength + viewport, Math.max(0, window.scrollY - top));
       if (lastOffset === offset && !filmNeedsPaint) return;
       filmNeedsPaint = false;
-      paintMovie(offset);
-      if (lastOffset === offset) return;
 
-      const progress = clamp((offset - lead) / runway);
-      const expand = 1 - (1 - clamp(progress / (mobile ? 1 : .92))) ** 3;
-      const copyExit = mobile ? (storyLength ? ease(progress, .52, .95) : 0) : ease(progress, .76, .885);
-
-      if (lastOffset === undefined || progress < 1 || lastOffset - lead < runway) {
-        stage.style.setProperty('--hero-expand', expand);
-        stage.style.setProperty('--hero-copy-exit', copyExit);
-      }
+      const expansion = clamp(offset / runway);
+      const position = storyLength ? Math.round(finalFrame * clamp((offset - runway) / storyLength)) : 0;
+      paintMovie(offset, position);
+      // The mask and the wheel share one reversible coordinate. The remaining
+      // 25% linear component keeps the final millimetres of the mask moving.
+      const expand = expansion * (1.25 - .25 * expansion);
+      const displayed = Math.max(0, drawnAt);
+      const leave = (offset - runway - storyLength) / viewport;
+      const copyExit = Math.min(.28 * expansion + ease(displayed, 0, 23), 1);
+      const firstLine = ease(displayed, 151, 176) * (1 - ease(leave, .24, .52));
+      const secondLine = ease(displayed, 165, 190) * (1 - ease(leave, .13, .41));
+      stage.style.setProperty('--hero-expand', expand);
+      stage.style.setProperty('--hero-copy-exit', copyExit);
+      stage.style.setProperty('--hero-camera-turn', ease(displayed, 65, 172));
+      stage.style.setProperty('--hero-close-first', firstLine);
+      stage.style.setProperty('--hero-close-second', secondLine);
       lastOffset = offset;
 
       if (offset > 8) home.removeAttribute('data-hero-enter');
@@ -165,29 +169,26 @@
 
       const mobile = narrow.matches;
       const cut = cuts.find(option => !option.media || option.media.matches)?.name || 'wide';
-      const bounds = stage.getBoundingClientRect();
-      // svh remains stable when the browser's address bar changes during a swipe.
-      const viewport = mobile ? bounds.height : document.documentElement.clientHeight;
-      const runway = Math.round(viewport * (mobile ? .24 : 2));
-      const storyLength = filmContext && timelineLastFrame > 0
-        ? Math.round(viewport * (mobile ? 1.65 : 2.05))
+      // A stable small viewport keeps Safari's moving toolbar out of the timeline.
+      const viewport = stage.clientHeight;
+      const runway = Math.round(viewport * (mobile ? .28 : .54));
+      const storyLength = filmContext && finalFrame > 0
+        ? Math.round(viewport * (mobile ? 1.5 : 1.72))
         : 0;
       home.toggleAttribute('data-hero-scrub', storyLength > 0);
       if (storyLength && geometry?.cut !== cut) {
         resetMovie();
         if (masthead.getBoundingClientRect().bottom > 0) prepareManifest(cut);
       }
-      const slot = visual.getBoundingClientRect();
-      const lead = mobile && !storyLength ? 0 : Math.max(0, bounds.height - viewport);
-
-      stage.style.setProperty('--hero-photo-top', `${slot.top - bounds.top}px`);
-      stage.style.setProperty('--hero-photo-right', `${bounds.right - slot.right}px`);
-      stage.style.setProperty('--hero-photo-bottom', `${bounds.bottom - slot.bottom}px`);
-      stage.style.setProperty('--hero-photo-left', `${slot.left - bounds.left}px`);
-      stage.style.setProperty('--hero-pin-top', `${-lead}px`);
-      const spacer = (mobile && !storyLength ? 0 : runway) + storyLength;
-      masthead.style.setProperty('--hero-runway', `${spacer}px`);
-      geometry = { runway, lead, viewport, mobile, cut, storyLength, top: masthead.getBoundingClientRect().top + window.scrollY };
+      // Read the original grid slot; the animated mask is a different element.
+      const initial = visual.getBoundingClientRect();
+      const bounds = stage.getBoundingClientRect();
+      stage.style.setProperty('--hero-photo-top', `${initial.top - bounds.top}px`);
+      stage.style.setProperty('--hero-photo-right', `${bounds.right - initial.right}px`);
+      stage.style.setProperty('--hero-photo-bottom', `${bounds.bottom - initial.bottom}px`);
+      stage.style.setProperty('--hero-photo-left', `${initial.left - bounds.left}px`);
+      masthead.style.setProperty('--hero-runway', `${runway + storyLength}px`);
+      geometry = { runway, viewport, cut, storyLength, top: masthead.getBoundingClientRect().top + window.scrollY };
       lastOffset = undefined;
       paint();
     };
@@ -215,8 +216,10 @@
   if (nav && menuToggle) {
     let previousScroll = window.scrollY;
     let accumulatedScroll = 0;
+    let mobile = false;
     window.addEventListener('scroll', () => {
-      const currentScroll = window.scrollY;
+      if (mobile) return;
+      const currentScroll = Math.max(0, window.scrollY);
       const delta = currentScroll - previousScroll;
       previousScroll = currentScroll;
       if (currentScroll < 20) {
@@ -232,7 +235,6 @@
       accumulatedScroll = 0;
     }, { passive: true });
     const disclosures = [...nav.querySelectorAll('.tech-nav-disclosure')];
-    let mobile = false;
 
     const closeDisclosures = except => {
       for (const disclosure of disclosures) {
@@ -252,6 +254,9 @@
       const nextMobile = getComputedStyle(menuToggle).display !== 'none';
       if (mobile === nextMobile) return;
       mobile = nextMobile;
+      previousScroll = window.scrollY;
+      accumulatedScroll = 0;
+      header.removeAttribute('data-scroll-hidden');
       setMobileMenu(false);
     };
 

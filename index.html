@@ -8,11 +8,12 @@
   <title>ALA México | Préstamos personales</title>
   <meta name="description" content="Conoce los préstamos personales de ALA, sus requisitos, los costos y los medios de atención oficiales.">
   <link rel="icon" href="redesign/assets/app-icon.png">
-  <link rel="stylesheet" href="redesign/restore/tech.css?v=portada14">
-  <link rel="stylesheet" href="redesign/restore/home-layout.css?v=ritmo1">
+  <link rel="stylesheet" href="redesign/restore/tech.css?v=portada15">
+  <link rel="stylesheet" href="redesign/restore/home-layout.css?v=ritmo2">
   <link rel="stylesheet" href="redesign/restore/home-reviews.css?v=resenas2">
-  <script src="redesign/restore/hero-media.js?v=portada-native2" defer></script>
-  <script src="redesign/restore/interactions.js?v=portada-native2" defer></script>
+  <script src="redesign/restore/hero-media.js?v=portada-native3" defer></script>
+  <script src="redesign/restore/interactions.js?v=portada-native3" defer></script>
+  <script src="redesign/restore/home-motion.js?v=1" defer></script>
 </head>
 <body>
 <div id="tech">
@@ -25,29 +26,43 @@
       <span class="tech-toggle-bars" aria-hidden="true"><span></span><span></span><span></span></span>
     </button>
     <nav id="tech-primary-nav" aria-label="Navegación principal" data-restore-nav>
-      <a href="#tech-producto">Introducción del producto</a>
-      <details class="tech-nav-disclosure">
-        <summary data-nav-summary>Protección regulatoria <span class="tech-nav-chevron" aria-hidden="true"></span></summary>
-        <div class="tech-nav-popover" data-nav-panel>
-          <a href="#tech-seguridad">Verificar ALA</a>
-          <a href="#tech-legal">Documentos legales</a>
-        </div>
-      </details>
-      <details class="tech-nav-disclosure">
-        <summary data-nav-summary>Blog <span class="tech-nav-chevron" aria-hidden="true">⌄</span></summary>
-        <div class="tech-nav-popover" data-nav-panel>
-          <a href="#tech-educacion">Artículos recomendados</a>
-          <a href="channel/loan_blog/">Guía de préstamos</a>
-          <a href="noticias/">Noticias de ALA</a>
-        </div>
-      </details>
-      <a href="#tech-ayuda">Preguntas frecuentes</a>
-      <a href="channel/help-center/">Ayuda</a>
+      <div class="tech-nav-links">
+        <a href="#tech-producto">Introducción del producto</a>
+        <details class="tech-nav-disclosure">
+          <summary data-nav-summary>Protección regulatoria <span class="tech-nav-chevron" aria-hidden="true"></span></summary>
+          <div class="tech-nav-popover" data-nav-panel>
+            <a href="#tech-seguridad">Verificar ALA</a>
+            <a href="#tech-legal">Documentos legales</a>
+          </div>
+        </details>
+        <details class="tech-nav-disclosure">
+          <summary data-nav-summary>Blog <span class="tech-nav-chevron" aria-hidden="true">⌄</span></summary>
+          <div class="tech-nav-popover" data-nav-panel>
+            <a href="#tech-educacion">Artículos recomendados</a>
+            <a href="channel/loan_blog/">Guía de préstamos</a>
+            <a href="noticias/">Noticias de ALA</a>
+          </div>
+        </details>
+        <a href="#tech-ayuda">Preguntas frecuentes</a>
+        <a href="channel/help-center/">Ayuda</a>
+      </div>
+      <div class="tech-header-stores">
+        <a href="https://sofom-ala.onelink.me/uTdM/taq3lvd3" aria-label="Google Play">
+          <picture>
+            <source media="(max-width: 1100px)" srcset="redesign/restore/assets/home-v3/play-mark.png">
+            <img src="redesign/restore/assets/header-google-v3.png" width="120" height="120" alt="">
+          </picture>
+          <span>Google Play</span>
+        </a>
+        <a href="https://sofom-ala.onelink.me/ndX5/mbzy0s0s" aria-label="App Store">
+          <picture>
+            <source media="(max-width: 1100px)" srcset="redesign/restore/assets/home-v3/apple-black.png">
+            <img src="redesign/restore/assets/header-apple-v3.png" width="120" height="120" alt="">
+          </picture>
+          <span>App Store</span>
+        </a>
+      </div>
     </nav>
-    <div class="tech-header-stores">
-      <a href="https://sofom-ala.onelink.me/uTdM/taq3lvd3" aria-label="Google Play"><img src="redesign/restore/assets/header-google-v3.png" width="120" height="120" alt=""></a>
-      <a href="https://sofom-ala.onelink.me/ndX5/mbzy0s0s" aria-label="App Store"><img src="redesign/restore/assets/header-apple-v3.png" width="120" height="120" alt=""></a>
-    </div>
   </header>
   <main id="tech-content">
   <div class="tech-masthead" data-hero-masthead>
@@ -59,24 +74,29 @@
         <div class="tech-hero-visual" data-hero-visual>
           <div class="tech-hero-frame">
             <picture>
-              <source media="(max-width: 670px)" srcset="redesign/restore/assets/ala-hero-native/portrait.webp" data-cut="portrait" width="960" height="2100">
+              <source media="(max-width: 1100px) and (max-aspect-ratio: 1/1)" srcset="redesign/restore/assets/ala-hero-native/portrait.webp" data-cut="portrait" width="960" height="2100">
               <source media="(min-resolution: 1.5dppx), (min-width: 1750px), (min-height: 920px)" srcset="redesign/restore/assets/ala-hero-native/wide-native.webp" data-cut="wide-native" width="4402" height="1884">
               <img class="tech-hero-photo" src="redesign/restore/assets/ala-hero-native/wide.webp" data-cut="wide" alt="Una mujer con camisa azul revisa su celular al aire libre." width="2560" height="1096" fetchpriority="high">
             </picture>
             <!-- Inicio de ALA, compuesto a partir de las capturas oficiales de Google Play y App Store. -->
-            <canvas class="tech-hero-film" width="2560" height="1096" data-hero-film data-frames="241" data-hold-frame="204" data-media-root="redesign/restore/assets/ala-hero-native" aria-hidden="true"></canvas>
+            <canvas class="tech-hero-film" width="2560" height="1096" data-hero-film data-frames="205" data-media-version="screen3" data-media-root="redesign/restore/assets/ala-hero-native" aria-hidden="true"></canvas>
           </div>
         </div>
+        <p class="tech-hero-close"><span>Contigo para un</span> <span>mejor mañana.</span></p>
       </section>
     </div>
   </div>
   <section class="home-trust" aria-labelledby="home-trust-title">
     <div class="home-trust-inner">
       <img class="home-map" src="redesign/restore/assets/home-v3/map.webp" alt="" width="1370" height="1002" loading="lazy" decoding="async">
-      <h2 id="home-trust-title">La app de ALA ya suma<br><em>1,000,000+ descargas</em><br>en Google Play</h2>
+      <h2 id="home-trust-title">
+        <span>La app de ALA ya suma</span>
+        <span><em>1,000,000+ descargas</em></span>
+        <span>en Google Play</span>
+      </h2>
       <div class="restore-stores home-store-links">
-        <a href="https://sofom-ala.onelink.me/uTdM/taq3lvd3"><img src="public/assets/nav-google.png" alt="" width="21" height="21">Google Play</a>
-        <a href="https://sofom-ala.onelink.me/ndX5/mbzy0s0s"><img src="public/assets/nav-ios.png" alt="" width="21" height="21">App Store</a>
+        <a href="https://sofom-ala.onelink.me/uTdM/taq3lvd3"><img src="redesign/restore/assets/home-v3/play-mark.png" alt="" width="21" height="21">Google Play</a>
+        <a href="https://sofom-ala.onelink.me/ndX5/mbzy0s0s"><img src="redesign/restore/assets/home-v3/apple-white.png" alt="" width="21" height="21">App Store</a>
       </div>
     </div>
   </section>
@@ -243,12 +263,19 @@
 
   <section id="ala-en-los-medios" class="home-social home-shell" aria-labelledby="home-social-title">
     <h2 id="home-social-title">Encuentra y verifica a ALA</h2>
-    <div class="home-social-links">
-      <a href="https://ifit.condusef.gob.mx/ifit/ft_general_final.php?b=1&amp;idnc=47835"><img src="public/assets/footer-condusef-20260904-v2.png" alt="Ficha de ALA en CONDUSEF" loading="lazy" decoding="async"></a>
-      <a href="https://youtube.com/@alaprestamos?si=FPzN9blgS330QpHy"><img src="marca/assets/youtube.png" alt="ALA en YouTube" width="924" height="252" loading="lazy" decoding="async"></a>
-      <a href="https://www.facebook.com/share/1BQbcFUN5h/"><img src="marca/assets/facebook.png" alt="ALA en Facebook" width="1233" height="270" loading="lazy" decoding="async"></a>
-      <a href="https://webapps.condusef.gob.mx/SIPRES/jsp/home_publico.jsp?idins=16852"><img src="public/assets/footer-sipres-20260904.png" alt="Registro público de ALA en SIPRES" loading="lazy" decoding="async"></a>
-      <a href="https://www.tiktok.com/@ala_prestamos?_r=1&amp;_t=ZS-93Iat2GL6Cz"><img src="marca/assets/tiktok.png" alt="ALA en TikTok" width="882" height="270" loading="lazy" decoding="async"></a>
+    <div class="home-marquee" data-logo-marquee>
+      <div class="home-marquee-window">
+        <div class="home-marquee-track">
+          <div class="home-social-links">
+            <a href="https://ifit.condusef.gob.mx/ifit/ft_general_final.php?b=1&amp;idnc=47835"><img src="public/assets/footer-condusef-20260904-v2.png" alt="Ficha de ALA en CONDUSEF" loading="lazy" decoding="async"></a>
+            <a href="https://youtube.com/@alaprestamos?si=FPzN9blgS330QpHy"><img src="marca/assets/youtube.png" alt="ALA en YouTube" width="924" height="252" loading="lazy" decoding="async"></a>
+            <a href="https://www.facebook.com/share/1BQbcFUN5h/"><img src="marca/assets/facebook.png" alt="ALA en Facebook" width="1233" height="270" loading="lazy" decoding="async"></a>
+            <a href="https://webapps.condusef.gob.mx/SIPRES/jsp/home_publico.jsp?idins=16852"><img src="public/assets/footer-sipres-20260904.png" alt="Registro público de ALA en SIPRES" loading="lazy" decoding="async"></a>
+            <a href="https://www.tiktok.com/@ala_prestamos?_r=1&amp;_t=ZS-93Iat2GL6Cz"><img src="marca/assets/tiktok.png" alt="ALA en TikTok" width="882" height="270" loading="lazy" decoding="async"></a>
+          </div>
+        </div>
+      </div>
+      <button type="button" class="home-marquee-toggle" aria-label="Pausar el movimiento de los logotipos" aria-pressed="false" hidden><span aria-hidden="true"></span></button>
     </div>
   </section>
 
@@ -351,8 +378,8 @@
         <div><dt>Opiniones</dt><dd><a href="https://play.google.com/store/apps/details?id=prestamo.dinero.ala&amp;hl=es_MX">151 mil</a></dd></div>
       </dl>
       <div class="restore-stores home-store-links">
-        <a href="https://sofom-ala.onelink.me/uTdM/taq3lvd3"><img src="public/assets/nav-google.png" width="21" height="21" alt="">Google Play</a>
-        <a href="https://sofom-ala.onelink.me/ndX5/mbzy0s0s"><img src="public/assets/nav-ios.png" width="21" height="21" alt="">App Store</a>
+        <a href="https://sofom-ala.onelink.me/uTdM/taq3lvd3"><img src="redesign/restore/assets/home-v3/play-mark.png" width="21" height="21" alt="">Google Play</a>
+        <a href="https://sofom-ala.onelink.me/ndX5/mbzy0s0s"><img src="redesign/restore/assets/home-v3/apple-black.png" width="21" height="21" alt="">App Store</a>
       </div>
     </div>
     <a class="home-download-code" href="https://play.google.com/store/apps/details?id=prestamo.dinero.ala" aria-label="Descargar ALA en Google Play">
@@ -425,8 +452,8 @@
   <h2 id="restore-download-title">Descarga ALA</h2>
   <p>Elige la tienda de tu celular.</p>
   <div class="restore-stores">
-    <a href="https://sofom-ala.onelink.me/uTdM/taq3lvd3"><img src="public/assets/nav-google.png" width="18" height="18" alt="">Google Play</a>
-    <a href="https://sofom-ala.onelink.me/ndX5/mbzy0s0s"><img src="public/assets/nav-ios.png" width="18" height="18" alt="">App Store</a>
+    <a href="https://sofom-ala.onelink.me/uTdM/taq3lvd3"><img src="redesign/restore/assets/home-v3/play-mark.png" width="18" height="18" alt="">Google Play</a>
+    <a href="https://sofom-ala.onelink.me/ndX5/mbzy0s0s"><img src="redesign/restore/assets/home-v3/apple-white.png" width="18" height="18" alt="">App Store</a>
   </div>
 </dialog>
 </body>

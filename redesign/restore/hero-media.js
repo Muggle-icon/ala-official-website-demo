@@ -220,7 +220,7 @@ function createHeroMedia(url, onFrameAvailable, onPlaybackError, manifest) {
     }
 
     try {
-      const index = (await manifest) || await fetchMedia(url.replace(/\.mp4$/, '.json')).then(response => response.json());
+      const index = (await manifest) || await fetchMedia(url.replace(/\.mp4(?=\?|$)/, '.json')).then(response => response.json());
       const config = {
         codec: index.codec,
         codedWidth: index.width,
