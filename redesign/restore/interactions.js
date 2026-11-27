@@ -57,24 +57,28 @@
 
     const paint = () => {
       if (!geometry) return;
-      const { runway, lead, top } = geometry;
+      const { runway, lead, top, viewport, mobile } = geometry;
       const offset = clamp(window.scrollY - top, lead + runway);
       if (lastOffset === offset) return;
-      lastOffset = offset;
 
       const progress = clamp((offset - lead) / runway);
-      const expand = ease(progress, 0, .79);
-      const copyExit = ease(progress, .48, .95);
-      const navExit = ease(progress, .39, .79);
+      // A quick initial opening eases into a full-bleed hold on desktop.
+      const expand = 1 - (1 - clamp(progress / (mobile ? 1 : .92))) ** 3;
+      const copyExit = mobile ? 0 : ease(progress, .76, .885);
       const shade = ease(expand, .14, .55) * (1 - .94 * copyExit);
 
       stage.style.setProperty('--hero-expand', expand);
       stage.style.setProperty('--hero-copy-exit', copyExit);
       stage.style.setProperty('--hero-shade', shade);
       stage.toggleAttribute('data-hero-quiet', copyExit >= .96);
-      header.style.setProperty('--hero-nav-offset', `${offset}px`);
-      header.style.setProperty('--hero-nav-exit', navExit);
-      header.toggleAttribute('data-hero-quiet', navExit >= .96);
+      if (mobile || offset <= 8 || offset < lastOffset) {
+        header.removeAttribute('data-hero-nav-hidden');
+      } else if (offset > viewport * .12 && (lastOffset === undefined || offset > lastOffset)) {
+        header.setAttribute('data-hero-nav-hidden', '');
+      }
+      header.style.setProperty('--hero-nav-offset', `${mobile ? 0 : offset}px`);
+      header.style.setProperty('--hero-nav-surface', mobile ? 0 : ease(expand, .6, .92));
+      lastOffset = offset;
 
       if (offset > 8) home.removeAttribute('data-hero-enter');
     };
@@ -88,10 +92,11 @@
       }
 
       const viewport = document.documentElement.clientHeight;
-      const runway = Math.round(clamp(viewport * (narrow.matches ? .36 : .56), 560));
+      const mobile = narrow.matches;
+      const runway = Math.round(viewport * (mobile ? .24 : 2));
       const bounds = stage.getBoundingClientRect();
       const slot = visual.getBoundingClientRect();
-      const lead = Math.max(0, bounds.height - viewport);
+      const lead = mobile ? 0 : Math.max(0, bounds.height - viewport);
 
       // Keep the photo's grid slot as the stable origin while the frame expands.
       stage.style.setProperty('--hero-photo-top', `${slot.top - bounds.top}px`);
@@ -99,8 +104,8 @@
       stage.style.setProperty('--hero-photo-bottom', `${bounds.bottom - slot.bottom}px`);
       stage.style.setProperty('--hero-photo-left', `${slot.left - bounds.left}px`);
       stage.style.setProperty('--hero-pin-top', `${-lead}px`);
-      masthead.style.setProperty('--hero-runway', `${runway}px`);
-      geometry = { runway, lead, top: masthead.getBoundingClientRect().top + window.scrollY };
+      masthead.style.setProperty('--hero-runway', `${mobile ? 0 : runway}px`);
+      geometry = { runway, lead, viewport, mobile, top: masthead.getBoundingClientRect().top + window.scrollY };
       lastOffset = undefined;
       paint();
     };

@@ -185,6 +185,7 @@ html { scroll-behavior: smooth; scroll-padding-top: 24px; }
 }
 .tech-hero-copy { container-type: inline-size; }
 #tech .tech-hero h1 { font-size: clamp(32px,3.8vw,56px); font-weight: 740; }
+#tech .tech-hero h1 > span { display: inline-block; }
 #tech .tech-hero h1 strong {
   display: block;
   margin-top: .32em;
@@ -268,6 +269,7 @@ html { scroll-behavior: smooth; scroll-padding-top: 24px; }
   }
   [data-hero-motion] .tech-hero-photo {
     object-position: center calc(15% + 4% * var(--hero-expand, 0));
+    scale: calc(1.045 - .045 * var(--hero-expand, 0));
   }
   [data-hero-motion] .tech-hero-frame::after {
     position: absolute;
@@ -283,36 +285,47 @@ html { scroll-behavior: smooth; scroll-padding-top: 24px; }
     opacity: max(var(--hero-shade, 0), var(--hero-expand, 0));
   }
   [data-hero-motion] .tech-header {
-    opacity: calc(1 - var(--hero-nav-exit, 0));
-    transform: translateY(calc(var(--hero-nav-offset, 0px) - 76px * var(--hero-nav-exit, 0)));
-  }
-  [data-hero-motion] .tech-header:is([data-mobile-open], :has(:focus-visible, details[open])) {
-    opacity: 1;
     transform: translateY(var(--hero-nav-offset, 0px));
+    transition: translate 300ms cubic-bezier(.2,.75,.25,1);
   }
-  [data-hero-motion] .tech-header[data-hero-quiet]:not([data-mobile-open], :has(:focus-visible, details[open])) {
+  [data-hero-motion] .tech-header::before {
+    position: absolute;
+    z-index: -1;
+    inset-block: 0;
+    left: 50%;
+    width: 100vw;
+    transform: translateX(-50%);
+    content: '';
+    pointer-events: none;
+    opacity: var(--hero-nav-surface, 0);
+    background: #143797f5;
+  }
+  [data-hero-motion] .tech-header[data-hero-nav-hidden]:not([data-mobile-open], :has(:focus-visible, details[open])) {
+    translate: 0 calc(-100% - 2px);
     pointer-events: none;
   }
 
-  [data-hero-enter] .tech-hero-photo { animation: hero-photo-enter 780ms cubic-bezier(.2,.72,.22,1) both; }
-  [data-hero-enter] .tech-hero-copy:not(:focus-within) > * {
-    animation: hero-copy-enter 520ms cubic-bezier(.2,.72,.22,1) both;
+  [data-hero-enter] .tech-hero-photo { animation: hero-photo-enter 960ms cubic-bezier(.18,.7,.24,1) both; }
+  [data-hero-enter] .tech-hero-copy:not(:focus-within) :is(h1 > span,h1 > strong,p,.tech-hero-actions,.tech-hero-client) {
+    animation: hero-copy-enter 560ms cubic-bezier(.2,.72,.22,1) var(--hero-enter-delay, 100ms) both;
   }
-  [data-hero-enter] .tech-hero-copy:not(:focus-within) > p { animation-delay: 55ms; }
-  [data-hero-enter] .tech-hero-copy:not(:focus-within) > :is(.tech-hero-actions,.tech-hero-client) {
-    --hero-enter-opacity: .64;
-    animation-delay: 100ms;
+  [data-hero-enter] .tech-hero h1 > span:nth-of-type(2) { --hero-enter-delay: 165ms; }
+  [data-hero-enter] .tech-hero h1 > strong { --hero-enter-delay: 225ms; }
+  [data-hero-enter] .tech-hero-copy > p { --hero-enter-delay: 275ms; }
+  [data-hero-enter] .tech-hero-copy > :is(.tech-hero-actions,.tech-hero-client) {
+    --hero-enter-opacity: .72;
+    --hero-enter-delay: 340ms;
   }
 }
 @media (prefers-reduced-motion: no-preference) and (min-width: 851px) and (min-height: 800px) {
   .tech-hero { padding-bottom: 110px; }
 }
 @keyframes hero-photo-enter {
-  from { opacity: .25; transform: scale(1.055); }
+  from { opacity: .22; transform: scale(1.09); }
   to { opacity: 1; transform: scale(1); }
 }
 @keyframes hero-copy-enter {
-  from { opacity: var(--hero-enter-opacity, .15); translate: 0 12px; }
+  from { opacity: var(--hero-enter-opacity, .12); translate: 0 17px; }
   to { opacity: 1; translate: 0 0; }
 }
 
@@ -582,7 +595,7 @@ html { scroll-behavior: smooth; scroll-padding-top: 24px; }
 
 @media (max-width: 670px) and (prefers-reduced-motion: no-preference) and (min-height: 520px) {
   .tech-hero-stage { min-height: calc(100svh - 62px); }
-  [data-hero-motion] .tech-hero-stage { min-height: 100svh; }
+  [data-hero-motion] .tech-hero-stage { position: relative; min-height: 100svh; }
   [data-hero-motion] .tech-header { position: absolute; }
   [data-hero-motion] .tech-hero { padding-top: 86px; }
   [data-hero-motion] .tech-hero-frame::after {
