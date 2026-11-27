@@ -1,0 +1,658 @@
+#tech {
+  --home-inset: max(var(--page-gutter), 6.77vw);
+  --home-card-blue: #0949f5;
+  --home-card-light: #f1f4f9;
+  --home-radius: clamp(24px, 2.15vw, 41px);
+}
+
+.home-shell { margin-inline: var(--home-inset); }
+
+#tech :is(.home-benefits, .home-info, .home-safety, .home-stories, .home-social, .home-guides, .home-faq, .home-download) h2 {
+  font-size: clamp(30px, 2.85vw, 55px);
+  font-weight: 760;
+}
+
+.home-trust {
+  position: relative;
+  text-align: center;
+  overflow: clip;
+}
+
+.home-trust-inner {
+  position: relative;
+  min-height: clamp(455px, 50vw, 960px);
+  padding: clamp(94px, 10.65vw, 205px) var(--home-inset) 0;
+}
+
+.home-trust-inner h2,
+.home-trust-inner .restore-stores {
+  position: relative;
+}
+
+#tech .home-trust h2 {
+  font-size: clamp(35px, 3.85vw, 74px);
+  line-height: 1.14;
+  font-weight: 780;
+}
+
+.home-trust h2 em { color: var(--home-card-blue); font-style: normal; }
+
+.home-map {
+  position: absolute;
+  bottom: clamp(60px, 7.75vw, 148px);
+  left: 50%;
+  transform: translateX(-50%);
+  inline-size: min(50vw,960px);
+  block-size: clamp(240px, 24.5vw, 470px);
+}
+
+.home-map-person {
+  position: absolute;
+  left: calc(50% - min(26vw,500px));
+  top: clamp(160px, 19.8vw, 380px);
+  width: clamp(26px, 2.95vw, 57px);
+  height: auto;
+  border-radius: 50%;
+}
+
+.home-store-links { gap: clamp(14px, 1.2vw, 24px); }
+.home-trust .home-store-links {
+  justify-content: center;
+  margin-top: clamp(22px, 2.6vw, 50px);
+}
+
+#tech .home-store-links a {
+  min-height: clamp(52px, 3.75vw, 72px);
+  min-width: clamp(158px, 13.2vw, 254px);
+  padding-inline: 22px;
+  border-radius: 999px;
+  font-size: clamp(16px, 1.3vw, 25px);
+  font-weight: 550;
+}
+
+.home-store-links img {
+  width: clamp(19px, 1.5vw, 28px);
+  height: clamp(19px, 1.5vw, 28px);
+}
+
+.home-benefits {
+  padding-block: clamp(68px, 5.2vw, 100px) clamp(92px, 9.4vw, 180px);
+}
+
+.home-benefits > h2 { text-align: center; }
+
+.home-benefit {
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  align-items: center;
+  width: min(64.5vw,1238px);
+  min-height: clamp(330px, 29.9vw, 574px);
+  margin-inline: auto;
+}
+
+.home-benefit:nth-of-type(even) > div { grid-column: 2; }
+.home-benefit > div { max-width: 600px; }
+.home-benefits > h2 + .home-benefit { margin-top: clamp(18px, 2vw, 39px); }
+#tech .home-benefit h3 { font-size: clamp(27px, 2.8vw, 54px); }
+#tech .home-benefit p {
+  margin-top: clamp(10px, .9vw, 17px);
+  color: #626a79;
+  font-size: clamp(16px, 1.53vw, 29px);
+  line-height: 1.52;
+}
+
+.home-info { padding-top: clamp(74px, 8.3vw, 160px); }
+.home-info > h2,
+.home-stories > h2 {
+  padding-inline: var(--home-inset);
+  text-align: center;
+}
+
+.tech-rail.home-rail {
+  gap: clamp(16px, 1.25vw, 24px);
+  margin-top: clamp(43px, 5.3vw, 102px);
+  padding-inline: var(--home-inset);
+  scroll-padding-inline: var(--home-inset);
+}
+
+.home-info-card {
+  display: grid;
+  flex: 0 0 min(53.1vw,1020px);
+  grid-template-columns: minmax(0,1fr) 38%;
+  gap: 16px;
+  min-height: clamp(355px, 25.5vw, 490px);
+  background: #f2f5fa;
+  border-radius: var(--home-radius);
+  overflow: hidden;
+}
+
+.home-info-card > div {
+  padding: clamp(24px, 2.3vw, 44px) 0 clamp(23px, 2.05vw, 39px) clamp(25px, 2.2vw, 42px);
+}
+
+#tech .home-info-card h3 {
+  color: #101418;
+  font-size: clamp(26px, 2.7vw, 52px);
+  line-height: 1.05;
+}
+
+#tech .home-info-card :is(ul,p) {
+  margin: clamp(20px, 3vw, 58px) 0 14px;
+  color: #3f4857;
+  font-size: clamp(14px, 1.03vw, 20px);
+  line-height: 1.52;
+}
+
+.home-info-card ul { padding-left: 1em; }
+.home-info-card > img {
+  align-self: end;
+  justify-self: center;
+  width: 87%;
+  height: clamp(270px, 22.55vw, 433px);
+  object-fit: contain;
+  object-position: bottom;
+}
+
+.home-info-card > .home-info-device {
+  width: min(84%, 292px);
+  border: clamp(4px, .42vw, 8px) solid #101a2a;
+  border-bottom: 0;
+  border-radius: clamp(22px, 2.15vw, 41px) clamp(22px, 2.15vw, 41px) 0 0;
+  box-shadow: 0 6px 25px #2157d744;
+  object-fit: cover;
+  object-position: top;
+}
+
+#tech .home-info-card a,
+#tech .home-story a,
+#tech .home-safety-panel a {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  gap: .4em;
+  color: #0743ce;
+  font-size: clamp(14px, .98vw, 19px);
+  font-weight: 680;
+  text-decoration: none;
+}
+
+#tech .home-info-card a:hover,
+#tech .home-story a:hover,
+#tech .home-safety-panel a:hover { text-decoration: underline; }
+
+.tech-arrows.home-arrows { gap: 18px; margin-top: clamp(14px, 1.4vw, 27px); }
+.home-arrows button {
+  width: clamp(40px, 3.8vw, 73px);
+  height: clamp(40px, 3.2vw, 61px);
+  border-color: transparent;
+  background: transparent;
+  font-size: clamp(25px, 1.85vw, 36px);
+}
+.home-arrows button:not([aria-disabled="true"]):hover {
+  border-color: transparent;
+  background: #eff4ff;
+}
+
+.home-safety { padding-top: clamp(101px, 15.4vw, 296px); }
+.home-safety > h2 { text-align: center; }
+#tech .home-safety-intro {
+  max-width: min(64vw, 1130px);
+  margin: clamp(18px, 1.4vw, 27px) auto clamp(44px, 4.6vw, 88px);
+  text-align: center;
+  color: #303744;
+  font-size: clamp(17px, 1.48vw, 28px);
+  line-height: 1.5;
+}
+
+.home-safety-panel {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: clamp(15px, 1.2vw, 23px);
+  min-height: clamp(470px, 31vw, 598px);
+  padding: clamp(26px, 2.55vw, 49px);
+  background: var(--home-card-blue);
+  border-radius: var(--home-radius);
+}
+
+.home-safety-panel article {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 38px;
+  min-width: 0;
+  padding: clamp(21px, 1.85vw, 36px);
+  background: #eaf0fb;
+  border-radius: clamp(20px, 1.65vw, 32px);
+}
+
+.home-safety-panel article > img {
+  width: clamp(47px, 4.55vw, 87px);
+  height: auto;
+}
+
+.home-safety-panel .home-safety-registry {
+  color: #fff;
+  background: transparent;
+}
+
+#tech .home-safety-panel h3 { font-size: clamp(25px, 1.82vw, 35px); }
+#tech .home-safety-panel .home-safety-registry h3 {
+  max-width: 9.5em;
+  font-size: clamp(33px, 2.82vw, 54px);
+}
+
+#tech .home-safety-panel p {
+  margin: clamp(10px, 1vw, 19px) 0 13px;
+  color: #3d4a61;
+  font-size: clamp(14px, 1.02vw, 20px);
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+#tech .home-safety-panel .home-safety-registry p {
+  max-width: 29em;
+  color: #fff;
+  font-size: clamp(16px, 1.32vw, 25px);
+}
+
+#tech .home-safety-panel .home-safety-registry a { color: #fff; }
+.home-safety-registry a img {
+  width: clamp(42px, 5.65vw, 109px);
+  height: auto;
+  margin-right: .4em;
+}
+
+.home-stories { padding-top: clamp(105px, 13.4vw, 258px); }
+.home-stories .home-rail { margin-top: clamp(42px, 4.45vw, 85px); }
+.tech-story.home-story {
+  display: grid;
+  flex: 0 0 min(28.1vw, 540px);
+  grid-template-rows: auto 1fr;
+  min-height: clamp(420px, 36.5vw, 700px);
+  background: var(--home-card-light);
+  border-radius: var(--home-radius);
+}
+
+.home-story > img {
+  width: 100%;
+  aspect-ratio: 538 / 362;
+  object-fit: cover;
+}
+.tech-story.home-story > div {
+  min-width: 0;
+  padding: clamp(17px, 1.65vw, 32px);
+}
+#tech .home-story h3 { font-size: clamp(20px, 1.65vw, 32px); }
+#tech .home-story p {
+  margin: clamp(12px, 1.15vw, 22px) 0 clamp(17px, 1.25vw, 24px);
+  color: #414a59;
+  font-size: clamp(15px, 1.2vw, 23px);
+  line-height: 1.55;
+}
+#tech .home-story a { margin-top: auto; }
+
+.home-social {
+  padding-top: clamp(70px, 8vw, 154px);
+  text-align: center;
+}
+
+.home-social-links {
+  display: grid;
+  grid-template-columns: repeat(5,minmax(0,1fr));
+  align-items: center;
+  gap: clamp(18px, 4.85vw, 93px);
+  margin-top: clamp(34px, 5.1vw, 98px);
+}
+
+.home-social-links a {
+  display: grid;
+  min-width: 0;
+  min-height: 44px;
+  place-items: center;
+}
+
+.home-social-links img {
+  width: 100%;
+  height: clamp(32px, 4.3vw, 82px);
+  object-fit: contain;
+}
+
+.home-guides {
+  padding-top: clamp(100px, 12.6vw, 242px);
+  text-align: center;
+}
+
+#tech .home-more {
+  display: inline-flex;
+  width: fit-content;
+  min-height: 44px;
+  align-items: center;
+  gap: .45em;
+  color: #0743ce;
+  font-size: clamp(17px, 1.5vw, 29px);
+  font-weight: 680;
+  text-decoration: none;
+}
+#tech .home-more:hover { text-decoration: underline; }
+
+.home-guides > .home-more { margin-top: clamp(9px, 1vw, 19px); }
+.home-guides .tech-guide-frame { margin-top: clamp(32px, 2.95vw, 57px); }
+.home-guides .tech-guide-track {
+  background: var(--home-card-light);
+  border-radius: var(--home-radius);
+}
+
+.home-guides .home-guide { min-height: clamp(315px, 23.5vw, 452px); }
+.home-guide figure {
+  position: relative;
+  min-width: 0;
+}
+.home-guide figure img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.home-guide figcaption {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: .4em .95em;
+  color: #fff;
+  background: #202a36c9;
+  border-radius: 0 0 13px 0;
+  font-size: clamp(14px, 1.43vw, 27px);
+  font-weight: 660;
+}
+.home-guide > div {
+  padding: clamp(24px, 2.6vw, 50px) clamp(45px, 5vw, 96px) clamp(24px, 2.6vw, 50px) clamp(25px, 2.5vw, 48px);
+}
+#tech .home-guide h3 { font-size: clamp(27px, 2.38vw, 46px); line-height: 1.16; }
+#tech .home-guide p {
+  margin: clamp(13px, 1.05vw, 20px) 0 clamp(21px, 3.05vw, 59px);
+  color: #596372;
+  font-size: clamp(16px, 1.43vw, 27px);
+  line-height: 1.32;
+}
+#tech .home-guide .restore-button {
+  padding: .68em 1.55em;
+  min-height: 46px;
+  font-size: clamp(15px, 1.2vw, 23px);
+}
+
+.home-guides .tech-guide-pager { inset-inline-end: clamp(10px, 1.1vw, 21px); }
+.home-guides .tech-guide-pager button {
+  width: clamp(21px, 1.5vw, 29px);
+  height: clamp(59px, 6.3vw, 121px);
+}
+.home-guides .tech-guide-pager button::before {
+  width: clamp(5px, .42vw, 8px);
+  height: 90%;
+}
+.home-guides .tech-guide-pager button[aria-current="true"]::before { transform: none; }
+
+.tech-faq.home-faq {
+  grid-template-columns: 37.25% minmax(0,1fr);
+  gap: 0;
+  padding-block: clamp(101px, 12.8vw, 246px) clamp(90px, 11vw, 211px);
+}
+
+.home-faq > div:first-child > img {
+  width: clamp(42px, 3.5vw, 67px);
+  height: auto;
+}
+
+.home-faq .tech-tabs {
+  gap: clamp(11px, 1vw, 19px);
+  margin-bottom: clamp(13px, 1.3vw, 25px);
+}
+
+.home-faq .tech-tabs button {
+  min-height: clamp(42px, 2.8vw, 54px);
+  border-radius: 999px;
+  padding-inline: clamp(15px, 1.55vw, 30px);
+  font-size: clamp(14px, .98vw, 19px);
+  font-weight: 680;
+}
+
+.home-faq summary {
+  min-height: clamp(64px, 6.45vw, 124px);
+  font-size: clamp(17px, 1.45vw, 28px);
+}
+#tech .home-faq details p {
+  max-width: 60em;
+  padding-bottom: clamp(17px, 1.8vw, 35px);
+  font-size: clamp(14px, 1.02vw, 20px);
+  line-height: 1.55;
+}
+
+.home-download {
+  display: grid;
+  grid-template-columns: minmax(0,1fr) 28%;
+  gap: clamp(20px, 2vw, 38px);
+  align-items: center;
+  min-height: clamp(391px, 28.2vw, 542px);
+  margin-bottom: clamp(74px, 8vw, 154px);
+  padding: clamp(32px, 4.1vw, 79px);
+  border-radius: var(--home-radius);
+  color: #fff;
+  background: var(--home-card-blue);
+}
+#tech .home-download > div > p {
+  margin: clamp(13px, 1.2vw, 23px) 0 clamp(25px, 3.6vw, 69px);
+  font-size: clamp(16px, 1.38vw, 26px);
+  color: #f0f4ff;
+}
+.home-download-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(12px, 1.35vw, 26px);
+  margin: 0 0 clamp(18px, 2.8vw, 54px);
+}
+.home-download-facts > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: clamp(96px, 10.2vw, 196px);
+  padding-right: clamp(11px, 1.32vw, 25px);
+  border-right: 1px solid #fff4;
+  text-align: center;
+}
+.home-download-facts > div:last-child { border: 0; }
+.home-download-facts dt {
+  color: #edf3ff;
+  font-size: clamp(12px, 1.08vw, 21px);
+  text-transform: uppercase;
+}
+.home-download-facts .home-rating { color: #ffd365; letter-spacing: .06em; }
+.home-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.home-download-facts dd {
+  order: -1;
+  margin: 0 0 .16em;
+  font-size: clamp(21px, 1.92vw, 37px);
+  line-height: 1.1;
+  font-weight: 760;
+}
+#tech .home-download-facts a { color: inherit; text-decoration: none; }
+#tech .home-download-facts a:hover { text-decoration: underline; }
+#tech .home-download .home-store-links a { color: #142042; background: white; }
+#tech .home-download .home-store-links a:hover { background: #ebf1ff; }
+.home-download-art { width: min(100%, 381px); height: auto; justify-self: center; }
+
+.tech-footer.home-footer {
+  background: #142148;
+  padding-block: clamp(47px, 4.25vw, 82px) clamp(45px, 5.3vw, 102px);
+}
+.home-footer .tech-footer-grid {
+  grid-template-columns: 52.5% 29.25% minmax(0,1fr);
+  gap: 0;
+}
+.home-footer .tech-footer-grid > div { padding-right: clamp(14px, 3vw, 58px); }
+.home-footer .tech-footer-grid > div:last-child { padding-right: 0; }
+#tech .home-footer h3 {
+  margin-bottom: clamp(21px, 2.2vw, 42px);
+  font-size: clamp(22px, 1.65vw, 32px);
+}
+#tech .home-footer h4 {
+  margin: 1.2em 0 .55em;
+  font-size: clamp(16px, 1.13vw, 22px);
+}
+#tech .home-footer h4:first-child { margin-top: 0; }
+#tech .home-footer :is(a,p,address) {
+  color: #e6ecfd;
+  font-size: clamp(13px, .9vw, 17px);
+  overflow-wrap: anywhere;
+}
+#tech .home-footer address {
+  max-width: 35em;
+  margin-bottom: 10px;
+  font-style: normal;
+}
+#tech .home-footer .home-footer-name {
+  color: #fff;
+  font-weight: 700;
+  margin-bottom: 13px;
+}
+#tech .home-footer .home-footer-phones {
+  display: flex;
+  gap: 17px;
+  flex-wrap: wrap;
+}
+#tech .home-footer :is(.home-footer-phones a,.home-footer-email) {
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  gap: 8px;
+}
+.home-footer :is(.home-footer-phones,.home-footer-email) img { flex: none; }
+#tech .home-footer .home-footer-links a {
+  width: fit-content;
+  text-decoration: none;
+  margin-bottom: .66em;
+}
+#tech .home-footer .home-footer-links a:hover { text-decoration: underline; }
+#tech .home-footer .home-footer-links a span { margin-left: .4em; }
+#tech .home-footer .home-footer-social-title {
+  margin: clamp(23px, 3.05vw, 58px) 0 14px;
+}
+.home-footer-social { display: flex; flex-wrap: wrap; gap: 9px; }
+.home-footer-social img { width: 34px; height: 34px; object-fit: contain; }
+#tech .home-footer .tech-legal {
+  margin-top: clamp(34px, 3.15vw, 60px);
+}
+#tech .home-footer .tech-legal p {
+  max-width: 140ch;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+@media (max-width: 940px) {
+  .tech-story.home-story { flex-basis: min(40vw, 365px); min-height: 370px; }
+  .home-benefit { width: 78vw; column-gap: 22px; }
+  .home-info-card { flex-basis: min(73vw, 760px); }
+  .home-safety-panel { padding: 19px; }
+  .home-safety-panel article { padding: 20px; }
+}
+
+@media (max-width: 740px) {
+  .home-safety-panel {
+    grid-template-columns: repeat(2,minmax(0,1fr));
+    min-height: 0;
+  }
+  .home-safety-panel .home-safety-registry {
+    grid-column: 1 / -1;
+    gap: 12px;
+  }
+  .home-faq.tech-faq { grid-template-columns: 1fr; gap: 27px; }
+  .home-footer .tech-footer-grid {
+    grid-template-columns: repeat(2,minmax(0,1fr));
+    gap: 24px;
+  }
+  .home-footer .tech-footer-grid > div:first-child { grid-column: 1 / -1; }
+}
+
+@media (max-width: 670px) {
+  .home-trust-inner {
+    min-height: 365px;
+    padding-top: 72px;
+  }
+  #tech .home-trust h2 { font-size: clamp(27px, 7vw, 42px); }
+  .home-map { width: min(82vw, 450px); height: auto; bottom: 30px; }
+  .home-map-person { top: auto; bottom: 110px; left: 10%; }
+  #tech .home-store-links a { min-width: 123px; padding-inline: 13px; }
+  .home-benefits { padding-block: 40px 60px; }
+  .home-benefit {
+    grid-template-columns: 1fr;
+    width: 100%;
+    min-height: 188px;
+    padding-block: 21px;
+  }
+  .home-benefit:nth-of-type(even) > div { grid-column: 1; }
+  .home-benefits > h2 + .home-benefit { margin-top: 25px; }
+  .home-info { padding-top: 29px; }
+  .tech-rail.home-rail { margin-top: 30px; }
+  .home-info-card {
+    flex-basis: min(83vw, 490px);
+    grid-template-columns: minmax(0,1fr) 33%;
+    gap: 10px;
+    min-height: 310px;
+  }
+  .home-info-card > div { padding: 21px 0 20px 16px; }
+  #tech .home-info-card h3 { font-size: clamp(21px, 5.2vw, 30px); }
+  #tech .home-info-card :is(ul,p) { margin-top: 18px; }
+  .home-info-card > img { height: auto; max-height: 208px; }
+  .home-info-card > .home-info-device { height: 170px; border-radius: 13px 13px 0 0; }
+  .home-safety { padding-top: 64px; }
+  #tech .home-safety-intro { max-width: none; margin-bottom: 34px; }
+  .home-stories { padding-top: 86px; }
+  .tech-story.home-story { flex-basis: min(73vw, 357px); min-height: 358px; }
+  .home-social { padding-top: 56px; }
+  .home-social-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 17px 21px;
+    margin-top: 28px;
+  }
+  .home-social-links a { flex: 0 0 25%; }
+  .home-social-links img { height: 30px; }
+  .home-guides { padding-top: 78px; }
+  .home-guides .tech-guide-frame { margin-top: 20px; }
+  .home-guide figure { min-height: 205px; }
+  .home-guide > div { padding: 21px; }
+  #tech .home-guide p { margin-bottom: 19px; }
+  .home-guides .tech-guide-pager { margin-top: 8px; }
+  .home-guides .tech-guide-pager button { width: 32px; height: 28px; }
+  .home-guides .tech-guide-pager button::before { width: 18px; height: 4px; }
+  .home-guides .tech-guide-pager button[aria-current="true"]::before { transform: scaleX(1.55); }
+  .home-faq.tech-faq { padding-block: 72px 81px; }
+  .home-download {
+    grid-template-columns: 1fr;
+    gap: 19px;
+    min-height: 0;
+    margin-bottom: 60px;
+    padding: clamp(24px, 6vw, 34px);
+  }
+  .home-download-art { max-width: 174px; }
+  .home-download-facts { gap: 10px; }
+  .home-download-facts > div { min-width: 74px; padding-right: 9px; }
+}
+
+@media (max-width: 520px) {
+  .home-safety-panel { grid-template-columns: 1fr; }
+  .home-safety-panel article { gap: 21px; }
+}
+
+@media (max-width: 390px) {
+  .home-footer .tech-footer-grid { grid-template-columns: 1fr; }
+}
