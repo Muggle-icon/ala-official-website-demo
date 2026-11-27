@@ -8,9 +8,11 @@
   <title>ALA México | Préstamos personales</title>
   <meta name="description" content="Conoce los préstamos personales de ALA, sus requisitos, los costos y los medios de atención oficiales.">
   <link rel="icon" href="redesign/assets/app-icon.png">
-  <link rel="stylesheet" href="redesign/restore/tech.css?v=portada8">
-  <link rel="stylesheet" href="redesign/restore/home-layout.css?v=referencia1">
-  <script src="redesign/restore/interactions.js?v=portada8" defer></script>
+  <link rel="stylesheet" href="redesign/restore/tech.css?v=portada10">
+  <link rel="stylesheet" href="redesign/restore/home-layout.css?v=referencia2">
+  <link rel="stylesheet" href="redesign/restore/home-reviews.css?v=resenas1">
+  <script src="redesign/restore/hero-media.js?v=portada10" defer></script>
+  <script src="redesign/restore/interactions.js?v=portada10" defer></script>
 </head>
 <body>
 <div id="tech">
@@ -55,9 +57,12 @@
         </div>
         <div class="tech-hero-visual" data-hero-visual>
           <div class="tech-hero-frame">
-            <img class="tech-hero-photo" src="redesign/restore/assets/ala-hero-phone.png" alt="Una mujer con camisa azul revisa su celular al aire libre." width="1859" height="846" fetchpriority="high">
+            <picture>
+              <source media="(max-width: 670px)" srcset="redesign/restore/assets/ala-hero-v4/portrait.webp" width="640" height="1400">
+              <img class="tech-hero-photo" src="redesign/restore/assets/ala-hero-v4/wide.webp" alt="Una mujer con camisa azul revisa su celular al aire libre." width="1920" height="822" fetchpriority="high">
+            </picture>
             <!-- La pantalla muestra Inicio, tal como aparece en la ficha oficial de ALA en Google Play. -->
-            <canvas class="tech-hero-film" width="1440" height="616" data-hero-film data-frames="241" data-sheet-root="redesign/restore/assets/ala-hero-v2" aria-hidden="true"></canvas>
+            <canvas class="tech-hero-film" width="1920" height="822" data-hero-film data-wide-width="1920" data-wide-height="822" data-portrait-width="640" data-portrait-height="1400" data-frames="241" data-hold-frame="204" data-media-root="redesign/restore/assets/ala-hero-v4" aria-hidden="true"></canvas>
           </div>
         </div>
       </section>
@@ -178,26 +183,54 @@
   </section>
 
   <section id="tech-pagos" class="home-stories" aria-labelledby="tech-stories-title" data-carousel>
-    <h2 id="tech-stories-title">Un préstamo en la vida diaria</h2>
-    <div class="tech-rail home-rail" id="tech-stories-track" data-track tabindex="0" aria-label="Guías por situación">
-      <article class="tech-story home-story">
-        <img src="redesign/restore/assets/home-story-first.webp" alt="" width="538" height="362" loading="lazy" decoding="async" draggable="false">
-        <div><h3>Organiza tus gastos</h3><p>Antes de solicitar, calcula cuánto puedes pagar junto con tus otros gastos.</p><a href="article/como-elegir-un-prestamo-personal-en-mexico-segun-tu-capacidad-de-pago/">Revisar mi presupuesto <span aria-hidden="true">›</span></a></div>
+    <h2 id="tech-stories-title">¿Qué dicen quienes usan ALA?</h2>
+    <div class="tech-rail home-rail home-review-track" id="tech-stories-track" data-track tabindex="0" role="group" aria-label="Opiniones sobre ALA">
+      <article class="home-review-card">
+        <img src="redesign/restore/assets/home-review-01.webp" alt="" width="900" height="600" loading="lazy" decoding="async" draggable="false">
+        <div class="home-review-copy">
+          <div class="home-review-head">
+            <h3>Ama de casa</h3>
+            <span class="home-review-stars" role="img" aria-label="4.5 de 5 estrellas" style="--review-fill:90%"><span aria-hidden="true">★★★★★</span></span>
+          </div>
+          <p class="home-review-city">CDMX</p>
+          <blockquote><p>“Ya cumplo casi medio año y la verdad es de las mejores. No me apresuran. La semana pasada tuve mi primer «Va de Vuelta» y me depositaron solo por pagar a tiempo.”</p></blockquote>
+        </div>
       </article>
-      <article class="tech-story home-story">
-        <img src="redesign/restore/assets/home-story-second.webp" alt="" width="538" height="362" loading="lazy" decoding="async" draggable="false">
-        <div><h3>Consulta tu próxima fecha</h3><p>En ALA, abre Mi cuenta → Mis préstamos para consultar la fecha y el monto de tu próximo pago.</p><a href="article/donde-puedo-ver-mi-fecha-de-pago-y-monto-a-pagar/">Consultar la guía <span aria-hidden="true">›</span></a></div>
+      <article class="home-review-card">
+        <img src="redesign/restore/assets/home-review-02.webp" alt="" width="900" height="600" loading="lazy" decoding="async" draggable="false">
+        <div class="home-review-copy">
+          <div class="home-review-head">
+            <h3>Primera vez</h3>
+            <span class="home-review-stars" role="img" aria-label="5 de 5 estrellas" style="--review-fill:100%"><span aria-hidden="true">★★★★★</span></span>
+          </div>
+          <p class="home-review-city">Puebla</p>
+          <blockquote><p>“Excelente aplicación, los préstamos son en buen tiempo para pagar y la comisión es muy muy baja.”</p></blockquote>
+        </div>
       </article>
-      <article class="tech-story home-story">
-        <img src="redesign/restore/assets/home-story-third.webp" alt="" width="538" height="362" loading="lazy" decoding="async" draggable="false">
-        <div><h3>¿Es tu primera solicitud?</h3><p>Prepara tu identificación y una cuenta bancaria a tu nombre antes de iniciar.</p><a href="channel/loan_faq/">Ver preguntas frecuentes <span aria-hidden="true">›</span></a></div>
+      <article class="home-review-card">
+        <img src="redesign/restore/assets/home-review-03.webp" alt="" width="900" height="600" loading="lazy" decoding="async" draggable="false">
+        <div class="home-review-copy">
+          <div class="home-review-head">
+            <h3>Emprendedora</h3>
+            <span class="home-review-stars" role="img" aria-label="4 de 5 estrellas" style="--review-fill:80%"><span aria-hidden="true">★★★★★</span></span>
+          </div>
+          <p class="home-review-city">Guadalajara</p>
+          <blockquote><p>“Si no tienes historial crediticio, ALA es una excelente opción para empezar a construirlo. El proceso es 100 % en línea, súper rápido y sin complicaciones. La recomiendo totalmente.”</p></blockquote>
+        </div>
       </article>
-      <article class="tech-story home-story">
-        <img src="redesign/assets/v2/mexico-phone-break-16880211.jpg" alt="" loading="lazy" decoding="async" draggable="false">
-        <div><h3>¿Tienes un atraso?</h3><p>Revisa tu saldo y pide orientación a través de los canales oficiales de ALA.</p><a href="cobranza/#opciones-de-pago">Consultar opciones <span aria-hidden="true">›</span></a></div>
+      <article class="home-review-card">
+        <img src="redesign/restore/assets/home-review-04.webp" alt="" width="900" height="600" loading="lazy" decoding="async" draggable="false">
+        <div class="home-review-copy">
+          <div class="home-review-head">
+            <h3>Taxista</h3>
+            <span class="home-review-stars" role="img" aria-label="4.5 de 5 estrellas" style="--review-fill:90%"><span aria-hidden="true">★★★★★</span></span>
+          </div>
+          <p class="home-review-city">Monterrey</p>
+          <blockquote><p>“ALA es mi arma secreta. Sé que cuando mi negocio crezca, siempre estarán a mi lado…”</p></blockquote>
+        </div>
       </article>
     </div>
-    <div class="home-shell tech-arrows home-arrows">
+    <div class="home-shell tech-arrows home-arrows home-review-arrows">
       <button type="button" data-carousel-prev aria-controls="tech-stories-track" aria-label="Anterior">←</button>
       <button type="button" data-carousel-next aria-controls="tech-stories-track" aria-label="Siguiente">→</button>
     </div>

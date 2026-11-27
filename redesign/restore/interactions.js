@@ -44,19 +44,11 @@
     const home = masthead.closest('#tech');
     const motion = window.matchMedia('(prefers-reduced-motion: no-preference) and (min-height: 520px)');
     const narrow = window.matchMedia('(max-width: 670px)');
-    const photo = visual.querySelector('img');
     const film = visual.querySelector('[data-hero-film]');
     const filmContext = film?.getContext('2d', { alpha: false });
-    const frameCount = Number(film?.dataset.frames);
-    const clipLayouts = {
-      wide: { width: 1440, height: 616, columns: 2, previewWidth: 400, previewHeight: 172 },
-      portrait: { width: 512, height: 1120, columns: 4, previewWidth: 216, previewHeight: 472 },
-    };
-    const framesPerSheet = 8;
-    const framesPerPreview = 64;
-    const previewColumns = 8;
-    const sheetCount = Math.ceil(frameCount / framesPerSheet);
-    const clamp = (value, upper = 1) => Math.min(upper, Math.max(0, value));
+    const timelineLastFrame = Number(film?.dataset.frames) - 1;
+    const finalFrame = Number(film?.dataset.holdFrame ?? timelineLastFrame);
+    const clamp = value => Math.min(1, Math.max(0, value));
     const ease = (value, start, end) => {
       const t = clamp((value - start) / (end - start));
       return t * t * (3 - 2 * t);
@@ -65,161 +57,80 @@
     let geometry;
     let lastOffset;
     let frame;
-    let storyProgress = 0;
-    let clip;
+    let filmNeedsPaint = false;
+    let movie;
+    let drawnAt = -1;
 
-    const selectClip = mobile => {
-      const name = mobile ? 'portrait' : 'wide';
-      if (clip?.name === name) return;
-      const layout = clipLayouts[name];
-      film.width = layout.width;
-      film.height = layout.height;
-      clip = {
-        name,
-        layout,
-        path: film.dataset.sheetRoot + '/' + name,
-        sheets: new Map(),
-        pending: new Set(),
-        failed: new Set(),
-        previews: new Map(),
-        started: false,
-        drawnAt: -1,
-        drawKey: '',
-      };
-      stage.style.setProperty('--hero-film-opacity', 0);
+    const queuePaint = () => {
+      if (!geometry || frame !== undefined) return;
+      frame = requestAnimationFrame(() => {
+        frame = undefined;
+        paint();
+      });
     };
 
-    const decodeImage = url => {
-      const image = new Image();
-      image.decoding = 'async';
-      image.src = url;
-      return image.decode().then(() => image);
+    const prepareMovie = () => {
+      if (movie || !geometry?.storyLength) return;
+      const { bottom, top } = masthead.getBoundingClientRect();
+      if (bottom <= 0 || top >= geometry.viewport) return;
+      const clipName = geometry.mobile ? 'portrait' : 'wide';
+      movie = createHeroMedia(film.dataset.mediaRoot + '/' + clipName + '.mp4', () => {
+        filmNeedsPaint = true;
+        queuePaint();
+      });
     };
 
-    const sheetUrl = (source, index, prefix = '') =>
-      source.path + '/' + prefix + String(index).padStart(2, '0') + '.webp';
-    const frameAtScroll = () => storyProgress * (frameCount - 1);
-    const sheetAtScroll = () => Math.floor(frameAtScroll() / framesPerSheet);
-
-    const loadSheet = async (source, index) => {
-      source.pending.add(index);
-      try {
-        const image = await decodeImage(sheetUrl(source, index));
-        if (clip === source && Math.abs(index - sheetAtScroll()) <= 1) source.sheets.set(index, image);
-      } catch {
-        source.failed.add(index);
-      } finally {
-        source.pending.delete(index);
-        if (clip === source) paintStory();
+    const paintMovie = offset => {
+      if (!geometry.storyLength) return;
+      prepareMovie();
+      const progress = clamp((offset - geometry.lead - geometry.runway) / geometry.storyLength);
+      const position = Math.min(finalFrame, Math.round(progress * timelineLastFrame));
+      // The opening image is the first frame of this same film. Swap it in and
+      // out at frame zero without blending two different source images.
+      if (!position) {
+        film.removeAttribute('data-frame-ready');
+        drawnAt = -1;
       }
-    };
-
-    const drawTile = (image, tile, columns, width, height, alpha) => {
-      filmContext.globalAlpha = alpha;
-      filmContext.drawImage(image, (tile % columns) * width, Math.floor(tile / columns) * height,
-        width, height, 0, 0, film.width, film.height);
-      filmContext.globalAlpha = 1;
-    };
-
-    const drawAt = (source, position, lowResolution) => {
-      const frameLimit = lowResolution ? Math.floor((frameCount - 1) / 2) : frameCount - 1;
-      const first = Math.floor(position);
-      const second = Math.min(first + 1, frameLimit);
-      const weight = position - first;
-      const count = lowResolution ? framesPerPreview : framesPerSheet;
-      const images = lowResolution ? source.previews : source.sheets;
-      const firstSheet = images.get(Math.floor(first / count));
-      const secondSheet = weight > 0 ? images.get(Math.floor(second / count)) : firstSheet;
-      if (!firstSheet || !secondSheet) return false;
-      const key = (lowResolution ? 'preview-' : 'detail-') + position;
-      if (source.drawKey === key) return true;
-
-      const { width, height, columns, previewWidth, previewHeight } = source.layout;
-      const tileColumns = lowResolution ? previewColumns : columns;
-      const tileWidth = lowResolution ? previewWidth : width;
-      const tileHeight = lowResolution ? previewHeight : height;
-      drawTile(firstSheet, first % count, tileColumns, tileWidth, tileHeight, 1);
-      if (weight > 0) drawTile(secondSheet, second % count, tileColumns, tileWidth, tileHeight, weight);
-      source.drawKey = key;
-      source.drawnAt = lowResolution ? position * 2 : position;
-      return true;
-    };
-
-    const paintStory = () => {
-      if (!clip?.started || !geometry?.storyLength) return;
-      const position = frameAtScroll();
-      const index = sheetAtScroll();
-      const following = Math.floor(Math.min(frameCount - 1, Math.ceil(position)) / framesPerSheet);
-      const direction = position < clip.drawnAt ? -1 : 1;
-
-      // The entire low-resolution scrub is decoded at entry. Decode detailed sheets
-      // in the direction of travel while keeping the previous one available to reverse.
-      for (const cached of clip.sheets.keys()) {
-        if (Math.abs(cached - index) > 1) clip.sheets.delete(cached);
-      }
-      for (const wanted of [index, following, index + direction, index - direction]) {
-        if (clip.pending.size >= 2) break;
-        if (wanted >= 0 && wanted < sheetCount && !clip.sheets.has(wanted) && !clip.pending.has(wanted) && !clip.failed.has(wanted)) {
-          loadSheet(clip, wanted);
-        }
-      }
-
-      // Both layers use the exact scroll position. A download can change sharpness,
-      // but does not make the camera wait or catch up at a separate speed.
-      if (!drawAt(clip, position, false)) drawAt(clip, position / 2, true);
-
-      const displayed = Math.max(0, clip.drawnAt) / (frameCount - 1);
-      const focus = geometry.mobile
-        ? 50
-        : 50 + 37 * ease(displayed, 0, .22) - 7 * ease(displayed, .6, .86);
-      stage.style.setProperty('--hero-film-x', focus + '%');
-      stage.style.setProperty('--hero-film-opacity', clip.drawnAt >= 0 ? ease(storyProgress, 0, .06) : 0);
-    };
-
-    const startStory = () => {
-      if (!geometry?.storyLength || clip.started) return;
-      const bounds = masthead.getBoundingClientRect();
-      if (bounds.bottom <= 0 || bounds.top >= geometry.viewport) return;
-      const source = clip;
-      source.started = true;
-      const previewCount = Math.ceil(Math.ceil(frameCount / 2) / framesPerPreview);
-      for (let index = 0; index < previewCount; index += 1) {
-        decodeImage(sheetUrl(source, index, 'preview-')).then(image => {
-          if (clip !== source) return;
-          source.previews.set(index, image);
-          paintStory();
-        }).catch(() => {});
-      }
-      paintStory();
+      const image = movie?.frameAt(position);
+      if (!position || position === drawnAt || !image) return;
+      filmContext.drawImage(image, 0, 0, film.width, film.height);
+      film.setAttribute('data-frame-ready', String(position));
+      drawnAt = position;
     };
 
     const paint = () => {
       if (!geometry) return;
       const { runway, lead, top, mobile, storyLength } = geometry;
-      const offset = clamp(window.scrollY - top, lead + runway + storyLength);
+      const offset = Math.min(lead + runway + storyLength, Math.max(0, window.scrollY - top));
+      if (lastOffset === offset && !filmNeedsPaint) return;
+      filmNeedsPaint = false;
+      paintMovie(offset);
       if (lastOffset === offset) return;
 
       const progress = clamp((offset - lead) / runway);
-      // A quick initial opening eases into a full-bleed hold on desktop.
       const expand = 1 - (1 - clamp(progress / (mobile ? 1 : .92))) ** 3;
       const copyExit = mobile ? (storyLength ? ease(progress, .52, .95) : 0) : ease(progress, .76, .885);
 
-      if (storyLength) {
-        storyProgress = clamp((offset - lead - runway) / storyLength);
-        if (clip.started) paintStory();
-        else startStory();
+      if (lastOffset === undefined || progress < 1 || lastOffset - lead < runway) {
+        stage.style.setProperty('--hero-expand', expand);
+        stage.style.setProperty('--hero-copy-exit', copyExit);
       }
-
-      stage.style.setProperty('--hero-expand', expand);
-      stage.style.setProperty('--hero-copy-exit', copyExit);
       lastOffset = offset;
 
       if (offset > 8) home.removeAttribute('data-hero-enter');
     };
 
+    const resetMovie = () => {
+      movie?.dispose();
+      movie = undefined;
+      film?.removeAttribute('data-frame-ready');
+      drawnAt = -1;
+    };
+
     const measure = () => {
       home.toggleAttribute('data-hero-motion', motion.matches);
       if (!motion.matches) {
+        resetMovie();
         geometry = undefined;
         home.removeAttribute('data-hero-enter');
         home.removeAttribute('data-hero-scrub');
@@ -228,19 +139,21 @@
 
       const mobile = narrow.matches;
       const bounds = stage.getBoundingClientRect();
-      // The mobile address bar changes the live viewport while swiping. The
-      // stage is sized in svh, so use that stable height for the scroll map.
+      // svh remains stable when the browser's address bar changes during a swipe.
       const viewport = mobile ? bounds.height : document.documentElement.clientHeight;
       const runway = Math.round(viewport * (mobile ? .24 : 2));
-      const storyLength = filmContext && frameCount > 1
+      const storyLength = filmContext && timelineLastFrame > 0
         ? Math.round(viewport * (mobile ? 1.65 : 2.05))
         : 0;
       home.toggleAttribute('data-hero-scrub', storyLength > 0);
-      if (storyLength) selectClip(mobile);
+      if (storyLength && geometry?.mobile !== mobile) {
+        resetMovie();
+        film.width = Number(mobile ? film.dataset.portraitWidth : film.getAttribute('data-wide-width'));
+        film.height = Number(mobile ? film.dataset.portraitHeight : film.getAttribute('data-wide-height'));
+      }
       const slot = visual.getBoundingClientRect();
       const lead = mobile && !storyLength ? 0 : Math.max(0, bounds.height - viewport);
 
-      // Keep the photo's grid slot as the stable origin while the frame expands.
       stage.style.setProperty('--hero-photo-top', `${slot.top - bounds.top}px`);
       stage.style.setProperty('--hero-photo-right', `${bounds.right - slot.right}px`);
       stage.style.setProperty('--hero-photo-bottom', `${bounds.bottom - slot.bottom}px`);
@@ -253,13 +166,7 @@
       paint();
     };
 
-    window.addEventListener('scroll', () => {
-      if (!geometry || frame !== undefined) return;
-      frame = requestAnimationFrame(() => {
-        frame = undefined;
-        paint();
-      });
-    }, { passive: true });
+    window.addEventListener('scroll', queuePaint, { passive: true });
     window.addEventListener('resize', measure, { passive: true });
     window.addEventListener('pageshow', measure);
     motion.addEventListener('change', measure);
@@ -268,8 +175,8 @@
       observer.observe(stage);
       observer.observe(visual);
     }
-    photo?.addEventListener('load', startStory, { once: true });
-    photo?.addEventListener('animationend', () => home.removeAttribute('data-hero-enter'), { once: true });
+    visual.querySelector('img')?.addEventListener('animationend', () =>
+      home.removeAttribute('data-hero-enter'), { once: true });
     if (motion.matches && window.scrollY < 2 && !window.location.hash) {
       home.setAttribute('data-hero-enter', '');
     }
